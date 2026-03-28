@@ -1,0 +1,14 @@
+# Namespace: Menace.Tactical.AI.Behaviors.Criterions
+# Classes: 11
+
+Criterion                                          Menace.Tactical.AI.Behaviors.Criterions
+AvoidOpponents                                     Menace.Tactical.AI.Behaviors.Criterions
+ConsiderSurroundings                               Menace.Tactical.AI.Behaviors.Criterions
+ConsiderZones                                      Menace.Tactical.AI.Behaviors.Criterions
+CoverAgainstOpponents                              Menace.Tactical.AI.Behaviors.Criterions
+DistanceToCurrentTile                              Menace.Tactical.AI.Behaviors.Criterions
+ExistingTileEffects                                Menace.Tactical.AI.Behaviors.Criterions
+FleeFromOpponents                                  Menace.Tactical.AI.Behaviors.Criterions
+Roam                                               Menace.Tactical.AI.Behaviors.Criterions
+ThreatFromOpponents                                Menace.Tactical.AI.Behaviors.Criterions
+WakeUp                                             Menace.Tactical.AI.Behaviors.Criterions
