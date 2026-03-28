@@ -12,16 +12,28 @@ The goal is a permanent reference.
 menace-re/
 ├── README.md
 ├── tools/
-│   └── extract_rvas.py          # Il2CppDumper dump.cs parser (see Tools section)
-├── investigations/
-│   └── tactical-ai/
-│       ├── REPORT.md            # Full findings: classes, fields, formulas, design notes
-│       └── RECONSTRUCTIONS.md   # Annotated C reconstructions of all analysed functions
-└── dumps/
-    └── (dump.cs, targets.txt — not committed, see below)
+│   ├── extract_rvas.py                  # Il2CppDumper dump.cs parser (see Tools section)
+│   └── (dump.cs, targets.txt — not committed, see below)
+├── skills/
+└── investigations/
+    └── tactical-ai/
+        ├── TacticalStateSettings/       # Legacy — produced before the stage model
+        │   ├── REPORT.md                # Legacy — produced before the stage model
+        │   └── RECONSTRUCTIONS.md       # Legacy — produced before the stage model            
+        └── Criterions/                  # Namespace-level investigation folder
+            ├── stage-1/
+            │   ├── REPORT.md            # Stage artefact — this stage's findings only
+            │   └── RECONSTRUCTIONS.md   # Stage artefact — this stage's reconstructions only
+            ├── stage-2/
+            │   ├── REPORT.md
+            │   └── RECONSTRUCTIONS.md
+            ├── REPORT.md                # Final collated report — produced at investigation close
+            └── RECONSTRUCTIONS.md       # Final collated reconstructions
+
+    
 ```
 
-Additional investigations will follow the same pattern: a folder under `investigations/` with a `REPORT.md` and `RECONSTRUCTIONS.md`.
+Each investigation targets a specific namespace within a system. Stage artefacts are saved per-stage and collated into a final pair at the namespace root when the investigation closes. Additional namespaces follow the same pattern under their system folder.
 
 ---
 
@@ -141,10 +153,39 @@ Investigations were performed against a specific build of Menace. Binary details
 
 ## Contributing / Adding an Investigation
 
-1. Create a folder under `investigations/<system-name>/`.
-2. Run `extract_rvas.py` for the relevant classes and commit the output JSON/CSV to the folder.
-3. Document findings in `REPORT.md` — class layouts, field offsets, method VAs, inferences, open questions.
-4. Document disassembled functions in `RECONSTRUCTIONS.md` — raw Ghidra output followed by annotated C reconstruction with all offsets resolved.
-5. Update this README with a summary entry under **Current Investigations**.
+### Setup
+
+1. Create a folder under `investigations/<system-name>/<Namespace>/`.
+2. Run `extract_rvas.py` for the target namespace and commit the output JSON/CSV to that folder.
+3. Update this README with a summary entry under **Current Investigations**.
+
+### Session open
+
+Provide the agent with:
+- `Research-AI.md` — attached
+- **First Session Only:** The extraction report for the target namespace — attached
+- The handoff prompt from the previous stage — pasted as the opening message (Stage 1 only: omit, the agent will establish the entry point from the extraction report)
+
+Do not attach any stage artefact files. These remain on disk and are not loaded into active sessions.
+
+### At a stage boundary
+
+Provide the agent with `Handoff-AI.md` — attached. The agent will invoke the `research-handoff` skill and produce, in order:
+
+1. **Stage REPORT.md** — save to `investigations/<system-name>/<Namespace>/stage-<N>/REPORT.md`
+2. **Stage RECONSTRUCTIONS.md** — save to `investigations/<system-name>/<Namespace>/stage-<N>/RECONSTRUCTIONS.md`
+3. **Handoff prompt** — copy this block. Open a new conversation and provide it as the opening message alongside the files listed under Session open above.
+
+### At investigation close
+
+When the final stage is complete, open a collation session and provide:
+- `Research-AI.md` and `Handoff-AI.md` — attached
+- All stage `REPORT.md` files — attached
+- All stage `RECONSTRUCTIONS.md` files — attached
+- The extraction report — attached
+
+The agent will produce the final collated `REPORT.md` and `RECONSTRUCTIONS.md`. Save these to the namespace root:
+- `investigations/<system-name>/<Namespace>/REPORT.md`
+- `investigations/<system-name>/<Namespace>/RECONSTRUCTIONS.md`
 
 The bar for "complete" is: someone with no prior context on this system should be able to read the report and understand exactly what the code does, without opening Ghidra.

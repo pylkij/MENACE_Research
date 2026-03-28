@@ -1,11 +1,5 @@
 # Research-AI.md — AI Agent Research Guide
 
-This document instructs AI agents on how to conduct reverse engineering investigations into Menace game systems, following the methodology established in the tactical AI investigation. Read this document in full before beginning any research task.
-
----
-
-## What You Are Doing
-
 You are reverse engineering internal systems of a Unity IL2CPP game called Menace. Your inputs are:
 
 - A `dump.cs` file produced by Il2CppDumper (~32 MB, ~885,000 lines)
@@ -18,6 +12,8 @@ Your outputs are:
 - `RECONSTRUCTIONS.md` — every Ghidra-decompiled function with its raw output followed by a fully annotated C reconstruction
 
 The standard is: **someone with no prior context on this system should be able to read the report and understand exactly what the code does, without opening Ghidra.**
+
+When a stage boundary is reached, request Handoff-AI.md from the operator to execute the stage boundary sequence.
 
 ---
 
@@ -141,147 +137,7 @@ Do not pursue diminishing returns. A well-scoped investigation with clear open q
 
 ---
 
-## Part 3 — Writing REPORT.md
-
-The report is the permanent reference. Write it as if the reader has never seen the game, the binary, or the dump. Every section should be self-contained.
-
-### Required sections (in order)
-
-**1. Header block**
-- Game name, platform, binary details (image base), source material
-- Investigation status (Complete / In Progress / Partial)
-
-**2. Table of contents**
-
-**3. Investigation Overview**
-- What system is being investigated and why
-- What was achieved (bullet list — be specific)
-- What was NOT investigated (explicit scope boundary — name the things left out)
-
-**4. Tooling**
-- How `extract_rvas.py` was used for this investigation
-- Any issues encountered with the tool and how they were resolved
-- The specific commands used
-
-**5. Class Inventory**
-- Table: class name, namespace, TypeDefIndex, one-line role description
-- One row per class that was extracted and analysed
-
-**6. The Core Finding** *(rename to match the system)*
-- The formula, algorithm, or model that is the primary result of the investigation
-- Written in clean pseudocode or mathematical notation
-- Followed by plain-English explanation of what it means
-- Include any non-obvious conventions (e.g. sign inversions, units, normalization)
-
-**7. Full Pipeline / System Flow** *(if applicable)*
-- ASCII diagram or step-by-step description of the end-to-end flow
-- Should be readable without consulting individual class sections
-
-**8. One section per class**
-
-Each class section must contain:
-
-- **Namespace, TypeDefIndex, base class, role** (one paragraph)
-- **Fields table**: offset | type | name | notes
-- **Methods table**: method name | RVA | VA | notes
-- **Behavioural notes**: anything inferred or confirmed about how the class operates at runtime that isn't obvious from the field/method lists
-
-**9. Ghidra Address Reference**
-- Complete table of all VAs analysed, split into "fully analysed" and "secondary targets not yet analysed"
-- Format: VA | method | class | one-line notes
-
-**10. Key Inferences and Design Notes**
-- Non-obvious design decisions that the code reveals
-- Anything that would surprise someone familiar with the codebase
-- Sign conventions, dual-use of a field, coupling between systems, etc.
-
-**11. Open Questions**
-- Numbered list
-- Each item: the question, why it matters, the concrete next step to answer it (e.g. "Extract class X", "Analyse function at VA Y", "Check dump.cs around line Z")
-
-### Writing standards
-
-- **Be exhaustive on field tables.** Every field with its offset. If the offset is unknown, say so.
-- **Name every formula term.** Never write `(x + y) * z` when you can write `(SafetyScore + UtilityScore) * DistanceScale`.
-- **Explain sign conventions explicitly.** If a score is stored negative, say so and explain why.
-- **Note where field meanings were inferred vs confirmed.** Use "confirmed" when Ghidra code directly writes/reads the field. Use "inferred" when derived from naming, type, or context.
-- **Do not editorialize.** State what the code does. Design opinions belong in "Design Notes," clearly labelled.
-- **Include all warnings from the extraction tool.** If `extract_rvas.py` flagged anything, note it.
-
----
-
-## Part 4 — Writing RECONSTRUCTIONS.md
-
-Every function for which Ghidra output was provided must appear in RECONSTRUCTIONS.md, without exception.
-
-### Required structure per function
-
-```markdown
-## N. ClassName.MethodName — 0x18XXXXXXXX
-
-### Raw Ghidra output
-```c
-[paste the raw Ghidra decompilation verbatim, unmodified]
-```
-
-### Annotated reconstruction
-```c
-[fully annotated C-style reconstruction]
-```
-
-### [MethodName] — design notes  *(optional, include when the function has non-obvious behaviour)*
-[prose notes on anything surprising or important]
-```
-
-### Rules for the annotated reconstruction
-
-**Always:**
-- Replace every `param_1 + 0xNN` with the named field: `self->FieldName`
-- Replace every known `FUN_18XXXXXXXX` with the method's real name or a descriptive alias
-- Replace every known `DAT_18XXXXXXXX` with what it refers to (e.g. `DebugVisualization_class`, `WEIGHTS`)
-- Expand vtable calls to named methods where known: `c->vtable[0x178](c, actor)  // IsApplicable`
-- Collapse all IL2CPP init guards to a single comment: `// IL2CPP lazy init — omitted`
-- Collapse all write barriers to inline comment: `// write barrier`
-- Add a comment on every line that accesses a field: `// +0x30 = UtilityScore`
-- Document every early-out and what condition triggers it
-- Annotate every loop: what collection is being iterated, what the loop variable represents
-
-**Never:**
-- Leave a raw `FUN_18XXXXXXXX` call without annotation if it appears in any other reconstruction in the same document
-- Leave a raw `param_1 + 0xNN` offset without naming it if the class is known
-- Remove or simplify the logic — represent it faithfully, annotated
-- Add behaviour that isn't in the raw output
-
-**For truncated functions** (Ghidra output cut off mid-function):
-- Note clearly: `// [TRUNCATED at line N — remaining logic not analysed]`
-- Reconstruct as far as the data allows
-- List what the truncated section likely contains based on context
-
-### Ordering
-
-Functions must appear in the document in logical order:
-1. Simple leaf functions first (functions that call nothing else in the investigation)
-2. Then functions that call the leaf functions
-3. Then the top-level entry points last
-
-This means a reader can follow the document linearly without forward references.
-
-### Document header
-
-```markdown
-# [Game] [System] — Annotated Function Reconstructions
-
-**Source:** Ghidra decompilation of [Game] ([platform], [binary type])
-**Image base:** 0x180000000
-**Format:** Each function shows the raw Ghidra output followed by a fully annotated
-C-style reconstruction with all offsets resolved.
-```
-
-Include a quick-reference offset table at the top for every class whose fields are referenced in the reconstructions.
-
----
-
-## Part 5 — Communication Protocol with the Operator
+## Part 3 — Communication Protocol with the Operator
 
 ### When requesting Ghidra output
 
@@ -318,48 +174,3 @@ If analysis reveals that the system is larger or more connected than initially s
 > **Scope note:** `FUN_18XXXXXXXX` called from `MethodName` appears to implement [description]. This is outside the current investigation scope. It is documented as an open question. Recommend a separate investigation.
 
 Do not expand scope silently. Always flag and get operator acknowledgement before pursuing a new thread.
-
----
-
-## Part 6 — Quality Checklist
-
-Before declaring an investigation complete, verify:
-
-**REPORT.md**
-- [ ] All classes have complete field offset tables (no missing offsets)
-- [ ] All methods have both RVA and VA listed
-- [ ] The core formula or algorithm is stated explicitly in clean notation
-- [ ] All non-obvious sign conventions and units are explained
-- [ ] All inferences are labelled as inferred vs. confirmed
-- [ ] Open questions section exists and each item has a concrete next step
-- [ ] Scope boundaries are explicit — what was NOT investigated is listed
-
-**RECONSTRUCTIONS.md**
-- [ ] Every function from Ghidra output appears, without exception
-- [ ] Every `param_1 + 0xNN` is resolved to a named field
-- [ ] Every known `FUN_18XXXXXXXX` is named or aliased
-- [ ] Every `DAT_18XXXXXXXX` is identified
-- [ ] IL2CPP boilerplate is collapsed to comments, not described as logic
-- [ ] Functions appear in leaf-first order
-- [ ] Truncated functions are clearly marked
-- [ ] Raw Ghidra output is included verbatim for every function
-
-**General**
-- [ ] No fabricated behaviour — everything stated is derivable from the raw data
-- [ ] No unexplained jargon — every IL2CPP pattern is either decoded or linked to the pattern table
-- [ ] The investigation can be read cold by someone unfamiliar with this system
-
----
-
-## Part 7 — Worked Example Summary
-
-The tactical AI investigation (`investigations/tactical-ai/`) is the reference implementation of this methodology. When in doubt, consult it.
-
-Key decisions made in that investigation that should be replicated:
-
-- **Started from a debug settings class** (`TacticalStateSettings`) and followed outward to the AI brain (`Agent`). This is a reliable strategy: debug/inspector classes expose the runtime data model and the names of the systems they control.
-- **Extracted all classes before starting Ghidra work.** The extraction report gave field offsets that made Ghidra output immediately readable.
-- **Batched Ghidra requests by logical group.** All scoring functions together, then all agent lifecycle functions together. This reduces context-switching.
-- **Resolved `DAT_` symbols by cross-referencing static field access patterns.** When `*(DAT_18394c3d0 + 0xb8)` appeared in multiple functions, the pattern was identified once (DebugVisualization class static) and applied everywhere.
-- **Named the sign inversion explicitly.** `SafetyScore` being stored negative was a non-obvious convention that would have caused confusion downstream. It was identified from `PostProcessTileScores` and called out in both REPORT.md and RECONSTRUCTIONS.md.
-- **Did not pursue Criterion subclasses.** The interface was documented (four vtable slots, confirmed purposes), and the concrete implementations were left as open questions. This was the right scope boundary — the scoring model was fully understood without them.
