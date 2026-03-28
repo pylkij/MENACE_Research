@@ -8,18 +8,21 @@
 
 ## Table of Contents
 
-1. [TileScore.GetScore — 0x180740F20](#1-tilescoregetscore--0x180740F20)
-2. [TileScore.GetScaledScore — 0x180740E50](#2-tilescoregetscaledscore--0x180740E50)
-3. [TileScore.GetScoreWithoutDistance — 0x180740F10](#3-tilescoregetscorewithoutdistance--0x180740F10)
+1. [TileScore.GetScore — 0x180740F20](#1-tilescoregetscore--0x180740f20)
+2. [TileScore.GetScaledScore — 0x180740E50](#2-tilescoregetscaledscore--0x180740e50)
+3. [TileScore.GetScoreWithoutDistance — 0x180740F10](#3-tilescoregetsscorewithoutdistance--0x180740f10)
 4. [TileScore.CompareScores — 0x180740D40](#4-tilescorecomparescores--0x180740d40)
 5. [TacticalStateSettings.GetScore — 0x180756DE0](#5-tacticalstatesettingsgetscore--0x180756de0)
 6. [TacticalStateSettings.Start — 0x180757530](#6-tacticalstatesettingsstart--0x180757530)
 7. [TacticalStateSettings.OnAIDestinationOnlyChanged — 0x180756EA0](#7-tacticalstatesettingsonaidestinationonlychanged--0x180756ea0)
-8. [TacticalState.Get — 0x180648D90](#8-tacticalstateget--0x180648d90)
-9. [Agent.GetOpportunityLevel — 0x18071ABC0](#9-agentgetopportunitylevel--0x18071abc0)
-10. [Agent.GetScoreMultForPickingThisAgent — 0x18071AE50](#10-agentgetscoremultforpickingthisagent--0x18071ae50)
-11. [Agent.Evaluate — 0x180719860](#11-agentevaluate--0x180719860)
-12. [Agent.PostProcessTileScores — 0x18071C450](#12-agentpostprocesstilescores--0x18071c450)
+8. [TacticalStateSettings.DrawHeatmap — 0x180756180](#8-tacticalstatesettingsdrawheatmap--0x180756180)
+9. [TacticalState.Get — 0x180648D90](#9-tacticalstateget--0x180648d90)
+10. [Agent.GetThreatLevel — 0x18071B240](#10-agentgetthreatLevel--0x18071b240)
+11. [Agent.GetOpportunityLevel — 0x18071ABC0](#11-agentgetopportunitylevel--0x18071abc0)
+12. [Agent.GetScoreMultForPickingThisAgent — 0x18071AE50](#12-agentgetscoremultforpickingthisagent--0x18071ae50)
+13. [Agent.PickBehavior — 0x18071BD20](#13-agentpickbehavior--0x18071bd20)
+14. [Agent.Evaluate — 0x180719860](#14-agentevaluate--0x180719860)
+15. [Agent.PostProcessTileScores — 0x18071C450](#15-agentpostprocesstilescores--0x18071c450)
 
 ---
 
@@ -597,7 +600,244 @@ void TacticalStateSettings_OnAIDestinationOnlyChanged(TacticalStateSettings* sel
 
 ---
 
-## 8. TacticalState.Get — 0x180648D90
+## 8. TacticalStateSettings.DrawHeatmap — 0x180756180
+
+### Raw Ghidra output
+```c
+void FUN_180756180(longlong param_1, longlong param_2)
+{
+  // [full 450-line output — see GhidraAddressLookupRESULTS.txt lines 59–512]
+  // Key variables:
+  //   param_1 = TacticalStateSettings* self
+  //   param_2 = Dictionary<Tile, TileScore>* _tiles  (m_Tiles passed from caller)
+  //   fVar12  = running maximum score (for normalization)
+  //   fVar14  = running minimum score (for normalization, stored as negative)
+  //   fVar10  = per-tile score (current tile)
+  //   iVar9   = color index into HeatmapColors list
+  //   lVar5   = Transform component of instantiated HeatmapToken
+  //   lVar8   = Tile key (current iteration)
+  //   lStack_168 = TileScore value (current iteration)
+}
+```
+
+### Annotated reconstruction
+```c
+void TacticalStateSettings_DrawHeatmap(TacticalStateSettings* self,
+                                       Dictionary<Tile, TileScore>* _tiles)
+{
+    // ── Guard: HeatmapParent and HeatmapToken must not be destroyed ──────
+    // FUN_1829a91b0 = Object.IsNativeObjectAlive() or equivalent null/destroyed check
+    // DAT_18394df48 = UnityEngine.Object class static (for IsNativeObjectAlive)
+    // self->HeatmapParent (+0x30), self->HeatmapToken (+0x38)
+    if (!IsAlive(self->HeatmapParent)) return;  // +0x30
+    if (!IsAlive(self->HeatmapToken))  return;  // +0x38
+
+    // ── Guard: TacticalState singleton must exist ────────────────────────
+    TacticalState* state = TacticalState.s_Singleton;
+    if (state == null) return;
+
+    // ── Store tiles reference ────────────────────────────────────────────
+    // self->m_Tiles (+0x50) = param_2 (the dictionary passed in)
+    // FUN_180426e50 = IL2CPP write barrier (GC notification)
+    self->m_Tiles = _tiles;  // +0x50
+    WriteBarrier(self->m_Tiles, _tiles);
+
+    // ── Destroy existing tokens ──────────────────────────────────────────
+    // FUN_1829a21f0 = GetComponentsInChildren<Transform>() or equivalent
+    // FUN_1808c9500 = DestroyImmediate() on the array of transforms
+    if (self->HeatmapParent != null) {
+        var existingChildren = GetComponentsInChildren(self->HeatmapParent, 0);
+        DestroyImmediate(existingChildren, 0);
+    }
+
+    // ── Early-out: no tiles to draw ──────────────────────────────────────
+    if (_tiles == null) return;
+
+    // ═══════════════════════════════════════════════════════════════════════
+    // PASS 1: Compute normalization range (max and min scores)
+    // ═══════════════════════════════════════════════════════════════════════
+    // FUN_18136d8a0 = Dictionary.GetEnumerator()
+    // FUN_18152f9b0 = Dictionary enumerator MoveNext()
+    //   → lStack_168 = TileScore* (current value), local_170 = Tile (current key)
+    // self->ShowHeatmap (+0x24) drives the same switch as TacticalStateSettings.GetScore()
+
+    float maxScore = 0.0f;    // fVar12 — running max
+    float minScore = float.MaxValue;  // fVar14 = 3.4028235e+38 (FLT_MAX)
+
+    foreach (KeyValuePair<Tile, TileScore> kv in _tiles) {
+        TileScore* ts = kv.Value;  // lStack_168
+
+        // Read score for this tile using the same switch as GetScore()
+        float tileScore;
+        switch (self->ShowHeatmap) {  // +0x24
+        case 1: tileScore = TileScore_GetScore(ts);        break;  // FUN_180740f20
+        case 2: tileScore = TileScore_GetScaledScore(ts);  break;  // FUN_180740e50
+        case 3: tileScore = ts->UtilityScore;              break;  // +0x30
+        case 4: tileScore = ts->SafetyScore;               break;  // +0x28
+        case 5: tileScore = ts->SafetyScoreScaled;         break;  // +0x2C
+        case 6: tileScore = ts->DistanceToCurrentTile * -100.0f; break; // +0x20
+        default: tileScore = 0.0f; break;
+        }
+
+        // Track running maximum
+        if (maxScore < tileScore) {
+            // Update maxScore using the SAME switch — reads from same TileScore
+            // (Ghidra shows the switch twice; the second read is the committed update)
+            maxScore = tileScore;  // same value, already computed above
+        }
+
+        // Track running minimum (third switch block in raw output)
+        // fVar14 starts at FLT_MAX; updated when tileScore < current min
+        if (tileScore < minScore) {
+            minScore = 0.0f;  // reset to 0 first (raw: fVar14 = 0.0 before re-read)
+            minScore = tileScore;
+        }
+    }
+
+    // ── Compute effective min (for color normalization) ─────────────────
+    // If minScore >= 0: clamp to 0 (no negative contribution)
+    // If minScore < 0:  use abs(minScore * 0.75) as effective negative floor
+    // This 0.75 factor softens the lower bound to avoid extreme color compression.
+    float effectiveMin;
+    if (minScore >= 0.0f) {
+        effectiveMin = 0.0f;
+    } else {
+        effectiveMin = ABS(minScore * 0.75f);
+    }
+
+    // ── Compute effective max ────────────────────────────────────────────
+    // self->HeatmapExpectedMaxValue (+0x40) is the inspector-set ceiling.
+    // Take the larger of: (effectiveMin + maxScore) vs HeatmapExpectedMaxValue.
+    float scoreRange = effectiveMin + maxScore;
+    float effectiveMax = self->HeatmapExpectedMaxValue;  // +0x40
+    if (effectiveMax <= scoreRange) {
+        effectiveMax = scoreRange;
+    }
+
+    // ═══════════════════════════════════════════════════════════════════════
+    // PASS 2: Instantiate and color one HeatmapToken per tile
+    // ═══════════════════════════════════════════════════════════════════════
+
+    foreach (KeyValuePair<Tile, TileScore> kv in _tiles) {
+        TileScore* ts   = kv.Value;  // lStack_168 / lVar1
+        Tile       tile = kv.Key;   // local_170 / lVar8
+
+        // ── Instantiate HeatmapToken at tile position ────────────────────
+        // FUN_1829a21f0 = GetComponentsInChildren (reused here to get Transform list)
+        // FUN_180b11230(HeatmapToken, childTransforms, ObjectClass) = Instantiate
+        // FUN_1829a21f0(instance) = get the instance's Transform
+        // FUN_1805ca8d0(tile, enumerator, 0) = get tile world position (Vector3)
+        //   local_1c0 = position enumerator/iterator
+        //   puVar7 = pointer to Vector3 position data
+        var tokenChildTransforms = GetComponentsInChildren(self->HeatmapParent, 0);
+        var instance = Instantiate(self->HeatmapToken, tokenChildTransforms, ObjectClass);
+        //                          ^^^ +0x38
+        var instanceTransform = GetTransform(instance, 0);
+        Vector3 tileWorldPos = GetTileWorldPosition(tile, &positionIterator);
+
+        // ── Set token position ───────────────────────────────────────────
+        // FUN_1829b6ca0(transform, &position, 0) = Transform.set_position(Vector3)
+        instanceTransform.set_position(tileWorldPos);
+
+        // ── Get tile's Transform for position data ───────────────────────
+        // FUN_180ab6540(instance, ObjectClass) = some component getter
+        // FUN_182978b10(component, 0) = get sub-component (likely the token's renderer)
+        var tileComponent = GetComponent(instance, DAT_1839a07d8);
+        var tokenRenderer = GetSubComponent(tileComponent, 0);  // lVar5
+
+        // ── Compute this tile's score (same switch as Pass 1) ───────────
+        float tileScore;
+        switch (self->ShowHeatmap) {
+        case 1: tileScore = TileScore_GetScore(ts);        break;
+        case 2: tileScore = TileScore_GetScaledScore(ts);  break;
+        case 3: tileScore = ts->UtilityScore;              break;
+        case 4: tileScore = ts->SafetyScore;               break;
+        case 5: tileScore = ts->SafetyScoreScaled;         break;
+        case 6: tileScore = ts->DistanceToCurrentTile * -100.0f; break;
+        default: tileScore = 0.0f; break;
+        }
+
+        // ── Normalize score to [0, 1] color range ───────────────────────
+        // Shift by effectiveMin so negatives map to 0+
+        // Divide by effectiveMax to get normalized position
+        // Clamp to [0, effectiveMax]
+        float shifted = tileScore + effectiveMin;
+        if (shifted < 0.0f) shifted = 0.0f;
+        if (shifted > effectiveMax) shifted = effectiveMax;
+
+        // Map to color index in HeatmapColors list:
+        // self->HeatmapColors (+0x48) = List<Color>
+        // HeatmapColors.Count at *(HeatmapColors + 0x18)
+        // normalized = (shifted / effectiveMax) × (colorCount - 1)
+        int colorCount = self->HeatmapColors->Count;  // +0x48 → +0x18
+        float normalized = (shifted / effectiveMax) * (float)(colorCount - 1);
+        int colorIndex = (int)normalized;
+
+        // ── Sample color from gradient ───────────────────────────────────
+        // FUN_180cca630(&outColor, HeatmapColors, index, ColorClass) = List[index] getter
+        // Two cases:
+        //   a) colorIndex == colorCount-1: use exact last color (no interpolation)
+        //   b) otherwise: lerp between color[colorIndex] and color[colorIndex+1]
+        Color finalColor;
+        if (colorIndex == colorCount - 1) {
+            // Exact last color
+            // FUN_18296ac80(renderer, &color, 0) = set renderer color
+            finalColor = HeatmapColors[colorIndex];
+            tokenRenderer.SetColor(finalColor);
+        } else {
+            // Lerp between adjacent colors
+            // fVar13 = fractional part: ABS(floor(normalized) - normalized)
+            // fVar12 = 1.0 - fVar13  (weight for lower color)
+            // fVar13 = weight for upper color
+            float frac = ABS(floorf(normalized) - normalized);
+            Color colorLow  = HeatmapColors[colorIndex];      // local_1b0..local_1a0 (RGBA)
+            Color colorHigh = HeatmapColors[colorIndex + 1];  // local_1a0..fStack_184
+
+            // Component-wise lerp: result = colorLow*(1-frac) + colorHigh*frac
+            // local_190 = R, fStack_18c = G, fStack_188 = B, fStack_184 = A
+            // (CONCAT44 in raw output assembles float pairs into Color struct)
+            finalColor.R = colorLow.R * (1.0f - frac) + colorHigh.R * frac;
+            finalColor.G = colorLow.G * (1.0f - frac) + colorHigh.G * frac;
+            finalColor.B = colorLow.B * (1.0f - frac) + colorHigh.B * frac;
+            finalColor.A = colorLow.A * (1.0f - frac) + colorHigh.A * frac;
+
+            // FUN_18296ac80(renderer, &color, 0) = set renderer color
+            tokenRenderer.SetColor(finalColor);
+        }
+
+        // ── Position the token at the tile's world location ──────────────
+        // FUN_1829794f0(tileComponent, tokenRenderer, 0) = SetPosition or parent assignment
+        SetTokenPosition(tileComponent, tokenRenderer, 0);
+    }
+}
+```
+
+### DrawHeatmap — design notes
+
+**Three passes of the ShowHeatmap switch.** The switch appears three times in the raw Ghidra output:
+1. Pass 1 first switch — read score for max tracking
+2. Pass 1 second switch — re-read score for max commit (Ghidra decompilation artefact of `fVar12 = max(fVar12, score)` inlined)
+3. Pass 1 third switch — read score for min tracking
+4. Pass 2 switch — read score per tile for normalization and coloring
+
+All four reads use the identical dispatch. The score is not cached between passes.
+
+**Color normalization formula:**
+```
+effectiveMin = max(0, abs(minScore * 0.75))   // soften negative floor
+effectiveMax = max(HeatmapExpectedMaxValue, effectiveMin + maxScore)
+normalized   = clamp(tileScore + effectiveMin, 0, effectiveMax) / effectiveMax
+colorIndex   = floor(normalized × (colorCount - 1))
+color        = lerp(HeatmapColors[colorIndex], HeatmapColors[colorIndex+1], frac)
+```
+
+The `0.75` factor on the negative minimum is intentional design — it prevents extreme negative scores (large threat penalties) from compressing the entire color range to one end.
+
+**`HeatmapExpectedMaxValue` acts as a floor on the range**, not a ceiling. If the actual score range exceeds it, the actual range wins. This means setting it too low just widens the color ramp; it never clips scores.
+
+---
+
+## 9. TacticalState.Get — 0x180648D90
 
 ### Raw Ghidra output
 ```c
@@ -644,7 +884,202 @@ TacticalState* TacticalState_Get(void)
 
 ---
 
-## 9. Agent.GetOpportunityLevel — 0x18071ABC0
+## 10. Agent.GetThreatLevel — 0x18071B240
+
+### Raw Ghidra output
+```c
+undefined8 FUN_18071b240(longlong param_1)
+{
+  longlong *plVar1;
+  longlong lVar2;
+  char cVar3;
+  int iVar4;
+  longlong lVar5;
+  longlong lVar6;
+  undefined8 uVar7;
+  float fVar8;
+  float fVar9;
+  float fVar10;
+  float fVar11;
+  undefined8 local_c0;
+  undefined8 uStack_b8;
+  longlong local_b0;
+  undefined4 local_a8;
+  ...
+
+  plVar1 = *(longlong **)(param_1 + 0x18);  // self->m_Actor
+  if (plVar1 != (longlong *)0x0) {
+    fVar11 = (float)(int)plVar1[0x28];      // actor->field_0x140 (NumThreatsFaced cast to float)
+    lVar5 = (**(code **)(*plVar1 + 0x388))(plVar1,*(undefined8 *)(*plVar1 + 0x390)); // GetFaction
+    if (lVar5 == 0) return 0;
+
+    // Enumerate m_Faction->field_0x48 (actor's skill list — same as GetOpportunityLevel)
+    foreach (Skill skill in m_Faction->field_0x48) {
+      // skill->+0x10 = some Actor reference (the threat source actor)
+      // skill->+0x10->+0x10 = the threat source actor's Actor object
+      // vtable +0x3d8 = GetArmor() or GetWeapon() — something on the opponent
+      // lVar6->+0xec bit 0: some state flag on the weapon/armor object
+      ...
+      // Per threat contribution:
+      fVar8 = FUN_180a2d5c0(..., self->m_Actor, 0, DAT_18399ef28); // threat score evaluator
+      if (fVar8 > 3.0) fVar8 = 3.0;                                // clamp at 3.0
+      fVar9 = (skill->+0x18 < 0) ? -1.0f : 1.0f;                  // sign from field at +0x18
+      if (actor->+0x15C != 0) fVar9 *= 0.8f;                       // suppression penalty
+      iVar4 = FUN_1805ca7a0(lVar5, opponentFaction, 0);             // opponent count/index
+      fVar10 = clamp((float)iVar4 * 0.0625f, 0.0f, 1.0f);          // attenuation
+      fVar11 += (1.0f - fVar10) * (fVar8 + 1.0f) * fVar9;          // accumulate
+    }
+
+    // Apply ThreatLevelPOW
+    lVar5 = WEIGHTS;
+    return powf(fVar11, WEIGHTS->ThreatLevelPOW);  // lVar5+0x48
+  }
+  NullReferenceException();
+}
+```
+
+### Annotated reconstruction
+```c
+float Agent_GetThreatLevel(Agent* self)
+{
+    // ── Actor setup ──────────────────────────────────────────────────────
+    Actor* actor = self->m_Actor;  // +0x18
+    if (actor == null) NullReferenceException();
+
+    // fVar11 starts as a cast of actor->field_0x140 (plVar1[0x28] = actor offset 0x140).
+    // This is likely m_NumThreatsFaced cast to float, used as an initial bias
+    // or the field stores a pre-computed partial threat sum.
+    float accumulator = (float)(int)actor->field_0x140;  // plVar1[0x28]
+
+    // actor vtable +0x388 = GetFaction() — returns this actor's faction
+    // If no faction, return 0 (no threat level without faction context)
+    var myFaction = actor->vtable[0x388](actor, actor->vtableArg_0x390);
+    if (myFaction == null) return 0;
+
+    // ── Enumerate threat sources (actor's skill list, same as GetOpportunityLevel) ──
+    // m_Faction->+0x48 = skill collection (same field as in GetOpportunityLevel)
+    // Each entry in this collection represents a threat relationship,
+    // not a player-owned skill. The skills here encode threat sources (opponents
+    // who can attack this agent) rather than this agent's own attacks.
+    if (self->m_Faction == null || self->m_Faction->field_0x48 == null)
+        goto NullRef;
+
+    foreach (object threatEntry in self->m_Faction->field_0x48) {
+        // threatEntry->+0x10 = the threat source actor reference
+        // threatEntry->+0x10->+0x10 = Actor* (the opponent)
+        Actor* opponent = threatEntry->field_0x10->field_0x10;
+        if (opponent == null) NullReferenceException();
+
+        // vtable +0x3d8 on opponent = GetWeapon() or GetEquipment()
+        // Returns an equipment/weapon object; lVar6 = that object
+        var opponentWeapon = opponent->vtable[0x3d8](opponent, opponent->vtableArg_0x3e0);
+        if (opponentWeapon == null) NullReferenceException();
+
+        // lVar6->+0xec bit 0: weapon state flag
+        // If bit 0 is SET: this threat is suppressed/inactive — skip it entirely
+        if ((opponentWeapon->field_0xec & 1) != 0) continue;
+
+        // ── Actor state checks on the threat source ───────────────────
+        // threatEntry->+0x10 = some Actor reference for the threat actor
+        Actor* threatActor = threatEntry->field_0x10;
+        if (threatActor == null) NullReferenceException();
+
+        // vtable +0x478 = some state accessor returning int
+        // If result == 2: skip (e.g., actor already acted this turn, no threat)
+        int stateA = threatActor->vtable[0x478](threatActor, threatActor->vtableArg_0x480);
+        if (stateA == 2) continue;
+
+        // vtable +0x468 = another state accessor
+        // If result == 1: skip (another state exclusion — possibly fleeing or stunned)
+        int stateB = threatActor->vtable[0x468](threatActor, threatActor->vtableArg_0x470);
+        if (stateB == 1) continue;
+
+        // threatActor->vtable +0x388 = GetFaction() on the threat actor
+        var opponentFaction = threatActor->vtable[0x388](threatActor, threatActor->vtableArg_0x390);
+        if (opponentFaction == null) continue;
+
+        // ── Compute threat score for this opponent ────────────────────
+        // FUN_1805ca7a0(myFaction, opponentFaction, 0) = relationship/distance metric
+        // Returns int — number of opponents on same team, or spatial proximity count.
+        // Used for attenuation: more opponents = diminishing marginal threat.
+        int opponentCount = FUN_1805ca7a0(myFaction, opponentFaction, 0);  // iVar4
+
+        // FUN_180a2d5c0(threatActor->+0x20->+0x58, self->m_Actor, 0, ThreatEvalClass)
+        //   = per-threat score evaluator
+        //   threatActor->+0x20->+0x58 = some threat data object
+        //   Returns float threat severity for this specific opponent
+        //   DAT_18399ef28 = ThreatEvaluator class static
+        float threatScore = EvaluateThreat(
+            threatActor->field_0x20->field_0x58,
+            self->m_Actor,
+            0,
+            ThreatEvaluator_class
+        );  // fVar8
+
+        // Clamp individual threat at 3.0
+        if (threatScore > 3.0f) threatScore = 3.0f;
+
+        // ── Direction sign ────────────────────────────────────────────
+        // threatEntry->+0x18 = a signed int field.
+        // Negative = threat comes from behind / flanking = negative sign modifier.
+        // Positive = frontal threat = positive.
+        float sign = (threatEntry->field_0x18 < 0) ? -1.0f : 1.0f;  // fVar9
+
+        // Suppression penalty: if actor is suppressed (+0x15C flag on threatActor's actor)
+        // Suppressed actors contribute 20% less threat.
+        if (threatActor->field_0x10->field_0x15C != 0) {
+            sign *= 0.8f;
+        }
+
+        // ── Attenuation ───────────────────────────────────────────────
+        // fVar10 = clamp(opponentCount × 0.0625, 0, 1)
+        // 0.0625 = 1/16, so at 16+ opponents, attenuation = 1.0 (full diminishment)
+        // (1 - attenuation) falls from 1.0 (no opponents) to 0.0 (16+ opponents)
+        float attenuation = (float)opponentCount * 0.0625f;
+        if (attenuation > 1.0f) attenuation = 1.0f;
+
+        // ── Accumulate ────────────────────────────────────────────────
+        // +1.0 ensures even zero-threat opponents contribute marginally
+        accumulator += (1.0f - attenuation) * (threatScore + 1.0f) * sign;
+    }
+
+    // ── Apply ThreatLevelPOW ─────────────────────────────────────────────
+    // WEIGHTS->ThreatLevelPOW at +0x48
+    AIWeightsTemplate* weights = DebugVisualization.WEIGHTS;
+    return powf(accumulator, weights->ThreatLevelPOW);  // +0x48
+
+NullRef:
+    NullReferenceException();
+}
+```
+
+### GetThreatLevel — formula summary
+
+```
+accumulator = (float)actor->field_0x140   // initial bias (pre-computed partial or NumThreatsFaced)
+
+for each threatEntry in threatSources:
+    skip if: weapon state bit 0 set (inactive threat)
+    skip if: threatActor stateA == 2  (already acted)
+    skip if: threatActor stateB == 1  (fleeing/stunned)
+
+    threatScore  = clamp(EvaluateThreat(opponent, actor), 0, 3.0)
+    sign         = (threatEntry.field_0x18 < 0) ? -1.0 : +1.0
+    if opponent is suppressed: sign *= 0.8
+    attenuation  = clamp(opponentCount × 0.0625, 0, 1.0)
+    accumulator += (1.0 - attenuation) × (threatScore + 1.0) × sign
+
+return powf(accumulator, WEIGHTS.ThreatLevelPOW)
+```
+
+**Key design observations:**
+- The `+1.0` offset on `threatScore` means every non-skipped opponent contributes at least `(1 - attenuation) × 1.0 × sign` even if their raw threat is zero.
+- The attenuation caps at 16 opponents (0.0625 × 16 = 1.0). Beyond 16 opponents, additional threats contribute nothing — preventing runaway threat accumulation in mass-combat scenarios.
+- Flanking threats (negative sign) reduce `accumulator`, making flanked positions score lower overall when combined with the negated SafetyScore post-processing.
+
+---
+
+## 11. Agent.GetOpportunityLevel — 0x18071ABC0
 
 ### Raw Ghidra output
 ```c
@@ -802,7 +1237,7 @@ NullRef:
 
 ---
 
-## 10. Agent.GetScoreMultForPickingThisAgent — 0x18071AE50
+## 12. Agent.GetScoreMultForPickingThisAgent — 0x18071AE50
 
 ### Raw Ghidra output (abbreviated — full function is ~120 lines of vtable dispatch)
 ```c
@@ -881,7 +1316,191 @@ self->m_Score = max(1, (int)(mult * (float)behaviorBaseScore));
 
 ---
 
-## 11. Agent.Evaluate — 0x180719860
+## 13. Agent.PickBehavior — 0x18071BD20
+
+### Raw Ghidra output
+```c
+undefined8 FUN_18071bd20(longlong param_1)
+{
+  int iVar1;
+  char cVar2;
+  int iVar3;
+  longlong lVar4;
+  longlong lVar5;
+  longlong *plVar6;
+  undefined8 uVar7;
+  int iVar8;
+  int iVar9;
+  float fVar10;
+  undefined4 local_res8 [2];
+
+  // [full output — see GhidraAddressLookupRESULTS2.txt lines 811–1022]
+}
+```
+
+### Annotated reconstruction
+```c
+Behavior* Agent_PickBehavior(Agent* self)
+{
+    // ── Guard: m_Behaviors list must exist and be non-empty ─────────────
+    // self->m_Behaviors (+0x20), *(m_Behaviors + 0x18) = list Count
+    List<Behavior>* behaviors = self->m_Behaviors;  // +0x20
+    if (behaviors == null) goto NullRef;
+    int behaviorCount = behaviors->Count;  // +0x18
+    if (behaviorCount == 0) return null;
+
+    // ── Get the top-scored behavior (index 0 after sort) ────────────────
+    // FUN_180cca560(list, index, elementClass) = List[index] element getter
+    // The list has been sorted descending by score already (in Evaluate).
+    Behavior* topBehavior = List_GetAt(behaviors, 0, BehaviorClass);  // lVar4
+    if (topBehavior == null) goto NullRef;
+
+    // ── WEIGHTS check ────────────────────────────────────────────────────
+    AIWeightsTemplate* weights = DebugVisualization.WEIGHTS;
+    if (weights == null) goto NullRef;
+
+    // ── Compute score threshold (30% of top behavior score) ─────────────
+    // FUN_1804bad80() here is called with no explicit args visible — likely reads
+    // topBehavior's score via an inlined accessor.
+    // iVar3 = max(1, (int)(topScore × 0.3))
+    // This is the cutoff: any behavior scoring less than 30% of the top is excluded.
+    float topScore = GetBehaviorScore(topBehavior);  // fVar10
+    int threshold = (int)(topScore * 0.3f);
+    if (threshold < 1) threshold = 1;  // iVar3
+
+    // ── Check if this is a deployment phase (randomised pick path) ───────
+    // FUN_180537140(0, 0) = IsDeploymentPhase() or equivalent global check
+    // Returns true during deployment, enabling a different (randomised) pick path.
+    bool isDeployment = FUN_180537140(0, 0);
+
+    if (isDeployment) {
+        // ── DEPLOYMENT PATH: weighted random pick ────────────────────────
+        // During deployment, a behavior pick event is constructed and dispatched.
+        // This allows external systems (UI, player input?) to influence the pick.
+
+        // Check if the tactical state is player-turn (TacticalState->+0x60 != 0)
+        bool isPlayerTurn = (TacticalState.s_Singleton->field_0x60 != 0);
+
+        if (isPlayerTurn) {
+            for (int i = 0; i < behaviorCount; i++) {
+                // Build a "pick event" object (type DAT_1839413d0, allocated via FUN_180426ed0)
+                // The event has up to 5 slots filled in:
+                //   +0x20 = lVar4 (current top behavior)
+                //   +0x28 = uVar7 (behavior at index i, via vtable +0x188 = GetScore())
+                //   +0x30 = DAT_183997c40 (some constant/class ref)
+                //   +0x38 = uVar7 (boxed int score, via FUN_181b5ef10)
+                //   +0x40 = DAT_18394b058 (another constant/class ref)
+                // FUN_1819c8350(event, 0) = dispatch/fire the event
+                var pickEvent = AllocateEvent(EventClass, 5);
+                pickEvent->slot0 = topBehavior;
+                pickEvent->slot1 = GetBehaviorScore(behaviors[i]);  // vtable +0x188
+                pickEvent->slot2 = SomeConstant;
+                pickEvent->slot3 = BoxInt(behaviors[i]->baseScore);
+                pickEvent->slot4 = AnotherConstant;
+                var result = DispatchEvent(pickEvent);
+
+                // After dispatch: check if score meets threshold
+                // FUN_1804bad80() = powf — applies some scaling to the post-event score
+                float postEventScore = powf(result, someExponent);
+                if (postEventScore >= (float)threshold) {
+                    // Apply decoration behavior if needed:
+                    // FUN_1819c88f0(topBehavior, DAT_183948538, 0) = decorate/wrap behavior
+                    topBehavior = DecorateBehavior(topBehavior, DecorationClass);
+                }
+            }
+        }
+    }
+
+    // ── STANDARD PATH: score-threshold pick with optional player-dispatch ─
+    // Accumulate total score of behaviors meeting threshold
+    int totalScore = 0;
+    iVar8 = 0;
+    for (int i = 0; i < behaviorCount; i++) {
+        Behavior* b = List_GetAt(behaviors, i, BehaviorClass);
+        if (b == null) goto NullRef;
+
+        // FUN_1804bad80() = get/compute this behavior's score
+        float score = GetBehaviorScore(b);
+        if ((int)score < threshold) break;  // behaviors are sorted; stop when below threshold
+
+        totalScore += (int)score;
+        iVar8++;
+    }
+
+    // ── Weighted random selection ────────────────────────────────────────
+    // self->m_Random (+0x40) = PseudoRandom instance
+    // FUN_18053dbd0(m_Random, 1, totalScore, 0) = PseudoRandom.Next(1, totalScore)
+    // Selects a random value in [1, totalScore], then walks the behavior list
+    // subtracting each score until the random value is exhausted.
+    if (self->m_Random == null) goto NullRef;
+    int randomValue = PseudoRandom_Next(self->m_Random, 1, totalScore, 0);  // iVar3
+    //                                   ^^^ +0x40
+
+    for (int i = 0; i < behaviorCount; i++) {
+        Behavior* b = List_GetAt(behaviors, i, BehaviorClass);
+        if (b == null) goto NullRef;
+
+        float score = GetBehaviorScore(b);
+        if (randomValue <= (int)score) {
+            // ── Optional player-dispatch for non-deployment ──────────────
+            // FUN_180537140(0,0) = IsDeploymentPhase() — if false (normal turn):
+            // FUN_18071b670(self, 0) = Agent.IsDeploymentPhase() — secondary check
+            // If both say not deployment: build and fire a 7-slot pick event,
+            // writing result to self->m_QueuedDebugString (+0x70)
+            if (!IsDeploymentPhase() && !self->IsDeploymentPhase()) {
+                var fullPickEvent = AllocateEvent(EventClass, 7);
+                fullPickEvent->slot0 = SomeFlag;
+                fullPickEvent->slot1 = topBehavior;
+                fullPickEvent->slot2 = SomeConstant2;
+                fullPickEvent->slot3 = GetBehaviorScore(behaviors[i]);  // vtable +0x188
+                fullPickEvent->slot4 = SomeConstant3;
+                fullPickEvent->slot5 = BoxInt(behaviors[i]->baseScore);
+                fullPickEvent->slot6 = AnotherConstant2;
+                var eventResult = DispatchEvent(fullPickEvent);
+                self->m_QueuedDebugString = eventResult;  // +0x70
+                WriteBarrier(self->m_QueuedDebugString, eventResult);
+
+                // Player-controlled unit check:
+                // FUN_180511a50(0) = some global state accessor
+                // If result->+0x50 == self->m_Actor: this agent is player-controlled
+                // → clear m_QueuedDebugString and fire a UI notification instead
+                var globalState = GetGlobalState(0);
+                if (globalState != null &&
+                    globalState->field_0x50 == self->m_Actor) {
+                    // FUN_182948890(debugString, 0) = log or UI display call
+                    LogOrDisplay(self->m_QueuedDebugString);
+                    self->m_QueuedDebugString = null;
+                    WriteBarrier(self->m_QueuedDebugString, null);
+                }
+            }
+
+            // Return the selected behavior
+            return List_GetAt(behaviors, i, BehaviorClass);
+        }
+
+        randomValue -= (int)score;
+    }
+
+    // No behavior selected (all scores below threshold after random walk)
+    return null;
+
+NullRef:
+    NullReferenceException();
+}
+```
+
+### PickBehavior — design notes
+
+**Selection algorithm is weighted random, not greedy.** Rather than always taking the highest-scoring behavior, `PickBehavior` uses a weighted lottery across all behaviors scoring at least 30% of the top behavior's score. This introduces deliberate unpredictability: a behavior with 60% of the top score has a 60/(60+100) = 37.5% chance of being selected even when another scores higher.
+
+**The 30% threshold** (`topScore × 0.3`, floored at 1) is the participation cutoff. Behaviors below this are excluded from the lottery entirely. This prevents very weak behaviors from ever being selected while still allowing sub-optimal but reasonable choices to compete.
+
+**Deployment path uses event dispatch.** During deployment, behavior selection fires a pick event with up to 5 parameters, allowing external systems (UI overlays, player-influence hooks) to observe or modify the selection. The post-event score is compared against threshold again before committing.
+
+**`m_QueuedDebugString` (+0x70)** receives the event result for non-deployment turns, enabling debug logging of what behavior was selected and why. For player-controlled agents, this is immediately passed to a logging/display function and cleared — it's not retained.
+
+**`PseudoRandom` is per-agent** (`m_Random` at `+0x40`). Each agent has its own RNG state, ensuring selection choices are independently reproducible per-agent without cross-contamination between agents in the same frame.
+## 14. Agent.Evaluate — 0x180719860
 
 ### Annotated reconstruction (full function — 1100+ lines of Ghidra output)
 
@@ -1144,7 +1763,7 @@ void Agent_Evaluate(Agent* self)
 
 ---
 
-## 12. Agent.PostProcessTileScores — 0x18071C450
+## 15. Agent.PostProcessTileScores — 0x18071C450
 
 ### Annotated reconstruction
 
@@ -1350,3 +1969,6 @@ ts.SafetyScore   = -ts.SafetyScore × W.DistanceScale    ← NEGATED — now a p
 // threshold = 2.0 if currentScore ≥ 0, else 0.5
 // Only assigned if neighbor tile != self tile
 ```
+
+---
+
