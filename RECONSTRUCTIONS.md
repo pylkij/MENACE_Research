@@ -10,7 +10,7 @@
 
 1. [TileScore.GetScore — 0x180740F20](#1-tilescoregetscore--0x180740F20)
 2. [TileScore.GetScaledScore — 0x180740E50](#2-tilescoregetscaledscore--0x180740E50)
-3. [TileScore.GetScoreWithoutDistance — 0x180740F10](#3-tilescoregetsscorewithoutdistance--0x180740f10)
+3. [TileScore.GetScoreWithoutDistance — 0x180740F10](#3-tilescoregetscorewithoutdistance--0x180740F10)
 4. [TileScore.CompareScores — 0x180740D40](#4-tilescorecomparescores--0x180740d40)
 5. [TacticalStateSettings.GetScore — 0x180756DE0](#5-tacticalstatesettingsgetscore--0x180756de0)
 6. [TacticalStateSettings.Start — 0x180757530](#6-tacticalstatesettingsstart--0x180757530)
