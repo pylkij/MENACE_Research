@@ -2,7 +2,7 @@
 
 Ongoing reverse engineering of **Menace**, a Unity IL2CPP tactical strategy game. This repository documents internal game systems at the function and data-structure level — scoring models, AI pipelines, class layouts, and runtime behaviour — derived from Il2CppDumper output and Ghidra disassembly.
 
-The goal is a permanent reference: complete enough that no one has to redo this work.
+The goal is a permanent reference.
 
 ---
 
