@@ -21,6 +21,8 @@ menace-re/
         │   ├── REPORT.md                # Legacy — produced before the stage model
         │   └── RECONSTRUCTIONS.md       # Legacy — produced before the stage model            
         └── Criterions/                  # Namespace-level investigation folder
+            ├── decompiled-functions/
+            │   └── (decompiled-functions-1.txt, etc.)
             ├── stage-1/
             │   ├── REPORT.md            # Stage artefact — this stage's findings only
             │   └── RECONSTRUCTIONS.md   # Stage artefact — this stage's reconstructions only
@@ -29,8 +31,6 @@ menace-re/
             │   └── RECONSTRUCTIONS.md
             ├── REPORT.md                # Final collated report — produced at investigation close
             └── RECONSTRUCTIONS.md       # Final collated reconstructions
-
-    
 ```
 
 Each investigation targets a specific namespace within a system. Stage artefacts are saved per-stage and collated into a final pair at the namespace root when the investigation closes. Additional namespaces follow the same pattern under their system folder.
@@ -156,8 +156,9 @@ Investigations were performed against a specific build of Menace. Binary details
 ### Setup
 
 1. Create a folder under `investigations/<system-name>/<Namespace>/`.
-2. Run `extract_rvas.py` for the target namespace and commit the output JSON/CSV to that folder.
-3. Update this README with a summary entry under **Current Investigations**.
+2. Run `enumerate_namespace.py` example:`python enumerate_namespace.py dump.cs --namespace Menace.Tactical.AI.Behaviors.Criterions --out targets.txt`
+3. Run `extract_rvas.py` for the target namespace and commit the output JSON/CSV to that folder.
+4. Update this README with a summary entry under **Current Investigations**.
 
 ### Session open
 
