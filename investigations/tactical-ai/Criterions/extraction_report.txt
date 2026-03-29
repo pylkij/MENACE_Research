@@ -1,0 +1,136 @@
+Il2CppDumper Extraction Report
+================================================================
+
+────────────────────────────────────────────────────────────────
+  CLASS  Menace.Tactical.AI.Behaviors.Criterions.Criterion
+  TypeDefIndex=3670
+
+  Methods (9):
+    bool             IsValid                            RVA=NO_RVA         Offset=NO_RVA  [UNRESOLVED]
+    int              GetThreads                         RVA=0x546260       Offset=0x545060
+    void             Collect                            RVA=0x4F7EE0       Offset=0x4F6CE0
+    void             Evaluate                           RVA=0x4F7EE0       Offset=0x4F6CE0
+    void             PostProcess                        RVA=0x4F7EE0       Offset=0x4F6CE0
+    bool             IsDeploymentPhase                  RVA=0x71B670       Offset=0x71A470
+    float            Score                              RVA=0x760140       Offset=0x75EF40
+    float            GetUtilityThreshold                RVA=0x760070       Offset=0x75EE70
+    void             .ctor                              RVA=0x4EB570       Offset=0x4EA370
+
+  Fields (0):
+
+────────────────────────────────────────────────────────────────
+  CLASS  Menace.Tactical.AI.Behaviors.Criterions.AvoidOpponents : Criterion
+  TypeDefIndex=3671
+
+  Methods (3):
+    bool             IsValid                            RVA=0x75C1B0       Offset=0x75AFB0
+    void             Evaluate                           RVA=0x75BE10       Offset=0x75AC10
+    void             .ctor                              RVA=0x4EB570       Offset=0x4EA370
+
+  Fields (0):
+
+────────────────────────────────────────────────────────────────
+  CLASS  Menace.Tactical.AI.Behaviors.Criterions.ConsiderSurroundings : Criterion
+  TypeDefIndex=3672
+
+  Methods (3):
+    bool             IsValid                            RVA=0x75C5B0       Offset=0x75B3B0
+    void             Collect                            RVA=0x75C240       Offset=0x75B040
+    void             .ctor                              RVA=0x4EB570       Offset=0x4EA370
+
+  Fields (0):
+
+────────────────────────────────────────────────────────────────
+  CLASS  Menace.Tactical.AI.Behaviors.Criterions.ConsiderZones : Criterion
+  TypeDefIndex=3673
+
+  Methods (5):
+    bool             IsValid                            RVA=0x75D2C0       Offset=0x75C0C0
+    void             Collect                            RVA=0x75C630       Offset=0x75B430
+    void             Evaluate                           RVA=0x75CC20       Offset=0x75BA20
+    void             PostProcess                        RVA=0x75D3B0       Offset=0x75C1B0
+    void             .ctor                              RVA=0x4EB570       Offset=0x4EA370
+
+  Fields (0):
+
+────────────────────────────────────────────────────────────────
+  CLASS  Menace.Tactical.AI.Behaviors.Criterions.CoverAgainstOpponents : Criterion
+  TypeDefIndex=3674
+
+  Methods (4):
+    bool             IsValid                            RVA=0x75EAB0       Offset=0x75D8B0
+    void             Evaluate                           RVA=0x75DAD0       Offset=0x75C8D0
+    void             .ctor                              RVA=0x4EB570       Offset=0x4EA370
+    void             .cctor                             RVA=0x75EB00       Offset=0x75D900
+
+  Fields (1):
+    [0x000]  float[]                              COVER_PENALTIES
+
+────────────────────────────────────────────────────────────────
+  CLASS  Menace.Tactical.AI.Behaviors.Criterions.DistanceToCurrentTile : Criterion
+  TypeDefIndex=3675
+
+  Methods (3):
+    bool             IsValid                            RVA=0x760EC0       Offset=0x75FCC0
+    void             Evaluate                           RVA=0x760CF0       Offset=0x75FAF0
+    void             .ctor                              RVA=0x4EB570       Offset=0x4EA370
+
+  Fields (0):
+
+────────────────────────────────────────────────────────────────
+  CLASS  Menace.Tactical.AI.Behaviors.Criterions.ExistingTileEffects : Criterion
+  TypeDefIndex=3676
+
+  Methods (3):
+    bool             IsValid                            RVA=0x761370       Offset=0x760170
+    void             Evaluate                           RVA=0x760FB0       Offset=0x75FDB0
+    void             .ctor                              RVA=0x4EB570       Offset=0x4EA370
+
+  Fields (0):
+
+────────────────────────────────────────────────────────────────
+  CLASS  Menace.Tactical.AI.Behaviors.Criterions.FleeFromOpponents : Criterion
+  TypeDefIndex=3677
+
+  Methods (3):
+    bool             IsValid                            RVA=0x7616D0       Offset=0x7604D0
+    void             Evaluate                           RVA=0x7613A0       Offset=0x7601A0
+    void             .ctor                              RVA=0x4EB570       Offset=0x4EA370
+
+  Fields (0):
+
+────────────────────────────────────────────────────────────────
+  CLASS  Menace.Tactical.AI.Behaviors.Criterions.Roam : Criterion
+  TypeDefIndex=3678
+
+  Methods (3):
+    bool             IsValid                            RVA=0x768870       Offset=0x767670
+    void             Collect                            RVA=0x768300       Offset=0x767100
+    void             .ctor                              RVA=0x4EB570       Offset=0x4EA370
+
+  Fields (0):
+
+────────────────────────────────────────────────────────────────
+  CLASS  Menace.Tactical.AI.Behaviors.Criterions.ThreatFromOpponents : Criterion
+  TypeDefIndex=3679
+
+  Methods (6):
+    bool             IsValid                            RVA=0x76AF00       Offset=0x769D00
+    int              GetThreads                         RVA=0x54E040       Offset=0x54CE40
+    void             Evaluate                           RVA=0x76ACB0       Offset=0x769AB0
+    float            Score                              RVA=0x76B710       Offset=0x76A510
+    float            Score                              RVA=0x76AF90       Offset=0x769D90
+    void             .ctor                              RVA=0x4EB570       Offset=0x4EA370
+
+  Fields (0):
+
+────────────────────────────────────────────────────────────────
+  CLASS  Menace.Tactical.AI.Behaviors.Criterions.WakeUp : Criterion
+  TypeDefIndex=3680
+
+  Methods (3):
+    bool             IsValid                            RVA=0x7880E0       Offset=0x786EE0
+    void             Collect                            RVA=0x787DD0       Offset=0x786BD0
+    void             .ctor                              RVA=0x518FA0       Offset=0x517DA0
+
+  Fields (0):

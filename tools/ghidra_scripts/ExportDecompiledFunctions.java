@@ -49,22 +49,16 @@ public class ExportDecompiledFunctions extends GhidraScript {
 
     // Option A: hardcode VAs directly (hex strings, "0x" prefix optional).
     // Leave empty to use VA_LIST_FILE instead.
-    private static final String[] TARGET_VAS = {
-        "0x180760140",   // Criterion.Score
-        "0x180760070",   // Criterion.GetUtilityThreshold
-        "0x18075EB00",   // CoverAgainstOpponents..cctor
-        "0x18075DAD0",   // CoverAgainstOpponents.Evaluate
-        "0x1804EB570",   // Criterion..ctor
-    };
+    private static final String[] TARGET_VAS = { };
 
     // Option B: path to a plain-text file with one hex VA per line.
     // Lines starting with '#' and blank lines are ignored.
     // Used only when TARGET_VAS is empty.
-    private static final String VA_LIST_FILE = "";
+    private static final String VA_LIST_FILE = "C:\\Users\\TurnipKnight\\Documents\\GitHub\\MENACE_Research\\tools\\ghidra_scripts\\vaList.txt";
 
     // Where to write the report. If blank, defaults to:
     //   <project_dir>/decompiled_functions.txt
-    private static final String OUTPUT_FILE = "";
+    private static final String OUTPUT_FILE = "C:\\Users\\TurnipKnight\\Documents\\GitHub\\MENACE_Research\\tools\\ghidra_scripts\\decompiled_functions.txt";
 
     // Decompiler timeout per function, in seconds.
     private static final int TIMEOUT_SECONDS = 60;

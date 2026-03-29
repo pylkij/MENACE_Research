@@ -1,0 +1,25 @@
+# Namespace: Menace.Tactical.AI.Behaviors
+# Classes: 22
+
+Assist                                             Menace.Tactical.AI.Behaviors
+Attack                                             Menace.Tactical.AI.Behaviors
+Buff                                               Menace.Tactical.AI.Behaviors
+Deploy                                             Menace.Tactical.AI.Behaviors
+Idle                                               Menace.Tactical.AI.Behaviors
+InflictDamage                                      Menace.Tactical.AI.Behaviors
+InflictSuppression                                 Menace.Tactical.AI.Behaviors
+Move                                               Menace.Tactical.AI.Behaviors
+Reload                                             Menace.Tactical.AI.Behaviors
+RemoveStatusEffect                                 Menace.Tactical.AI.Behaviors
+CreateLOSBlocker                                   Menace.Tactical.AI.Behaviors
+GainBonusTurn                                      Menace.Tactical.AI.Behaviors
+Mindray                                            Menace.Tactical.AI.Behaviors
+MovementSkill                                      Menace.Tactical.AI.Behaviors
+Scan                                               Menace.Tactical.AI.Behaviors
+SpawnHovermine                                     Menace.Tactical.AI.Behaviors
+SpawnPhantom                                       Menace.Tactical.AI.Behaviors
+SupplyAmmo                                         Menace.Tactical.AI.Behaviors
+TargetDesignator                                   Menace.Tactical.AI.Behaviors
+TransportEntity                                    Menace.Tactical.AI.Behaviors
+Stun                                               Menace.Tactical.AI.Behaviors
+TurnArmorTowardsThreat                             Menace.Tactical.AI.Behaviors

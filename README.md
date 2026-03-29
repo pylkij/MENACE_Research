@@ -39,6 +39,8 @@ Each investigation targets a specific namespace within a system. Stage artefacts
 
 ## Current Investigations
 
+This section is for open investigations only. This includes components of a larger investigation not yet completed. Once an investigation is complete, and most open questions have been answered, move this summary to a new file in preperation for the next investigation target.
+
 ### Tactical AI Scoring System
 
 **Status:** Complete.
@@ -72,6 +74,25 @@ GetScore(tile) = (SafetyScore + UtilityScore)
 - Individual `Criterion` subclass implementations (the concrete evaluators that write raw `SafetyScore`/`UtilityScore` values per tile)
 - `Behavior` subclass implementations
 - `FUN_181430ac0` — the per-attack evaluator called from `GetOpportunityLevel`
+
+### Criterion subclasses
+
+This section will be rewritten upon investigation completion.
+
+Preliminary investigation opened
+- Extraction Report: done
+- Stage 1: Completed
+- Stage 2: Analysis finished, writing report
+- Collation: Waiting for stage 2 completion
+
+### Behavior subclasses
+
+This section will be rewritten upon investigation completion.
+
+Preliminary investigation opened
+- Extraction Report: done
+- Stage 1: tbd
+- Collation: Waiting on prior stage completion
 
 ---
 
