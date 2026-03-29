@@ -933,11 +933,8 @@ Singleton accessed via `*(*(DAT_18394C3D0 + 0xb8) + 8)`. All fields confirmed fr
 5. **What does `ConsiderZones.Collect` do?**
    VA `0x18075C630`. Batch with `ConsiderSurroundings` analysis.
 
-6. **Full `AIWeightsTemplate` field layout for offsets `0x100`–`0x140`.**
-   Run `extract_rvas.py` on `AIWeightsTemplate`.
-
-7. **Exact semantics of `IsInMeleeRange` (0x1806E3750) and `IsInAttackRange` (0x1806E60A0).**
+6. **Exact semantics of `IsInMeleeRange` (0x1806E3750) and `IsInAttackRange` (0x1806E60A0).**
    Sub-calls of `IsWithinRangeA`. Decompile if range gate detail is needed for a downstream investigation.
 
-8. **Behaviour selection layer consuming `Score` output.**
+7. **Behaviour selection layer consuming `Score` output.**
    Outside this namespace. Requires operator acknowledgement before investigation.

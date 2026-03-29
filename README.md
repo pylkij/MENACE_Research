@@ -115,7 +115,6 @@ For each tile T and active Criterion C:
 - `ConsiderSurroundings.Evaluate` — the one `Evaluate` override not yet decompiled
 - `ConsiderZones.Collect` — deferred alongside the above
 - All 10 `IsValid` implementations — interface documented; structurally predictable, low priority
-- `AIWeightsTemplate` field offsets `0x100`–`0x140`
 - Runtime values of the `COVER_PENALTIES[4]` static array
 
 ### Behavior subclasses
