@@ -123,8 +123,15 @@ This section will be rewritten upon investigation completion.
 
 Preliminary investigation opened
 - Extraction Report: done
-- Stage 1: tbd
-- Collation: Waiting on prior stage completion
+- Pre-Investigation: `Behavior` and `SkillBehavior` base classes
+- Stage 1: `Move`
+- Stage 2: `Assist` and `Attack`
+- Stage 3: Leaf subclasses of `Assist`/`Attack`
+- Stage 4: Structurally distinct SkillBehaviors
+- Stage 5: `Idle` and collation
+
+**Primary files:**
+- [`investigations/tactical-ai/Behaviors/PROJECT-OUTLINE.md`](investigations/tactical-ai/Behaviors/PROJECT-OUTLINE.md)
 
 ---
 
