@@ -1,0 +1,171 @@
+Ghidra Decompilation Export
+Program : GameAssembly.dll
+Image   : 180000000
+Functions: 4
+================================================================
+
+================================================================
+FUNCTION:  FUN_18073bfa0
+VA:        0x18073BFA0
+RVA:       0x73BFA0
+SIGNATURE: undefined FUN_18073bfa0(void)
+ENTRY:     18073bfa0
+----------------------------------------------------------------
+
+float FUN_18073bfa0(undefined8 param_1,longlong param_2,longlong param_3,char param_4)
+
+{
+  float fVar1;
+  longlong lVar2;
+  char cVar3;
+  uint uVar4;
+  float fVar5;
+  
+  if (DAT_183b931d0 == '\0') {
+    FUN_180427b00(&DAT_18394c3d0);
+    FUN_180427b00(&DAT_1839677b0);
+    FUN_180427b00(&DAT_183967868);
+    FUN_180427b00(&DAT_18397ae78);
+    DAT_183b931d0 = '\x01';
+  }
+  if (((param_3 != 0) && (*(longlong *)(param_3 + 0x20) != 0)) &&
+     (lVar2 = *(longlong *)(*(longlong *)(param_3 + 0x20) + 0x50), lVar2 != 0)) {
+    cVar3 = FUN_181421d50(lVar2,param_2,DAT_1839677b0);
+    if (cVar3 == '\0') {
+      if (param_2 == 0) goto LAB_18073c11f;
+      uVar4 = FUN_1806e2400(param_2,*(undefined8 *)(param_3 + 0x10),0);
+    }
+    else {
+      if ((*(longlong *)(param_3 + 0x20) == 0) ||
+         (lVar2 = *(longlong *)(*(longlong *)(param_3 + 0x20) + 0x50), lVar2 == 0))
+      goto LAB_18073c11f;
+      uVar4 = FUN_1814354a0(lVar2,param_2,DAT_183967868);
+    }
+    if (*(int *)(DAT_18397ae78 + 0xe4) == 0) {
+      il2cpp_runtime_class_init(DAT_18397ae78);
+    }
+    lVar2 = **(longlong **)(DAT_18397ae78 + 0xb8);
+    if (lVar2 != 0) {
+      if (*(uint *)(lVar2 + 0x18) <= uVar4) {
+                    /* WARNING: Subroutine does not return */
+        FUN_180427d80();
+      }
+      fVar1 = *(float *)(lVar2 + 0x20 + (longlong)(int)uVar4 * 4);
+      if (param_4 == '\0') {
+        if (*(int *)(DAT_18394c3d0 + 0xe4) == 0) {
+          il2cpp_runtime_class_init(DAT_18394c3d0);
+        }
+        lVar2 = *(longlong *)(*(longlong *)(DAT_18394c3d0 + 0xb8) + 8);
+        if (lVar2 == 0) goto LAB_18073c11f;
+        fVar5 = *(float *)(lVar2 + 0xbc);
+      }
+      else {
+        fVar5 = 1.0;
+      }
+      return fVar1 * fVar5 + 1.0;
+    }
+  }
+LAB_18073c11f:
+                    /* WARNING: Subroutine does not return */
+  FUN_180427d90();
+}
+
+
+
+================================================================
+FUNCTION:  FUN_180717730
+VA:        0x180717730
+RVA:       0x717730
+SIGNATURE: undefined FUN_180717730(void)
+ENTRY:     180717730
+----------------------------------------------------------------
+
+longlong FUN_180717730(longlong param_1,longlong param_2)
+
+{
+  longlong lVar1;
+  char cVar2;
+  undefined8 local_40;
+  undefined8 uStack_38;
+  longlong local_30;
+  undefined4 local_28;
+  undefined4 uStack_24;
+  undefined4 uStack_20;
+  undefined4 uStack_1c;
+  longlong local_18;
+  
+  if (DAT_183b931b2 == '\0') {
+    FUN_180427b00(&DAT_1839ada98);
+    FUN_180427b00(&DAT_1839adb50);
+    FUN_180427b00(&DAT_1839adc08);
+    FUN_180427b00(&DAT_183968278);
+    DAT_183b931b2 = '\x01';
+  }
+  if (*(longlong *)(param_1 + 0x48) != 0) {
+    FUN_180cbab80(&local_40,*(longlong *)(param_1 + 0x48),DAT_183968278);
+    local_28 = (undefined4)local_40;
+    uStack_24 = local_40._4_4_;
+    uStack_20 = (undefined4)uStack_38;
+    uStack_1c = uStack_38._4_4_;
+    local_18 = local_30;
+    local_40 = 0;
+    uStack_38 = &local_28;
+    while( true ) {
+      cVar2 = FUN_1814f4770(&local_28,DAT_1839adb50);
+      lVar1 = local_18;
+      if (cVar2 == '\0') {
+        FUN_1804f7ee0(&local_28,DAT_1839ada98);
+        return 0;
+      }
+      if (local_18 == 0) break;
+      if (*(longlong *)(local_18 + 0x10) == param_2) {
+        FUN_1804f7ee0(&local_28,DAT_1839ada98);
+        return lVar1;
+      }
+    }
+                    /* WARNING: Subroutine does not return */
+    FUN_180427d90();
+  }
+                    /* WARNING: Subroutine does not return */
+  FUN_180427d90();
+}
+
+
+
+================================================================
+FUNCTION:  FUN_180717a40
+VA:        0x180717A40
+RVA:       0x717A40
+SIGNATURE: undefined FUN_180717a40(void)
+ENTRY:     180717a40
+----------------------------------------------------------------
+
+bool FUN_180717a40(longlong param_1)
+
+{
+  if (*(int *)(param_1 + 0x34) == 0) {
+    return true;
+  }
+  return *(int *)(param_1 + 0x34) == 1;
+}
+
+
+
+================================================================
+FUNCTION:  FUN_180519a90
+VA:        0x180519A90
+RVA:       0x519A90
+SIGNATURE: undefined FUN_180519a90(void)
+ENTRY:     180519a90
+----------------------------------------------------------------
+
+undefined8 FUN_180519a90(void)
+
+{
+  return 0;
+}
+
+
+
+================================================================
+SUMMARY: 4 succeeded, 0 failed

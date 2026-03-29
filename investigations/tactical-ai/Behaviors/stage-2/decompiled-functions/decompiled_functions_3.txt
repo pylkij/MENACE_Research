@@ -1,0 +1,247 @@
+Ghidra Decompilation Export
+Program : GameAssembly.dll
+Image   : 180000000
+Functions: 5
+================================================================
+
+================================================================
+FUNCTION:  FUN_180762d60
+VA:        0x180762D60
+RVA:       0x762D60
+SIGNATURE: undefined FUN_180762d60(void)
+ENTRY:     180762d60
+----------------------------------------------------------------
+
+longlong FUN_180762d60(undefined8 param_1,longlong param_2)
+
+{
+  longlong lVar1;
+  char cVar2;
+  longlong lVar3;
+  float fVar4;
+  float fVar5;
+  undefined8 local_50;
+  undefined8 uStack_48;
+  longlong local_40;
+  undefined4 local_38;
+  undefined4 uStack_34;
+  undefined4 uStack_30;
+  undefined4 uStack_2c;
+  longlong local_28;
+  
+  if (DAT_183b932e6 == '\0') {
+    FUN_180427b00(&DAT_18393e560);
+    FUN_180427b00(&DAT_18393e618);
+    FUN_180427b00(&DAT_18393e6d0);
+    FUN_180427b00(&DAT_18398c990);
+    DAT_183b932e6 = '\x01';
+  }
+  if (param_2 == 0) {
+                    /* WARNING: Subroutine does not return */
+    FUN_180427d90();
+  }
+  FUN_180cbab80(&local_50,param_2,DAT_18398c990);
+  local_38 = (undefined4)local_50;
+  uStack_34 = local_50._4_4_;
+  uStack_30 = (undefined4)uStack_48;
+  uStack_2c = uStack_48._4_4_;
+  local_28 = local_40;
+  local_50 = 0;
+  lVar3 = 0;
+  uStack_48 = &local_38;
+LAB_180762e03:
+  cVar2 = FUN_1814f4770(&local_38,DAT_18393e618);
+  lVar1 = local_28;
+  if (cVar2 == '\0') {
+    FUN_1804f7ee0(&local_38,DAT_18393e560);
+    return lVar3;
+  }
+  if (lVar3 != 0) goto code_r0x000180762e22;
+  goto LAB_180762e43;
+code_r0x000180762e22:
+  if (local_28 == 0) {
+                    /* WARNING: Subroutine does not return */
+    FUN_180427d90();
+  }
+  fVar4 = (float)FUN_180740e50(local_28,0);
+  fVar5 = (float)FUN_180740e50(lVar3,0);
+  if (fVar5 < fVar4) {
+LAB_180762e43:
+    lVar3 = lVar1;
+  }
+  goto LAB_180762e03;
+}
+
+
+
+================================================================
+FUNCTION:  FUN_180738fe0
+VA:        0x180738FE0
+RVA:       0x738FE0
+SIGNATURE: undefined FUN_180738fe0(void)
+ENTRY:     180738fe0
+----------------------------------------------------------------
+
+undefined8 FUN_180738fe0(longlong param_1)
+
+{
+  longlong *plVar1;
+  longlong lVar2;
+  
+  if ((*(longlong *)(param_1 + 0x10) != 0) &&
+     (plVar1 = *(longlong **)(*(longlong *)(param_1 + 0x10) + 0x18), plVar1 != (longlong *)0x0)) {
+    lVar2 = (**(code **)(*plVar1 + 0x398))(plVar1,*(undefined8 *)(*plVar1 + 0x3a0));
+    if (lVar2 != 0) {
+      return *(undefined8 *)(lVar2 + 0x310);
+    }
+  }
+                    /* WARNING: Subroutine does not return */
+  FUN_180427d90();
+}
+
+
+
+================================================================
+FUNCTION:  FUN_180739020
+VA:        0x180739020
+RVA:       0x739020
+SIGNATURE: undefined FUN_180739020(void)
+ENTRY:     180739020
+----------------------------------------------------------------
+
+undefined8 FUN_180739020(longlong param_1)
+
+{
+  longlong lVar1;
+  
+  if ((*(longlong *)(param_1 + 0x10) != 0) &&
+     (lVar1 = *(longlong *)(*(longlong *)(param_1 + 0x10) + 0x10), lVar1 != 0)) {
+    return *(undefined8 *)(lVar1 + 0x50);
+  }
+                    /* WARNING: Subroutine does not return */
+  FUN_180427d90();
+}
+
+
+
+================================================================
+FUNCTION:  FUN_180717870
+VA:        0x180717870
+RVA:       0x717870
+SIGNATURE: undefined FUN_180717870(void)
+ENTRY:     180717870
+----------------------------------------------------------------
+
+undefined8 FUN_180717870(longlong param_1)
+
+{
+  char cVar1;
+  undefined8 local_40;
+  undefined8 uStack_38;
+  longlong local_30;
+  undefined4 local_28;
+  undefined4 uStack_24;
+  undefined4 uStack_20;
+  undefined4 uStack_1c;
+  longlong local_18;
+  
+  if (DAT_183b931b1 == '\0') {
+    FUN_180427b00(&DAT_1839ada98);
+    FUN_180427b00(&DAT_1839adb50);
+    FUN_180427b00(&DAT_1839adc08);
+    FUN_180427b00(&DAT_183968278);
+    DAT_183b931b1 = '\x01';
+  }
+  if (*(longlong *)(param_1 + 0x48) != 0) {
+    FUN_180cbab80(&local_40,*(longlong *)(param_1 + 0x48),DAT_183968278);
+    local_28 = (undefined4)local_40;
+    uStack_24 = local_40._4_4_;
+    uStack_20 = (undefined4)uStack_38;
+    uStack_1c = uStack_38._4_4_;
+    local_18 = local_30;
+    local_40 = 0;
+    uStack_38 = &local_28;
+    while( true ) {
+      cVar1 = FUN_1814f4770(&local_28,DAT_1839adb50);
+      if (cVar1 == '\0') {
+        FUN_1804f7ee0(&local_28,DAT_1839ada98);
+        return 0;
+      }
+      if (local_18 == 0) break;
+      if (-1 < *(int *)(local_18 + 0x18)) {
+        FUN_1804f7ee0(&local_28,DAT_1839ada98);
+        return 1;
+      }
+    }
+                    /* WARNING: Subroutine does not return */
+    FUN_180427d90();
+  }
+                    /* WARNING: Subroutine does not return */
+  FUN_180427d90();
+}
+
+
+
+================================================================
+FUNCTION:  FUN_1807632f0
+VA:        0x1807632F0
+RVA:       0x7632F0
+SIGNATURE: undefined FUN_1807632f0(void)
+ENTRY:     1807632f0
+----------------------------------------------------------------
+
+undefined8 FUN_1807632f0(undefined8 param_1,longlong param_2)
+
+{
+  char cVar1;
+  float fVar2;
+  undefined8 local_70;
+  undefined8 uStack_68;
+  undefined8 local_60;
+  longlong lStack_58;
+  undefined8 local_50;
+  undefined8 local_48;
+  undefined8 uStack_40;
+  undefined8 local_38;
+  longlong lStack_30;
+  undefined8 local_28;
+  
+  if (DAT_183b932e8 == '\0') {
+    FUN_180427b00(&DAT_183977938);
+    FUN_180427b00(&DAT_18395be38);
+    FUN_180427b00(&DAT_18395bef8);
+    FUN_180427b00(&DAT_18395bfb0);
+    FUN_180427b00(&DAT_18398e1b8);
+    DAT_183b932e8 = '\x01';
+  }
+  fVar2 = (float)FUN_180739050(param_1,0);
+  if (param_2 != 0) {
+    FUN_18136d8a0(&local_48,param_2,DAT_183977938);
+    local_70 = local_48;
+    uStack_68 = uStack_40;
+    local_60 = local_38;
+    lStack_58 = lStack_30;
+    local_50 = local_28;
+    while( true ) {
+      cVar1 = FUN_18152f9b0(&local_70,DAT_18395bef8);
+      if (cVar1 == '\0') {
+        FUN_1804f7ee0(&local_70,DAT_18395be38);
+        return 0;
+      }
+      if (lStack_58 == 0) break;
+      if (fVar2 <= *(float *)(lStack_58 + 0x30)) {
+        FUN_1804f7ee0(&local_70,DAT_18395be38);
+        return 1;
+      }
+    }
+                    /* WARNING: Subroutine does not return */
+    FUN_180427d90();
+  }
+                    /* WARNING: Subroutine does not return */
+  FUN_180427d90();
+}
+
+
+
+================================================================
+SUMMARY: 5 succeeded, 0 failed

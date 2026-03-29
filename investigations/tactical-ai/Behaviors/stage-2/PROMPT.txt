@@ -1,0 +1,329 @@
+=== MENACE TACTICAL AI — BEHAVIOR/SKILLBEHAVIOR BASE CLASS INVESTIGATION ===
+=== HANDOFF: Stage 1 Complete — Ready for Subclass Investigations ===
+
+STAGE ARTEFACTS:
+  BehaviorBase/stage-1/REPORT.md
+  BehaviorBase/stage-1/RECONSTRUCTIONS.md
+
+IMAGE BASE: 0x180000000  (VA = RVA + 0x180000000)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+RESOLVED SYMBOL MAP — FUN_
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+FUN_180427b00   il2cpp_runtime_class_init() — lazy static init guard. IGNORE.
+FUN_180427d90   NullReferenceException() — no-return null guard.
+FUN_180427d80   IndexOutOfRangeException() — no-return bounds guard.
+FUN_180426e50   IL2CPP write barrier. IGNORE semantically.
+FUN_1804608d0   Allocate/construct object of given class (thunk).
+FUN_1804f7ee0   Enumerator Dispose(). End of foreach.
+FUN_1814f4770   List enumerator MoveNext(). Returns bool.
+FUN_180cbab80   GetEnumerator() on a List.
+FUN_18136d8a0   GetEnumerator() on a Dictionary.
+FUN_18152f9b0   Dictionary enumerator MoveNext().
+FUN_180cca560   List[index] — get element at index.
+FUN_180424ea0   Interface method dispatch (tag lookup fallback).
+FUN_180426ed0   Allocate new object with N slots.
+FUN_1829b1320   Time.time — current game time (float). NOT an accuracy function.
+FUN_1804bad80   powf(value, exponent) — floating-point power.
+FUN_1806e80b0   Skill.Use(tile, flags) — activates a skill on a target tile.
+FUN_1805e00a0   Actor.IsDoneActing() — returns bool.
+FUN_1806f3c30   Skill.Activate(tile) — fires main skill. Return convention: TBD (NQ-9).
+FUN_1806ddec0   Skill.GetAPCost() — returns int AP cost.
+FUN_1806e3fa0   Skill.CanUse() — returns bool.
+FUN_1806e3a00   Skill.IsUnavailable() — returns bool.
+FUN_1806e2e70   Skill.CanBeUsed() — returns bool (secondary check).
+FUN_180616ae0   Actor.CanDeploy() or Actor.IsDeployable() — returns bool.
+FUN_180616b30   Tile.IsContainerWithLivingEntity() — returns bool.
+FUN_180688600   Goal.GetEntity() or Goal.GetTile() — returns object reference.
+FUN_1806889c0   Goal.IsEmpty() — returns bool.
+FUN_1806169a0   Entity.IsFriendly(other) — returns bool.
+FUN_180ba1030   Skill.TryGetTag(tagType, out tag) — returns bool.
+FUN_180002310   LookupTable.Get(index, table) — returns int from indexed table.
+FUN_1806f2460   ShotPath retrieval from cache.
+FUN_18000d310   ComputeShotPath(0x1c, ...) — builds shot path.
+FUN_18062a050   List.Clear() — clear collection.
+FUN_1806f2230   BuildShotData(tile, origin, targetTile, goal, skill) — returns ShotData*.
+FUN_1806d5040   GetOriginTileFromContext(skill) — returns Tile*.
+FUN_1805316f0   AccuracyScalar(coverDefense?) — float probability/accuracy value.
+                  NOTE: Called with and without args. Distinct from Time.time.
+FUN_180531700   GetRangeHitMultiplier() — range-based float multiplier.
+FUN_180628270   ShotPath.GetBaseAccuracy() — returns float.
+FUN_180628240   ShotPath.GetRangeAccuracyCost() — per-tile accuracy cost.
+FUN_180628550   ShotPath.GetRangeMod() — range modifier float.
+FUN_1806285e0   ShotPath.GetHitBase() — base hit value float.
+FUN_180628300   ShotPath.GetRangePenaltyB() — float.
+FUN_180628330   ShotPath.GetRangePenaltyA() — float.
+FUN_180628380   ShotGroup.GetCoverStrength() — returns int.
+FUN_180628550   ShotPath.GetRangeMod() — float.
+FUN_1806285b0   ShotPath.GetRangePenaltyC() — float (used in ComputeDamageData).
+FUN_180628580   ShotPath.GetRangePenaltyD() — float.
+FUN_1806defc0   Skill.ComputeArmorIgnored(skill, penetrationValue) — returns int.
+FUN_1806debe0   ComputeCoverDefense(skill, from, goal, target, shotData, isFriendly) — returns int.
+FUN_180614b30   Entity.GetAccuracy() — returns float.
+FUN_1806155c0   Entity.GetExposure() — returns float (visibility/exposure score).
+FUN_1805ca7a0   TileDistance(tileA, tileB) — returns int.
+FUN_1805ca720   GetRangeBand(goal, origin) — returns uint (short/medium/long/extreme enum).
+FUN_1804eb570   DamageData.ZeroInitialise() — called on newly allocated DamageData.
+FUN_1806fac90   Skill.IgnoresCoverFor(skill, entity) — returns bool.
+FUN_1806e0300   ComputeExpectedDamage(skill, origin, goal, target, path, shotData, shots, uses) — returns float.
+FUN_1806e0ac0   ComputeHitProbability(...) — returns float[6]. See field map below.
+FUN_1806df4e0   ComputeDamageData(...) — returns DamageData*. See field map below.
+FUN_1806f2230   BuildShotData(tile, origin, targetTile, goal, skill) — ShotData*.
+FUN_18073c130   SkillBehavior.GetTargetValue(private) — full targeting formula.
+FUN_18073dd90   SkillBehavior.GetTargetValue(public) — routing + contained entity.
+FUN_18073bdd0   SkillBehavior.ConsiderSkillSpecifics() — armour/ammo multiplier.
+FUN_18073df70   SkillBehavior.HandleDeployAndSetup(actor) — AP decision + flag set.
+FUN_18073e300   SkillBehavior.OnExecute(actor) — four-stage state machine.
+FUN_180738d10   Behavior.Collect(actor) — deployment gate + OnCollect dispatch.
+FUN_180738e60   Behavior.Evaluate(actor) — score-writing entry.
+FUN_180738f40   Behavior.Execute(actor) — thin wrapper, flag clear.
+FUN_180739050   Behavior.GetUtilityThreshold() — strategy-modulated threshold.
+FUN_1805316d0   ModifyAccuracyMultiplier(&local_e8) — applies penalty to accuracy mult.
+FUN_1806de960   ShotPath.GetShotCount(skill) — returns int.
+FUN_1806de540   ComputeRangeProfile(...) — builds range profile for shot groups.
+FUN_1805ca920   GetShotProperties(goal) — returns shot property struct.
+FUN_180717730   ProximityData lookup — NOT YET RESOLVED (NQ-3).
+FUN_180717a40   Actor type check — NOT YET RESOLVED (NQ-3).
+FUN_1806283c0   ShotGroup.GetStat(group, statIndex) — returns int.
+FUN_1805deca0   Unknown Entity method (survival/kill probability) — NOT YET RESOLVED.
+FUN_1805dee10   Unknown Entity method (damage probability) — NOT YET RESOLVED.
+FUN_1805ded50   Unknown Entity method (suppression value?) — NOT YET RESOLVED.
+FUN_1805df0a0   Unknown Entity method (kill check with threshold) — NOT YET RESOLVED.
+FUN_1806defc0   Skill.ComputeArmorIgnored(skill, apValue) — returns int.
+FUN_1806de960   Skill.GetShotCount() — returns int.
+FUN_181446af0   SpatialQuery(tileSet, agentTeam, rangeConst) — count/distance query.
+FUN_180687590   Goal.IsSpecialType() — returns int (0 = normal goal).
+FUN_180614d30   Entity.GetSomeStat(entity, 0, 0) — returns int. Context: ally count nearby.
+FUN_1829a9340   Strategy.IsChainAttackActive(strategyField) — returns bool.
+FUN_1805ca7a0   TileDistance(tileA, tileB) — confirmed.
+FUN_1806155c0   Entity.GetExposure() — confirmed float.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+RESOLVED SYMBOL MAP — DAT_
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+DAT_183981f50   RoundManager class metadata. Singleton at *(+0xb8). roundCount at singleton+0x60.
+DAT_18394c3d0   WeightsConfig class metadata (identity PENDING — NQ-5).
+                  Second static field (*(+0xb8)+8) = WeightsConfig.Instance.
+                  Fields read: +0x13C (utilityThreshold), +0x7C, +0x78, +0xE4, +0xE8,
+                                +0xEC (urgencyWeight), +0xF0 (buffWeight), +0xF8 (proximityBonusCap).
+DAT_183981fc8   ShotPath list class metadata (used in path allocation).
+DAT_183976298   DamageData class metadata (allocated in ComputeDamageData).
+DAT_1839a64b0   TAG_ARMOR_MATCH tag class metadata.
+DAT_1839a6620   AMMO_TABLE lookup table (indexed 1=currentAmmo, 2=maxAmmo).
+DAT_183965650   TAG_ARMOR_MATCH type identifier (tag query key).
+DAT_183965708   TAG_AMMO_COUNT type identifier (tag query key).
+DAT_183942930   Goal class metadata.
+DAT_183952b10   Actor/Unit class type (used in type-check comparisons in GetTargetValue).
+DAT_183952a58   Tile subtype (used in type-check comparisons in GetTargetValue).
+DAT_18396a5e8   Adjacency/positioning table class (static arrays at +0xD8, +0xE0, +0x90).
+DAT_183944290   Range constant used in SpatialQuery (FUN_181446af0).
+DAT_18394c3d0   WeightsConfig class (confirmed same DAT as above — appears in both Evaluate and scoring).
+DAT_18394df48   Strategy extension class (chain attack flag check via FUN_1829a9340).
+DAT_183971160   RangeProfile class (used in ComputeDamageData shot group setup).
+DAT_18399f1b8   Shot group element type (cast in ComputeDamageData loop).
+DAT_1839654d8   Suppression tag type identifier (queried in GetTargetValue _forImmediateUse=true).
+DAT_1839657c8   AOE tag type identifier (queried in GetTargetValue _forImmediateUse=true).
+DAT_1839400a8   Math/rounding utility class (used for ceil operations in burst model).
+DAT_183b9233f   Init guard for RoundManager. IGNORE.
+DAT_183b931c2   Init guard for WeightsConfig. IGNORE.
+DAT_183b931cd   Init guard for Goal class. IGNORE.
+DAT_183b931cf   Init guard for tag classes. IGNORE.
+DAT_183b931ce   Init guard for GetTargetValue private. IGNORE.
+DAT_183b92f92   Init guard for ComputeDamageData. IGNORE.
+DAT_183b92f89   Init guard for ComputeHitProbability. IGNORE.
+DAT_183b9234b   Init guard for burst model. IGNORE.
+DAT_183b92446   Init guard for range deviation. IGNORE.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+FIELD OFFSET TABLES (CUMULATIVE)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Behavior (TypeDefIndex 3623):
+  +0x10  Agent*   m_Agent
+  +0x18  int      m_Score              (clamped [0,21474], floor 5, sentinel 99999)
+  +0x1C  bool     m_IsFirstEvaluated   (set every Evaluate, cleared every Execute)
+  +0x1D  bool     m_IsFirstExecuted    (same semantics; written together with +0x1C)
+  +0x1E  bool     m_IsUsedForDeploymentPhase
+
+SkillBehavior (TypeDefIndex 3627, extends Behavior):
+  +0x20  Skill*   m_Skill
+  +0x28  int      m_SkillIDHash
+  +0x30  Skill*   m_DeployedStanceSkill
+  +0x38  Skill*   m_RotationSkill
+  +0x40  Skill*   m_SetupWeaponSkill
+  +0x4C  bool     m_IsRotationTowardsTargetRequired
+  +0x4D  bool     m_DeployBeforeExecuting
+  +0x4E  bool     m_SetupBeforeExecuting
+  +0x4F  bool     m_RotateBeforeExecuting
+  +0x50  bool     m_DontActuallyExecute
+  +0x51  bool     m_IsExecuted
+  +0x54  float    m_WaitUntil          (Time.time timestamp; stages wait until this)
+  +0x58  Tile*    m_TargetTile
+  (Leaf subclasses begin own fields at +0x60)
+
+DamageData (heap object, class DAT_183976298):
+  +0x10  float   expectedRawDamage
+  +0x14  float   expectedEffectiveDamage
+  +0x18  float   expectedKills         (capped to maxAmmo)
+  +0x20  float   coverPenetrationChance (max across shot groups)
+  +0x24  bool    canKillInOneShot
+  +0x25  bool    canKillWithFullMag
+  +0x28  Skill*  shotData              (ShotData reference; write-barriered)
+
+ComputeHitProbability output array (float[6], written in-place):
+  [0]   hitChance              (integer scale 0–100; divide by 100 when used)
+  [1]   baseAccuracy
+  [2]   coverDefense           (integer, float-cast)
+  [3]   rangeMultiplier        (1.0 if no target)
+  [4]   autoHitFlag            (1.0 if skill auto-hits; triggers early-out at 100%)
+  [5]   rangeDistancePenalty   (only set when useRange=true)
+  byte +0x11: rangeCalcActiveFlag (set when range-penalty path taken)
+
+SkillData (partial, accessed via Skill+0x10):
+  +0xF2  bool   isAoE or isSuppression (co-fire bonus condition — exact meaning TBD)
+  +0xF3  bool   autoHitFlag            (skill always hits; forces hitChance=100)
+  +0x112 bool   requiresDeployedStance
+  +0x113 bool   requiresWeaponSetup
+
+ActorInfo (partial, accessed via actor->GetActorInfo()):
+  +0x1E8  animData*  ptr to anim data object
+    animData +0x5C: float animDuration  (used for deploy wait timer)
+
+EntityInfo (accessed via actor->GetEntityInfo()):
+  +0xEC  uint   flags
+           bit 7  = coverImmune
+           bit 9  = alreadyDeployed
+
+Actor (partial — confirmed offsets):
+  +0x18  Agent*   owning agent
+  +0x54  int      currentHP
+  +0x5C  int      currentHP (alternate read — confirm which is current vs max)
+  +0x167 bool     isWeaponSetUp
+
+StrategyData (partial):
+  +0x310  StrategyModifiers*  modifiers
+    modifiers +0x14: float thresholdMultA  (raises only — floor applied)
+    modifiers +0x18: float thresholdMultB  (bidirectional)
+
+WeightsConfig (partial — DAT_18394c3d0 pending full class dump):
+  +0x13C  float  utilityThreshold
+  +0x78   float  [scoring weight — identity TBD]
+  +0x7C   float  allyCoFireBonus (inferred from ally loop in GetTargetValue)
+  +0xE4   float  killWeight
+  +0xE8   float  killWeight2 / kill multiplier
+  +0xEC   float  urgencyWeight
+  +0xF0   float  buffWeight
+  +0xF8   float  proximityBonusCap
+  +0xF0   float  allyCoFireWeight (inferred — from fVar31 accumulation formula)
+
+RoundManager (DAT_183981f50 singleton):
+  first static field (+0x00 of static storage) = singleton instance
+  singleton +0x60: int deploymentRoundCount (0 = deployment phase active)
+
+Agent (partial — confirmed from Collect):
+  +0x60  Dictionary<Tile,TileScore>*  tileDict  (shared tile scoring dictionary)
+
+ShotPath (partial — confirmed from ComputeHitProbability and ComputeDamageData):
+  +0x78   int    minimumHitChance
+  +0x8C   float  accuracyMult
+  +0x110  float  altDistancePenaltyCoeff
+  +0x128  float  movementAccuracyPenaltyPerTile
+  +0x13C  float  thirdDistanceModifier
+  +0x140  float  overallAccuracyMultiplier
+  +0x144  float  hpAccuracyCoeff
+  +0x148  float  hpAccuracyFloor
+  +0x14C  float  apAccuracyCoeff
+  +0x150  float  apAccuracyFloor
+  +0x16C  int    baseExtraHits
+  +0x170  float  burstFraction
+
+Skill (partial — param_1 in ComputeDamageData = Skill*, not SkillBehavior*):
+  +0x10   SkillData*  skillData
+  +0x18   ShotPath*   cachedPath (null = build fresh)
+  +0x48   List<ShotGroup>*  shotGroups   ← CONFIRMED on Skill, NOT SkillBehavior
+  +0xB4   int    optimalRangeOffset      (used in ComputeDamageData range deviation)
+  +0xB8   int    optimalRangeOffset2     (used in ComputeHitProbability — may be same field)
+  +0xB4   int    additionalRadius        (from dump — re-examine vs shotGroups at +0x48)
+
+Vtable slots (confirmed on Actor unless noted):
+  +0x178  GetOrder() — on Behavior vtable
+  +0x1B8  OnCollect(actor, tileDict) — on Behavior vtable (Slot 8)
+  +0x1D8  OnEvaluate(actor) — on Behavior vtable (Slot 10)
+  +0x1E8  OnExecute(actor) — on Behavior vtable (Slot 11)
+  +0x208  OnBeforeProcessing() — on Behavior vtable (Slot 7)
+  +0x388  Actor.GetCurrentTile() — confirmed (returns Tile*)
+  +0x398  Actor.GetActorInfo() / Actor.GetStrategy() — returns info/strategy object
+  +0x3D8  Actor.GetEntityInfo() — returns EntityInfo*
+  +0x3E8  (1000 dec) Actor.GetCurrentTile() — alternate slot used in OnExecute Stage 4
+  +0x458  Actor.GetCurrentAP() — returns int
+  +0x468  Actor.GetStance() — returns int (1=prone inferred)
+  +0x478  Actor.GetAttitude() — returns int (2=neutral/civilian inferred)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+VA STATUS LIST (CUMULATIVE)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+COMPLETE:
+  0x180738E60  Behavior.Evaluate(Actor)
+  0x180738F40  Behavior.Execute(Actor)
+  0x18073E300  SkillBehavior.OnExecute
+  0x18073DF70  SkillBehavior.HandleDeployAndSetup
+  0x180739050  Behavior.GetUtilityThreshold
+  0x180738D10  Behavior.Collect
+  0x18073BDD0  SkillBehavior.ConsiderSkillSpecifics
+  0x18073DD90  SkillBehavior.GetTargetValue (public)
+  0x18073C130  SkillBehavior.GetTargetValue (private)
+  0x1806E0AC0  ComputeHitProbability
+  0x1806DF4E0  ComputeDamageData
+
+NOT YET DECOMPILED (carry forward):
+  0x18073BFA0  SkillBehavior.GetTagValueAgainst     (NQ-7)
+  0x180717730  ProximityData lookup                  (NQ-3)
+  0x180717A40  Actor type check                      (NQ-3)
+  0x180738DC0  Behavior.Evaluate(Actor, Dict)        (low priority)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+OPEN QUESTIONS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+NQ-3  FUN_180717730 / FUN_180717A40 — proximity data + actor type check.
+      Gates ally-pressure bonus in GetTargetValue final section.
+      Next: decompile both (expected short).
+
+NQ-4  WeightsConfig full field map.
+      Next: search dump.cs for class with float at +0x13C. Run extract_rvas.py.
+
+NQ-5  Second config class at DAT_18394c3d0.
+      Next: search dump.cs for class with float cluster at +0xE4–+0xF8. Run extract_rvas.py.
+      NOTE: May be the SAME class as WeightsConfig — both are accessed via singleton
+      pattern and both are read in scoring functions. Treat as one pending until confirmed.
+
+NQ-6  Skill + 0x48 = shotGroups list. Confirmed Skill field, not SkillBehavior.
+      SkillBehavior.m_AdditionalRadius annotation at +0x48 from dump.cs needs
+      re-examination — may be a dump artefact or the field is on Skill, not SkillBehavior.
+      Next: extract_rvas.py on Skill class; confirm field layout.
+
+NQ-7  FUN_18073BFA0 GetTagValueAgainst — tag effectiveness against Opponent.
+      Next: decompile at VA 0x18073BFA0.
+
+NQ-8  GetOrder() concrete return values.
+      Three RVAs: 0x50C760, 0x519A90, 0x547170, 0x546260.
+      Next: decompile any one. Expected: return N; (3 lines).
+
+NQ-9  FUN_1806f3c30 return convention in OnExecute Stage 4.
+      result XOR 1 applied — if 1=success then XOR makes OnExecute return 0 (keep going).
+      May indicate false=done convention or Skill.Activate returns 0 on success.
+      Next: validate against a concrete OnExecute override in a leaf subclass.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+NEXT PRIORITY VA TABLE — SUBCLASS INVESTIGATIONS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Before opening any leaf subclass, the following resolve the remaining base dependencies:
+
+| Priority | VA             | Method                          | Rationale                                  |
+|----------|----------------|---------------------------------|--------------------------------------------|
+| 1        | 0x18073BFA0    | SkillBehavior.GetTagValueAgainst| Completes GetTargetValue. Short function.  |
+| 2        | 0x180717730    | ProximityData lookup            | Final scoring term. Expected short.        |
+| 3        | 0x180717A40    | Actor type check                | Gates proximity bonus. Expected 5 lines.   |
+| 4        | 0x180519A90    | GetOrder() one implementation   | Resolves NQ-8. Expected 3 lines.           |
+
+After the above, subclass investigations can begin. Next target is Move subclass.
+  Extraction report is in extraction_report_master.txt.
