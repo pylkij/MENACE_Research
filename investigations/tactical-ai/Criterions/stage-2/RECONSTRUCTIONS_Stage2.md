@@ -9,7 +9,7 @@ Functions appear in leaf-first order.
 
 ## Quick-Reference Field Tables
 
-### TacticalAISettings (singleton via DAT_18394c3d0 +0xb8 +0x8)
+### AIWeightsTemplate (singleton via DAT_18394c3d0 +0xb8 +0x8)
 | Offset | Field | Type |
 |---|---|---|
 | +0x58 | zoneInfluenceWeight | float |
@@ -1488,7 +1488,7 @@ FUN_1806285E0 = GetAttackBaseValue                // attack base value from Tile
 
 ### DAT_ → Class / Static Field
 ````
-DAT_18394C3D0 = TacticalAISettings_class
+DAT_18394C3D0 = AIWeightsTemplate_class
 DAT_183981FC8 = ScoringContext_class
 DAT_183981F50 = ScoringContext_singleton_class     // singleton access via +0xb8
 DAT_18396A5E8 = OverwatchResponseCurve_class
@@ -1526,7 +1526,7 @@ DAT_183995830 = SharedTileList_runtime_class
 DAT_1839888F0 = TileScoreObject_class
 DAT_1839776F8 = ScoreDictionary_class
 DAT_1839779F8 = ScoreDictionary_lookupType
-DAT_18394C3D0 = TacticalAISettings_class           // (duplicate — same as above)
+DAT_18394C3D0 = AIWeightsTemplate_class           // (duplicate — same as above)
 DAT_183B9331A = Criterion_Score_initFlag
 DAT_183B9331B = GetUtilityThreshold_initFlag
 DAT_183B93322 = CoverEvaluate_initFlag
@@ -1548,7 +1548,7 @@ DAT_183B9331C = AvoidEvaluate_initFlag
 
 ## Field Offset Tables
 
-### TacticalAISettings (via DAT_18394c3d0 +0xb8 +0x8)
+### AIWeightsTemplate (via DAT_18394c3d0 +0xb8 +0x8)
 | Offset | Field | Type | Status |
 |---|---|---|---|
 | +0x58 | zoneInfluenceWeight | float | confirmed |
@@ -1710,7 +1710,7 @@ DAT_183B9331C = AvoidEvaluate_initFlag
 
 [ ] Q1: COVER_PENALTIES[4] actual values? → Memory dump CoverAgainstOpponents.COVER_PENALTIES at runtime, or view .cctor at 0x18075EB00 for literal float pushes.
 [ ] Q3: Class name of zoneData (returned by vtable +0x398 on ZoneDescriptor)? → Search dump.cs for class with field at offset 0x310; or extract_rvas.py on ZoneDescriptor return type.
-[ ] Q9: TacticalAISettings offsets 0x100–0x140? → run extract_rvas.py on TacticalAISettings class.
+[ ] Q9: AIWeightsTemplate offsets 0x100–0x140? → run extract_rvas.py on AIWeightsTemplate class.
 [ ] Q-A: ConsiderSurroundings.Evaluate not analysed (TDI 3672) → Extract RVAs; likely 1–2 functions.
 [ ] Q-B: ConsiderZones.Collect (0x18075C630) not analysed → Batch with ConsiderSurroundings.
 [ ] Q-C: IsInMeleeRange (0x1806E3750) and IsInAttackRange (0x1806E60A0) semantics → Analyse if range gate detail needed for final report.

@@ -33,7 +33,7 @@
    - 6.10 WakeUp
    - 6.11 ConsiderSurroundings
 7. Supporting Infrastructure
-8. TacticalAISettings — Field Reference
+8. AIWeightsTemplate — Field Reference
 9. EvaluationContext — Field Reference
 10. Auxiliary Object Field Reference
 11. Ghidra Address Reference
@@ -59,7 +59,7 @@ This investigation reverse-engineered the complete tile-scoring subsystem of Men
 - 5 infrastructure functions: `GetTileScoreComponents`, `GetMoveRangeData`, `GetTileZoneModifier`, `IsWithinRangeA`, `IsWithinRangeB` — fully reconstructed.
 - `FUN_1804bad80` confirmed as an `expf`-equivalent monotone growth curve.
 - `Criterion.IsDeploymentPhase`, `ThreatFromOpponents.GetThreads`, `WakeUp..ctor`, `CoverAgainstOpponents..cctor` — all confirmed.
-- 30+ field offsets confirmed on `TacticalAISettings`, `EvaluationContext`, `Unit`, `MovePool`, `MoveRangeData`, `TileModifier`, `ScoringContext`, `Tile`, and auxiliary objects.
+- 30+ field offsets confirmed on `AIWeightsTemplate`, `EvaluationContext`, `Unit`, `MovePool`, `MoveRangeData`, `TileModifier`, `ScoringContext`, `Tile`, and auxiliary objects.
 
 **Explicit scope boundary — what was NOT investigated:**
 
@@ -68,7 +68,7 @@ This investigation reverse-engineered the complete tile-scoring subsystem of Men
 - All 10 `IsValid` implementations — interface documented; implementations structurally predictable and low priority.
 - `IsInMeleeRange` (0x1806E3750) and `IsInAttackRange` (0x1806E60A0) — range-gate sub-calls; semantics partially understood from callers.
 - `IsValidRangeType` (0x1806E3D50) — trivial gate.
-- `TacticalAISettings` field offsets 0x100–0x140 — not extracted.
+- `AIWeightsTemplate` field offsets 0x100–0x140 — not extracted.
 - Runtime values of `COVER_PENALTIES[4]` — not resolved.
 - The behaviour selection layer consuming `Score` output — outside this namespace; explicitly deferred.
 
@@ -289,9 +289,9 @@ if unit has active debuff and tile is not objective:
 ctx.accumulatedScore = total × settings.coverScoreWeight + ctx.accumulatedScore
 ```
 
-**Cover type multiplier mapping** (from `TacticalAISettings`):
+**Cover type multiplier mapping** (from `AIWeightsTemplate`):
 
-| Cover classification | TacticalAISettings offset | Label |
+| Cover classification | AIWeightsTemplate offset | Label |
 |---|---|---|
 | Full cover | `+0x8c` | `coverMult_Full` |
 | Partial cover | `+0x90` | `coverMult_Partial` |
@@ -691,7 +691,7 @@ Confirmed as a single-argument `expf`-equivalent growth curve. Implements a full
 
 ---
 
-## 8. TacticalAISettings — Field Reference
+## 8. AIWeightsTemplate — Field Reference
 
 Singleton accessed via `*(*(DAT_18394C3D0 + 0xb8) + 8)`. All fields confirmed from Ghidra decompilation.
 
@@ -892,13 +892,13 @@ Singleton accessed via `*(*(DAT_18394C3D0 + 0xb8) + 8)`. All fields confirmed fr
 
 ## 12. Key Inferences and Design Notes
 
-**The four-component decomposition is intentional and independently tunable.** `Criterion.Score` cleanly separates attack opportunity (W_attack), supply pressure (W_ammo), positional advancement (W_deploy), and precision fire support (W_sniper). Each weight in `TacticalAISettings` is independently configurable, making this a purely data-driven utility AI. There is no learned component.
+**The four-component decomposition is intentional and independently tunable.** `Criterion.Score` cleanly separates attack opportunity (W_attack), supply pressure (W_ammo), positional advancement (W_deploy), and precision fire support (W_sniper). Each weight in `AIWeightsTemplate` is independently configurable, making this a purely data-driven utility AI. There is no learned component.
 
 **ThreatFromOpponents is the dominant criterion by computation budget.** It requests 4 threads while all other criteria are single-threaded. Its spatial scan with distance falloff and directional multipliers is the most complex scoring logic in the namespace.
 
 **The phase system gates major behaviour differences.** `ScoringContext.singleton.phase` takes values 0 (deployment), 1 (standard), 2 (post-deployment). Cover multipliers, deployment bonuses, and flee weights all branch on this value. The AI evaluates tile desirability very differently depending on the game phase.
 
-**`expf` is used as a score transform throughout, not linear multiplication.** `AvoidOpponents`, `FleeFromOpponents`, and `GetMoveRangeData` all call `expf_approx` on weight constants. This means the weights in `TacticalAISettings` at `+0xb0`, `+0xb4`, `+0xb8` are exponent inputs. Small changes to these values have exponential effects on AI behaviour.
+**`expf` is used as a score transform throughout, not linear multiplication.** `AvoidOpponents`, `FleeFromOpponents`, and `GetMoveRangeData` all call `expf_approx` on weight constants. This means the weights in `AIWeightsTemplate` at `+0xb0`, `+0xb4`, `+0xb8` are exponent inputs. Small changes to these values have exponential effects on AI behaviour.
 
 **Zone threshold promotion via 9999.0 is a bypass, not a score.** `ConsiderZones.Evaluate` writes `ctx.thresholdAccumulator += 9999.0` to guarantee a tile passes the threshold gate unconditionally. Tiles in owned strategic zones are always promoted above the threshold regardless of their raw scoring.
 
@@ -921,7 +921,7 @@ Singleton accessed via `*(*(DAT_18394C3D0 + 0xb8) + 8)`. All fields confirmed fr
 1. **What are the actual runtime values of `COVER_PENALTIES[4]`?**
    The static array is allocated in `.cctor` but the literal values are not written in the decompiled output. Memory dump `CoverAgainstOpponents.COVER_PENALTIES` at runtime, or view the `.cctor` assembly listing for four float push instructions after the array allocation.
 
-2. **Offset conflict at `TacticalAISettings +0x7c`.**
+2. **Offset conflict at `AIWeightsTemplate +0x7c`.**
    Stage 1 assigns `W_attack` here; Stage 2 assigns `tileEffectMultiplier`. These may be a labelling error or a genuine overlap. Verify by re-reading the raw decompilation for `ExistingTileEffects.Evaluate` and confirming which offset is `+0x7c` and which is `+0x78`.
 
 3. **What is the managed class name of `zoneData` (returned by `vtable +0x398` on `ZoneDescriptor`)?**
@@ -933,8 +933,8 @@ Singleton accessed via `*(*(DAT_18394C3D0 + 0xb8) + 8)`. All fields confirmed fr
 5. **What does `ConsiderZones.Collect` do?**
    VA `0x18075C630`. Batch with `ConsiderSurroundings` analysis.
 
-6. **Full `TacticalAISettings` field layout for offsets `0x100`–`0x140`.**
-   Run `extract_rvas.py` on `TacticalAISettings`.
+6. **Full `AIWeightsTemplate` field layout for offsets `0x100`–`0x140`.**
+   Run `extract_rvas.py` on `AIWeightsTemplate`.
 
 7. **Exact semantics of `IsInMeleeRange` (0x1806E3750) and `IsInAttackRange` (0x1806E60A0).**
    Sub-calls of `IsWithinRangeA`. Decompile if range gate detail is needed for a downstream investigation.

@@ -51,7 +51,7 @@ Stage 2 extended Stage 1's confirmed scoring pipeline by analysing all remaining
 - `IsWithinRangeA` / `IsWithinRangeB`: two-stage range gate system fully understood
 - `ctx +0x60 = isObjectiveTile` confirmed (Q4 resolved)
 - `WakeUp..ctor` no additional fields (Q8 resolved)
-- 19 new `TacticalAISettings` field offsets confirmed
+- 19 new `AIWeightsTemplate` field offsets confirmed
 - 4 new `EvaluationContext` field offsets confirmed
 - 3 new `TileModifier` field offsets confirmed
 - Numerous new unit, tile, movePool, and ally field offsets
@@ -62,7 +62,7 @@ Stage 2 extended Stage 1's confirmed scoring pipeline by analysing all remaining
 - `IsValidRangeType` (0x1806e3d50) — guard for range gate A
 - Behaviour selection layer consuming Score output (outside Criterions namespace — scoped out)
 - All `IsValid` implementations (10 classes, deferred from Stage 1)
-- `TacticalAISettings` offsets 0x100–0x140 (full layout not yet extracted)
+- `AIWeightsTemplate` offsets 0x100–0x140 (full layout not yet extracted)
 
 ---
 
@@ -139,7 +139,7 @@ If the candidate tile is NOT the unit's current tile, and the tile is occupied b
 ctx.accumulatedScore += (2.0 - allyHealthRatio) * W_threat * (maxMoves / weaponCount) * Score_B(allyOccupant)
 ````
 - `(2.0 - healthRatio)` = wounded allies contribute more threat weight (motivates protecting them)
-- `W_threat` = `TacticalAISettings +0x74`
+- `W_threat` = `AIWeightsTemplate +0x74`
 
 **Phase 2 — Self threat (always):**
 ````
@@ -206,7 +206,7 @@ score *= (1.0 - dist / (halfWidth × 3.0))
 
 ### ThreatFromOpponents — new field confirmations
 
-**TacticalAISettings:**
+**AIWeightsTemplate:**
 - `+0x74` = `W_threat` (float, confirmed)
 - `+0x98` = `coverMult_Quarter` (float, confirmed)
 - `+0xa0` = `flankingBonusMultiplier` (float, confirmed)
@@ -265,7 +265,7 @@ Two-pass function.
 | Evaluate | 0x75CC20 | 0x18075CC20 |
 | PostProcess | 0x75D3B0 | 0x18075D3B0 |
 
-### New TacticalAISettings fields (ConsiderZones)
+### New AIWeightsTemplate fields (ConsiderZones)
 
 | Offset | Name | Confirmed |
 |---|---|---|
@@ -301,7 +301,7 @@ ctx.reachabilityScore += (float)dist × modScale × penalty
 **New confirmed fields:**
 - `ctx +0x20` = `reachabilityScore`
 - `TileModifier +0x20` = `distanceScaleFactor`
-- `TacticalAISettings +0x158` = `outOfRangePenalty`
+- `AIWeightsTemplate +0x158` = `outOfRangePenalty`
 - `vtable +0x458` / `+0x460` = `GetMoveSpeed()` → int
 - `weaponStatsBlock +0x118` = weapon base range (int)
 - `WeaponList +0x3c` = bonus range modifier (int)
@@ -338,8 +338,8 @@ ctx.accumulatedScore += settings.tileEffectMultiplier × Score(unit, effectTile,
 - `tile +0xf2` = `hasTileEffect` (bool — distinct from `+0xf3` = isObjectiveTile)
 - `tile +0x68` = tile effects list
 - `TileModifier +0x44` = `effectImmunityMask` (uint)
-- `TacticalAISettings +0x78` = `tileEffectScoreWeight`
-- `TacticalAISettings +0x7c` = `tileEffectMultiplier`
+- `AIWeightsTemplate +0x78` = `tileEffectScoreWeight`
+- `AIWeightsTemplate +0x7c` = `tileEffectMultiplier`
 
 ### Methods table
 
@@ -368,8 +368,8 @@ Iterates `ScoringContext.singleton.avoidGroups` (`singleton +0xa8`). For each gr
 - `ctx.accumulatedScore += fAccum`
 
 **New confirmed fields:**
-- `TacticalAISettings +0xb0` = `avoidDirectThreatWeight`
-- `TacticalAISettings +0xb4` = `avoidIndirectThreatWeight`
+- `AIWeightsTemplate +0xb0` = `avoidDirectThreatWeight`
+- `AIWeightsTemplate +0xb4` = `avoidIndirectThreatWeight`
 - `ScoringContext.singleton +0xa8` = `avoidGroups` (array of opponent group objects)
 - `unit +0x4c` = `teamIndex` (int, used for group/tile team matching)
 
@@ -402,7 +402,7 @@ ctx.accumulatedScore += fAccum
 ````
 
 **New confirmed field:**
-- `TacticalAISettings +0xb8` = `fleeWeight`
+- `AIWeightsTemplate +0xb8` = `fleeWeight`
 
 ### Methods table
 
@@ -670,7 +670,7 @@ The phase system has at least 3 states. `vtable +0x478` returns the current phas
 
 2. **The phase system gates significant behaviour.** Cover multipliers, deployment bonuses, and flee weights all branch on `ScoringContext.phase` (0/1/2). Phase 0 = deployment, phase 2 = post-deployment. This means the AI evaluates tile desirability very differently during deployment vs. combat.
 
-3. **`expf` is used extensively as a score transform.** `AvoidOpponents`, `FleeFromOpponents`, and `GetMoveRangeData` all call `expf` on weight constants rather than multiplying directly. This means the weights in `TacticalAISettings` are exponent inputs, not linear multipliers. Small changes to e.g. `avoidDirectThreatWeight` have exponential effect.
+3. **`expf` is used extensively as a score transform.** `AvoidOpponents`, `FleeFromOpponents`, and `GetMoveRangeData` all call `expf` on weight constants rather than multiplying directly. This means the weights in `AIWeightsTemplate` are exponent inputs, not linear multipliers. Small changes to e.g. `avoidDirectThreatWeight` have exponential effect.
 
 4. **Two distinct "objective tile" flags exist.** `tile +0xf3` is a tile-side flag set in tile data. `ctx +0x60` is a per-evaluation flag written by ThreatFromOpponents.Score B via `FUN_1805df360`. These are not the same and are written by different systems.
 
@@ -695,8 +695,8 @@ The phase system has at least 3 states. `vtable +0x478` returns the current phas
 **Q5-new.** What is the full field layout of the TileScore object (param_6 in GetMoveRangeData)?  
 → Run `extract_rvas.py` on the class assigned to `DAT_183981fc8` (ScoringContext_class); it holds the TileScore type.
 
-**Q9.** Full `TacticalAISettings` field layout for offsets 0x100–0x140.  
-→ Run `extract_rvas.py` on `TacticalAISettings` class.
+**Q9.** Full `AIWeightsTemplate` field layout for offsets 0x100–0x140.  
+→ Run `extract_rvas.py` on `AIWeightsTemplate` class.
 
 **Q10.** Behaviour selection layer consuming Score output.  
 → Scoped out — outside Criterions namespace. Requires operator acknowledgement before pursuing.

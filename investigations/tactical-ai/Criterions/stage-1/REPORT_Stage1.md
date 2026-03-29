@@ -42,7 +42,7 @@
   - `Criterion.GetUtilityThreshold` — formula resolved; tile threshold = `max(base, base × zoneMin) × zoneMultiplier`.
   - `CoverAgainstOpponents.Evaluate` — full three-phase algorithm reconstructed; cover quality iteration, penalty application, and score write confirmed.
   - `Criterion.Score` — master scoring formula resolved; four weighted components combined with a movement-effectiveness curve multiplier.
-- `TacticalAISettings` singleton confirmed as the central configuration object for all weight and threshold constants. Its field layout is partially mapped (see §4).
+- `AIWeightsTemplate` singleton confirmed as the central configuration object for all weight and threshold constants. Its field layout is partially mapped (see §4).
 - `param_3->field_0x28` confirmed as the **mutable tile score accumulator** written by all `Evaluate` calls.
 - `param_3->field_0x30` confirmed as the **threshold accumulator** written by `Evaluate`.
 
@@ -55,7 +55,7 @@
 - `Roam.Collect`, `ConsiderSurroundings.Collect` — collection passes not yet decompiled.
 - All `IsValid` implementations — not yet decompiled (low priority, structurally predictable).
 - `Criterion.IsDeploymentPhase` — utility guard, not yet decompiled.
-- `TacticalAISettings` class — field layout partially inferred from usage; full extraction not performed.
+- `AIWeightsTemplate` class — field layout partially inferred from usage; full extraction not performed.
 - The behaviour selection layer that consumes `Criterion.Score` output — **out of scope** (separate system; flag raised).
 - The threading system (`GetThreads` returns non-default for `ThreatFromOpponents`) — out of scope.
 
@@ -79,7 +79,7 @@ TypeDefIndex: 3674 | Base: Criterion
 
 > **Note:** `COVER_PENALTIES` is a static field at the class level, not an instance field. Length = 4 (confirmed from `.cctor`). Values not yet resolved — see §8.
 
-### 4.3 `TacticalAISettings` (singleton, `DAT_18394c3d0`)
+### 4.3 `AIWeightsTemplate` (singleton, `DAT_18394c3d0`)
 Accessed via `*(longlong *)(*(longlong *)(DAT_18394c3d0 + 0xb8) + 8)` in all scoring functions.
 This is a singleton instance read from the class's static field slot.
 
@@ -359,7 +359,7 @@ return movEff × (settings.W_attack × W_atk
 
 > *Labelled as opinion; separate from confirmed findings.*
 
-**On the four-component decomposition:** The scoring formula cleanly separates four strategic concerns — raw attack opportunity (W_attack), supply pressure (W_ammo), positional advancement (W_deploy), and precision fire support (W_sniper). This is a textbook utility AI design with additive weighted components, not a neural or learned system. Each weight in `TacticalAISettings` is independently tunable, making the AI behaviour highly data-driven.
+**On the four-component decomposition:** The scoring formula cleanly separates four strategic concerns — raw attack opportunity (W_attack), supply pressure (W_ammo), positional advancement (W_deploy), and precision fire support (W_sniper). This is a textbook utility AI design with additive weighted components, not a neural or learned system. Each weight in `AIWeightsTemplate` is independently tunable, making the AI behaviour highly data-driven.
 
 **On the 0.01 normalisation:** Raw scores from `Evaluate` are deposited as integer centiscale values (i.e., a score of "50" in the accumulator = 0.5 after normalisation). This suggests designers work in 0–100 integer space for tuning ergonomics while the runtime works in [0,1] float space.
 
@@ -385,5 +385,5 @@ return movEff × (settings.W_attack × W_atk
 | Q6 | Why does `ThreatFromOpponents` have two `Score` overloads? | Decompile both `0x18076AF90` and `0x18076B710`; determine if one is per-enemy and one is aggregate |
 | Q7 | What does `ConsiderZones.PostProcess` do differently from `Evaluate`? | Decompile `0x18075D3B0`; determine if it normalises or re-weights zone scores |
 | Q8 | Why does `WakeUp` have a divergent constructor (`0x180518FA0`)? | Decompile WakeUp..ctor; identify what field it initialises that other criteria do not |
-| Q9 | Full `TacticalAISettings` field layout — what are fields `0x100`–`0x140`? | Extract `TacticalAISettings` class from dump.cs with `extract_rvas.py` |
+| Q9 | Full `AIWeightsTemplate` field layout — what are fields `0x100`–`0x140`? | Extract `AIWeightsTemplate` class from dump.cs with `extract_rvas.py` |
 | Q10 | What is the behaviour selection layer that consumes `Score` output? | **Scope note:** this is outside `Menace.Tactical.AI.Behaviors.Criterions`. Requires operator acknowledgement before investigation. |

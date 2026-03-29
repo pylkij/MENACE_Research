@@ -8,7 +8,7 @@
 
 ## Quick-Reference Field Tables
 
-### TacticalAISettings (singleton via `DAT_18394C3D0 +0xb8 +0x8`)
+### AIWeightsTemplate (singleton via `DAT_18394C3D0 +0xb8 +0x8`)
 
 | Offset | Field | Type |
 |---|---|---|
@@ -517,7 +517,7 @@ float Criterion_GetUtilityThreshold(Criterion* self, TileCandidate* tile)
 {
     // IL2CPP lazy init — omitted
 
-    TacticalAISettings* settings = TacticalAISettings.instance;   // DAT_18394c3d0 staticFields[1]
+    AIWeightsTemplate* settings = AIWeightsTemplate.instance;   // DAT_18394c3d0 staticFields[1]
     float baseThreshold = settings->baseThreshold;                // settings +0x13c
 
     ZoneDescriptor* zoneDesc = tile->zoneDescriptor;              // *(longlong*)(param_2 + 200)
@@ -1128,7 +1128,7 @@ void ConsiderZones_PostProcess(void* self, Unit* unit, ScoreDict* dict, void* pa
 ```c
 void FUN_18075dad0(undefined8 param_1, longlong *param_2, longlong param_3)
 {
-  // [IL2CPP init guard — 9 classes including TacticalAISettings, CoverAgainstOpponents]
+  // [IL2CPP init guard — 9 classes including AIWeightsTemplate, CoverAgainstOpponents]
   if (DAT_183b93322 == '\0') { /* ... */ DAT_183b93322 = '\x01'; }
 
   // Guard: opponentList non-empty and ctx valid
@@ -1205,7 +1205,7 @@ void CoverAgainstOpponents_Evaluate(
             int weaponRange = isRanged ? GetWeaponRange(weapon) : 0;     // FUN_1806d7700
             int weaponAmmo  = isRanged ? weapon->field_0x64 : 0;
 
-            TacticalAISettings* settings = TacticalAISettings.instance;
+            AIWeightsTemplate* settings = AIWeightsTemplate.instance;
             ctx->accumulatedScore -= (float)weaponRange * settings->rangeScorePenalty;  // settings +0xd8
             ctx->accumulatedScore -= (float)weaponAmmo  * settings->ammoScorePenalty;   // settings +0xdc
 
@@ -1789,7 +1789,7 @@ float Criterion_Score(
                      * 0.01f;   // FUN_1806e0300
 
     // ── PHASE 4 — COMPONENT A: ATTACK WEIGHT ───────────────────────────────
-    TacticalAISettings* settings = TacticalAISettings.instance;
+    AIWeightsTemplate* settings = AIWeightsTemplate.instance;
     float fAtk = settings->baseAttackWeight;   // settings +0xe4
 
     float rangeRatio = (rawScore * moveData->attackRange) / (float)unit->moveRange;  // moveData +0x10, unit +0x54
@@ -2000,7 +2000,7 @@ FUN_1806DE540 = ComputeRangeStep
 ### DAT_ → Class / Static Field
 
 ```
-DAT_18394C3D0 = TacticalAISettings_class
+DAT_18394C3D0 = AIWeightsTemplate_class
 DAT_183981FC8 = ScoringContext_class
 DAT_183981F50 = ScoringContext_singleton_class        // singleton via +0xb8
 DAT_18396A5E8 = OverwatchResponseCurve_class

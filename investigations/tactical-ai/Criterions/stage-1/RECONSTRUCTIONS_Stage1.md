@@ -4,7 +4,7 @@
 
 ## Quick-Reference Offset Table
 
-### TacticalAISettings instance (via `DAT_18394c3d0 + 0xb8 + 8`)
+### AIWeightsTemplate instance (via `DAT_18394c3d0 + 0xb8 + 8`)
 
 | Offset | Name | Used in |
 |---|---|---|
@@ -212,10 +212,10 @@ float FUN_180760070(undefined8 param_1, longlong param_2)
 
 float Criterion_GetUtilityThreshold(Criterion* self, TileCandidate* tile)
 {
-    // [IL2CPP: type init — TacticalAISettings]
-    // [IL2CPP: ensure class init — TacticalAISettings]
+    // [IL2CPP: type init — AIWeightsTemplate]
+    // [IL2CPP: ensure class init — AIWeightsTemplate]
 
-    TacticalAISettings* settings = TacticalAISettings.instance;  // DAT_18394c3d0 staticFields[1]
+    AIWeightsTemplate* settings = AIWeightsTemplate.instance;  // DAT_18394c3d0 staticFields[1]
     // Null-guard: if settings or tile is null → NullReferenceException (abort)
 
     float baseThreshold = settings->baseThreshold;  // settings + 0x13c
@@ -383,7 +383,7 @@ void CoverAgainstOpponents_Evaluate(
     Unit*                  unit,
     EvaluationContext*     ctx)
 {
-    // [IL2CPP: type init — 9 classes including TacticalAISettings, CoverAgainstOpponents]
+    // [IL2CPP: type init — 9 classes including AIWeightsTemplate, CoverAgainstOpponents]
 
     // ── GUARD ──────────────────────────────────────────────────────────────
     // unit->opponentList (unit[0x19] = unit + 0xC8)
@@ -429,7 +429,7 @@ void CoverAgainstOpponents_Evaluate(
             int weaponAmmo  = isRanged ? weapon->field_0x64 : 0;       // +0x64 = ammo/magazine
 
             // Apply penalties to tile score for occupying enemy's threat
-            TacticalAISettings* settings = TacticalAISettings.instance;
+            AIWeightsTemplate* settings = AIWeightsTemplate.instance;
 
             float score = ctx->accumulatedScore;  // ctx + 0x28
             score -= (float)weaponRange * settings->rangeScorePenalty;  // settings + 0xd8
@@ -569,7 +569,7 @@ void CoverAgainstOpponents_Evaluate(
     // ── PHASE 3 — FINAL SCORE WRITE ────────────────────────────────────────
     // FUN_1804f7ee0 called on local_f0 — resets local iterator state (no logical effect)
 
-    TacticalAISettings* settings = TacticalAISettings.instance;
+    AIWeightsTemplate* settings = AIWeightsTemplate.instance;
     // Null-guard settings
 
     // Best-cover bonus: weighted sum + best-tile bonus
@@ -705,7 +705,7 @@ float Criterion_Score(
     TileData*          tileData,
     int                flags)
 {
-    // [IL2CPP: type init — TacticalAISettings, 6 other config singletons]
+    // [IL2CPP: type init — AIWeightsTemplate, 6 other config singletons]
 
     if (tile == null) goto ABORT;
 
@@ -767,7 +767,7 @@ float Criterion_Score(
                                     // FUN_1806e0300
 
     // ── PHASE 4 — COMPONENT A: ATTACK WEIGHT ───────────────────────────────
-    TacticalAISettings* settings = TacticalAISettings.instance;
+    AIWeightsTemplate* settings = AIWeightsTemplate.instance;
     float fAtk = settings->baseAttackWeight;  // settings + 0xe4 — fVar13
 
     if (rawScore * moveData->minRange > 0.0f) {
@@ -899,7 +899,7 @@ float Criterion_Score(
     }
 
     // ── PHASE 8 — FINAL WEIGHTED COMBINATION ───────────────────────────────
-    // Read component weights from TacticalAISettings
+    // Read component weights from AIWeightsTemplate
     float W_attack = settings->W_attack;  // settings + 0x7c  (note: reused label for weight)
     float W_ammo   = settings->W_ammo;    // settings + 0x80
     float W_deploy = settings->W_deploy;  // settings + 0x84

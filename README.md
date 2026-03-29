@@ -91,7 +91,7 @@ Covers the full `Menace.Tactical.AI.Behaviors.Criterions` namespace — the conc
 - `DistanceToCurrentTile.Evaluate`, `ExistingTileEffects.Evaluate`, `AvoidOpponents.Evaluate`, `FleeFromOpponents.Evaluate` — all fully reconstructed
 - `Roam.Collect` and `WakeUp.Collect` — special-case collection passes (melee-only bounding-box scan; wakeup flag dispatch respectively) — fully reconstructed
 - 5 infrastructure functions: `GetTileScoreComponents`, `GetMoveRangeData`, `GetTileZoneModifier`, `IsWithinRangeA`, `IsWithinRangeB` — fully reconstructed
-- 30+ field offsets confirmed across `TacticalAISettings`, `EvaluationContext`, `Unit`, `MovePool`, `MoveRangeData`, `TileModifier`, `ScoringContext`, `Tile`, and auxiliary objects
+- 30+ field offsets confirmed across `AIWeightsTemplate`, `EvaluationContext`, `Unit`, `MovePool`, `MoveRangeData`, `TileModifier`, `ScoringContext`, `Tile`, and auxiliary objects
 
 **Primary files:**
 - [`investigations/tactical-ai/Criterions/REPORT.md`](investigations/tactical-ai/Criterions/REPORT.md)
@@ -115,7 +115,7 @@ For each tile T and active Criterion C:
 - `ConsiderSurroundings.Evaluate` — the one `Evaluate` override not yet decompiled
 - `ConsiderZones.Collect` — deferred alongside the above
 - All 10 `IsValid` implementations — interface documented; structurally predictable, low priority
-- `TacticalAISettings` field offsets `0x100`–`0x140`
+- `AIWeightsTemplate` field offsets `0x100`–`0x140`
 - Runtime values of the `COVER_PENALTIES[4]` static array
 
 ### Behavior subclasses
