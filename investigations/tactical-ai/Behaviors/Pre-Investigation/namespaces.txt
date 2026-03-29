@@ -1,0 +1,142 @@
+// Namespace: Menace.Tactical.AI
+public abstract class Behavior // TypeDefIndex: 3623
+{
+	// Fields
+	protected Agent m_Agent; // 0x10
+	protected int m_Score; // 0x18
+	protected bool m_IsFirstExecuted; // 0x1C
+	protected bool m_IsFirstEvaluated; // 0x1D
+	protected bool m_IsUsedForDeploymentPhase; // 0x1E
+
+	// Methods
+
+	// RVA: 0x51F3C0 Offset: 0x51E1C0 VA: 0x18051F3C0
+	public int GetScore() { }
+
+	// RVA: 0x4F9580 Offset: 0x4F8380 VA: 0x1804F9580
+	public Agent GetAgent() { }
+
+	// RVA: 0x738FE0 Offset: 0x737DE0 VA: 0x180738FE0
+	public RoleData GetRole() { }
+
+	// RVA: 0x739020 Offset: 0x737E20 VA: 0x180739020
+	public StrategyData GetStrategy() { }
+
+	// RVA: 0x51F3E0 Offset: 0x51E1E0 VA: 0x18051F3E0
+	public bool IsFirstExecuted() { }
+
+	// RVA: 0x739170 Offset: 0x737F70 VA: 0x180739170
+	protected void .ctor() { }
+
+	// RVA: 0x4F9620 Offset: 0x4F8420 VA: 0x1804F9620
+	public void SetAgent(Agent _a) { }
+
+	// RVA: 0x739180 Offset: 0x737F80 VA: 0x180739180
+	protected void .ctor(Agent _agent) { }
+
+	// RVA: 0x738D10 Offset: 0x737B10 VA: 0x180738D10
+	public bool Collect(Actor _actor) { }
+
+	// RVA: 0x738DC0 Offset: 0x737BC0 VA: 0x180738DC0
+	public bool Evaluate(Actor _actor, Dictionary<Tile, TileScore> _tiles) { }
+
+	// RVA: 0x738E60 Offset: 0x737C60 VA: 0x180738E60
+	public void Evaluate(Actor _actor) { }
+
+	// RVA: 0x738F40 Offset: 0x737D40 VA: 0x180738F40
+	public bool Execute(Actor _actor) { }
+
+	// RVA: 0x739160 Offset: 0x737F60 VA: 0x180739160
+	public void ResetScore() { }
+
+	// RVA: -1 Offset: -1 Slot: 4
+	public abstract ID GetID();
+
+	// RVA: 0x738F70 Offset: 0x737D70 VA: 0x180738F70 Slot: 5
+	public virtual string GetName() { }
+
+	// RVA: -1 Offset: -1 Slot: 6
+	public abstract int GetOrder();
+
+	// RVA: 0x4F7EE0 Offset: 0x4F6CE0 VA: 0x1804F7EE0 Slot: 7
+	public virtual void OnBeforeProcessing() { }
+
+	// RVA: 0x5128B0 Offset: 0x5116B0 VA: 0x1805128B0 Slot: 8
+	protected virtual bool OnCollect(Actor _actor, Dictionary<Tile, TileScore> _tiles) { }
+
+	// RVA: 0x5128B0 Offset: 0x5116B0 VA: 0x1805128B0 Slot: 9
+	protected virtual bool OnEvaluate(Actor _actor, Dictionary<Tile, TileScore> _tiles) { }
+
+	// RVA: -1 Offset: -1 Slot: 10
+	protected abstract int OnEvaluate(Actor _actor);
+
+	// RVA: -1 Offset: -1 Slot: 11
+	protected abstract bool OnExecute(Actor _actor);
+
+	// RVA: 0x4F7EE0 Offset: 0x4F6CE0 VA: 0x1804F7EE0 Slot: 12
+	public virtual void OnNewTurn() { }
+
+	// RVA: -1 Offset: -1 Slot: 13
+	protected abstract void OnReset();
+
+	// RVA: 0x4F7EE0 Offset: 0x4F6CE0 VA: 0x1804F7EE0 Slot: 14
+	public virtual void OnClear() { }
+
+	// RVA: 0x71B670 Offset: 0x71A470 VA: 0x18071B670
+	protected bool IsDeploymentPhase() { }
+
+	// RVA: 0x739050 Offset: 0x737E50 VA: 0x180739050
+	protected float GetUtilityThreshold() { }
+}
+
+// Namespace: Menace.Tactical.AI
+public abstract class SkillBehavior : Behavior // TypeDefIndex: 3627
+{
+	// Fields
+	protected readonly Skill m_Skill; // 0x20
+	protected int m_SkillIDHash; // 0x28
+	protected Skill m_DeployedStanceSkill; // 0x30
+	protected Skill m_RotationSkill; // 0x38
+	protected Skill m_SetupWeaponSkill; // 0x40
+	protected int m_AdditionalRadius; // 0x48
+	protected bool m_IsRotationTowardsTargetRequired; // 0x4C
+	protected bool m_DeployBeforeExecuting; // 0x4D
+	protected bool m_SetupBeforeExecuting; // 0x4E
+	protected bool m_RotateBeforeExecuting; // 0x4F
+	protected bool m_DontActuallyExecute; // 0x50
+	protected bool m_IsExecuted; // 0x51
+	protected float m_WaitUntil; // 0x54
+	protected Tile m_TargetTile; // 0x58
+
+	// Methods
+
+	// RVA: 0x4F82C0 Offset: 0x4F70C0 VA: 0x1804F82C0
+	public Skill GetSkill() { }
+
+	// RVA: 0x536E80 Offset: 0x535C80 VA: 0x180536E80
+	public int GetSkillIDHash() { }
+
+	// RVA: 0x73E550 Offset: 0x73D350 VA: 0x18073E550
+	protected void .ctor(Agent _agent, Skill _skill) { }
+
+	// RVA: 0x73E530 Offset: 0x73D330 VA: 0x18073E530 Slot: 13
+	protected override void OnReset() { }
+
+	// RVA: 0x73E300 Offset: 0x73D100 VA: 0x18073E300 Slot: 11
+	protected override bool OnExecute(Actor _actor) { }
+
+	// RVA: 0x73DF70 Offset: 0x73CD70 VA: 0x18073DF70
+	protected bool HandleDeployAndSetup(Actor _actor) { }
+
+	// RVA: 0x73DD90 Offset: 0x73CB90 VA: 0x18073DD90
+	public float GetTargetValue(bool _forImmediateUse, int _uses, Tile _target, Goal _goal, Skill _skill, Tile _from, Tile _targetedTile) { }
+
+	// RVA: 0x73C130 Offset: 0x73AF30 VA: 0x18073C130
+	private float GetTargetValue(bool _forImmediateUse, int _uses, Tile _target, Goal _goal, Skill _skill, Tile _from, Tile _targetedTile, bool _attackContainedEntity) { }
+
+	// RVA: 0x73BDD0 Offset: 0x73ABD0 VA: 0x18073BDD0
+	protected float ConsiderSkillSpecifics() { }
+
+	// RVA: 0x73BFA0 Offset: 0x73ADA0 VA: 0x18073BFA0
+	private float GetTagValueAgainst(Skill _skill, Opponent _opponent, bool _forImmediateUse) { }
+}

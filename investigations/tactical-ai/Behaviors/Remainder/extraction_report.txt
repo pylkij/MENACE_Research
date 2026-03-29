@@ -1,0 +1,325 @@
+Il2CppDumper Extraction Report
+================================================================
+
+────────────────────────────────────────────────────────────────
+  CLASS  Menace.Tactical.AI.Behaviors.Buff : Assist
+  TypeDefIndex=3644
+
+  Methods (6):
+    void             .ctor                              RVA=0x7334F0       Offset=0x7322F0
+    ID               GetID                              RVA=0x55D4C0       Offset=0x55C2C0
+    float            GetUtilityFromTileMult             RVA=0x739F80       Offset=0x738D80
+    float            OnScaleMovementWeight              RVA=0x7334E0       Offset=0x7322E0
+    float            OnScaleBehaviorWeight              RVA=0x739FF0       Offset=0x738DF0
+    float            GetTargetValue                     RVA=0x7391C0       Offset=0x737FC0
+
+  Fields (0):
+
+────────────────────────────────────────────────────────────────
+  CLASS  Menace.Tactical.AI.Behaviors.Deploy : Behavior
+  TypeDefIndex=3645
+
+  Methods (9):
+    void             .ctor                              RVA=0x73AE60       Offset=0x739C60
+    void             .ctor                              RVA=0x73AE80       Offset=0x739C80
+    int              GetOrder                           RVA=0x519A90       Offset=0x518890
+    ID               GetID                              RVA=0x54E1C0       Offset=0x54CFC0
+    bool             OnCollect                          RVA=0x73A260       Offset=0x739060
+    int              OnEvaluate                         RVA=0x73AD00       Offset=0x739B00
+    bool             OnExecute                          RVA=0x73ADD0       Offset=0x739BD0
+    void             OnReset                            RVA=0x71E0E0       Offset=0x71CEE0
+    TileScore        GetHighestTileScore                RVA=0x73A0C0       Offset=0x738EC0
+
+  Fields (2):
+    [0x020]  Tile                                 m_TargetTile
+    [0x028]  bool                                 m_IsDone
+
+────────────────────────────────────────────────────────────────
+  CLASS  Menace.Tactical.AI.Behaviors.Idle : Behavior
+  TypeDefIndex=3646
+
+  Methods (6):
+    void             .ctor                              RVA=0x73AE80       Offset=0x739C80
+    int              GetOrder                           RVA=0x519A90       Offset=0x518890
+    ID               GetID                              RVA=0x73AEC0       Offset=0x739CC0
+    int              OnEvaluate                         RVA=0x546260       Offset=0x545060
+    bool             OnExecute                          RVA=0x73AED0       Offset=0x739CD0
+    void             OnReset                            RVA=0x4F7EE0       Offset=0x4F6CE0
+
+  Fields (0):
+
+────────────────────────────────────────────────────────────────
+  CLASS  Menace.Tactical.AI.Behaviors.InflictDamage : Attack
+  TypeDefIndex=3647
+
+  Methods (7):
+    void             .ctor                              RVA=0x73B130       Offset=0x739F30
+    ID               GetID                              RVA=0x546260       Offset=0x545060
+    string           GetName                            RVA=0x54B6F0       Offset=0x54A4F0
+    float            GetUtilityFromTileMult             RVA=0x73AFE0       Offset=0x739DE0
+    float            OnScaleMovementWeight              RVA=0x7334E0       Offset=0x7322E0
+    float            OnScaleBehaviorWeight              RVA=0x73B050       Offset=0x739E50
+    float            GetTargetValue                     RVA=0x73AF00       Offset=0x739D00
+
+  Fields (1):
+    [0x090]  string                               m_Name
+
+────────────────────────────────────────────────────────────────
+  CLASS  Menace.Tactical.AI.Behaviors.InflictSuppression : Attack
+  TypeDefIndex=3648
+
+  Methods (7):
+    void             .ctor                              RVA=0x73B470       Offset=0x73A270
+    ID               GetID                              RVA=0x50C760       Offset=0x50B560
+    string           GetName                            RVA=0x54B6F0       Offset=0x54A4F0
+    float            GetUtilityFromTileMult             RVA=0x73B320       Offset=0x73A120
+    float            OnScaleMovementWeight              RVA=0x7334E0       Offset=0x7322E0
+    float            OnScaleBehaviorWeight              RVA=0x73B390       Offset=0x73A190
+    float            GetTargetValue                     RVA=0x73B240       Offset=0x73A040
+
+  Fields (1):
+    [0x090]  string                               m_Name
+
+────────────────────────────────────────────────────────────────
+  CLASS  Menace.Tactical.AI.Behaviors.Reload : SkillBehavior
+  TypeDefIndex=3652
+
+  Methods (7):
+    void             .ctor                              RVA=0x767BC0       Offset=0x7669C0
+    int              GetOrder                           RVA=0x547170       Offset=0x545F70
+    ID               GetID                              RVA=0x55D430       Offset=0x55C230
+    int              OnEvaluate                         RVA=0x767850       Offset=0x766650
+    bool             OnExecute                          RVA=0x767B70       Offset=0x766970
+    bool             ConsiderHeatCapacity               RVA=0x767600       Offset=0x766400
+    bool             ConsiderReloadingSwitch            RVA=0x767830       Offset=0x766630
+
+  Fields (1):
+    [0x060]  Reload.Delegate                      m_CheckReloadFunction
+
+────────────────────────────────────────────────────────────────
+  CLASS  Menace.Tactical.AI.Behaviors.RemoveStatusEffect : SkillBehavior
+  TypeDefIndex=3653
+
+  Methods (6):
+    void             .ctor                              RVA=0x7682F0       Offset=0x7670F0
+    int              GetOrder                           RVA=0x547170       Offset=0x545F70
+    ID               GetID                              RVA=0x556D40       Offset=0x555B40
+    int              OnEvaluate                         RVA=0x7680B0       Offset=0x766EB0
+    bool             OnExecute                          RVA=0x768260       Offset=0x767060
+    float            ConsiderRemoval                    RVA=0x767CD0       Offset=0x766AD0
+
+  Fields (0):
+
+────────────────────────────────────────────────────────────────
+  CLASS  Menace.Tactical.AI.Behaviors.CreateLOSBlocker : Assist
+  TypeDefIndex=3655
+
+  Methods (7):
+    void             .ctor                              RVA=0x75FF00       Offset=0x75ED00
+    ID               GetID                              RVA=0x556BA0       Offset=0x5559A0
+    string           GetName                            RVA=0x5BC820       Offset=0x5BB620
+    float            GetUtilityFromTileMult             RVA=0x75F530       Offset=0x75E330
+    float            OnScaleMovementWeight              RVA=0x75F770       Offset=0x75E570
+    float            OnScaleBehaviorWeight              RVA=0x75F540       Offset=0x75E340
+    float            GetTargetValue                     RVA=0x75EB90       Offset=0x75D990
+
+  Fields (2):
+    [0x080]  string                               m_Name
+    [0x088]  List<CreateLOSBlocker.AllyData>      m_PreprocessedAllies
+
+────────────────────────────────────────────────────────────────
+  CLASS  Menace.Tactical.AI.Behaviors.GainBonusTurn : SkillBehavior
+  TypeDefIndex=3656
+
+  Methods (11):
+    void             .ctor                              RVA=0x762440       Offset=0x761240
+    int              GetOrder                           RVA=0x547170       Offset=0x545F70
+    ID               GetID                              RVA=0x574620       Offset=0x573420
+    string           GetName                            RVA=0x58AE00       Offset=0x589C00
+    int              OnEvaluate                         RVA=0x762180       Offset=0x760F80
+    int              GetAPNextTurn                      RVA=0x761760       Offset=0x760560
+    float            GetMovementScore                   RVA=0x761F90       Offset=0x760D90
+    float            GetAttackScore                     RVA=0x761A50       Offset=0x760850
+    bool             OnExecute                          RVA=0x762390       Offset=0x761190
+    void             OnReset                            RVA=0x4F7EE0       Offset=0x4F6CE0
+    void             OnNewTurn                          RVA=0x762430       Offset=0x761230
+
+  Fields (2):
+    [0x060]  string                               m_Name
+    [0x068]  bool                                 m_IsSpentForThisRound
+
+────────────────────────────────────────────────────────────────
+  CLASS  Menace.Tactical.AI.Behaviors.Mindray : Attack
+  TypeDefIndex=3657
+
+  Methods (7):
+    void             .ctor                              RVA=0x762890       Offset=0x761690
+    ID               GetID                              RVA=0x574560       Offset=0x573360
+    string           GetName                            RVA=0x54B6F0       Offset=0x54A4F0
+    float            GetUtilityFromTileMult             RVA=0x762760       Offset=0x761560
+    float            OnScaleMovementWeight              RVA=0x7334E0       Offset=0x7322E0
+    float            OnScaleBehaviorWeight              RVA=0x7627D0       Offset=0x7615D0
+    float            GetTargetValue                     RVA=0x762550       Offset=0x761350
+
+  Fields (1):
+    [0x090]  string                               m_Name
+
+────────────────────────────────────────────────────────────────
+  CLASS  Menace.Tactical.AI.Behaviors.MovementSkill : SkillBehavior
+  TypeDefIndex=3658
+
+  Methods (9):
+    void             .ctor                              RVA=0x7674F0       Offset=0x7662F0
+    int              GetOrder                           RVA=0x547170       Offset=0x545F70
+    ID               GetID                              RVA=0x574680       Offset=0x573480
+    string           GetName                            RVA=0x58AE00       Offset=0x589C00
+    bool             OnCollect2                         RVA=0x766FA0       Offset=0x765DA0
+    int              OnEvaluate                         RVA=0x7672C0       Offset=0x7660C0
+    bool             OnExecute                          RVA=0x767450       Offset=0x766250
+    void             OnReset                            RVA=0x4F7EE0       Offset=0x4F6CE0
+    void             OnNewTurn                          RVA=0x762430       Offset=0x761230
+
+  Fields (3):
+    [0x060]  string                               m_Name
+    [0x068]  bool                                 m_IsSpentForThisRound
+    [0x069]  bool                                 m_FoundTargetTile
+
+────────────────────────────────────────────────────────────────
+  CLASS  Menace.Tactical.AI.Behaviors.Scan : SkillBehavior
+  TypeDefIndex=3659
+
+  Methods (8):
+    void             .ctor                              RVA=0x768DE0       Offset=0x767BE0
+    int              GetOrder                           RVA=0x547170       Offset=0x545F70
+    ID               GetID                              RVA=0x556FD0       Offset=0x555DD0
+    string           GetName                            RVA=0x58AE00       Offset=0x589C00
+    int              OnEvaluate                         RVA=0x768930       Offset=0x767730
+    bool             OnExecute                          RVA=0x762390       Offset=0x761190
+    void             OnReset                            RVA=0x4F7EE0       Offset=0x4F6CE0
+    void             OnNewTurn                          RVA=0x762430       Offset=0x761230
+
+  Fields (2):
+    [0x060]  string                               m_Name
+    [0x068]  bool                                 m_bIsSpentForThisRound
+
+────────────────────────────────────────────────────────────────
+  CLASS  Menace.Tactical.AI.Behaviors.SpawnHovermine : Attack
+  TypeDefIndex=3660
+
+  Methods (7):
+    void             .ctor                              RVA=0x769350       Offset=0x768150
+    ID               GetID                              RVA=0x55E880       Offset=0x55D680
+    string           GetName                            RVA=0x54B6F0       Offset=0x54A4F0
+    float            GetUtilityFromTileMult             RVA=0x52FEE0       Offset=0x52ECE0
+    float            OnScaleMovementWeight              RVA=0x7334E0       Offset=0x7322E0
+    float            OnScaleBehaviorWeight              RVA=0x7334E0       Offset=0x7322E0
+    float            GetTargetValue                     RVA=0x768EF0       Offset=0x767CF0
+
+  Fields (1):
+    [0x090]  string                               m_Name
+
+────────────────────────────────────────────────────────────────
+  CLASS  Menace.Tactical.AI.Behaviors.SpawnPhantom : Attack
+  TypeDefIndex=3661
+
+  Methods (7):
+    void             .ctor                              RVA=0x769A40       Offset=0x768840
+    ID               GetID                              RVA=0x574400       Offset=0x573200
+    string           GetName                            RVA=0x54B6F0       Offset=0x54A4F0
+    float            GetUtilityFromTileMult             RVA=0x52FEE0       Offset=0x52ECE0
+    float            OnScaleMovementWeight              RVA=0x7334E0       Offset=0x7322E0
+    float            OnScaleBehaviorWeight              RVA=0x7334E0       Offset=0x7322E0
+    float            GetTargetValue                     RVA=0x769450       Offset=0x768250
+
+  Fields (1):
+    [0x090]  string                               m_Name
+
+────────────────────────────────────────────────────────────────
+  CLASS  Menace.Tactical.AI.Behaviors.SupplyAmmo : Assist
+  TypeDefIndex=3664
+
+  Methods (6):
+    void             .ctor                              RVA=0x76A630       Offset=0x769430
+    ID               GetID                              RVA=0x55EAF0       Offset=0x55D8F0
+    float            GetUtilityFromTileMult             RVA=0x76A540       Offset=0x769340
+    float            OnScaleMovementWeight              RVA=0x7334E0       Offset=0x7322E0
+    float            OnScaleBehaviorWeight              RVA=0x76A5B0       Offset=0x7693B0
+    float            GetTargetValue                     RVA=0x769E60       Offset=0x768C60
+
+  Fields (0):
+
+────────────────────────────────────────────────────────────────
+  CLASS  Menace.Tactical.AI.Behaviors.TargetDesignator : Attack
+  TypeDefIndex=3665
+
+  Methods (7):
+    void             .ctor                              RVA=0x76AC30       Offset=0x769A30
+    ID               GetID                              RVA=0x546500       Offset=0x545300
+    string           GetName                            RVA=0x54B6F0       Offset=0x54A4F0
+    float            GetUtilityFromTileMult             RVA=0x76AA90       Offset=0x769890
+    float            OnScaleMovementWeight              RVA=0x76ABC0       Offset=0x7699C0
+    float            OnScaleBehaviorWeight              RVA=0x76AB00       Offset=0x769900
+    float            GetTargetValue                     RVA=0x76A640       Offset=0x769440
+
+  Fields (1):
+    [0x090]  string                               m_Name
+
+────────────────────────────────────────────────────────────────
+  CLASS  Menace.Tactical.AI.Behaviors.TransportEntity : SkillBehavior
+  TypeDefIndex=3666
+
+  Methods (9):
+    bool             IsTargetReached                    RVA=0x76C0B0       Offset=0x76AEB0
+    void             .ctor                              RVA=0x7682F0       Offset=0x7670F0
+    int              GetOrder                           RVA=0x547170       Offset=0x545F70
+    ID               GetID                              RVA=0x556BB0       Offset=0x5559B0
+    bool             OnCollect                          RVA=0x76C0C0       Offset=0x76AEC0
+    bool             OnEvaluate                         RVA=0x76C7B0       Offset=0x76B5B0
+    int              OnEvaluate                         RVA=0x76CE60       Offset=0x76BC60
+    bool             OnExecute                          RVA=0x76CF30       Offset=0x76BD30
+    void             OnReset                            RVA=0x76D320       Offset=0x76C120
+
+  Fields (5):
+    [0x060]  bool                                 m_HasPrimaryZoneOrder
+    [0x061]  bool                                 m_HasSecondaryZoneOrder
+    [0x068]  Tile                                 m_ClosestOpponentTile
+    [0x070]  bool                                 m_IsTargetReached
+    [0x078]  Actor                                m_TransportedActor
+
+────────────────────────────────────────────────────────────────
+  CLASS  Menace.Tactical.AI.Behaviors.Stun : Attack
+  TypeDefIndex=3667
+
+  Methods (7):
+    void             .ctor                              RVA=0x769D50       Offset=0x768B50
+    ID               GetID                              RVA=0x547170       Offset=0x545F70
+    string           GetName                            RVA=0x54B6F0       Offset=0x54A4F0
+    float            GetUtilityFromTileMult             RVA=0x769C20       Offset=0x768A20
+    float            OnScaleMovementWeight              RVA=0x7334E0       Offset=0x7322E0
+    float            OnScaleBehaviorWeight              RVA=0x769C90       Offset=0x768A90
+    float            GetTargetValue                     RVA=0x769B40       Offset=0x768940
+
+  Fields (1):
+    [0x090]  string                               m_Name
+
+────────────────────────────────────────────────────────────────
+  CLASS  Menace.Tactical.AI.Behaviors.TurnArmorTowardsThreat : SkillBehavior
+  TypeDefIndex=3669
+
+  Methods (10):
+    void             .ctor                              RVA=0x76E3F0       Offset=0x76D1F0
+    int              GetOrder                           RVA=0x547170       Offset=0x545F70
+    ID               GetID                              RVA=0x555F30       Offset=0x554D30
+    int              OnEvaluate                         RVA=0x76D5C0       Offset=0x76C3C0
+    bool             OnExecute                          RVA=0x76E120       Offset=0x76CF20
+    void             OnReset                            RVA=0x76E1D0       Offset=0x76CFD0
+    void             OnNewTurn                          RVA=0x76E1C0       Offset=0x76CFC0
+    void             UpdateArmor                        RVA=0x76E270       Offset=0x76D070
+    ArmorDirection   GetPreferredArmorDirection         RVA=0x76D490       Offset=0x76C290
+    Direction        GetDirectionToTurn                 RVA=0x76D360       Offset=0x76C160
+
+  Fields (4):
+    [0x060]  bool                                 m_IsSpent
+    [0x061]  bool                                 m_IsUnnecessary
+    [0x068]  Tile                                 m_LastExecutedFromTile
+    [0x070]  ArmorDirection[]                     m_PreferedArmorDirections

@@ -1,0 +1,57 @@
+Il2CppDumper Extraction Report
+================================================================
+
+
+────────────────────────────────────────────────────────────────
+  CLASS  Menace.Tactical.AI.Behaviors.Move : Behavior
+  TypeDefIndex=3650
+
+  Methods (23):
+    void             .ctor                              RVA=0x766D00       Offset=0x765B00
+    int              GetOrder                           RVA=0x546260       Offset=0x545060
+    ID               GetID                              RVA=0x54E040       Offset=0x54CE40
+    bool             IsMovementDone                     RVA=0x4FDE30       Offset=0x4FCC30
+    bool             HasMovedThisTurn                   RVA=0x4FDE40       Offset=0x4FCC40
+    bool             HasDelayedMovementThisTurn         RVA=0x7632E0       Offset=0x7620E0
+    bool             IsDelayingMovement                 RVA=0x502F40       Offset=0x501D40
+    bool             IsInsideContainerAndInert          RVA=0x763460       Offset=0x762260
+    TileScore        GetTargetTile                      RVA=0x4F04B0       Offset=0x4EF2B0
+    int              OnEvaluate                         RVA=0x7635C0       Offset=0x7623C0
+    bool             OnExecute                          RVA=0x766370       Offset=0x765170
+    void             OnReset                            RVA=0x766C00       Offset=0x765A00
+    void             OnBeforeProcessing                 RVA=0x763470       Offset=0x762270
+    bool             CheckInsideContainerAndInert       RVA=0x762910       Offset=0x761710
+    void             OnNewTurn                          RVA=0x766A40       Offset=0x765840
+    void             OnClear                            RVA=0x763560       Offset=0x762360
+    List<KeyValuePair<Tile, TileScore>> GetTilesSortedByScore              RVA=0x763170       Offset=0x761F70
+    List<KeyValuePair<Tile, TileScore>> GetTilesSortedByDistance           RVA=0x763000       Offset=0x761E00
+    float            GetHighestScore                    RVA=0x762BF0       Offset=0x7619F0
+    TileScore        GetHighestTileScore                RVA=0x762EB0       Offset=0x761CB0
+    TileScore        GetHighestTileScoreScaled          RVA=0x762D60       Offset=0x761B60
+    float            GetAddedScoreForPath               RVA=0x7629F0       Offset=0x7617F0
+    bool             HasUtility                         RVA=0x7632F0       Offset=0x7620F0
+
+  Fields (23):
+    [0x020]  bool                                 m_IsMovementDone
+    [0x021]  bool                                 m_HasMovedThisTurn
+    [0x022]  bool                                 m_IsDelayingMovement
+    [0x023]  bool                                 m_HasDelayedMovementThisTurn
+    [0x024]  bool                                 m_IsAllowedToPeekInAndOutOfCover
+    [0x028]  TileScore                            m_TargetTile
+    [0x030]  Tile                                 m_ReservedTile
+    [0x038]  int                                  m_TurnsBelowUtilityThreshold
+    [0x03C]  int                                  m_TurnsBelowUtilityThresholdLastTurn
+    [0x040]  List<TileScore>                      m_Destinations
+    [0x048]  List<Vector3>                        m_Path
+    [0x050]  List<Vector3>                        m_AlternativePath
+    [0x058]  Skill                                m_DeployedStanceSkill
+    [0x060]  Skill                                m_DefaultStanceSkill
+    [0x068]  Skill                                m_SetupWeaponSkill
+    [0x070]  List<Skill>                          m_UseSkillBefore
+    [0x078]  int                                  m_UseSkillBeforeIndex
+    [0x080]  List<Skill>                          m_UseSkillAfter
+    [0x088]  int                                  m_UseSkillAfterIndex
+    [0x08C]  bool                                 m_IsExecuted
+    [0x090]  float                                m_WaitUntil
+    [0x094]  bool                                 m_IsInsideContainerAndInert
+    [0x098]  Actor                                m_PreviousContainerActor

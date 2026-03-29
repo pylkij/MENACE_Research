@@ -1,0 +1,54 @@
+Il2CppDumper Extraction Report
+================================================================
+
+────────────────────────────────────────────────────────────────
+  CLASS  Menace.Tactical.AI.Behaviors.Assist : SkillBehavior
+  TypeDefIndex=3641
+
+  Methods (11):
+    void             .ctor                              RVA=0x7334F0       Offset=0x7322F0
+    int              GetOrder                           RVA=0x50C760       Offset=0x50B560
+    float            OnScaleMovementWeight              RVA=0x7334E0       Offset=0x7322E0
+    float            OnScaleBehaviorWeight              RVA=0x7334E0       Offset=0x7322E0
+    float            GetTargetValue                     RVA=NO_RVA         Offset=NO_RVA  [UNRESOLVED]
+    float            GetUtilityFromTileMult             RVA=NO_RVA         Offset=NO_RVA  [UNRESOLVED]
+    bool             OnCollect                          RVA=0x730B30       Offset=0x72F930
+    int              OnEvaluate                         RVA=0x731C60       Offset=0x730A60
+    bool             OnExecute                          RVA=0x733320       Offset=0x732120
+    void             OnReset                            RVA=0x7333F0       Offset=0x7321F0
+    Assist.Data      GetHighestScoredTarget             RVA=0x7308F0       Offset=0x72F6F0
+
+  Fields (4):
+    [0x060]  List<Assist.Data>                    m_Candidates
+    [0x068]  List<Tile>                           m_TargetTiles
+    [0x070]  HashSet<Tile>                        m_PossibleOriginTiles
+    [0x078]  HashSet<Tile>                        m_PossibleTargetTiles
+
+────────────────────────────────────────────────────────────────
+  CLASS  Menace.Tactical.AI.Behaviors.Attack : SkillBehavior
+  TypeDefIndex=3643
+
+  Methods (15):
+    void             .ctor                              RVA=0x737F10       Offset=0x736D10
+    int              GetOrder                           RVA=0x50C760       Offset=0x50B560
+    Goal             GetGoal                            RVA=0x59C240       Offset=0x59B040
+    float            OnScaleMovementWeight              RVA=0x7334E0       Offset=0x7322E0
+    float            OnScaleBehaviorWeight              RVA=0x7334E0       Offset=0x7322E0
+    float            GetTargetValue                     RVA=NO_RVA         Offset=NO_RVA  [UNRESOLVED]
+    float            GetUtilityFromTileMult             RVA=NO_RVA         Offset=NO_RVA  [UNRESOLVED]
+    bool             OnCollect                          RVA=0x734130       Offset=0x732F30
+    int              OnEvaluate                         RVA=0x735D20       Offset=0x734B20
+    bool             OnExecute                          RVA=0x737D40       Offset=0x736B40
+    void             OnReset                            RVA=0x737E20       Offset=0x736C20
+    Attack.Data      GetHighestScoredTarget             RVA=0x733650       Offset=0x732450
+    bool             IsSecondaryTargetInRange           RVA=0x733AA0       Offset=0x7328A0
+    bool             IsSecondaryTargetInRange           RVA=0x733C90       Offset=0x732A90
+    bool             HasAllyLineOfSight                 RVA=0x733890       Offset=0x732690
+
+  Fields (6):
+    [0x060]  Goal                                 m_Goal
+    [0x068]  List<Attack.Data>                    m_Candidates
+    [0x070]  List<Tile>                           m_TargetTiles
+    [0x078]  HashSet<Tile>                        m_PossibleOriginTiles
+    [0x080]  HashSet<Tile>                        m_PossibleTargetTiles
+    [0x088]  int                                  m_MinRangeToOpponents
