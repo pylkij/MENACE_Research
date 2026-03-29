@@ -71,19 +71,52 @@ GetScore(tile) = (SafetyScore + UtilityScore)
 `SafetyScore` is stored negative after post-processing. Both scores are shaped by per-unit role multipliers on top of the global `AIWeightsTemplate` asset.
 
 **What is NOT yet covered:**
-- Individual `Criterion` subclass implementations (the concrete evaluators that write raw `SafetyScore`/`UtilityScore` values per tile)
 - `Behavior` subclass implementations
 - `FUN_181430ac0` — the per-attack evaluator called from `GetOpportunityLevel`
 
 ### Criterion subclasses
 
-This section will be rewritten upon investigation completion.
+**Status:** Complete (one `Evaluate` override deferred; all other namespace members fully analysed).
 
-Preliminary investigation opened
-- Extraction Report: done
-- Stage 1: Completed
-- Stage 2: Analysis finished, writing report
-- Collation: Waiting for stage 2 completion
+Covers the full `Menace.Tactical.AI.Behaviors.Criterions` namespace — the concrete tile evaluators that write raw `SafetyScore`/`UtilityScore` values per tile.
+
+**What is fully understood:**
+
+- All 11 `Criterion` subclasses enumerated and their roles confirmed
+- `Criterion.Score` — the master four-component weighted utility formula, scaled by a movement effectiveness curve — fully reconstructed
+- `Criterion.GetUtilityThreshold` — the threshold gate formula — fully reconstructed
+- `CoverAgainstOpponents.Evaluate` — three-phase cover-quality evaluator — fully reconstructed
+- `ThreatFromOpponents.Evaluate`, `Score (A)`, `Score (B)` — the dominant criterion by computation budget; 4 worker threads, spatial scan with direction and distance multipliers — fully reconstructed
+- `ConsiderZones.Evaluate` and `ConsiderZones.PostProcess` — zone-flag bitmask system; objective-tile promotion via threshold bypass — fully reconstructed
+- `DistanceToCurrentTile.Evaluate`, `ExistingTileEffects.Evaluate`, `AvoidOpponents.Evaluate`, `FleeFromOpponents.Evaluate` — all fully reconstructed
+- `Roam.Collect` and `WakeUp.Collect` — special-case collection passes (melee-only bounding-box scan; wakeup flag dispatch respectively) — fully reconstructed
+- 5 infrastructure functions: `GetTileScoreComponents`, `GetMoveRangeData`, `GetTileZoneModifier`, `IsWithinRangeA`, `IsWithinRangeB` — fully reconstructed
+- 30+ field offsets confirmed across `TacticalAISettings`, `EvaluationContext`, `Unit`, `MovePool`, `MoveRangeData`, `TileModifier`, `ScoringContext`, `Tile`, and auxiliary objects
+
+**Primary files:**
+- [`investigations/tactical-ai/Criterions/REPORT.md`](investigations/tactical-ai/Criterions/REPORT.md)
+- [`investigations/tactical-ai/Criterions/RECONSTRUCTIONS.md`](investigations/tactical-ai/Criterions/RECONSTRUCTIONS.md)
+
+**The scoring pipeline (short version):**
+```
+For each tile T and active Criterion C:
+  1. C.IsValid()      → gate; skip if false
+  2. C.Collect()      → populate candidate tile list (Roam, WakeUp override)
+  3. C.Evaluate() ×N  → write delta to ctx.accumulatedScore / ctx.thresholdAccumulator
+  4. C.PostProcess()  → second-pass adjustment (ConsiderZones overrides)
+  5. Criterion.Score(tile) = (W_attack × attackScore × healthBonus × rangeBonus
+                            + W_ammo × ammoScore
+                            + W_deploy × deployScore
+                            + W_sniper × sniperScore) × moveEffectiveness
+  6. Keep tile if Score > GetUtilityThreshold()
+```
+
+**What is NOT yet covered:**
+- `ConsiderSurroundings.Evaluate` — the one `Evaluate` override not yet decompiled
+- `ConsiderZones.Collect` — deferred alongside the above
+- All 10 `IsValid` implementations — interface documented; structurally predictable, low priority
+- `TacticalAISettings` field offsets `0x100`–`0x140`
+- Runtime values of the `COVER_PENALTIES[4]` static array
 
 ### Behavior subclasses
 
