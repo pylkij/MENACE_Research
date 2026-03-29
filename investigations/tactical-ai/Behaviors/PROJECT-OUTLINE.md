@@ -1,8 +1,6 @@
-Now I have the full picture. Here's the breakdown I'd recommend:
-
 **Stage 1 — Base classes and Move**
 
-Start with `Behavior` and `SkillBehavior` base classes (not in the extraction report, so their shared interface needs to be established from what the subclasses call), then `Move`. `Move` is the highest-priority target: 23 methods, 23 fields, and it's the only `Behavior` subclass that directly interacts with the tile scoring pipeline — `GetHighestTileScore`, `GetTilesSortedByScore`, `GetAddedScoreForPath` etc. are all directly relevant to what's already documented. It also defines the movement execution path that every other behavior ultimately depends on. Establishing `Move` and the base class interface first gives every subsequent stage a foundation to build on.
+`Behavior` and `SkillBehavior` base classes (not in the extraction report, so their shared interface needs to be established from what the subclasses call), then `Move`. `Move` is the highest-priority target: 23 methods, 23 fields, and it's the only `Behavior` subclass that directly interacts with the tile scoring pipeline — `GetHighestTileScore`, `GetTilesSortedByScore`, `GetAddedScoreForPath` etc. are all directly relevant to what's already documented. It also defines the movement execution path that every other behavior ultimately depends on. Establishing `Move` and the base class interface first gives every subsequent stage a foundation to build on.
 
 **Stage 2 — Collect/Evaluate/Execute behaviors: Assist and Attack hierarchies**
 
