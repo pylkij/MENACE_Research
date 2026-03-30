@@ -119,19 +119,45 @@ For each tile T and active Criterion C:
 
 ### Behavior subclasses
 
-This section will be rewritten upon investigation completion.
+**Status:** Complete (seven internal class names unresolved; all scoring formulas and pipelines fully documented).
 
-Preliminary investigation opened
-- Extraction Report: done
-- Pre-Investigation: `Behavior` and `SkillBehavior` base classes
-- Stage 1: `Move`
-- Stage 2: `Assist` and `Attack`
-- Stage 3: Leaf subclasses of `Assist`/`Attack`
-- Stage 4: Structurally distinct SkillBehaviors
-- Stage 5: `Idle` and collation
+Covers the full `Menace.Tactical.AI.Behaviors` namespace — every concrete behavior that the agent's decision loop evaluates each turn, from the abstract base infrastructure through all scoring subclasses.
+
+**What is fully understood:**
+
+- `Behavior` base class — score clamping `[0, 21474]`, minimum floor (`5`), deployment-phase gate, `GetUtilityThreshold` strategy-modulated formula (two-multiplier: one-directional raise + bidirectional), `Collect`/`Evaluate`/`Execute` lifecycle wrappers — fully reconstructed
+- `SkillBehavior` — four-stage pre-execution state machine (rotate → deploy → setup → fire), `HandleDeployAndSetup` AP-sufficiency decision, `m_DontActuallyExecute` planning flag, the complete five-section `GetTargetValue` formula (hit probability, kill potential, overkill scaling, range preference, adjacency bonus, goal-type assembly), `ConsiderSkillSpecifics` armour-match + ammo-count multiplier, `GetTagValueAgainst` tag effectiveness formula — fully reconstructed
+- `Move` — full tile scoring pipeline (~1,500 lines), forced/voluntary movement distinction, `/20.0` AP normalisation, peek bonus (×4.0), marginal-move penalty (×0.25), chain bonus (×2.0/×0.5), four-stage `OnExecute` state machine — fully reconstructed
+- `Attack` and `Assist` — geometry collection (origin/target tile populations), six `shotGroupMode` values (DirectFire, ArcFire, RadialAoE, IndirectFire, StoredGroup, TeamScan), probabilistic arc coverage, co-fire accumulation with LoS gate, movement integration, final `(int)(bestScore × TileUtilityMultiplier)` formula — fully reconstructed
+- `Deploy` — two-penalty scoring model (range distance penalty + linear ally proximity spread over 6 tiles), fixed-priority 1000 while active, done-state management — fully reconstructed
+- All 9 concrete `GetTargetValue` overrides — three archetypes: tag-chain-then-delegate (`InflictDamage`, `InflictSuppression`, `Stun`, `Mindray`), float scorer with own formula (`SupplyAmmo`, `TargetDesignator`), void side-effect scorer (`SpawnPhantom`, `SpawnHovermine`, `CreateLOSBlocker`) — all fully reconstructed
+- `Buff.GetTargetValue` — six-branch additive flag-driven formula (Heal, StatusBuff, Suppress, Setup, AoEHeal, AoEBuff) — fully reconstructed
+- `skillEffectType` enum resolved: `0` = Mindray standard, `1` = InflictDamage/InflictSuppression, `2` = Stun
+- `ComputeHitProbability`, `ComputeDamageData`, `TagEffectiveness_Apply`, `AoE_PerMemberScorer`, `CanApplyBuff`, `ShotPath_ActorCast`, `Skill.QueryTargetTiles`, `ShotCandidate_PostProcess` — all fully reconstructed
+- 40+ `WeightsConfig` float fields confirmed and named across all scoring paths
 
 **Primary files:**
-- [`investigations/tactical-ai/Behaviors/PROJECT-OUTLINE.md`](investigations/tactical-ai/Behaviors/PROJECT-OUTLINE.md)
+- [`investigations/tactical-ai/Behaviors/REPORT.md`](investigations/tactical-ai/Behaviors/REPORT.md)
+
+**The scoring formula (short version):**
+```
+m_Score = clamp(OnEvaluate(actor), 0, 21474)   // floor to 5 if 0 < score < 5
+                                                 // bypassed if GetOrder() == 99999
+
+// For skill behaviours:
+FinalScore = (int)(BestCandidateScore × GetUtilityFromTileMult())
+
+BestCandidateScore = max over (origin, target) pairs of:
+    Σ RawTargetValue(candidate) × ArcScaling × HPRatioScalar
+      × FriendlyFirePenalty × (1 − MoveCostFraction) + CoFireBonus
+```
+
+**What is NOT yet covered:**
+- `GainBonusTurn`, `Reload`, `Scan`, `MovementSkill`, `RemoveStatusEffect`, `TurnArmorTowardsThreat`, `TransportEntity` — entire classes untouched
+- `StrategyData.ComputeMoveCost` — pathfinding internals; warrants its own investigation
+- Indirect fire trajectory builder (`FUN_1806DE1D0`) and AoE target set builder (`FUN_1806E1FB0`) — separate systems
+- Concrete `Condition.Evaluate` subclasses — interface documented; implementations deferred
+- True IL2CPP class names for `WeightsConfig`, `AgentContext`, `EntityInfo`, `Strategy`, `BehaviorConfig2`, `BehaviorWeights`, `StrategyData` — all accessed via opaque `DAT_` pointers; working names only
 
 ---
 
