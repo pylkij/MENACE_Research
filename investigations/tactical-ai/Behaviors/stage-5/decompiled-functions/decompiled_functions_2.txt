@@ -1,0 +1,87 @@
+Ghidra Decompilation Export
+Program : GameAssembly.dll
+Image   : 180000000
+Functions: 2
+================================================================
+
+================================================================
+FUNCTION:  FUN_181430ac0
+VA:        0x181430AC0
+RVA:       0x1430AC0
+SIGNATURE: undefined FUN_181430ac0(void)
+ENTRY:     181430ac0
+----------------------------------------------------------------
+
+undefined8 FUN_181430ac0(longlong param_1,undefined8 param_2,undefined4 *param_3,longlong param_4)
+
+{
+  longlong lVar1;
+  uint uVar2;
+  
+  uVar2 = FUN_181423600(param_1,param_2,
+                        *(undefined8 *)(*(longlong *)(*(longlong *)(param_4 + 0x20) + 0xc0) + 0xf8))
+  ;
+  if ((int)uVar2 < 0) {
+    *param_3 = 0;
+    return 0;
+  }
+  lVar1 = *(longlong *)(param_1 + 0x18);
+  if (lVar1 != 0) {
+    if (uVar2 < *(uint *)(lVar1 + 0x18)) {
+      *param_3 = *(undefined4 *)(lVar1 + ((longlong)(int)uVar2 + 2) * 0x18);
+      return CONCAT71((int7)((ulonglong)(((longlong)(int)uVar2 + 2) * 3) >> 8),1);
+    }
+                    /* WARNING: Subroutine does not return */
+    FUN_180427d80();
+  }
+                    /* WARNING: Subroutine does not return */
+  FUN_180427d90();
+}
+
+
+
+================================================================
+FUNCTION:  FUN_1806e33a0
+VA:        0x1806E33A0
+RVA:       0x6E33A0
+SIGNATURE: undefined FUN_1806e33a0(void)
+ENTRY:     1806e33a0
+----------------------------------------------------------------
+
+ulonglong FUN_1806e33a0(longlong param_1,undefined8 param_2,undefined8 param_3)
+
+{
+  longlong lVar1;
+  longlong *plVar2;
+  ulonglong uVar3;
+  uint uVar4;
+  
+  uVar4 = 0;
+  lVar1 = *(longlong *)(param_1 + 0x48);
+  while (lVar1 != 0) {
+    if (*(int *)(lVar1 + 0x18) <= (int)uVar4) {
+      return CONCAT71((int7)((ulonglong)lVar1 >> 8),1);
+    }
+    lVar1 = *(longlong *)(param_1 + 0x48);
+    if (lVar1 == 0) break;
+    if (*(uint *)(lVar1 + 0x18) <= uVar4) {
+                    /* WARNING: Subroutine does not return */
+      FUN_180427d80();
+    }
+    plVar2 = *(longlong **)(lVar1 + 0x20 + (longlong)(int)uVar4 * 8);
+    if (plVar2 == (longlong *)0x0) break;
+    uVar3 = (**(code **)(*plVar2 + 0x1d8))(plVar2,param_2,param_3,*(undefined8 *)(*plVar2 + 0x1e0));
+    if ((char)uVar3 == '\0') {
+      return uVar3 & 0xffffffffffffff00;
+    }
+    uVar4 = uVar4 + 1;
+    lVar1 = *(longlong *)(param_1 + 0x48);
+  }
+                    /* WARNING: Subroutine does not return */
+  FUN_180427d90();
+}
+
+
+
+================================================================
+SUMMARY: 2 succeeded, 0 failed

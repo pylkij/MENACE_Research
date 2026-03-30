@@ -1,0 +1,329 @@
+## Field Offset Tables
+
+### WeightsConfig (singleton via DAT_18394c3d0 +0xb8 +8)
+| Offset | Field | Type | Status |
+|---|---|---|---|
+| +0x54 | movementScoreWeight | float | confirmed |
+| +0x78 | [scoring weight] | float | inferred |
+| +0x7C | allyCoFireBonus | float | inferred |
+| +0xBC | tagValueScale | float | confirmed |
+| +0xC0 | baseAttackWeightScale | float | confirmed |
+| +0xC4 | maxApproachRange | int | confirmed |
+| +0xC8 | allyInRangeMaxDist | int | confirmed |
+| +0xE0 | friendlyFirePenaltyWeight | float | confirmed |
+| +0xE4 | killWeight | float | confirmed |
+| +0xE8 | killWeight2 | float | confirmed |
+| +0xEC | urgencyWeight | float | confirmed |
+| +0xF0 | buffWeight / allyCoFireWeight | float | confirmed |
+| +0xF8 | proximityBonusCap | float | confirmed |
+| +0xFC | minAoeScoreThreshold | float | confirmed |
+| +0x100 | allyCoFireBonusScale | float | confirmed |
+| +0x10C | utilityFromTileMultiplier | float | confirmed — InflictDamage |
+| +0x118 | suppressionTileMultiplier | float | confirmed — InflictSuppression |
+| +0x128 | finalMovementScoreScale | float | confirmed |
+| +0x12C | movementWeightScale | float | confirmed |
+| +0x13C | utilityThreshold | float | confirmed |
+| +0x148 | movementScorePathWeight | float | inferred |
+| +0x14C | pathCostPenaltyWeight | float | inferred |
+| +0x150 | minimumImprovementRatio | float | confirmed |
+| +0x154 | deployMovementScoreThreshold | float | confirmed |
+| +0x15C | secondaryPathPenalty | float | confirmed |
+| +0x168 | shortRangePenalty | float | confirmed |
+| +0x16C | stanceSkillBonus | float | confirmed |
+| +0x174 | buffGlobalScoringScale | float | confirmed |
+| +0x17C | healScoringWeight | float | confirmed |
+| +0x180 | buffScoringWeight | float | confirmed |
+| +0x184 | suppressScoringWeight | float | confirmed |
+| +0x188 | setupAssistScoringWeight | float | confirmed |
+| +0x18C | aoeBuffScoringWeight | float | confirmed |
+| +0x190 | aoeHealScoringWeight | float | confirmed |
+| +0x1A4 | aoeAllyBonusThreshold | float | confirmed — SupplyAmmo |
+
+### TileScore
+| Offset | Field | Type | Status |
+|---|---|---|---|
+| +0x10 | tile | Tile* | confirmed |
+| +0x18 | entity | Entity* | confirmed |
+| +0x20 | movementScore | float | confirmed |
+| +0x24 | secondaryMovementScore | float | confirmed |
+| +0x28 | exposureScore | float | confirmed |
+| +0x30 | rangeScore | float | confirmed |
+| +0x34 | utilityScore | float | confirmed |
+| +0x38 | movementScore (alt) | float | confirmed |
+| +0x3C | secondaryMovementScore (alt) | float | confirmed |
+| +0x40 | apCost | int | confirmed |
+| +0x44 | chainCost | int | confirmed |
+| +0x48 | destinationRef | TileScore* | inferred |
+| +0x50 | prevTileRef | TileScore* | inferred |
+| +0x58 | nextTileRef | TileScore* | inferred |
+| +0x60 | isForward | bool | inferred |
+| +0x61 | isPeek | bool | confirmed |
+| +0x62 | stance | byte | confirmed |
+
+### Attack
+| Offset | Field | Type | Status |
+|---|---|---|---|
+| +0x60 | m_Goal | Goal | confirmed |
+| +0x68 | m_Candidates | List\<Attack.Data\>* | confirmed |
+| +0x70 | m_TargetTiles | List\<Tile\>* | confirmed |
+| +0x78 | m_PossibleOriginTiles | HashSet\<Tile\>* | confirmed |
+| +0x80 | m_PossibleTargetTiles | HashSet\<Tile\>* | confirmed |
+| +0x88 | m_MinRangeToOpponents | int | confirmed |
+
+### Attack.Data
+| Offset | Field | Type | Status |
+|---|---|---|---|
+| +0x00 | targetTile | Tile* | confirmed |
+| +0x30 | secondaryScore | float | confirmed |
+| +0x3C | primaryScore | float | confirmed |
+| +0x44 | apCost | int | confirmed |
+
+### BehaviorWeights (via Strategy +0x310)
+| Offset | Field | Type | Status |
+|---|---|---|---|
+| +0x14 | movementWeightMultiplier | float | confirmed |
+| +0x20 | movementWeight | float | confirmed |
+| +0x24 | weightScale | float | confirmed |
+| +0x2C | weightScale2 | float | confirmed |
+
+### BehaviorConfig2 (via AgentContext +0x50)
+| Offset | Field | Type | Status |
+|---|---|---|---|
+| +0x28 | configFlagA | bool | confirmed |
+| +0x34 | configFlagB | bool | confirmed |
+
+### Agent
+| Offset | Field | Type | Status |
+|---|---|---|---|
+| +0x10 | agentContext | AgentContext* | confirmed |
+| +0x18 | actor | Actor* | confirmed |
+| +0x60 | tileDict | Dictionary\<Tile,TileScore\>* | confirmed |
+
+### AgentContext
+| Offset | Field | Type | Status |
+|---|---|---|---|
+| +0x10 | entity | EntityInfo* | confirmed |
+| +0x50 | behaviorConfig | BehaviorConfig2* | confirmed |
+
+### EntityInfo
+| Offset | Field | Type | Status |
+|---|---|---|---|
+| +0x14 | isActive / teamID | bool/int | confirmed |
+| +0x18 | weaponTagObject | ptr | inferred — NQ-19 |
+| +0x20 | teamMembers | List\<Actor\>* | confirmed |
+| +0x3C | minimumAP | int | confirmed |
+| +0x48 | tileList | List\<Tile\>* | confirmed |
+| +0xA8 | statusFlags2 | uint (bit 0x100 = mindrayVulnerable) | confirmed — NQ-38 |
+| +0xDC | detectionValue | float | inferred — SpawnPhantom |
+| +0xEC | flags (bit 0=immobile, bit 5=isPhantom, bit 7=skipMindray, bit 11=alreadyDesignated) | uint | confirmed |
+| +0x112 | hasSecondaryWeapon | bool | confirmed |
+| +0x113 | hasSetupWeapon | bool | confirmed |
+| +0x178 | shotGroupMode | int enum (0–5) | confirmed |
+| +0x18C | arcCoveragePercent | int (0–100) | confirmed |
+| +0x1A1 | isArcFixed | bool | confirmed |
+| +0x2C8 | weaponData | ptr | confirmed |
+
+### Strategy
+| Offset | Field | Type | Status |
+|---|---|---|---|
+| +0x8C | strategyMode | int (1=no co-fire) | inferred |
+| +0x2B0 | strategyData | StrategyData* | confirmed |
+| +0x310 | behaviorWeights | BehaviorWeights* | confirmed |
+
+### StrategyData
+| Offset | Field | Type | Status |
+|---|---|---|---|
+| +0x60 | tierMode | int | inferred |
+| +0x118 | reservedAP | int | confirmed |
+
+### Actor (partial)
+| Offset | Field | Type | Status |
+|---|---|---|---|
+| +0x54 | currentHP | int | confirmed |
+| +0x5C | currentHP alt | int | confirmed |
+| +0x15C | isWeaponSetUp | bool | confirmed |
+| +0x162 | isDead | bool | confirmed |
+| +0x167 | isWeaponSetUp (alt) | bool | confirmed |
+| +0xC8 | buffDataBlock | ptr (+0x34=contextScale float, +0x38=stackCount int) | inferred |
+| +0xD0 | secondaryWeaponState | int (checked != 0) | inferred |
+
+### BuffSkill
+| Offset | Field | Type | Status |
+|---|---|---|---|
+| +0x18 | flags (bit 0=Heal, 1=StatusBuff, 15=Suppress, 16=Setup, 17=AoEHeal, 18=AoEBuff) | byte | confirmed |
+| +0x48 | conditions | List\<Condition\>* | confirmed |
+
+### ShotCandidateWrapper
+| Offset | Field | Type | Status |
+|---|---|---|---|
+| +0x10 | shotPath | ShotPath* | confirmed |
+| +0x18 | targetActor | Actor* | confirmed — NQ-22 resolved |
+
+### ShotPath
+| Offset | Field | Type | Status |
+|---|---|---|---|
+| +0x30 | targetActor (raw) | ptr (Actor* or null) | confirmed |
+
+### WeaponData (partial)
+| Offset | Field | Type | Status |
+|---|---|---|---|
+| +0x48 | tagModifiers | TagModifierList* | confirmed |
+| +0xA8 | tagApplicationCap | uint | confirmed |
+
+### AoETierTable
+| Offset | Field | Type | Status |
+|---|---|---|---|
+| +0x18 | count | int | confirmed |
+| +0x20 + (n×0x18) | entries[n] | AoETierEntry (24 bytes) | confirmed |
+| entry+0x00 | score | float | confirmed |
+
+### PlacementCandidate
+| Offset | Field | Type | Status |
+|---|---|---|---|
+| +0x28 | losImpact | float (negative = blocks LOS) | confirmed |
+
+### CreateLOSBlocker (additional)
+| Offset | Field | Type | Status |
+|---|---|---|---|
+| +0x60 | placementEvaluator | PlacementEvaluator* | confirmed |
+| +0x88 | blockerCandidateList | List\<BlockerCandidate\>* | confirmed |
+
+### ProximityEntry
+| Offset | Field | Type | Status |
+|---|---|---|---|
+| +0x10 | tile | Tile* | confirmed |
+| +0x18 | readyRound | int (-1=unassigned) | confirmed |
+| +0x34 | type | int enum (0/1=valid, 2+=excluded) | confirmed |
+| +0x88 | weight | float | confirmed — TargetDesignator |
+
+---
+
+## VAs Analysed — All Stages
+
+| Stage | VA | Method | Status |
+|---|---|---|---|
+| 1 | 0x180738E60 | Behavior.Evaluate | Complete |
+| 1 | 0x180738F40 | Behavior.Execute | Complete |
+| 1 | 0x18073E300 | SkillBehavior.OnExecute | Complete |
+| 1 | 0x18073DF70 | SkillBehavior.HandleDeployAndSetup | Complete |
+| 1 | 0x180739050 | Behavior.GetUtilityThreshold | Complete |
+| 1 | 0x180738D10 | Behavior.Collect | Complete |
+| 1 | 0x18073BDD0 | SkillBehavior.ConsiderSkillSpecifics | Complete |
+| 1 | 0x18073DD90 | SkillBehavior.GetTargetValue (public) | Complete |
+| 1 | 0x18073C130 | SkillBehavior.GetTargetValue (private) | Complete |
+| 1 | 0x1806E0AC0 | ComputeHitProbability | Complete |
+| 1 | 0x1806DF4E0 | ComputeDamageData | Complete |
+| 2 | 0x18073BFA0 | SkillBehavior.GetTagValueAgainst | Complete |
+| 2 | 0x180717730 | ProximityData.FindEntryForTile | Complete |
+| 2 | 0x180717A40 | ProximityEntry.IsValidType | Complete |
+| 2 | 0x180519A90 | GetOrder (Deploy/Idle = 0) | Complete |
+| 2 | 0x180717870 | ProximityData.HasReadyEntry | Complete |
+| 2 | 0x180738FE0 | Behavior.GetBehaviorWeights | Complete |
+| 2 | 0x180739020 | Behavior.GetBehaviorConfig2 | Complete |
+| 2 | 0x1807632F0 | Move.HasUtility | Complete |
+| 2 | 0x1807629F0 | Move.GetAddedScoreForPath | Complete |
+| 2 | 0x180762EB0 | Move.GetHighestTileScore | Complete |
+| 2 | 0x180762D60 | Move.GetHighestTileScoreScaled | Complete |
+| 2 | 0x1807635C0 | Move.OnEvaluate | Complete |
+| 2 | 0x180766370 | Move.OnExecute | Complete |
+| 3 | 0x180735D20 | Attack.OnEvaluate | Complete |
+| 3 | 0x180734130 | Attack.OnCollect | Complete |
+| 3 | 0x180733650 | Attack.GetHighestScoredTarget | Complete |
+| 3 | 0x180733890 | Attack.HasAllyLineOfSight | Complete |
+| 3 | 0x18000DD30 | GetTargetValue_Dispatch7 | Complete |
+| 3 | 0x1806E66F0 | Skill.BuildCandidatesForShotGroup | Complete |
+| 3 | 0x180731C60 | Assist.OnEvaluate | Complete |
+| 3 | 0x180730B30 | Assist.OnCollect | Complete |
+| 3 | 0x1807308F0 | Assist.GetHighestScoredTarget | Complete |
+| 4 | 0x18073AF00 | InflictDamage.GetTargetValue | Complete |
+| 4 | 0x18073AFE0 | InflictDamage.GetUtilityFromTileMult | Complete |
+| 4 | 0x1807391C0 | Buff.GetTargetValue | Complete |
+| 4 | 0x1806DA770 | ShotCandidate_PostProcess | Complete |
+| 5 | 0x1806E2710 | TagEffectiveness_Apply | Complete |
+| 5 | 0x181430AC0 | AoE_PerMemberScorer | Complete |
+| 5 | 0x1806E33A0 | CanApplyBuff | Complete |
+| 5 | 0x1806D5040 | ShotPath_ActorCast | Complete |
+| 5 | 0x18073B240 | InflictSuppression.GetTargetValue | Complete |
+| 5 | 0x18073B320 | InflictSuppression.GetUtilityFromTileMult | Complete |
+| 5 | 0x180769B40 | Stun.GetTargetValue | Complete |
+| 5 | 0x180762550 | Mindray.GetTargetValue | Complete |
+| 5 | 0x18076A640 | TargetDesignator.GetTargetValue | Complete |
+| 5 | 0x180769E60 | SupplyAmmo.GetTargetValue | Complete |
+| 5 | 0x180769450 | SpawnPhantom.GetTargetValue | Complete |
+| 5 | 0x180768EF0 | SpawnHovermine.GetTargetValue | Complete |
+| 5 | 0x18075EB90 | CreateLOSBlocker.GetTargetValue | Complete |
+
+---
+
+## Open Questions
+
+[ ] NQ-4/5: WeightsConfig +0x78, +0x148, +0x14C still inferred → Run extract_rvas.py on WeightsConfig class
+[ ] NQ-6: Skill +0x48 vs +0x60 shot group lists unresolved → Extract SkillBehavior class dump
+[ ] NQ-9: FUN_1806F3C30 return convention → Validate against leaf subclass OnExecute
+[ ] NQ-11: StrategyData.ComputeMoveCost (FUN_1806361F0) → Deferred; analyse only if move cost formula needed
+[ ] NQ-13: WeightsConfig +0xF0 vs +0x100 co-fire weight conditions unclear → Cross-reference base scorer
+[ ] NQ-16: Strategy +0x8C strategyMode inferred → Extract Strategy class dump
+[ ] NQ-19: EntityInfo +0x18 weapon/tag object unconfirmed → Extract EntityInfo class dump
+[ ] NQ-21: Vtable +0x458 on EntityInfo+0x18 object returns tag index → Identify class type of EntityInfo+0x18
+[ ] NQ-30: FUN_1806ddec0 = GetTagTierCount → Low priority; short function, analyse 0x1806ddec0 if needed
+[ ] NQ-31: FUN_180002310 = TagModifier.GetValue → Low priority; simple accessor
+[ ] NQ-33: FUN_181423600 = GetAoETierForMember → Medium priority; analyse 0x181423600 if AoE tier logic needed
+[ ] NQ-36: Condition.Evaluate vtable +0x1D8 concrete implementations unknown → Low priority; deferred
+[ ] NQ-37: InflictSuppression and InflictDamage both pass effectType=1 — verify base scorer handles identically → Analyse SkillBehavior.GetTargetValue (private, 0x18073C130) branching on arg5
+[ ] NQ-38: EntityInfo->field_0xA8 bit 0x100 = mindray vulnerability → Extract EntityInfo class dump; confirm field name
+[ ] NQ-39: EntityInfo->flags bit 11 = alreadyDesignated → Extract EntityInfo class dump; confirm
+[ ] NQ-40: FUN_1806E3750 = IsInDesignationZone → Analyse 0x1806E3750 if designation scoring detail needed
+
+---
+
+## Scope Boundaries
+
+The following are explicitly out of scope unless operator instructs otherwise:
+- Deploy class (OnCollect, OnEvaluate, GetHighestTileScore) — not yet analysed; next priority if stage 6 proceeds
+- GainBonusTurn, Reload, Scan, MovementSkill, RemoveStatusEffect — untouched; low priority
+- TurnArmorTowardsThreat, TransportEntity — untouched; low priority
+- FUN_1806DE1D0 (indirect fire trajectory builder) — separate system
+- FUN_1806E1FB0 (AoE target set builder) — separate system
+- StrategyData.ComputeMoveCost (FUN_1806361F0) — pathfinding internals; deferred
+- Concrete Condition.Evaluate subclasses — interface documented; implementations deferred
+- GetAoETierForMember (FUN_181423600) — deferred unless AoE tier assignment logic required
+
+---
+
+## Next Priority Table
+
+Stage 6 options — select based on operator intent:
+
+**Option A: Close the Deploy class (recommended if full behavior lifecycle needed)**
+| Priority | Method | VA | Rationale |
+|---|---|---|---|
+| 1 | Deploy.OnEvaluate | 0x180739B00 (RVA 0x73AD00) | Deploy scoring main entry |
+| 2 | Deploy.OnCollect | 0x180739060 (RVA 0x73A260) | Candidate collection |
+| 3 | Deploy.GetHighestTileScore | 0x180738EC0 (RVA 0x73A0C0) | Tile selection logic |
+
+Batch all three — expected moderate length each.
+
+**Option B: Confirm remaining inferred fields (recommended if data model accuracy needed)**
+| Priority | Method | VA | Rationale |
+|---|---|---|---|
+| 1 | Run extract_rvas.py on EntityInfo | — | Closes NQ-19, NQ-38, NQ-39 with no Ghidra work |
+| 2 | Run extract_rvas.py on WeightsConfig | — | Closes NQ-4/5 with no Ghidra work |
+| 3 | Run extract_rvas.py on Strategy | — | Closes NQ-16 with no Ghidra work |
+
+**Option C: Collation (if investigation is complete)**
+If operator is satisfied with current scope, Stage 6 is the collation stage.
+Provide all stage REPORT.md and RECONSTRUCTIONS.md files and invoke the
+research-handoff skill in collation mode to produce the final unified deliverable.
+
+---
+
+## Instructions for This Session
+
+1. Read Research-AI.md in full.
+2. Review symbol maps and field tables — treat all as confirmed prior work.
+3. Do not re-derive anything already confirmed. Build on it.
+4. Do not request or reference stage artefact files during analysis.
+5. Select Option A, B, or C above based on operator direction.
+6. Flag any scope expansion immediately before pursuing it.
+7. When stage is complete, invoke research-handoff skill to produce final artefacts.
+   If this is the final stage, invoke in collation mode instead of handoff mode.

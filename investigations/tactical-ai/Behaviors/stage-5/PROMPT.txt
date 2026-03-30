@@ -1,10 +1,3 @@
----
-## Menace Tactical AI — Stage 4 Handoff Prompt
-
-Read Research-AI.md in full before proceeding. Do not re-derive anything listed as confirmed below.
-
----
-
 ## DAT_ Symbol Map (cumulative)
 
 DAT_18394c3d0 = WeightsConfig_class  (static storage: +0xb8 → ptr; ptr+8 → WEIGHTS singleton)
@@ -372,5 +365,3 @@ Prioritise the tag chain first as it closes the only remaining gap in InflictDam
 | 4 | FUN_1806D5040 | 0x1806D5040 | ShotCandidate derived metric (NQ-22); expected short |
 
 Batch priorities 1+4 (both expected short) and request together. Then 2+3 as second batch.
-
----

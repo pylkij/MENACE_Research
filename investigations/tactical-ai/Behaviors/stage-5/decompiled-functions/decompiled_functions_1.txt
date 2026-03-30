@@ -1,0 +1,102 @@
+Ghidra Decompilation Export
+Program : GameAssembly.dll
+Image   : 180000000
+Functions: 2
+================================================================
+
+================================================================
+FUNCTION:  FUN_1806e2710
+VA:        0x1806E2710
+RVA:       0x6E2710
+SIGNATURE: undefined FUN_1806e2710(void)
+ENTRY:     1806e2710
+----------------------------------------------------------------
+
+ulonglong FUN_1806e2710(longlong param_1,int param_2)
+
+{
+  int iVar1;
+  uint uVar2;
+  longlong lVar3;
+  uint uVar4;
+  ulonglong uVar5;
+  
+  if (DAT_183b92f94 == '\0') {
+    FUN_180427b00(&DAT_1839a6620);
+    DAT_183b92f94 = '\x01';
+  }
+  uVar4 = *(uint *)(param_1 + 0xa8);
+  if ((int)*(uint *)(param_1 + 0xa8) < 1) {
+    uVar4 = 1;
+  }
+  uVar5 = (ulonglong)uVar4;
+  iVar1 = FUN_1806ddec0(param_1,0);
+  if ((int)((longlong)param_2 / (longlong)iVar1) <= (int)uVar4) {
+    uVar5 = (longlong)param_2 / (longlong)iVar1 & 0xffffffff;
+  }
+  uVar4 = 0;
+  lVar3 = *(longlong *)(param_1 + 0x48);
+  while (lVar3 != 0) {
+    if (*(int *)(lVar3 + 0x18) <= (int)uVar4) {
+      return uVar5;
+    }
+    lVar3 = *(longlong *)(param_1 + 0x48);
+    if (lVar3 == 0) break;
+    if (*(uint *)(lVar3 + 0x18) <= uVar4) {
+                    /* WARNING: Subroutine does not return */
+      FUN_180427d80();
+    }
+    lVar3 = thunk_FUN_18045f7a0(*(undefined8 *)(lVar3 + 0x20 + (longlong)(int)uVar4 * 8),
+                                DAT_1839a6620);
+    if (lVar3 != 0) {
+      uVar2 = FUN_180002310(1,DAT_1839a6620,lVar3);
+      if ((int)(uint)uVar5 < (int)uVar2) {
+        uVar2 = (uint)uVar5;
+      }
+      uVar5 = (ulonglong)uVar2;
+    }
+    uVar4 = uVar4 + 1;
+    lVar3 = *(longlong *)(param_1 + 0x48);
+  }
+                    /* WARNING: Subroutine does not return */
+  FUN_180427d90();
+}
+
+
+
+================================================================
+FUNCTION:  FUN_1806d5040
+VA:        0x1806D5040
+RVA:       0x6D5040
+SIGNATURE: undefined FUN_1806d5040(void)
+ENTRY:     1806d5040
+----------------------------------------------------------------
+
+/* WARNING: Removing unreachable block (ram,0x0001806d50b8) */
+
+longlong * FUN_1806d5040(longlong param_1)
+
+{
+  longlong *plVar1;
+  
+  if (DAT_183b92f41 == '\0') {
+    FUN_180427b00();
+    DAT_183b92f41 = '\x01';
+  }
+  plVar1 = *(longlong **)(param_1 + 0x30);
+  if (plVar1 != (longlong *)0x0) {
+    if ((*(byte *)(DAT_18394dc38 + 0x130) <= *(byte *)(*plVar1 + 0x130)) &&
+       (*(longlong *)
+         (*(longlong *)(*plVar1 + 200) + -8 + (ulonglong)*(byte *)(DAT_18394dc38 + 0x130) * 8) ==
+        DAT_18394dc38)) {
+      return plVar1;
+    }
+    return (longlong *)0x0;
+  }
+  return (longlong *)0x0;
+}
+
+
+
+================================================================
+SUMMARY: 2 succeeded, 0 failed
