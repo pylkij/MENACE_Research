@@ -1075,7 +1075,7 @@ Singleton static. A `float[]` indexed by tag match result. Accessed only from `G
 
 ### 15.1 AIWeightsTemplate *(previously: WeightsConfig)*
 
-**IL2CPP class name: `AIWeightsTemplate`** | **TypeDefIndex:** 3621 | **Namespace:** (global — no namespace)
+**IL2CPP class name: `AIWeightsTemplate`** | **TypeDefIndex:** 3621 | **Namespace: Menace.Tactical.AI**
 
 A Unity `ScriptableObject` asset. The investigation-internal name `WeightsConfig` is retired. The true name was resolved by running `find_weights_config.py` against `dump.cs`, which produced a 37/37 (100%) field match at TypeDefIndex 3621. The class carries no namespace because Unity ScriptableObject asset templates are compiled into the global namespace by IL2CPP.
 
