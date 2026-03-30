@@ -6,7 +6,7 @@
 **Binary:** GameAssembly.dll  
 **Image base:** `0x180000000` (VA = RVA + 0x180000000)  
 **Source material:** Il2CppDumper dump.cs (~885,000 lines), Ghidra decompilation, `extract_rvas.py` class dumps, `extraction_report_master.txt`  
-**Investigation status:** Complete — 52 VAs analysed across all stages
+**Investigation status:** Complete — 52 VAs analysed across all stages. Post-completion: `AIWeightsTemplate` identified as true IL2CPP class for `WeightsConfig`; all field names updated.
 
 ---
 
@@ -49,7 +49,7 @@
     - 14.3 BehaviorWeights / BehaviorConfig2
     - 14.4 TagEffectivenessTable
 15. Configuration Classes
-    - 15.1 WeightsConfig
+    - 15.1 AIWeightsTemplate *(previously: WeightsConfig)*
     - 15.2 Strategy / StrategyData
     - 15.3 AgentContext / EntityInfo
 16. Ghidra Address Reference
@@ -76,7 +76,7 @@ The complete tactical AI behaviour system of Menace — all classes in the `Mena
 - `Deploy`: two-penalty scoring model (range distance + ally proximity spread), fixed-priority 1000 scoring, done-state management — fully reconstructed
 - All 9 concrete `GetTargetValue` overrides fully reconstructed, including the three scorer archetypes (tag-chain-delegate, float scorer, void side-effect scorer)
 - `ComputeHitProbability`, `ComputeDamageData`, `TagEffectiveness_Apply`, `AoE_PerMemberScorer`, `CanApplyBuff`, `ShotPath_ActorCast`, `Skill.QueryTargetTiles`, `ShotCandidate_PostProcess` — all fully reconstructed
-- 40+ `WeightsConfig` float fields confirmed and named
+- 40+ `AIWeightsTemplate` float fields confirmed and named; true IL2CPP class identity resolved
 - Complete `skillEffectType` enum established (values 0, 1, 2 with associated subclasses)
 - The six `shotGroupMode` values fully resolved
 
@@ -92,7 +92,7 @@ The following are explicitly out of scope:
 - Concrete `Condition.Evaluate` subclasses — interface documented; implementations deferred
 - `GetAoETierForMember` (`FUN_181423600`) — deferred; medium priority
 - `Attack.OnExecute`, `Assist.OnExecute` — execution mechanics; scoring pipelines are complete
-- True IL2CPP class names for: `WeightsConfig`, `AgentContext`, `EntityInfo`, `Strategy`, `BehaviorConfig2`, `BehaviorWeights`, `StrategyData` — all accessed via opaque `DAT_` pointers; see Section 20
+- True IL2CPP class names for: `AgentContext`, `EntityInfo`, `Strategy`, `BehaviorConfig2`, `BehaviorWeights`, `StrategyData` — all accessed via opaque `DAT_` pointers; see Section 20. (`AIWeightsTemplate` / `WeightsConfig` is now resolved — see Section 15.1.)
 
 ---
 
@@ -126,6 +126,7 @@ The extraction report confirmed `NO_RVA` entries for `GetTargetValue` and `GetUt
 | `SpawnPhantom` | `Menace.Tactical.AI.Behaviors` | 3661 | Attack subclass. Void eligibility scorer. |
 | `SpawnHovermine` | `Menace.Tactical.AI.Behaviors` | 3660 | Attack subclass. Void weighted proximity scorer. |
 | `CreateLOSBlocker` | `Menace.Tactical.AI.Behaviors` | 3655 | Assist subclass. Void geometry-aware LOS line scorer. |
+| `AIWeightsTemplate` | (global — no namespace) | 3621 | Designer-authored ScriptableObject asset. All AI scoring weights and thresholds. Accessed as singleton via static metadata pointer chain. Previously documented as `WeightsConfig`. |
 
 ---
 
@@ -150,7 +151,7 @@ m_Score = clampedScore
 ### Utility threshold formula
 
 ```
-base      = WeightsConfig.utilityThreshold    // +0x13C
+base      = AIWeightsTemplate.UtilityThreshold    // +0x13C
 multA     = StrategyData.modifiers.thresholdMultA   // +0x14 — one-directional raise only
 multB     = StrategyData.modifiers.thresholdMultB   // +0x18 — bidirectional
 
@@ -188,10 +189,10 @@ multiplier        = armorMatchPenalty * ammoFactor
 ### The tag effectiveness formula
 
 ```
-bonus = TagEffectivenessTable[tagIndex] * WeightsConfig.tagValueScale + 1.0
+bonus = TagEffectivenessTable[tagIndex] * AIWeightsTemplate.ScalePositionWithTags + 1.0
 ```
 
-`tagValueScale` is replaced with `1.0` when `forImmediateUse == true`. The `+ 1.0` ensures a no-match returns 1.0 (neutral). A strong match returns ~2.0 (doubles the score).
+`ScalePositionWithTags` is replaced with `1.0` when `forImmediateUse == true`. The `+ 1.0` ensures a no-match returns 1.0 (neutral). A strong match returns ~2.0 (doubles the score).
 
 ### The attack final score formula
 
@@ -219,15 +220,15 @@ TileUtilityMultiplier =
 
 ```
 TileScore.movementScore =
-    WeightsConfig.movementScoreWeight (+0x54)
+    AIWeightsTemplate.DistanceToCurrentTile (+0x54)
     × (apCost / 20.0)
     × BehaviorWeights.movementWeight (+0x20)
 
-fWeight = BehaviorWeights.weightScale × WeightsConfig.movementWeightScale (+0x12C)
+fWeight = BehaviorWeights.weightScale × AIWeightsTemplate.MoveScoreMult (+0x12C)
           × (currentAP / maxAP)           // if not yet moved this turn
           × 0.9                           // if weapon not yet set up
 
-FinalScore = (int)(fWeight × WeightsConfig.finalMovementScoreScale (+0x128))
+FinalScore = (int)(fWeight × AIWeightsTemplate.MoveBaseScore (+0x128))
 ```
 
 ### The deploy scoring model
@@ -236,12 +237,12 @@ Deploy uses a two-penalty model against `TileScore.rangeScore`:
 
 ```
 // Penalty 1 — range distance
-rangeScore -= WeightsConfig.rangePenaltyScale (+0xcc)
+rangeScore -= AIWeightsTemplate.DistanceToZoneDeployScore (+0xCC)
               × distanceResult × tileScore.secondaryMovementScore
 
 // Penalty 2 — ally proximity spread
 for each set-up ally within 6 tiles:
-    rangeScore -= (6.0 - distance) × WeightsConfig.allyProximityPenaltyScale (+0xd0)
+    rangeScore -= (6.0 - distance) × AIWeightsTemplate.DistanceToAlliesScore (+0xD0)
 ```
 
 Deploy scores a fixed `1000` when it has an unvisited target tile; returns `0` once done.
@@ -317,7 +318,7 @@ Attack.OnEvaluate(actor)
     Ally co-fire accumulation (HasAllyLineOfSight → CoFireBonus)
     +1.05 bonus for attacking from current position
     GetHighestScoredTarget() → (bestTarget, bestScore)
-    AoE threshold gate (WeightsConfig +0xFC)
+    AoE threshold gate (AIWeightsTemplate.ScoreThresholdWithLimitedUses +0xFC)
     AP clamping, secondary skill checks
     Movement score integration from tileDict
     Weapon setup bonus ×1.1, delayed-move penalty ×0.25
@@ -531,7 +532,7 @@ Manages the complete offensive scoring cycle. Owns geometry collection, candidat
 
 ### Behavioural notes
 
-`OnCollect` counts allies within `WeightsConfig+0xC8` range. If 3+ allies are in range, the tile search radius expands. The vehicle/turret branch is triggered when `EntityInfo.flags bit 0` (isImmobile) is set and `m_MinRangeToOpponents > 0`. `HasAllyLineOfSight` skips allies that are dead (`Actor+0x162 != 0`), skips self, and skips actors in `strategyMode == 1` (no-co-fire strategy setting at `Strategy+0x8C`).
+`OnCollect` counts allies within `AIWeightsTemplate.CullTilesDistances` (+0xC8) range. If 3+ allies are in range, the tile search radius expands. The vehicle/turret branch is triggered when `EntityInfo.flags bit 0` (isImmobile) is set and `m_MinRangeToOpponents > 0`. `HasAllyLineOfSight` skips allies that are dead (`Actor+0x162 != 0`), skips self, and skips actors in `strategyMode == 1` (no-co-fire strategy setting at `Strategy+0x8C`).
 
 ---
 
@@ -622,18 +623,18 @@ else:
 SkillBehavior_GetTargetValue(self, isCoFire, tagValue, ..., skillEffectType=1, ...)
 ```
 
-`tagValueScale` (+0xBC) has zero influence on solo attacks by architectural design — `tagValue` is forced to 0 when `isCoFire == false`.
+`AIWeightsTemplate.ScalePositionWithTags` (+0xBC) has zero influence on solo attacks by architectural design — `tagValue` is forced to 0 when `isCoFire == false`.
 
 | Method | RVA | VA |
 |---|---|---|
 | GetTargetValue | 0x73AF00 | 0x18073AF00 |
-| GetUtilityFromTileMult | 0x73AFE0 | 0x18073AFE0 — returns WeightsConfig+0x10C |
+| GetUtilityFromTileMult | 0x73AFE0 | 0x18073AFE0 — returns `AIWeightsTemplate.InflictDamageFromTile` (+0x10C) |
 
 ### 12.2 InflictSuppression
 
 **Namespace:** `Menace.Tactical.AI.Behaviors` | **TypeDefIndex:** 3648 | **Base:** Attack
 
-Byte-for-byte structurally identical to InflictDamage. The only differences: `GetUtilityFromTileMult` returns `WeightsConfig+0x118` (vs `+0x10C`), and `skillEffectType = 1` (same value — the distinction between InflictDamage and InflictSuppression at the base scorer level is presently NQ-37).
+Byte-for-byte structurally identical to InflictDamage. The only differences: `GetUtilityFromTileMult` returns `AIWeightsTemplate.InflictSuppressionFromTile` (+0x118) (vs `+0x10C`), and `skillEffectType = 1` (same value — the distinction between InflictDamage and InflictSuppression at the base scorer level is presently NQ-37).
 
 Additional field:
 
@@ -689,32 +690,32 @@ Six-branch additive flag-driven scorer. Contributions accumulate independently.
 total = 0.0
 
 if HEAL (bit 0):
-    total += healScoringWeight (+0x17C) * healAmount
+    total += AIWeightsTemplate.RemoveSuppressionMult (+0x17C) * healAmount
               [× 0.5 if immobile and no status buff]
               [× 1.1 if not incapacitated]
 
 if STATUS_BUFF (bit 1):
-    total += buffScoringWeight (+0x180)
+    total += AIWeightsTemplate.RemoveStunnedMult (+0x180)
               [× 0.1 if buffType==2 and no heal]
               [× 1.5 if not incapacitated]
 
 if SUPPRESS (bit 15):
-    total += (1 - resistFrac) * suppressScoringWeight (+0x184)
+    total += (1 - resistFrac) * AIWeightsTemplate.RestoreMoraleMult (+0x184)
               [× 2.0 if score>0 and slotVal==1]
               [× 0.5 if immobile and no status buff]
               [× 0.9 if buffType==2 and no heal]
               [× 1.5 if not incapacitated]
 
 if AOE_HEAL (bit 17):
-    total += aoeHealScoringWeight (+0x190) * Σ(perMemberHealValue over team tiles)
+    total += AIWeightsTemplate.IncreaseDefensiveStatsMult (+0x190) * Σ(perMemberHealValue over team tiles)
 
 if AOE_BUFF (bit 18):
-    aoeSum = Σ(aoeBuffScoringWeight (+0x18C) * perMemberBuffValue)
+    aoeSum = Σ(AIWeightsTemplate.IncreaseOffensiveStatsMult (+0x18C) * perMemberBuffValue)
     [× 1.2 if not incapacitated]
     total += aoeSum
 
 if SETUP (bit 16):
-    score = setupAssistScoringWeight (+0x188)  [or 0 if conditions not met]
+    score = AIWeightsTemplate.IncreaseMovementMult (+0x188)  [or 0 if conditions not met]
     [× 0.75 if Actor+0xD0 == 1]
     [× 0.75 if isWeaponSetUp]
     [× 1.1 if not incapacitated]
@@ -722,7 +723,7 @@ if SETUP (bit 16):
     [× powf(1.25) if stack count > 0]
     total += score
 
-return actor->buffDataBlock->contextScale * total * buffGlobalScoringScale (+0x174)
+return actor->buffDataBlock->contextScale * total * AIWeightsTemplate.BuffTargetValueMult (+0x174)
 ```
 
 Guards (all must pass or return 0.0): `entityInfo->weaponData` non-null; target resolves to Actor; `actor->buffDataBlock` (+0xC8) non-null; `CanApplyBuff()` returns true.
@@ -745,7 +746,7 @@ score = utilityThreshold / behaviorScale
 if weapon not setup or wrong type: score = 0
 if coFire eligible and target is mobile non-setup: score *= 1.25
 for each ally tile (AoE zones 0, 1, 2):
-    if AoE_PerMemberScorer hits and score > WeightsConfig.aoeAllyBonusThreshold (+0x1A4):
+    if AoE_PerMemberScorer hits and score > AIWeightsTemplate.SupplyAmmoGoalThreshold (+0x1A4):
         score *= 1.05   // stacks up to 3×
 if target->Actor+0xD0 != 0: score *= 1.1    // has secondary weapon
 if target->isWeaponSetUp:   score *= 1.1
@@ -1072,49 +1073,55 @@ Singleton static. A `float[]` indexed by tag match result. Accessed only from `G
 
 ## 15. Configuration Classes
 
-### 15.1 WeightsConfig
+### 15.1 AIWeightsTemplate *(previously: WeightsConfig)*
 
-**IL2CPP class name: UNRESOLVED** — accessed via `*(*(DAT_18394c3d0 + 0xb8) + 8)`. Investigation-internal name. All field offsets confirmed from Ghidra access; field names are inferred from usage context unless otherwise noted.
+**IL2CPP class name: `AIWeightsTemplate`** | **TypeDefIndex:** 3621 | **Namespace:** (global — no namespace)
 
-| Offset | Field Name | Type | Status |
-|---|---|---|---|
-| +0x54 | movementScoreWeight | float | confirmed |
-| +0x78 | [scoring weight] | float | inferred — name unresolved (NQ-4) |
-| +0x7C | allyCoFireBonus | float | inferred |
-| +0xBC | tagValueScale | float | confirmed |
-| +0xC0 | baseAttackWeightScale | float | confirmed |
-| +0xC4 | maxApproachRange | int | confirmed |
-| +0xC8 | allyInRangeMaxDist | int | confirmed |
-| +0xCC | rangePenaltyScale | float | confirmed — Deploy.OnCollect |
-| +0xD0 | allyProximityPenaltyScale | float | confirmed — Deploy.OnCollect |
-| +0xE0 | friendlyFirePenaltyWeight | float | confirmed |
-| +0xE4 | killWeight | float | confirmed |
-| +0xE8 | killWeight2 | float | confirmed |
-| +0xEC | urgencyWeight | float | confirmed |
-| +0xF0 | buffWeight / allyCoFireWeight | float | confirmed |
-| +0xF8 | proximityBonusCap | float | confirmed |
-| +0xFC | minAoeScoreThreshold | float | confirmed |
-| +0x100 | allyCoFireBonusScale | float | confirmed |
-| +0x10C | utilityFromTileMultiplier | float | confirmed — InflictDamage |
-| +0x118 | suppressionTileMultiplier | float | confirmed — InflictSuppression |
-| +0x128 | finalMovementScoreScale | float | confirmed |
-| +0x12C | movementWeightScale | float | confirmed |
-| +0x13C | utilityThreshold | float | confirmed |
-| +0x148 | movementScorePathWeight | float | inferred (NQ-4) |
-| +0x14C | pathCostPenaltyWeight | float | inferred (NQ-5) |
-| +0x150 | minimumImprovementRatio | float | confirmed |
-| +0x154 | deployMovementScoreThreshold | float | confirmed |
-| +0x15C | secondaryPathPenalty | float | confirmed |
-| +0x168 | shortRangePenalty | float | confirmed |
-| +0x16C | stanceSkillBonus | float | confirmed |
-| +0x174 | buffGlobalScoringScale | float | confirmed |
-| +0x17C | healScoringWeight | float | confirmed |
-| +0x180 | buffScoringWeight | float | confirmed |
-| +0x184 | suppressScoringWeight | float | confirmed |
-| +0x188 | setupAssistScoringWeight | float | confirmed |
-| +0x18C | aoeBuffScoringWeight | float | confirmed |
-| +0x190 | aoeHealScoringWeight | float | confirmed |
-| +0x1A4 | aoeAllyBonusThreshold | float | confirmed — SupplyAmmo |
+A Unity `ScriptableObject` asset. The investigation-internal name `WeightsConfig` is retired. The true name was resolved by running `find_weights_config.py` against `dump.cs`, which produced a 37/37 (100%) field match at TypeDefIndex 3621. The class carries no namespace because Unity ScriptableObject asset templates are compiled into the global namespace by IL2CPP.
+
+**Access path:** `*(*(DAT_18394c3d0 + 0xb8) + 8)` — `DAT_18394c3d0` is the `AIWeightsTemplate` class metadata pointer; `+0xb8` reaches the static field storage block; `+8` skips the IL2CPP object header to reach field data.
+
+All 105 fields are present in the class. Only the 37 fields directly accessed by the tactical AI system are documented here. All field names below are the verified IL2CPP field names from `dump.cs`.
+
+| Offset | IL2CPP Field Name | Type | Status | Previously named |
+|---|---|---|---|---|
+| +0x54 | `DistanceToCurrentTile` | float | confirmed | movementScoreWeight |
+| +0x78 | `ThreatFromTileEffects` | float | confirmed | [NQ-4 — now closed] |
+| +0x7C | `ThreatFromOpponentsDamage` | float | confirmed | allyCoFireBonus |
+| +0xBC | `ScalePositionWithTags` | float | confirmed | tagValueScale |
+| +0xC0 | `IncludeAttacksAgainstAllOpponentsMult` | float | confirmed | baseAttackWeightScale |
+| +0xC4 | `OppositeSideDistanceFromOpponentCap` | int | confirmed | maxApproachRange |
+| +0xC8 | `CullTilesDistances` | int | confirmed | allyInRangeMaxDist |
+| +0xCC | `DistanceToZoneDeployScore` | float | confirmed | rangePenaltyScale |
+| +0xD0 | `DistanceToAlliesScore` | float | confirmed | allyProximityPenaltyScale |
+| +0xE0 | `InvisibleTargetValueMult` | float | confirmed | friendlyFirePenaltyWeight |
+| +0xE4 | `TargetValueDamageScale` | float | confirmed | killWeight |
+| +0xE8 | `TargetValueArmorScale` | float | confirmed | killWeight2 |
+| +0xEC | `TargetValueSuppressionScale` | float | confirmed | urgencyWeight |
+| +0xF0 | `TargetValueStunScale` | float | confirmed | buffWeight / allyCoFireWeight |
+| +0xF8 | `TargetValueMaxThreatSuppressScale` | float | confirmed | proximityBonusCap |
+| +0xFC | `ScoreThresholdWithLimitedUses` | float | confirmed | minAoeScoreThreshold |
+| +0x100 | `FriendlyFirePenalty` | float | confirmed | allyCoFireBonusScale |
+| +0x10C | `InflictDamageFromTile` | float | confirmed | utilityFromTileMultiplier |
+| +0x118 | `InflictSuppressionFromTile` | float | confirmed | suppressionTileMultiplier |
+| +0x128 | `MoveBaseScore` | float | confirmed | finalMovementScoreScale |
+| +0x12C | `MoveScoreMult` | float | confirmed | movementWeightScale |
+| +0x13C | `UtilityThreshold` | float | confirmed | utilityThreshold |
+| +0x148 | `PathfindingHiddenFromOpponentsBonus` | **int** | confirmed | movementScorePathWeight (NQ-4 — now closed; note: int not float) |
+| +0x14C | `EntirePathScoreContribution` | float | confirmed | pathCostPenaltyWeight (NQ-5 — now closed) |
+| +0x150 | `MoveIfNewTileIsBetterBy` | float | confirmed | minimumImprovementRatio |
+| +0x154 | `GetUpIfNewTileIsBetterBy` | float | confirmed | deployMovementScoreThreshold |
+| +0x15C | `ConsiderAlternativeIfBetterBy` | float | confirmed | secondaryPathPenalty |
+| +0x168 | `EnoughAPToPerformOnlySkillAfterwards` | float | confirmed | shortRangePenalty |
+| +0x16C | `EnoughAPToDeployAfterwards` | float | confirmed | stanceSkillBonus |
+| +0x174 | `BuffTargetValueMult` | float | confirmed | buffGlobalScoringScale |
+| +0x17C | `RemoveSuppressionMult` | float | confirmed | healScoringWeight |
+| +0x180 | `RemoveStunnedMult` | float | confirmed | buffScoringWeight |
+| +0x184 | `RestoreMoraleMult` | float | confirmed | suppressScoringWeight |
+| +0x188 | `IncreaseMovementMult` | float | confirmed | setupAssistScoringWeight |
+| +0x18C | `IncreaseOffensiveStatsMult` | float | confirmed | aoeBuffScoringWeight |
+| +0x190 | `IncreaseDefensiveStatsMult` | float | confirmed | aoeHealScoringWeight |
+| +0x1A4 | `SupplyAmmoGoalThreshold` | float | confirmed | aoeAllyBonusThreshold |
 
 ### 15.2 Strategy / StrategyData
 
@@ -1281,7 +1288,7 @@ Singleton static. A `float[]` indexed by tag match result. Accessed only from `G
 
 **Three scorer archetypes exist.** All concrete `GetTargetValue` overrides fall into one of: (1) tag-chain-then-delegate (InflictDamage, InflictSuppression, Stun, Mindray), (2) float scorer with its own formula (SupplyAmmo, TargetDesignator), (3) void side-effect scorer that operates via candidate registration (SpawnPhantom, SpawnHovermine, CreateLOSBlocker).
 
-**InflictDamage is a decorator, not a scorer.** All attack subclasses share the `SkillBehavior.GetTargetValue` formula. The InflictDamage override only prepends tag value computation for co-fire shots. `tagValueScale` (+0xBC) has zero influence on solo attacks by architectural design.
+**InflictDamage is a decorator, not a scorer.** All attack subclasses share the `SkillBehavior.GetTargetValue` formula. The InflictDamage override only prepends tag value computation for co-fire shots. `AIWeightsTemplate.ScalePositionWithTags` (+0xBC) has zero influence on solo attacks by architectural design.
 
 **AoE readiness uses a 50/50 blend.** When `IsAoeSkill()` is true, the tile utility multiplier is blended: `0.5 × (currentAmmo/maxAmmo) + 0.5 × tileUtility`. This prevents an AoE skill with low ammo from scoring highly even from ideal positions.
 
@@ -1301,7 +1308,7 @@ Singleton static. A `float[]` indexed by tag match result. Accessed only from `G
 
 **Deploy has a hardcoded priority of 1000.** It always wins over lower-scored combat behaviours while it has an unvisited target tile. `m_IsDone` is the gate that prevents re-evaluation.
 
-**Buff scoring is fully additive.** There is no normalisation or cap before the final `contextScale * total * globalScale` multiplication. A skill with all six bits set accumulates contributions from all six branches simultaneously.
+**Buff scoring is fully additive.** There is no normalisation or cap before the final `contextScale * total * AIWeightsTemplate.BuffTargetValueMult` multiplication. A skill with all six bits set accumulates contributions from all six branches simultaneously.
 
 **HP fraction blend in SupplyAmmo is counter-intuitive.** The formula `0.8 + 0.2 * hpFrac` means higher-HP targets score slightly higher. SupplyAmmo prefers healthy targets that can make better use of the ammo.
 
@@ -1319,8 +1326,7 @@ Singleton static. A `float[]` indexed by tag match result. Accessed only from `G
 
 The following questions remain unresolved. Each carries the concrete next step needed to answer it.
 
-**NQ-4/5** — `WeightsConfig +0x78`, `+0x148`, `+0x14C` field names inferred. True class name for `WeightsConfig` unresolved.  
-→ Search dump.cs for a class with float fields clustered around `+0xE4`, `+0xE8`, `+0xEC`, `+0xF0` under `Menace.Tactical.AI`. Run `extract_rvas.py` on it. Will also close NQ-47 (+0xCC) and NQ-50 (+0xD0).
+**NQ-4/5** — ~~`WeightsConfig +0x78`, `+0x148`, `+0x14C` field names inferred. True class name for `WeightsConfig` unresolved.~~ **CLOSED.** `AIWeightsTemplate` confirmed as true class (TypeDefIndex 3621). `+0x78` = `ThreatFromTileEffects` (float). `+0x148` = `PathfindingHiddenFromOpponentsBonus` (**int**, not float — prior inference of float type was incorrect). `+0x14C` = `EntirePathScoreContribution` (float). NQ-47 (`+0xCC` = `DistanceToZoneDeployScore`) and NQ-50 (`+0xD0` = `DistanceToAlliesScore`) are also closed by the same resolution.
 
 **NQ-6** — `Skill +0x48` vs `Skill +0x60` shot group list distinction. Stage 6 confirms `m_SelectedTiles` at `+0x60`; `+0x48` in SkillBehavior is a different class. The annotation `m_AdditionalRadius` at `SkillBehavior +0x48` from dump.cs needs examination.  
 → Extract SkillBehavior class dump; verify field at `+0x48`. Consider closed at collation given Stage 6 evidence.
@@ -1399,9 +1405,10 @@ The following are explicitly out of scope. They were not pursued and should not 
 
 The following investigation-internal names do **not** correspond to any IL2CPP class name found in dump.cs. They were assigned during Ghidra analysis based on field and method behaviour. The objects are accessed exclusively through opaque `DAT_` metadata pointers. All field offsets are confirmed; all class names remain unresolved. Every reference to these names in this report should be understood as an investigation-internal working name, not a verified game class name.
 
+**`WeightsConfig` has been resolved and is no longer in this table.** It is `AIWeightsTemplate` (TypeDefIndex 3621). See Section 15.1.
+
 | Investigation Name | DAT_ Access | Recommended Resolution |
 |---|---|---|
-| WeightsConfig | `*(DAT_18394c3d0 + 0xb8) + 8` | Search dump.cs for a class with float fields at +0xE4, +0xE8, +0xEC, +0xF0 under Menace.Tactical.AI |
 | AgentContext | Held at `Behavior+0x10` | Search dump.cs for class with EntityInfo-type field at +0x10 |
 | EntityInfo | Held at `AgentContext+0x10` | Search dump.cs for class with `List<Actor>` at +0x20 |
 | Strategy (AI) | `*(DAT_183981f50 + 0xb8)` | Search dump.cs for `GetBehaviorWeights` or `GetBehaviorConfig2` as method names |
