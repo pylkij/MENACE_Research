@@ -1,307 +1,580 @@
-# Menace Tactical AI — BehaviorBase/SkillBehavior Subclass Investigation
+# Menace Tactical AI — Behavior/SkillBehavior Subclass Investigation
 # Stage 2 Report
 
-## Scope
-
-This stage resolved the remaining base-class dependencies from Stage 1 and completed
-the full analysis of the `Move` behavior subclass, including its evaluation and execution
-state machines.
-
----
-
-## Stage 1 Dependency Closures
-
-### GetTagValueAgainst (VA 0x18073BFA0)
-
-`SkillBehavior.GetTagValueAgainst(self, opponent, goal, forImmediateUse)` returns a
-multiplicative bonus (always ≥ 1.0) applied to a target's score based on tag-type
-effectiveness. It resolves two tag indices — one per tag category — against a static
-`TagEffectivenessTable` singleton whose float array starts at `+0x20`. The result is
-`tableValue * WeightsConfig.tagValueScale + 1.0`. The `tagValueScale` field is bypassed
-when `forImmediateUse == true`, returning `tableValue * 1.0 + 1.0` instead.
-
-**NQ-7 closed.**
-
-### ProximityData.FindEntryForTile (VA 0x180717730)
-
-Linear scan over `ProximityData->entries` (`+0x48`). Matches on `entry->tile` (`+0x10`).
-Returns the matching `ProximityEntry*` or null. No complexity.
-
-### ProximityEntry.IsValidType (VA 0x180717A40)
-
-Reads `entry->type` (`+0x34`). Returns true if `type == 0 || type == 1`. Excludes type 2+
-from the ally-pressure bonus in `GetTargetValue`.
-
-**NQ-3 closed.**
-
-### GetOrder — Deploy/Idle (VA 0x180519A90)
-
-Returns `0`. Deploy and Idle behaviors have order 0 — highest scheduling priority.
-
-**NQ-8 partially closed** (other GetOrder implementations not yet decompiled; low priority).
+**Game:** Menace
+**Platform:** Windows x64, Unity IL2CPP
+**Binary:** GameAssembly.dll
+**Image base:** 0x180000000 (VA = RVA + 0x180000000)
+**Source material:** Il2CppDumper dump.cs (~885,000 lines), Ghidra decompilation, extraction_report_master.txt
+**Investigation status:** In Progress (Stage 2 of ~5)
 
 ---
 
-## ProximityData.HasReadyEntry (VA 0x180717870)
+## Table of Contents
 
-Iterates `ProximityData->entries` (`+0x48`). Returns `true` if any `entry->readyRound`
-(`+0x18`) is `>= 0`. A value of `-1` means the entry is unassigned. Called in
-`Move.OnExecute` to gate the container-exit / skill-after path.
+1. Investigation Overview
+2. Tooling
+3. Class Inventory
+4. Core Findings
+   4.1 GetTagValueAgainst — Tag Effectiveness Formula
+   4.2 Move Behavior — Tile Scoring Pipeline
+   4.3 Move.OnExecute — State Machine
+5. Full Pipeline: Move Behavior Flow
+6. Class Sections
+   6.1 SkillBehavior (dependency closure)
+   6.2 ProximityData / ProximityEntry
+   6.3 Move
+   6.4 BehaviorWeights / BehaviorConfig2
+   6.5 TileScore
+   6.6 TagEffectivenessTable
+7. Ghidra Address Reference
+8. Key Inferences and Design Notes
+9. Open Questions
 
 ---
 
-## Move Subclass
+## 1. Investigation Overview
 
-`Move` inherits directly from `Behavior` (not `SkillBehavior`). It does not use the shot
-pipeline. Its evaluation is tile-based, scored against the agent's pre-populated tile
-dictionary.
+### What was investigated
 
-### Move.HasUtility (VA 0x1807632F0)
+Stage 2 had two goals:
 
-Iterates the tile dictionary. Returns `true` if any tile has
-`utilityScore >= GetUtilityThreshold()`. When false, movement is treated as "forced" and
-the threshold filter is bypassed — the unit considers all tiles regardless of utility.
+**Goal A — Close remaining Stage 1 dependencies.** Four functions were carried forward as
+open questions from Stage 1: `GetTagValueAgainst` (NQ-7), the proximity data pair
+(NQ-3), and a `GetOrder` implementation (NQ-8). All were resolved in this stage.
 
-### Move.GetHighestTileScore (VA 0x180762EB0)
+**Goal B — Complete the Move behavior subclass.** `Move` is the most complex non-skill
+behavior in the system, with 23 fields and 23 methods. It is the only behavior that
+inherits directly from `Behavior` (not `SkillBehavior`) and uses a tile-based scoring
+model rather than the shot pipeline. The evaluation, scoring, winner-selection, and
+execution state machine are all fully reconstructed.
 
-Linear scan over a `List<TileScore>`. Returns the entry with the highest
-`TileScore.GetCompositeScore()` (`FUN_180740e50`).
+### What was achieved
 
-### Move.GetHighestTileScoreScaled (VA 0x180762D60)
+- `SkillBehavior.GetTagValueAgainst` fully reconstructed. Tag effectiveness formula confirmed.
+- `ProximityData.FindEntryForTile` and `ProximityEntry.IsValidType` confirmed. NQ-3 closed.
+- `ProximityData.HasReadyEntry` reconstructed (new function, found during Move.OnExecute analysis).
+- `GetOrder() = 0` confirmed for Deploy and Idle behaviors.
+- `Behavior.GetBehaviorWeights` and `Behavior.GetBehaviorConfig2` reconstructed. Access paths
+  to `BehaviorWeights` (via `Strategy +0x310`) and `BehaviorConfig2` (via `AgentContext +0x50`) confirmed.
+- `Move.HasUtility` reconstructed. Forced/voluntary movement distinction confirmed.
+- `Move.GetAddedScoreForPath` reconstructed. Path quality float scoring confirmed.
+- `Move.GetHighestTileScore` and `Move.GetHighestTileScoreScaled` confirmed identical logic.
+- `Move.OnEvaluate` fully reconstructed (~1,500 lines raw). Complete tile scoring formula confirmed.
+- `Move.OnExecute` fully reconstructed. Four-stage state machine confirmed.
+- `TileScore` field layout mapped to 19 confirmed or inferred fields.
+- `WeightsConfig` extended with 11 confirmed movement-related fields.
 
-Functionally identical to `GetHighestTileScore`. Used after pre-scaling has been applied
-to the candidate list by the caller.
+### What was NOT investigated
 
-### Move.GetAddedScoreForPath (VA 0x1807629F0)
+- `FUN_1806361f0` (`StrategyData.ComputeMoveCost`) — the pathfinding cost function called
+  per-tile in `Move.OnEvaluate`. This function is large and constitutes a subsystem in its
+  own right. Deferred to a separate stage.
+- `Move.OnCollect` — not yet decompiled. Its role (populating `m_Destinations`) is inferred
+  from how `OnEvaluate` consumes the list.
+- `Move.GetAddedScoreForPath` interaction with the path graph — the graph construction
+  functions (`FUN_180669480`, `FUN_180cc14c0`) are resolved by name only.
+- All Attack, Reload, Deploy, Assist, and other subclass implementations — deferred to Stage 3+.
+- `GetOrder` return values for RVAs `0x50C760`, `0x547170`, `0x546260` — not yet decompiled.
 
-Iterates tiles in a path list starting from `startIndex`. For each tile, looks up its
-`TileScore` in the tile map. Accumulates `(movementScore + utilityScore) * mult`, where
-`mult = 2.0` for the immediate next tile and `1.0` thereafter. Tiles with no map entry
-increment a `missingCount`; at loop end these are extrapolated proportionally:
-`total += total * (missingCount / remainingCount)`. Returns the accumulated float.
+---
 
-**Design note:** The 2× weight on the first path tile strongly biases the AI toward paths
-where the very next step is already toward a high-value destination.
+## 2. Tooling
 
-### Move.OnEvaluate (VA 0x1807635C0)
+`extract_rvas.py` was run prior to this stage to produce `extraction_report_master.txt`,
+covering all behavior subclasses in the `Menace.Tactical.AI.Behaviors` namespace. The
+report was used throughout Stage 2 to cross-reference field offsets and method RVAs
+against Ghidra decompilation.
 
-The central movement scoring function. Returns an int utility score for the behavior.
+No tool issues were encountered. All 13 target VAs were returned by Ghidra without
+truncation. Functions were batched in two passes: (1) the four Stage-1 dependency closures,
+(2) the five Move analysis functions.
 
-#### Guards (all return 0 on failure)
+---
 
-1. `Actor.IsIncapacitated()` — skip if incapacitated.
-2. `Strategy.IsMovementDisabled(strategyData)` — skip if strategy disables movement.
-3. `EntityInfo +0xEC` bit 2 = `isImmobile` — skip if set.
-4. `Container.IsActorLocked(actor)` — skip if locked inside a container.
-5. `Move->m_IsMovementDone` (`+0x20`) — skip if already done this turn.
-6. `Move->m_IsInsideContainerAndInert` (`+0x94`) — skip if inert.
+## 3. Class Inventory
 
-#### AP Budget
+| Class | Namespace | TypeDefIndex | Role |
+|---|---|---|---|
+| SkillBehavior | Menace.Tactical.AI.Behaviors | (base) | Base class for skill-using behaviors; provides GetTagValueAgainst |
+| ProximityData | Menace.Tactical.AI | — | Holds a list of ProximityEntry objects; used in ally-pressure scoring |
+| ProximityEntry | Menace.Tactical.AI | — | Single entry in the proximity list; tracks tile, type, and readyRound |
+| Move | Menace.Tactical.AI.Behaviors | 3650 | Tile-based movement behavior; 23 fields, full scoring and execution pipeline |
+| BehaviorWeights | (internal, via Strategy) | — | Per-behavior weight configuration accessed via Strategy+0x310 |
+| BehaviorConfig2 | (internal, via AgentContext) | — | Secondary behavior flags accessed via AgentContext+0x50 |
+| TileScore | Menace.Tactical.AI | — | Scored tile candidate; 19 fields covering movement, utility, AP, path links |
+| TagEffectivenessTable | (internal singleton) | — | Static float[] indexed by tag match result; drives GetTagValueAgainst |
 
+---
+
+## 4. Core Findings
+
+### 4.1 GetTagValueAgainst — Tag Effectiveness Formula
+
+`SkillBehavior.GetTagValueAgainst` produces a multiplicative bonus applied to the target
+score when the skill has a tag match against the opponent. The formula is:
 ```
-currentAP = actor->GetCurrentAP()
-// If prone AND m_DeployedStanceSkill available AND skill.CanUse():
-//     currentAP -= skill.GetAPCost()
-effectiveBudget = currentAP - EntityInfo.minimumAP (+0x3C) - strategyData.reservedAP (+0x118)
-if (effectiveBudget < 1) return 0
-```
-
-#### Weight Initialisation
-
-```
-weights   = Behavior.GetBehaviorWeights(self)    // Strategy+0x310
-fVar27    = weights.weightScale * WeightsConfig.movementWeightScale (+0x12C)
-// If m_HasMovedThisTurn bit (+0x23) is false:
-fVar27 *= (currentAP / EntityInfo.GetMaxAP())
-// If actor weapon not set up (actor+0x167):
-fVar27 *= 0.9
-```
-
-#### "Should Move" Decision
-
-```
-bVar4 (forced) = actor.GetStance() == 1 (prone)
-              OR (BehaviorConfig2.configFlagA AND BehaviorConfig2.configFlagB)
-              OR !Move.HasUtility(self, tileDict)
-```
-
-#### Reference Tile
-
-```
-currentTileScore = TileMap.TryGet(tileDict, currentTile)
-threshold        = GetUtilityThreshold()
-if threshold <= currentTileScore.utilityScore:
-    m_TurnsBelowUtilityThreshold = 0
-else:
-    m_TurnsBelowUtilityThreshold += 1  (once per round)
+bonus = TagEffectivenessTable[tagIndex] * WeightsConfig.tagValueScale + 1.0
 ```
 
-Reserved tile adjustment (if `m_ReservedTile` set):
-- `reservedScore.movementScore *= 0.5`
-- `reservedScore.utilityScore  *= 2.0`
+Where:
+- `tagIndex` is determined by one of two tag-matching paths (TypeA or TypeB), each
+  producing a uint index into the `TagEffectivenessTable` float array.
+- `WeightsConfig.tagValueScale` (`+0xBC`) is bypassed (replaced with `1.0`) when
+  `forImmediateUse == true`, preventing config scaling for snap decisions.
+- The `+ 1.0` ensures the bonus is always ≥ 1.0 — a no-match returns `0 * scale + 1.0 = 1.0`
+  (no effect). A strong match returns e.g. `1.0 * scale + 1.0 ≈ 2.0+` (doubling the score).
 
-#### Tile Scoring Formula
+The bonus is applied multiplicatively in `GetTargetValue`. It is the final multiplier
+before the score is written to the tile dictionary.
 
-For each candidate tile in `m_Destinations`:
+### 4.2 Move Behavior — Tile Scoring Pipeline
+
+The movement decision pipeline runs as follows:
+
+**Weight initialisation:**
 ```
-apCost = StrategyData.ComputeMoveCost(...)   // FUN_1806361f0 — NOT YET ANALYSED
-tileScore.movementScore = WeightsConfig.movementScoreWeight (+0x54)
-                        * (apCost / 20.0)
-                        * BehaviorWeights.movementWeight (+0x20)
+fWeight = BehaviorWeights.weightScale × WeightsConfig.movementWeightScale
+// Adjusted by:
+//   × (currentAP / maxAP)        if not yet moved this turn
+//   × 0.9                         if weapon not yet set up
 ```
 
-Secondary look-ahead scoring checks up to 8 adjacent tiles using the same formula with
-`WeightsConfig.secondaryPathPenalty (+0x15C)` applied. A 0.15 relative tolerance band
-prefers closer tiles among near-equal scores.
+**Per-tile score formula:**
+```
+TileScore.movementScore = WeightsConfig.movementScoreWeight
+                        × (apCost / 20.0)
+                        × BehaviorWeights.movementWeight
+```
 
-#### Post-loop Adjustments
+Where `apCost` is the integer path cost returned by `StrategyData.ComputeMoveCost`.
+The division by `20.0` normalises to a 0–1 range (max AP in the game is inferred as 20).
 
-| Condition | Modification |
+**Secondary look-ahead (up to 8 adjacent tiles):**
+```
+adjacentScore = primaryScore × WeightsConfig.secondaryPathPenalty (+0x15C)
+// Adjacent tile preferred if its score is within 15% of the current candidate
+// AND it is closer to the actor's current tile.
+```
+
+**Post-loop adjustments:**
+
+| Condition | Adjustment |
 |---|---|
-| `apCost < maxAP / 2` | `score *= WeightsConfig.shortRangePenalty (+0x168)` |
-| Chain tile fits budget | `score *= 2.0` (forward) or `score *= 0.5` (backward) |
-| Stance skill fits budget (`m_DefaultStanceSkill +0x58`) | `score *= WeightsConfig.stanceSkillBonus (+0x16C)` |
+| `apCost < maxAP / 2` | `× WeightsConfig.shortRangePenalty (+0x168)` |
+| Chain tile fits AP budget | `× 2.0` (forward chain) or `× 0.5` (backward chain) |
+| Stance skill fits budget | `× WeightsConfig.stanceSkillBonus (+0x16C)` |
 
-#### Best-tile Validation
-
+**Best tile validation:**
 ```
-if bestTile.tile == currentTile: return 0
-if !forced:
-    if GetCompositeScore(bestTile) < GetCompositeScore(currentTile) * WeightsConfig.minimumImprovementRatio (+0x150):
-        return 0
+// Only move if:
+bestTileCompositeScore >= currentTileCompositeScore × WeightsConfig.minimumImprovementRatio (+0x150)
+// Or if movement is "forced" (no tile exceeds utility threshold anywhere in the map)
 ```
 
-#### Final Score Return
-
+**Final score return:**
 ```
-return (int)(fVar27 * WeightsConfig.finalMovementScoreScale (+0x128))
+return (int)(fWeight × WeightsConfig.finalMovementScoreScale (+0x128))
 ```
 
-### Move.OnExecute (VA 0x180766370)
+**"Forced" movement** is triggered when:
+1. Actor is prone (stance == 1), OR
+2. `BehaviorConfig2.configFlagA` AND `BehaviorConfig2.configFlagB` are both set, OR
+3. `Move.HasUtility()` returns false — no tile in the map meets the utility threshold.
 
-Four-stage state machine. Returns `false` while in progress, `true` when complete.
+When forced, the minimum-improvement filter is bypassed and the unit considers all
+destinations regardless of their utility score.
 
-**Stage 0 — Re-routing setup** (when `m_IsMovementDone` true at entry):
-Releases the reserved tile entity (`MovementEntity.Release`), claims the new target tile
-entity (`MovementEntity.Claim`). Updates `m_PreviousContainerActor (+0x98)`.
+**Score scaling when forced:**
+```
+ratio = powf(bestScore / currentScore, exponent)
+fWeight *= max(ratio, 0.33)
+```
+This provides a soft floor of 0.33× the base weight — the unit still has reduced urgency
+even when forced, unless the destination is substantially better.
 
-**Stage 1 — UseSkillBefore loop:**
-Iterates `m_UseSkillBefore (+0x70)` from `m_UseSkillBeforeIndex (+0x78)`. Calls
-`Skill.Use(currentTile, flags=0x10)` for each. Returns `false` (not done) until all
-pre-move skills are consumed.
+### 4.3 Move.OnExecute — State Machine
 
-**Stage 2 — Timer wait / movement trigger:**
-Checks `Time.time >= m_WaitUntil (+0x90)`. Once elapsed, sets `m_IsExecuted (+0x8C) = true`
-and `m_IsMovementDone = true`. Assembles a `flags` bitmask:
-- bit 0 = `!Goal.IsEmpty(targetTile)`
-- bit 1 = `Actor.CanDeploy()`
-- bit 2 = `TileScore.isPeek (+0x61)`
+Four sequential stages. Returns `false` (keep ticking) until all stages complete.
+```
+Stage 0: Re-routing setup (release old reserved tile entity, claim new target tile entity)
+Stage 1: UseSkillBefore loop — consume m_UseSkillBefore list, one skill per tick
+Stage 2: Timer wait → trigger Actor.StartMove(targetTile, flags)
+Stage 3: UseSkillAfter loop — consume m_UseSkillAfter list, one skill per tick
+Stage 4: Container exit handling / final Skill.Activate → return true
+```
 
-Calls `Actor.StartMove(actor, targetTile, flags)`. If already at target, reads
-`TileScore.stance (+0x62)` to set final stance.
-
-**Stage 3 — UseSkillAfter loop:**
-Iterates `m_UseSkillAfter (+0x80)` from `m_UseSkillAfterIndex (+0x88)`. Calls
-`Skill.Activate(currentTile)` for each. Returns `false` until all are consumed.
-
-**Stage 4 — Container exit / final activation:**
-If `m_PreviousContainerActor (+0x98)` is set and has a ready ProximityData entry:
-- If deployable: broadcasts container-exit event, calls `ContainerActor.Notify(1)`, returns `true`.
-- Otherwise: evaluates strategy satisfaction, marks completion, returns `true`.
-
-Final fallback: `Skill.Activate(currentTile)`. Returns `actor->field_0x15F == 0`.
+`flags` bitmask passed to `Actor.StartMove`:
+- bit 0 = `!Goal.IsEmpty(targetTile)` — tile has a goal entity
+- bit 1 = `Actor.CanDeploy()` — actor has a deployable stance
+- bit 2 = `TileScore.isPeek (+0x61)` — this is a peek-in-cover move
 
 ---
 
-## Field Offset Tables (Stage 2 additions)
+## 5. Full Pipeline: Move Behavior Flow
+```
+Move.OnCollect (not yet analysed)
+  → Populates m_Destinations (List<TileScore>)
+  → Populates m_UseSkillBefore, m_UseSkillAfter
 
-### TileScore
-| Offset | Field | Type | Status |
-|---|---|---|---|
-| +0x10 | tile | Tile* | confirmed |
-| +0x18 | entity | Entity* | confirmed |
-| +0x20 | movementScore | float | confirmed |
-| +0x24 | secondaryMovementScore | float | confirmed |
-| +0x28 | exposureScore | float | confirmed |
-| +0x2C | rangeScore | float | confirmed |
-| +0x30 | utilityScore | float | confirmed |
-| +0x34 | coverScore | float | confirmed |
-| +0x40 | apCost | int | confirmed |
-| +0x44 | chainCost | int | confirmed |
-| +0x48 | destinationRef | TileScore* | inferred |
-| +0x50 | prevTileRef | TileScore* | inferred |
-| +0x58 | nextTileRef | TileScore* | inferred |
-| +0x60 | isForward | bool | inferred |
-| +0x61 | isPeek | bool | confirmed |
-| +0x62 | stance | byte | confirmed |
+Move.OnEvaluate(actor)
+  ├── Guards: incapacitated? immobile? movement disabled? locked? done? inert?
+  ├── AP budget: currentAP - minimumAP - reservedAP < 1 → return 0
+  ├── Weight init: fWeight = weightScale × movementWeightScale × apRatio × weaponPenalty
+  ├── Forced check: HasUtility(tileDict) → voluntary vs forced movement
+  ├── Reference tile: TileMap.TryGet(currentTile) → currentTileScore
+  ├── Reserved tile adjustment: movementScore×0.5, utilityScore×2.0
+  ├── Destination loop (over m_Destinations):
+  │     ├── StrategyData.ComputeMoveCost(...) → apCost
+  │     ├── TileScore.movementScore = movementScoreWeight × (apCost/20.0) × movementWeight
+  │     ├── Secondary look-ahead: up to 8 adjacent tiles, secondaryPathPenalty applied
+  │     ├── Post-loop: shortRangePenalty, chainBonus, stanceSkillBonus
+  │     └── Competitor comparison: mode 1 (tag-type) or mode 2 (round-snapshot)
+  ├── Winner: Move.GetHighestTileScoreScaled(m_Destinations)
+  ├── Validation: winner.tile != currentTile AND score >= currentScore × minimumImprovementRatio
+  ├── Score scaling: powf ratio (forced) or denominator ratio (voluntary)
+  ├── Peek bonus: ×4.0 if m_IsAllowedToPeekInAndOutOfCover and low AP
+  ├── Marginal move penalty: ×0.25 if barely better than staying
+  ├── Skill scheduling: add to m_UseSkillBefore / m_UseSkillAfter
+  └── return (int)(fWeight × finalMovementScoreScale)
 
-### BehaviorWeights (Strategy +0x310)
-| Offset | Field | Type | Status |
-|---|---|---|---|
-| +0x14 | movementWeightMultiplier | float (≥1.0) | confirmed |
-| +0x20 | movementWeight | float | confirmed |
-| +0x2C | weightScale | float | confirmed |
-
-### BehaviorConfig2 (AgentContext +0x50)
-| Offset | Field | Type | Status |
-|---|---|---|---|
-| +0x28 | configFlagA | bool | confirmed |
-| +0x34 | configFlagB | bool | confirmed |
-
-### ProximityEntry (additions)
-| Offset | Field | Type | Status |
-|---|---|---|---|
-| +0x10 | tile | Tile* | confirmed |
-| +0x18 | readyRound | int (-1=unassigned) | confirmed |
-| +0x34 | type | int enum (0/1=valid, 2+=excluded) | confirmed |
-
-### Agent (additions)
-| Offset | Field | Type | Status |
-|---|---|---|---|
-| +0x10 | agentContext | AgentContext* | confirmed |
-| +0x18 | actor | Actor* | confirmed |
-| +0x60 | tileDict | Dictionary<Tile,TileScore>* | confirmed (Stage 1) |
-
-### Strategy (additions)
-| Offset | Field | Type | Status |
-|---|---|---|---|
-| +0x2B0 | strategyData | StrategyData* | confirmed |
-| +0x310 | behaviorWeights | BehaviorWeights* | confirmed |
-
-### StrategyData (additions)
-| Offset | Field | Type | Status |
-|---|---|---|---|
-| +0x60 | tierMode | int | inferred |
-| +0x118 | reservedAP | int | confirmed |
-
-### EntityInfo (additions)
-| Offset | Field | Type | Status |
-|---|---|---|---|
-| +0x3C | minimumAP | int | confirmed |
-| +0xEC bit 2 | isImmobile | bool | confirmed |
-
-### WeightsConfig (additions this stage)
-| Offset | Field | Type | Status |
-|---|---|---|---|
-| +0x54 | movementScoreWeight | float | confirmed |
-| +0xBC | tagValueScale | float | confirmed |
-| +0x128 | finalMovementScoreScale | float | confirmed |
-| +0x12C | movementWeightScale | float | confirmed |
-| +0x148 | movementScorePathWeight | float | inferred |
-| +0x14C | pathCostPenaltyWeight | float | inferred |
-| +0x150 | minimumImprovementRatio | float | confirmed |
-| +0x154 | deployMovementScoreThreshold | float | confirmed |
-| +0x15C | secondaryPathPenalty | float | confirmed |
-| +0x168 | shortRangePenalty | float | confirmed |
-| +0x16C | stanceSkillBonus | float | confirmed |
+Move.OnExecute(actor)
+  ├── Stage 0: rerouting setup (entity claim/release)
+  ├── Stage 1: UseSkillBefore loop
+  ├── Stage 2: wait timer → Actor.StartMove(targetTile, flags)
+  ├── Stage 3: UseSkillAfter loop
+  └── Stage 4: container exit / Skill.Activate → return true
+```
 
 ---
 
-## Open Questions After Stage 2
+## 6. Class Sections
 
-**NQ-11** `FUN_1806361f0` — `StrategyData.ComputeMoveCost(...)`. The pathfinding cost
-function called per-tile in `Move.OnEvaluate`. Returns int AP cost. Large function;
-recommend a separate investigation stage.
+### 6.1 SkillBehavior — GetTagValueAgainst (dependency closure)
 
-**NQ-8** (partial) — GetOrder return values for `0x18050C760`, `0x180547170`,
-`0x180546260` not yet decompiled. Low priority.
+**Namespace:** Menace.Tactical.AI.Behaviors
+**Base class:** Behavior
+**Role:** Provides tag-based effectiveness scoring against a specific opponent.
+This method was identified in Stage 1 as the final unresolved multiplier in `GetTargetValue`.
+
+**New fields confirmed this stage (on classes accessed within GetTagValueAgainst):**
+
+TagEffectivenessTable (singleton, DAT_18397ae78):
+| Offset | Type | Name | Notes |
+|---|---|---|---|
+| +0x18 | int | length | Array length. Bounds-checked before access. Confirmed. |
+| +0x20 | float[] | values | Float array, stride 4. Index computed by TagMatcher. Confirmed. |
+
+WeightsConfig (singleton, DAT_18394c3d0):
+| Offset | Type | Name | Notes |
+|---|---|---|---|
+| +0xBC | float | tagValueScale | Multiplies table value. Bypassed (= 1.0) when forImmediateUse. Confirmed. |
+
+**Methods table:**
+| Method | RVA | VA | Notes |
+|---|---|---|---|
+| GetTagValueAgainst | 0x73BFA0 | 0x18073BFA0 | Fully analysed this stage. |
+
+---
+
+### 6.2 ProximityData / ProximityEntry
+
+**Role:** `ProximityData` holds a list of `ProximityEntry` objects. Each entry tracks a
+tile, its type enum (0=ground, 1=low, 2+=excluded), and a `readyRound` (-1 = unassigned,
+≥0 = assigned to a specific round). Two query functions were analysed: `FindEntryForTile`
+(linear scan by tile pointer equality) and `HasReadyEntry` (any entry with `readyRound ≥ 0`).
+
+A third function from Stage 1, `IsValidType`, reads `entry->type (+0x34)` and returns
+true only for values 0 or 1 — i.e. ground and low-profile entries contribute to the
+ally-pressure bonus in `GetTargetValue`; aerial or other types (2+) do not.
+
+**ProximityData fields:**
+| Offset | Type | Name | Notes |
+|---|---|---|---|
+| +0x48 | List<ProximityEntry>* | entries | Iterated by FindEntryForTile and HasReadyEntry. Confirmed. |
+
+**ProximityEntry fields:**
+| Offset | Type | Name | Notes |
+|---|---|---|---|
+| +0x10 | Tile* | tile | Matched against search target in FindEntryForTile. Confirmed. |
+| +0x18 | int | readyRound | -1 = unassigned. ≥0 = assigned to round index. Confirmed. |
+| +0x34 | int | type | 0/1 = valid for pressure bonus. 2+ = excluded. Confirmed. |
+
+**Methods table:**
+| Method | RVA | VA | Notes |
+|---|---|---|---|
+| FindEntryForTile | 0x717730 | 0x180717730 | Fully analysed Stage 1 (NQ-3a). |
+| IsValidType | 0x717A40 | 0x180717A40 | Fully analysed Stage 1 (NQ-3b). |
+| HasReadyEntry | 0x717870 | 0x180717870 | Fully analysed Stage 2. |
+
+---
+
+### 6.3 Move
+
+**Namespace:** Menace.Tactical.AI.Behaviors
+**TypeDefIndex:** 3650
+**Base class:** Behavior (not SkillBehavior — does not use the shot pipeline)
+**Role:** Selects and executes the best movement destination for an actor. Operates on a
+pre-populated tile dictionary (`Agent.tileDict`) and a list of candidate destinations
+(`m_Destinations`). Scores tiles using AP cost, utility, cover, and path quality.
+
+**Fields table:**
+| Offset | Type | Name | Notes |
+|---|---|---|---|
+| +0x020 | bool | m_IsMovementDone | True = movement complete this turn. Early-out guard. Confirmed. |
+| +0x021 | bool | m_HasMovedThisTurn | True = already moved. Affects weight scaling. Confirmed. |
+| +0x022 | bool | m_HasDelayedMovementThisTurn | Set when marginal move penalty applied (×0.25). Confirmed. |
+| +0x023 | bool | [hasMovedBit] | Second bit of HasMovedThisTurn word. AP ratio gating. Confirmed. |
+| +0x024 | bool | m_IsAllowedToPeekInAndOutOfCover | Enables ×4.0 peek bonus in low-AP situations. Confirmed. |
+| +0x028 | TileScore* | m_TargetTile | Chosen destination (TileScore including tile + scores). Confirmed. |
+| +0x030 | Tile* | m_ReservedTile | Tile whose entity is currently claimed by this actor. Confirmed. |
+| +0x038 | int | m_TurnsBelowUtilityThreshold | Counter: how many rounds below threshold. Confirmed. |
+| +0x03C | int | m_TurnsBelowUtilityThresholdLastTurn | Last round index when counter was incremented. Confirmed. |
+| +0x040 | List<TileScore>* | m_Destinations | Pre-scored candidate tiles. Populated by OnCollect. Confirmed. |
+| +0x048 | List<Vector3>* | m_Path | Primary movement path. Confirmed. |
+| +0x050 | List<Vector3>* | m_AlternativePath | Fallback path. Confirmed. |
+| +0x058 | Skill* | m_DeployedStanceSkill | Deployed-stance skill; AP cost subtracted if usable and prone. Confirmed. |
+| +0x060 | Skill* | m_DefaultStanceSkill | Default-stance skill; triggers stanceSkillBonus if affordable. Confirmed. |
+| +0x068 | Skill* | m_SetupWeaponSkill | Weapon setup skill. Confirmed. |
+| +0x070 | List<Skill>* | m_UseSkillBefore | Skills to activate before moving. Consumed in OnExecute Stage 1. Confirmed. |
+| +0x078 | int | m_UseSkillBeforeIndex | Current index into m_UseSkillBefore. Confirmed. |
+| +0x080 | List<Skill>* | m_UseSkillAfter | Skills to activate after moving. Consumed in OnExecute Stage 3. Confirmed. |
+| +0x088 | int | m_UseSkillAfterIndex | Current index into m_UseSkillAfter. Confirmed. |
+| +0x08C | bool | m_IsExecuted | True = StartMove has been called. Confirmed. |
+| +0x090 | float | m_WaitUntil | Game time threshold; movement triggers once Time.time exceeds this. Confirmed. |
+| +0x094 | bool | m_IsInsideContainerAndInert | Early-out guard: true = skip evaluation. Confirmed. |
+| +0x098 | Actor* | m_PreviousContainerActor | Set in OnExecute Stage 0; used in Stage 4 container-exit logic. Confirmed. |
+
+**Methods table:**
+| Method | RVA | VA | Notes |
+|---|---|---|---|
+| .ctor | 0x766D00 | 0x180766D00 | Not analysed. |
+| GetOrder | 0x546260 | 0x180546260 | Returns int. Not yet decompiled. |
+| GetID | 0x54E040 | 0x18054E040 | Not analysed. |
+| IsMovementDone | 0x4FDE30 | 0x18004FDE30 | Accessor. Not analysed. |
+| HasMovedThisTurn | 0x4FDE40 | 0x18004FDE40 | Accessor. Not analysed. |
+| HasDelayedMovementThisTurn | 0x7632E0 | 0x1807632E0 | Not analysed. |
+| IsDelayingMovement | 0x502F40 | 0x180502F40 | Not analysed. |
+| IsInsideContainerAndInert | 0x763460 | 0x180763460 | Not analysed. |
+| GetTargetTile | 0x4F04B0 | 0x18004F04B0 | Accessor. Not analysed. |
+| **OnEvaluate** | **0x7635C0** | **0x1807635C0** | **Fully analysed. Core scoring function.** |
+| **OnExecute** | **0x766370** | **0x180766370** | **Fully analysed. Four-stage state machine.** |
+| OnReset | 0x766C00 | 0x180766C00 | Not analysed. |
+| OnBeforeProcessing | 0x763470 | 0x180763470 | Not analysed. |
+| CheckInsideContainerAndInert | 0x762910 | 0x180762910 | Not analysed. |
+| OnNewTurn | 0x766A40 | 0x180766A40 | Not analysed. |
+| OnClear | 0x763560 | 0x180763560 | Not analysed. |
+| GetTilesSortedByScore | 0x763170 | 0x180763170 | Not analysed. |
+| GetTilesSortedByDistance | 0x763000 | 0x180763000 | Not analysed. |
+| **GetHighestScore** | **0x762BF0** | **0x180762BF0** | Not analysed (different from GetHighestTileScore). |
+| **GetHighestTileScore** | **0x762EB0** | **0x180762EB0** | **Fully analysed. Max-scan over composite score.** |
+| **GetHighestTileScoreScaled** | **0x762D60** | **0x180762D60** | **Fully analysed. Identical to GetHighestTileScore.** |
+| **GetAddedScoreForPath** | **0x7629F0** | **0x1807629F0** | **Fully analysed. Path quality float accumulator.** |
+| **HasUtility** | **0x7632F0** | **0x1807632F0** | **Fully analysed. Forced/voluntary movement gate.** |
+
+---
+
+### 6.4 BehaviorWeights / BehaviorConfig2
+
+**Role:** Two configuration objects accessed via the behavior's owning agent chain.
+Neither appears directly as a named class in the dump — they are inferred from the
+access patterns of `GetBehaviorWeights` and `GetBehaviorConfig2`.
+
+**Access paths:**
+```
+BehaviorWeights:  self->agent (+0x10) -> actor (+0x18) -> GetStrategy() -> strategy->behaviorWeights (+0x310)
+BehaviorConfig2:  self->agent (+0x10) -> agentContext (+0x10) -> behaviorConfig (+0x50)
+```
+
+**BehaviorWeights fields:**
+| Offset | Type | Name | Notes |
+|---|---|---|---|
+| +0x14 | float | movementWeightMultiplier | Clamped to ≥ 1.0 when used in final denominator. Confirmed. |
+| +0x20 | float | movementWeight | Per-behavior base weight; part of tile score formula. Confirmed. |
+| +0x2C | float | weightScale | Multiplied with WeightsConfig.movementWeightScale at start. Confirmed. |
+
+**BehaviorConfig2 fields:**
+| Offset | Type | Name | Notes |
+|---|---|---|---|
+| +0x28 | bool | configFlagA | Part of forced-movement condition. Confirmed. |
+| +0x34 | bool | configFlagB | Part of forced-movement condition. Confirmed. |
+
+**Methods:**
+| Method | VA | Notes |
+|---|---|---|
+| Behavior.GetBehaviorWeights | 0x180738FE0 | Fully analysed. 6 lines. |
+| Behavior.GetBehaviorConfig2 | 0x180739020 | Fully analysed. 4 lines. |
+
+---
+
+### 6.5 TileScore
+
+**Role:** The core data structure for movement scoring. Each `TileScore` represents a
+candidate destination tile with its computed scores, AP cost, path links, and metadata
+flags. Instances are stored in `m_Destinations` (List) and in the agent's tile dictionary.
+
+**Fields table:**
+| Offset | Type | Name | Notes |
+|---|---|---|---|
+| +0x10 | Tile* | tile | Pointer to the game tile. Confirmed from multiple accesses. |
+| +0x18 | Entity* | entity | Entity at this tile, if any. Used in targeting/container checks. Confirmed. |
+| +0x20 | float | movementScore | Primary computed score. Written by tile formula. Confirmed. |
+| +0x24 | float | secondaryMovementScore | Written in secondary look-ahead path. Confirmed. |
+| +0x28 | float | exposureScore | Exposure/coverage component. Used in path accumulator and competitor comparisons. Confirmed. |
+| +0x2C | float | rangeScore | Copied from +0x28 in some paths; separate range evaluation. Confirmed. |
+| +0x30 | float | utilityScore | General utility value. Threshold comparisons, reserved tile scaling. Confirmed. |
+| +0x34 | float | coverScore | Modified by stance/range post-loop adjustments. Confirmed. |
+| +0x40 | int | apCost | Path cost in AP. Written by ComputeMoveCost; 0 = not yet scored. Confirmed. |
+| +0x44 | int | chainCost | AP cost for a chained subsequent tile. Chain bonus logic. Confirmed. |
+| +0x48 | TileScore* | destinationRef | Forward reference to target destination if this is a path node. Inferred. |
+| +0x50 | TileScore* | prevTileRef | Previous tile in path chain. Inferred from chain logic. Inferred. |
+| +0x58 | TileScore* | nextTileRef | Next tile in path chain. Inferred. |
+| +0x60 | bool | isForward | Direction flag; set true for forward-chain tiles. Inferred. |
+| +0x61 | bool | isPeek | True = peek-in-cover move. Passed as bit 2 of StartMove flags. Confirmed. |
+| +0x62 | byte | stance | Stance to adopt on arrival. Written to actor on reach. Confirmed. |
+
+**Key methods (resolved by call site):**
+| Method | Address | Notes |
+|---|---|---|
+| GetScore | FUN_180740f20 | Used in GetHighestTileScore. |
+| GetCompositeScore | FUN_180740e50 | Used in GetHighestTileScoreScaled and competitor comparisons. Distinct from GetScore. |
+
+---
+
+### 6.6 TagEffectivenessTable
+
+**Role:** Singleton static table. A float array indexed by tag match result, providing
+the raw effectiveness value before `WeightsConfig.tagValueScale` is applied. Accessed
+only from `GetTagValueAgainst`.
+
+**Fields:**
+| Offset | Type | Name | Notes |
+|---|---|---|---|
+| +0x18 | int | length | Array length. Bounds check enforced before access. Confirmed. |
+| +0x20 | float[] | values | stride 4. Index is uint from TagMatcher. Confirmed. |
+
+---
+
+## 7. Ghidra Address Reference
+
+### Fully analysed this stage
+
+| VA | RVA | Method | Class | Notes |
+|---|---|---|---|---|
+| 0x18073BFA0 | 0x73BFA0 | GetTagValueAgainst | SkillBehavior | NQ-7 closed. Tag effectiveness formula confirmed. |
+| 0x180717730 | 0x717730 | FindEntryForTile | ProximityData | NQ-3a closed. Linear scan. |
+| 0x180717A40 | 0x717A40 | IsValidType | ProximityEntry | NQ-3b closed. Type 0/1 valid only. |
+| 0x180519A90 | 0x519A90 | GetOrder | Deploy / Idle | NQ-8 partial. Returns 0. |
+| 0x180717870 | 0x717870 | HasReadyEntry | ProximityData | readyRound ≥ 0 check. |
+| 0x180738FE0 | 0x738FE0 | GetBehaviorWeights | Behavior | Via Strategy+0x310. |
+| 0x180739020 | 0x739020 | GetBehaviorConfig2 | Behavior | Via AgentContext+0x50. |
+| 0x1807632F0 | 0x7632F0 | HasUtility | Move | Forced/voluntary gate. |
+| 0x1807629F0 | 0x7629F0 | GetAddedScoreForPath | Move | Path quality float accumulator. |
+| 0x180762EB0 | 0x762EB0 | GetHighestTileScore | Move | Max-scan on GetCompositeScore. |
+| 0x180762D60 | 0x762D60 | GetHighestTileScoreScaled | Move | Identical logic to above. |
+| 0x1807635C0 | 0x7635C0 | OnEvaluate | Move | Full scoring pipeline. ~1500 lines raw. |
+| 0x180766370 | 0x766370 | OnExecute | Move | Four-stage state machine. |
+
+### Secondary targets — not yet analysed
+
+| VA | RVA | Method | Class | Notes |
+|---|---|---|---|---|
+| 0x18073BFA0 | — | GetTagValueAgainst | SkillBehavior | Complete — listed here for reference. |
+| 0x1806361F0 | — | ComputeMoveCost | StrategyData | NQ-11. Per-tile pathfinding cost. Separate stage. |
+| 0x180762BF0 | 0x762BF0 | GetHighestScore | Move | Float variant. Not yet decompiled. |
+| 0x180763170 | 0x763170 | GetTilesSortedByScore | Move | Not analysed. |
+| 0x180763000 | 0x763000 | GetTilesSortedByDistance | Move | Not analysed. |
+| 0x18050C760 | 0x50C760 | GetOrder | Assist/Attack | NQ-8. Returns unknown int. |
+| 0x180547170 | 0x547170 | GetOrder | Reload/MovementSkill | NQ-8. Returns unknown int. |
+| 0x180546260 | 0x546260 | GetOrder | Move/Idle.OnEvaluate | NQ-8. Returns unknown int. |
+
+---
+
+## 8. Key Inferences and Design Notes
+
+**GetHighestTileScore vs GetHighestTileScoreScaled are identical.** Both functions
+compile to the same logic. The distinction is purely in the call context: "Scaled" is
+called after the caller has already applied multipliers to the score fields in the list.
+The function itself does not scale anything. This is a naming convention for the caller's
+intent, not a functional difference in the callee.
+
+**The `/ 20.0` normalisation in the tile score formula.** The expression
+`apCost / 20.0` appears consistently in the score formula. 20 is inferred as the maximum
+AP value in the game. This normalises AP cost to a 0–1 ratio, making the score
+independent of absolute AP counts. Confirmed by `EntityInfo.GetMaxAP()` being called and
+used in the AP ratio weight adjustment.
+
+**Forced movement is a safety valve, not a reroute.** When `HasUtility()` returns false,
+the AI does not conclude "I have nowhere to go." It concludes "I have no preferred
+destination, so I should move to whatever is best regardless." The score still goes through
+the full formula and can return 0 if the winner's composite score fails validation. The
+unit can legitimately stay put even in forced mode.
+
+**The `m_TurnsBelowUtilityThreshold` counter increments once per round.** The check
+`currentRound != m_TurnsBelowUtilityThresholdLastTurn` guards against multiple
+increments in the same round. This means a unit that has been below threshold for N full
+rounds accumulates N in this counter. It is used in the forced-movement path to decide
+whether to override the threshold filter.
+
+**Reserved tile scoring is asymmetric.** The reserved tile has its `movementScore`
+halved (making movement there less attractive) but its `utilityScore` doubled (making
+staying near it more attractive). This biases the AI toward maintaining proximity to a
+reserved position without forcing it to move there.
+
+**Peek bonus is extreme.** When `m_IsAllowedToPeekInAndOutOfCover` is set and the actor
+is low on AP (`currentAP < actor->field_0x14C`), the movement score is multiplied by 4.0.
+This makes peek-capable units in low-AP states very strongly prefer peek positions.
+
+**Marginal move penalty prevents jitter.** When the best destination is only marginally
+better than the current position, `fWeight` is multiplied by `0.25` and
+`m_HasDelayedMovementThisTurn` is set. This prevents an actor from making trivially small
+repositions every turn, which would waste AP and produce erratic movement.
+
+**Chain bonus is bidirectional with a sign check.** A forward chain (the path continues
+toward a better tile) multiplies by 2.0. A backward chain (the path retreats) multiplies
+by 0.5. The forward/backward distinction is determined by comparing the chain tile's
+`rangeScore (+0x2C)` against 0.0.
+
+**`Actor.field_0x15F` appears to be a "movement locked" flag.** It gates the UseSkillAfter
+loop and the final Activate call in OnExecute. When set, the actor cannot fire skills or
+proceed to completion — it remains in progress. The identity of this flag is inferred from
+context; it may be a server-authority lock or a physics state.
+
+**Container exit in OnExecute triggers a separate event broadcast.** When an actor exits a
+container (`m_PreviousContainerActor` is set), OnExecute broadcasts a container-exit event
+(`FUN_1819c8600`) and calls `ContainerActor.Notify(1)`. This is distinct from the normal
+move completion path and produces additional side effects not yet fully traced.
+
+---
+
+## 9. Open Questions
+
+**NQ-11** `FUN_1806361f0` — `StrategyData.ComputeMoveCost`. Called per-candidate-tile in
+`Move.OnEvaluate`. Returns int AP cost. This is the pathfinding cost function and likely
+wraps path graph queries. Large function; warrants its own stage.
+*Next step: Decompile at VA 0x1806361F0. Expect multiple nested calls into path graph.*
+
+**NQ-8 (partial)** GetOrder return values for `0x18050C760` (Assist/Attack),
+`0x180547170` (Reload/MovementSkill), `0x180546260` (Move/Idle). These establish the
+scheduling priority order among behaviors. Currently only 0 (Deploy/Idle) is confirmed.
+*Next step: Decompile any one — expected `return N;` (3 lines).*
+
+**NQ-4/NQ-5** `WeightsConfig` full field map. Several fields used in movement scoring
+(`+0x78`, `+0x148`, `+0x14C`) are inferred by position and usage context but not yet
+named. The class dump is needed to confirm all field names.
+*Next step: Run `extract_rvas.py` targeting `WeightsConfig` class; full field dump.*
+
+**NQ-6** `Skill +0x48 = shotGroups` confirmed as a Skill field (not SkillBehavior). The
+dump.cs annotation `m_AdditionalRadius` at `SkillBehavior +0x48` needs examination —
+this may be a dump artefact or the field is genuinely on both classes at the same offset.
+*Next step: `extract_rvas.py` on Skill class; verify field layout at +0x48.*
+
+**NQ-9** `FUN_1806f3c30` (`Skill.Activate`) return convention. In `SkillBehavior.OnExecute`
+Stage 4, the result is XOR'd with 1 before being used as a return value. If Activate
+returns 1 on success, XOR makes OnExecute return 0 (continue). This suggests a
+false=done or 0=success convention — uncommon but consistent with the observed branching.
+*Next step: Validate against a leaf subclass OnExecute (e.g. Reload.OnExecute RVA 0x767B70).*
+
+**NQ-12 (closed)** `GetHighestTileScoreScaled` — confirmed identical to `GetHighestTileScore`.
+
+**NQ-13 (closed)** `FUN_180717870` — confirmed as `ProximityData.HasReadyEntry`.
