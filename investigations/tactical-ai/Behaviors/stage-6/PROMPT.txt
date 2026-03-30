@@ -292,9 +292,9 @@ The following are explicitly out of scope unless operator instructs otherwise:
 
 ## Next Priority Table
 
-Stage 6 options — select based on operator intent:
+Stage 6 objectives
 
-**Option A: Close the Deploy class (recommended if full behavior lifecycle needed)**
+**Step 1: Close the Deploy class (full behavior lifecycle needed)**
 | Priority | Method | VA | Rationale |
 |---|---|---|---|
 | 1 | Deploy.OnEvaluate | 0x180739B00 (RVA 0x73AD00) | Deploy scoring main entry |
@@ -303,14 +303,14 @@ Stage 6 options — select based on operator intent:
 
 Batch all three — expected moderate length each.
 
-**Option B: Confirm remaining inferred fields (recommended if data model accuracy needed)**
+**Step 2: Confirm remaining inferred fields (improve data model accuracy)**
 | Priority | Method | VA | Rationale |
 |---|---|---|---|
 | 1 | Run extract_rvas.py on EntityInfo | — | Closes NQ-19, NQ-38, NQ-39 with no Ghidra work |
 | 2 | Run extract_rvas.py on WeightsConfig | — | Closes NQ-4/5 with no Ghidra work |
 | 3 | Run extract_rvas.py on Strategy | — | Closes NQ-16 with no Ghidra work |
 
-**Option C: Collation (if investigation is complete)**
+**Step 3: Collation (if investigation is complete)**
 If operator is satisfied with current scope, Stage 6 is the collation stage.
 Provide all stage REPORT.md and RECONSTRUCTIONS.md files and invoke the
 research-handoff skill in collation mode to produce the final unified deliverable.
