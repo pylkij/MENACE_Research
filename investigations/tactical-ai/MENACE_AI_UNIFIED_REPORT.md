@@ -596,7 +596,6 @@ The AI is more aggressive when it prioritises attack opportunity over safety and
 | `DamageScoreMult` | `+0x108` | Increase | `InflictDamage` behavior scores higher |
 | `UtilityPOW` / `UtilityPostPOW` | `+0x20`, `+0x28` | Decrease toward 1.0 | More linear (less compressed) utility scoring; high-utility tiles stand out more |
 | `SafetyPOW` / `SafetyPostPOW` | `+0x30`, `+0x38` | Decrease toward 0 | Flattens safety penalty; AI is less deterred by threats |
-| `StrategyData.thresholdMultB` | — | Decrease | Lowers the utility threshold; more risky behaviors get approved |
 | `OpportunityLevelPOW` | `+0x4C` | Increase | Agents with high attack opportunities are scheduled first |
 
 **Tier 2 — code:**
@@ -616,12 +615,11 @@ The AI prioritises survival, stays in cover, avoids exposure, and waits for the 
 | `CoverAgainstOpponents` | `+0x70` | Increase | Cover quality drives more of the positional score |
 | `ThreatFromOpponents` | `+0x74` | Increase | Threats are penalised more heavily |
 | `FleeFromOpponentsPOW` | `+0xB8` | Increase | Stronger flee-pressure from enemies that can target the unit |
-| `coverMult_Full` | `+0x8C` | Increase | Full cover tiles score significantly higher |
-| `coverMult_None` | `+0x9C` | Decrease (make more negative or reduce) | Exposed positions are penalised more |
+| `ThreatFromPinnedDownOpponents` | `+0x8C` | Increase | Pinned enemies still perceived as threatening; AI stays behind cover longer |
+| `ThreatFromOpponentsDamage` | `+0x7C` | Increase | Damage threat component weighted more heavily; high-damage enemies drive cover-seeking |
 | `SafetyPOW` / `SafetyPostScale` | `+0x30`, `+0x3C` | Increase | Amplifies safety score; safe tiles dominate selection |
 | `DistanceScale` | `+0x40` | Increase | Stronger distance penalty; AI prefers tiles close to current position |
 | `UtilityThreshold` | `+0x13C` | Increase | Raises the bar for attacking; AI will wait for better shots |
-| `StrategyData.thresholdMultB` | — | Increase | Fewer behaviors approved; AI acts more conservatively |
 | `MoveIfNewTileIsBetterBy` | `+0x150` | Increase | Requires a larger improvement before choosing to move |
 
 ---
@@ -634,11 +632,9 @@ Currently, coordination is implicit — agents are scheduled by priority score, 
 
 | Field | Offset | Change | Effect |
 |---|---|---|---|
-| `CoFireBonus` (in `WeightsConfig`) | — | Increase | Agents score higher when targeting enemies that allies have LoS to; focus-fire emerges naturally |
 | `IncludeAttacksAgainstAllOpponentsMult` | `+0xC0` | Increase | Increases weight of attacks that can hit multiple enemies; group tactics emerge |
 | `AllyMetascoreAgainstThreshold` | `+0xAC` | Increase | Raises how much the system values ally proximity when approving behaviors |
 | `DistanceToAlliesScore` | `+0xD0` | Increase (deployment) | Units deploy closer together, establishing tighter initial formations |
-| `Deploy.allyProximityPenaltyScale` | `WeightsConfig +0xD0` | Decrease | Reduces the spread-out penalty during deployment; units deploy in tighter clusters |
 | `OccupyZoneValue` | `+0x68` | Increase | Multiple agents converge on the same objective zone |
 
 **Tier 2 — code:**
@@ -661,8 +657,6 @@ The AI moves more, repositions aggressively, and seeks flanking positions rather
 | `MoveBaseScore` | `+0x128` | Increase | Direct scaling of move score |
 | `DistanceToCurrentTile` (AIWeightsTemplate) | `+0x54` | Increase | `DistanceToCurrentTile` criterion accumulates more strongly; distant tiles are favoured |
 | `TileScoreDifferenceMult` | `+0x134` | Increase | Larger score differences between tiles encourage movement |
-| `flankingBonusMultiplier` | `+0xA0` | Increase | Flanking positions (short weapon-to-target distance) score higher |
-| `W_deploy` (Criterion.Score) | in `AIWeightsTemplate` | Increase | Positional advancement contributes more to tile scoring |
 | `MoveIfNewTileIsBetterBy` | `+0x150` | Decrease | Lower threshold to move; AI repositions more readily |
 | `DistanceScale` | `+0x40` | Decrease | Distance penalty reduced; farther moves are cheaper |
 | `PathfindingSafetyCostMult` | `+0x140` | Decrease | Pathfinder accepts less-safe routes; AI takes risks to flank |
@@ -681,13 +675,9 @@ The AI holds maximum range, avoids melee, and prioritises precision fire over vo
 
 | Field | Offset | Change | Effect |
 |---|---|---|---|
-| `W_sniper` (Criterion.Score) | in `AIWeightsTemplate` | Increase substantially | Sniper-class weapon units score long-range tiles far higher |
-| `sniperAttackWeight` | in `AIWeightsTemplate` | Increase | Direct amplifier on sniper component D in `Criterion.Score` |
 | `FleeFromOpponentsPOW` | `+0xB8` | Increase | Strong flee-from-melee-range behaviour |
 | `AvoidOpponentsPOW` | `+0xB4` | Increase | Avoids being adjacent to anything |
 | `DistanceScale` | `+0x40` | Decrease | Reduces the penalty for being far from current position |
-| Attack range preference multiplier (`×2.0` at max range) | hardcoded in `Criterion.Score` | (Tier 2 only) | See below |
-| Health-bonus multiplier threshold (0.95) | hardcoded in `Criterion.Score` | (Tier 2 only) | See below |
 
 **Tier 2 — code:**
 
@@ -708,7 +698,8 @@ The AI prioritises ally support over direct combat, using Buff and SupplyAmmo be
 | `IncreaseMovementMult` | `+0x188` | Increase | Movement buffs are valued more |
 | `IncreaseOffensiveStatsMult` | `+0x18C` | Increase | Offensive stat buffs are valued more |
 | `SupplyAmmoBaseScore` | `+0x194` | Increase | Resupply behavior competes better |
-| `SupplyAmmoNoAmmoMult` | `+0x198` | Increase | Urgency when allies are out of ammo |
+| `SupplyAmmoTargetValueMult` | `+0x198` | Increase | Target value scales the resupply priority |
+| `SupplyAmmoNoAmmoMult` | `+0x19C` | Increase | Urgency when allies are out of ammo |
 | `SupplyAmmoSpecialWeaponMult` | `+0x1A0` | Increase | Prioritises resupplying units with special weapons |
 | `DamageScoreMult` | `+0x108` | Decrease | Attack behavior scores less; support wins more often |
 | `UtilityThreshold` | `+0x13C` | Decrease | Support behaviors more easily pass the approval gate |
