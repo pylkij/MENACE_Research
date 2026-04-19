@@ -1,0 +1,36 @@
+{
+  "manifestVersion": 2,
+  "name": "OCIRebalance",
+  "version": "1.0.0",
+  "author": "Pylkij",
+  "description": "",
+  "createdDate": "2026-04-14T19:03:52.0178628-07:00",
+  "modifiedDate": "2026-04-18T13:11:07.9320778-07:00",
+  "loadOrder": 100,
+  "dependencies": [],
+  "code": {
+    "sources": [
+      "src/OCIRebalance.cs"
+    ],
+    "references": [
+      "System",
+      "System.Reflection",
+      "MelonLoader",
+      "Menace.ModpackLoader",
+      "Menace.SDK"
+    ],
+    "prebuiltDlls": [],
+    "hasAnySources": true,
+    "hasAnyPrebuilt": false,
+    "hasAnyCode": true
+  },
+  "patches": {},
+  "bundles": [],
+  "assets": {},
+  "securityStatus": "SourceVerified",
+  "repositoryType": "None",
+  "hasCode": true,
+  "hasPatches": false,
+  "hasBundles": false,
+  "hasAssets": false
+}

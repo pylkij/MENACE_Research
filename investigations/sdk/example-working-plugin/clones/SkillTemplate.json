@@ -1,0 +1,15 @@
+{
+  "ocirebalance.airdropped_minefield": "offmap.airdropped_mine_explosion_ap",
+  "ocirebalance.electronic_warfare": "offmap.electronic_warfare_system",
+  "ocirebalance.remote_hacker": "offmap.hacker_attack",
+  "ocirebalance.sensor_ghosts": "offmap.sensor_decoys",
+  "ocirebalance.smoke_curtain": "offmap.smoke_curtain",
+  "ocirebalance.laser_turret": "offmap.deploy_auto_laser_sentry_turret",
+  "ocirebalance.gravity_pulse": "offmap.gravity_manipulator",
+  "ocirebalance.ion_cannon": "offmap.ion_cannon",
+  "ocirebalance.dropship_minigun_run": "offmap.dropship_minigun_strafing",
+  "ocirebalance.orbital_missile_strike": "offmap.unguided_missile_strike",
+  "ocirebalance.dropship_rocket_run": "offmap.rocket_pod_run",
+  "ocirebalance.cas_evac": "offmap.medevac",
+  "ocirebalance.resupply": "offmap.supply_drop"
+}

@@ -1,0 +1,1883 @@
+{
+  "ocirebalance.airdropped_minefield": {
+    "ImpactOnSurface": {
+      "$update": {
+        "0": {
+          "ImpactEffect": "explosion_mortar_stone_01",
+          "Decals": "impacts_crater_medium_earth",
+          "DecalChance": 100,
+          "RicochetChance": 0
+        },
+        "1": {
+          "ImpactEffect": "explosion_mortar_stone_01",
+          "Decals": "impacts_burnt_ground_huge",
+          "DecalChance": 100,
+          "RicochetChance": 0
+        },
+        "2": {
+          "ImpactEffect": "explosion_mortar_sand_01",
+          "Decals": "impacts_crater_medium_sand",
+          "DecalChance": 100,
+          "RicochetChance": 0
+        },
+        "3": {
+          "ImpactEffect": "explosion_mortar_earth_01",
+          "Decals": "impacts_crater_medium_earth",
+          "DecalChance": 100,
+          "RicochetChance": 0
+        },
+        "4": {
+          "ImpactEffect": "explosion_mortar_snow_01",
+          "Decals": "impacts_crater_medium_snow",
+          "DecalChance": 100,
+          "RicochetChance": 0
+        },
+        "5": {
+          "ImpactEffect": "",
+          "Decals": "",
+          "DecalChance": 0,
+          "RicochetChance": 0
+        },
+        "6": {
+          "ImpactEffect": "explosion_mortar_stone_01",
+          "Decals": "impacts_crater_medium_earth",
+          "DecalChance": 0,
+          "RicochetChance": 0
+        },
+        "7": {
+          "ImpactEffect": "explosion_mortar_sand_01",
+          "Decals": "impacts_crater_medium_sand",
+          "DecalChance": 100,
+          "RicochetChance": 0
+        },
+        "8": {
+          "ImpactEffect": "explosion_mortar_earth_01",
+          "Decals": "impacts_crater_medium_earth",
+          "DecalChance": 100,
+          "RicochetChance": 0
+        },
+        "9": {
+          "ImpactEffect": "explosion_mortar_grass_01",
+          "Decals": "impacts_crater_medium_earth",
+          "DecalChance": 100,
+          "RicochetChance": 0
+        },
+        "10": {
+          "ImpactEffect": "",
+          "Decals": "",
+          "DecalChance": 0,
+          "RicochetChance": 0
+        },
+        "11": {
+          "ImpactEffect": "explosion_mortar_grass_01",
+          "Decals": "impacts_crater_medium_earth",
+          "DecalChance": 100,
+          "RicochetChance": 0
+        },
+        "12": {
+          "ImpactEffect": "explosion_mortar_stone_01",
+          "Decals": "impacts_crater_medium_earth",
+          "DecalChance": 100,
+          "RicochetChance": 0
+        },
+        "13": {
+          "ImpactEffect": "explosion_mortar_sand_01",
+          "Decals": "impacts_crater_medium_earth",
+          "DecalChance": 100,
+          "RicochetChance": 0
+        }
+      }
+    },
+    "EventHandlers": [
+      {
+        "_type": "Attack",
+        "ApplyMode": 0,
+        "ElementsHit": 1,
+        "ElementsHitPercentage": 0.6,
+        "FatalityType": 0,
+        "DismemberChance": 50,
+        "DismemberArea": 8,
+        "DamageVisualizationType": 1,
+        "DestroyHalfCover": 0,
+        "DamageFilterCondition": null,
+        "IsHalfCoverDestroyedOnAOECenterTileOnly": 1,
+        "Damage": 30,
+        "DamageMult": 1,
+        "DamageDropoff": 0,
+        "DamageDropoffMult": 1,
+        "DamageDropoffAOE": 0,
+        "DamagePctCurrentHitpoints": 0,
+        "DamagePctCurrentHitpointsMin": 0,
+        "DamagePctMaxHitpoints": 0,
+        "DamagePctMaxHitpointsMin": 0,
+        "ArmorPenetration": 35,
+        "ArmorPenetrationMult": 1,
+        "ArmorPenetrationDropoff": 0,
+        "ArmorPenetrationDropoffMult": 1,
+        "ArmorPenetrationDropoffAOE": 0,
+        "DamageToArmorDurability": 30,
+        "DamageToArmorDurabilityMult": 1,
+        "DamageToArmorDurabilityDropoff": 0,
+        "DamageToArmorDurabilityDropoffMult": 1,
+        "DamageToArmorDurabilityDropoffAOE": 0,
+        "AccuracyBonus": 50,
+        "AccuracyMult": 1,
+        "AccuracyDropoff": 0,
+        "AccuracyDropoffMult": 1,
+        "Suppression": 20,
+        "SuppressionDealtMult": 1,
+        "SuppressionDropoffAOE": 0,
+        "EntityFlagsRequired": 0,
+        "TargetRequiresOneOfTheseTags": [],
+        "TargetCannotHaveOneOfTheseTags": []
+      },
+      {
+        "_type": "Cooldown",
+        "RoundsToCoolDown": 3,
+        "AIOnly": 0
+      }
+    ],
+    "IsLimitedUses": false,
+    "IsOverridingRanges": true,
+    "MaxRange": 20,
+    "IdealRange": 6,
+    "SelectableTiles": 5,
+    "ExecutingElement": 5
+  },
+  "ocirebalance.electronic_warfare": {
+    "ImpactOnSurface": {
+      "$update": {
+        "0": {
+          "ImpactEffect": "",
+          "Decals": "",
+          "DecalChance": 0,
+          "RicochetChance": 0
+        },
+        "1": {
+          "ImpactEffect": "",
+          "Decals": "",
+          "DecalChance": 0,
+          "RicochetChance": 0
+        },
+        "2": {
+          "ImpactEffect": "",
+          "Decals": "",
+          "DecalChance": 0,
+          "RicochetChance": 0
+        },
+        "3": {
+          "ImpactEffect": "",
+          "Decals": "",
+          "DecalChance": 0,
+          "RicochetChance": 0
+        },
+        "4": {
+          "ImpactEffect": "",
+          "Decals": "",
+          "DecalChance": 0,
+          "RicochetChance": 0
+        },
+        "5": {
+          "ImpactEffect": "",
+          "Decals": "",
+          "DecalChance": 0,
+          "RicochetChance": 0
+        },
+        "6": {
+          "ImpactEffect": "",
+          "Decals": "",
+          "DecalChance": 0,
+          "RicochetChance": 0
+        },
+        "7": {
+          "ImpactEffect": "",
+          "Decals": "",
+          "DecalChance": 0,
+          "RicochetChance": 0
+        },
+        "8": {
+          "ImpactEffect": "",
+          "Decals": "",
+          "DecalChance": 0,
+          "RicochetChance": 0
+        },
+        "9": {
+          "ImpactEffect": "",
+          "Decals": "",
+          "DecalChance": 0,
+          "RicochetChance": 0
+        },
+        "10": {
+          "ImpactEffect": "",
+          "Decals": "",
+          "DecalChance": 0,
+          "RicochetChance": 0
+        },
+        "11": {
+          "ImpactEffect": "",
+          "Decals": "",
+          "DecalChance": 0,
+          "RicochetChance": 0
+        },
+        "12": {
+          "ImpactEffect": "",
+          "Decals": "",
+          "DecalChance": 0,
+          "RicochetChance": 0
+        },
+        "13": {
+          "ImpactEffect": "",
+          "Decals": "",
+          "DecalChance": 0,
+          "RicochetChance": 0
+        }
+      }
+    },
+    "SoundsOnUse": {
+      "$update": {
+        "0": {
+          "bankId": -980630536,
+          "itemId": 547
+        }
+      }
+    },
+    "EventHandlers": [
+      {
+        "_type": "AddSkill",
+        "Event": 0,
+        "SkillToAdd": "effect.electronic_warfare_system",
+        "OnlyApplyOnHit": 0,
+        "OnlyUsableOnTargetsWithoutSkill": 0,
+        "OnlyApplyWhenNoElementWasDestroyed": 0,
+        "OnlyApplyOnHitpointDamage": 0,
+        "OnlyWhenSkillNotPresent": 0,
+        "Condition": null,
+        "ShowHUDText": 1,
+        "TargetRequiresOneOfTheseTags": [],
+        "TargetCannotHaveOneOfTheseTags": [],
+        "TagsCanPreventSkillUse": 0
+      },
+      {
+        "_type": "Cooldown",
+        "RoundsToCoolDown": 2,
+        "AIOnly": 0
+      }
+    ],
+    "IsLimitedUses": false,
+    "IsOverridingRanges": true,
+    "MaxRange": 15,
+    "IdealRange": 6,
+    "SelectableTiles": 1,
+    "ExecutingElement": 5,
+    "CanHitAnotherTile": false
+  },
+  "ocirebalance.remote_hacker": {
+    "ImpactOnSurface": {
+      "$update": {
+        "0": {
+          "ImpactEffect": "explosion_emp_grenade_sand_01",
+          "Decals": "",
+          "DecalChance": 0,
+          "RicochetChance": 0
+        },
+        "1": {
+          "ImpactEffect": "explosion_emp_grenade_sand_01",
+          "Decals": "",
+          "DecalChance": 0,
+          "RicochetChance": 0
+        },
+        "2": {
+          "ImpactEffect": "explosion_emp_grenade_sand_01",
+          "Decals": "",
+          "DecalChance": 100,
+          "RicochetChance": 0
+        },
+        "3": {
+          "ImpactEffect": "explosion_emp_grenade_earth_01",
+          "Decals": "",
+          "DecalChance": 0,
+          "RicochetChance": 0
+        },
+        "4": {
+          "ImpactEffect": "explosion_emp_grenade_snow_01",
+          "Decals": "",
+          "DecalChance": 0,
+          "RicochetChance": 0
+        },
+        "5": {
+          "ImpactEffect": "",
+          "Decals": "",
+          "DecalChance": 0,
+          "RicochetChance": 0
+        },
+        "6": {
+          "ImpactEffect": "explosion_emp_grenade_earth_01",
+          "Decals": "",
+          "DecalChance": 0,
+          "RicochetChance": 0
+        },
+        "7": {
+          "ImpactEffect": "explosion_emp_grenade_sand_01",
+          "Decals": "",
+          "DecalChance": 100,
+          "RicochetChance": 0
+        },
+        "8": {
+          "ImpactEffect": "explosion_emp_grenade_earth_01",
+          "Decals": "",
+          "DecalChance": 0,
+          "RicochetChance": 0
+        },
+        "9": {
+          "ImpactEffect": "explosion_emp_grenade_earth_01",
+          "Decals": "",
+          "DecalChance": 0,
+          "RicochetChance": 0
+        },
+        "10": {
+          "ImpactEffect": "",
+          "Decals": "",
+          "DecalChance": 0,
+          "RicochetChance": 0
+        },
+        "11": {
+          "ImpactEffect": "explosion_emp_grenade_earth_01",
+          "Decals": "",
+          "DecalChance": 0,
+          "RicochetChance": 0
+        },
+        "12": {
+          "ImpactEffect": "explosion_emp_grenade_sand_01",
+          "Decals": "",
+          "DecalChance": 0,
+          "RicochetChance": 0
+        },
+        "13": {
+          "ImpactEffect": "explosion_emp_grenade_earth_01",
+          "Decals": "",
+          "DecalChance": 0,
+          "RicochetChance": 0
+        }
+      }
+    },
+    "SoundsOnAttack": {
+      "$update": {
+        "0": {
+          "bankId": -980630536,
+          "itemId": 547
+        }
+      }
+    },
+    "SoundsOnHit": {
+      "$update": {
+        "0": {
+          "bankId": -1071248032,
+          "itemId": 547
+        }
+      }
+    },
+    "EventHandlers": [
+      {
+        "_type": "AddSkill",
+        "Event": 0,
+        "SkillToAdd": "effect.disabled",
+        "OnlyApplyOnHit": 0,
+        "OnlyUsableOnTargetsWithoutSkill": 0,
+        "OnlyApplyWhenNoElementWasDestroyed": 0,
+        "OnlyApplyOnHitpointDamage": 0,
+        "OnlyWhenSkillNotPresent": 0,
+        "Condition": null,
+        "ShowHUDText": 0,
+        "TargetRequiresOneOfTheseTags": [
+          "machine"
+        ],
+        "TargetCannotHaveOneOfTheseTags": [],
+        "TagsCanPreventSkillUse": 1
+      },
+      {
+        "_type": "Cooldown",
+        "RoundsToCoolDown": 2,
+        "AIOnly": 0
+      }
+    ],
+    "IsLimitedUses": false,
+    "IsOverridingRanges": true,
+    "MaxRange": 15,
+    "IdealRange": 6,
+    "SelectableTiles": 1,
+    "ExecutingElement": 5,
+    "CanHitAnotherTile": false
+  },
+  "ocirebalance.sensor_ghosts": {
+    "ImpactOnSurface": {
+      "$update": {
+        "0": {
+          "ImpactEffect": "",
+          "Decals": "",
+          "DecalChance": 0,
+          "RicochetChance": 0
+        },
+        "1": {
+          "ImpactEffect": "",
+          "Decals": "",
+          "DecalChance": 0,
+          "RicochetChance": 0
+        },
+        "2": {
+          "ImpactEffect": "",
+          "Decals": "",
+          "DecalChance": 0,
+          "RicochetChance": 0
+        },
+        "3": {
+          "ImpactEffect": "",
+          "Decals": "",
+          "DecalChance": 0,
+          "RicochetChance": 0
+        },
+        "4": {
+          "ImpactEffect": "",
+          "Decals": "",
+          "DecalChance": 0,
+          "RicochetChance": 0
+        },
+        "5": {
+          "ImpactEffect": "",
+          "Decals": "",
+          "DecalChance": 0,
+          "RicochetChance": 0
+        },
+        "6": {
+          "ImpactEffect": "",
+          "Decals": "",
+          "DecalChance": 0,
+          "RicochetChance": 0
+        },
+        "7": {
+          "ImpactEffect": "",
+          "Decals": "",
+          "DecalChance": 0,
+          "RicochetChance": 0
+        },
+        "8": {
+          "ImpactEffect": "",
+          "Decals": "",
+          "DecalChance": 0,
+          "RicochetChance": 0
+        },
+        "9": {
+          "ImpactEffect": "",
+          "Decals": "",
+          "DecalChance": 0,
+          "RicochetChance": 0
+        },
+        "10": {
+          "ImpactEffect": "",
+          "Decals": "",
+          "DecalChance": 0,
+          "RicochetChance": 0
+        },
+        "11": {
+          "ImpactEffect": "",
+          "Decals": "",
+          "DecalChance": 0,
+          "RicochetChance": 0
+        },
+        "12": {
+          "ImpactEffect": "",
+          "Decals": "",
+          "DecalChance": 0,
+          "RicochetChance": 0
+        },
+        "13": {
+          "ImpactEffect": "",
+          "Decals": "",
+          "DecalChance": 0,
+          "RicochetChance": 0
+        }
+      }
+    },
+    "SoundsOnUse": {
+      "$update": {
+        "0": {
+          "bankId": -980630536,
+          "itemId": 547
+        }
+      }
+    },
+    "EventHandlers": [
+      {
+        "_type": "DelayTurn"
+      },
+      {
+        "_type": "Cooldown",
+        "RoundsToCoolDown": 2,
+        "AIOnly": 0
+      }
+    ],
+    "IsLimitedUses": false,
+    "IsOverridingRanges": true,
+    "MaxRange": 15,
+    "IdealRange": 6,
+    "SelectableTiles": 1,
+    "ExecutingElement": 5
+  },
+  "ocirebalance.smoke_curtain": {
+    "ImpactOnSurface": {
+      "$update": {
+        "0": {
+          "ImpactEffect": "",
+          "Decals": "",
+          "DecalChance": 0,
+          "RicochetChance": 0
+        },
+        "1": {
+          "ImpactEffect": "smoke_grenade_sparks_01",
+          "Decals": "",
+          "DecalChance": 0,
+          "RicochetChance": 0
+        },
+        "2": {
+          "ImpactEffect": "smoke_launcher_air_sparks_01",
+          "Decals": "",
+          "DecalChance": 100,
+          "RicochetChance": 0
+        },
+        "3": {
+          "ImpactEffect": "smoke_launcher_air_sparks_01",
+          "Decals": "",
+          "DecalChance": 0,
+          "RicochetChance": 0
+        },
+        "4": {
+          "ImpactEffect": "smoke_launcher_air_sparks_01",
+          "Decals": "",
+          "DecalChance": 0,
+          "RicochetChance": 0
+        },
+        "5": {
+          "ImpactEffect": "",
+          "Decals": "",
+          "DecalChance": 0,
+          "RicochetChance": 0
+        },
+        "6": {
+          "ImpactEffect": "smoke_launcher_air_sparks_01",
+          "Decals": "",
+          "DecalChance": 0,
+          "RicochetChance": 0
+        },
+        "7": {
+          "ImpactEffect": "smoke_launcher_air_sparks_01",
+          "Decals": "",
+          "DecalChance": 100,
+          "RicochetChance": 0
+        },
+        "8": {
+          "ImpactEffect": "smoke_launcher_air_sparks_01",
+          "Decals": "",
+          "DecalChance": 0,
+          "RicochetChance": 0
+        },
+        "9": {
+          "ImpactEffect": "smoke_launcher_air_sparks_01",
+          "Decals": "",
+          "DecalChance": 0,
+          "RicochetChance": 0
+        },
+        "10": {
+          "ImpactEffect": "",
+          "Decals": "",
+          "DecalChance": 0,
+          "RicochetChance": 0
+        },
+        "11": {
+          "ImpactEffect": "smoke_launcher_air_sparks_01",
+          "Decals": "",
+          "DecalChance": 0,
+          "RicochetChance": 0
+        },
+        "12": {
+          "ImpactEffect": "",
+          "Decals": "",
+          "DecalChance": 0,
+          "RicochetChance": 0
+        },
+        "13": {
+          "ImpactEffect": "smoke_launcher_air_sparks_01",
+          "Decals": "",
+          "DecalChance": 0,
+          "RicochetChance": 0
+        }
+      }
+    },
+    "SoundsOnAttack": {
+      "$update": {
+        "0": {
+          "bankId": -980630536,
+          "itemId": 547
+        }
+      }
+    },
+    "SoundsOnHit": {
+      "$update": {
+        "0": {
+          "bankId": -995682096,
+          "itemId": 547
+        }
+      }
+    },
+    "EventHandlers": [
+      {
+        "_type": "SpawnTileEffect",
+        "Event": 0,
+        "EffectToSpawn": "tile_effect.smoke_grenade",
+        "ChanceAtCenter": 100,
+        "ChancePerTileFromCenter": -25,
+        "DelayWithDistance": 0
+      },
+      {
+        "_type": "Cooldown",
+        "RoundsToCoolDown": 3,
+        "AIOnly": 0
+      }
+    ],
+    "IsLimitedUses": false,
+    "IsOverridingRanges": true,
+    "MaxRange": 15,
+    "IdealRange": 6,
+    "SelectableTiles": 6,
+    "ExecutingElement": 5
+  },
+  "ocirebalance.laser_turret": {
+    "ImpactOnSurface": {
+      "$update": {
+        "0": {
+          "ImpactEffect": "explosion_rocket_stone_01",
+          "Decals": "impacts_crater_small_sand",
+          "DecalChance": 100,
+          "RicochetChance": 0
+        },
+        "1": {
+          "ImpactEffect": "explosion_rocket_metal_01",
+          "Decals": "impacts_crater_small_sand",
+          "DecalChance": 100,
+          "RicochetChance": 0
+        },
+        "2": {
+          "ImpactEffect": "",
+          "Decals": "",
+          "DecalChance": 100,
+          "RicochetChance": 0
+        },
+        "3": {
+          "ImpactEffect": "explosion_grenade_earth_01",
+          "Decals": "impacts_crater_small_sand",
+          "DecalChance": 100,
+          "RicochetChance": 0
+        },
+        "4": {
+          "ImpactEffect": "",
+          "Decals": "",
+          "DecalChance": 0,
+          "RicochetChance": 0
+        },
+        "5": {
+          "ImpactEffect": "",
+          "Decals": "",
+          "DecalChance": 0,
+          "RicochetChance": 0
+        },
+        "6": {
+          "ImpactEffect": "explosion_rocket_earth_01",
+          "Decals": "impacts_crater_small_sand",
+          "DecalChance": 100,
+          "RicochetChance": 0
+        },
+        "7": {
+          "ImpactEffect": "explosion_grenade_sand_01",
+          "Decals": "impacts_crater_small_sand",
+          "DecalChance": 100,
+          "RicochetChance": 0
+        },
+        "8": {
+          "ImpactEffect": "explosion_grenade_earth_01",
+          "Decals": "impacts_crater_small_sand",
+          "DecalChance": 100,
+          "RicochetChance": 0
+        },
+        "9": {
+          "ImpactEffect": "explosion_grenade_earth_01",
+          "Decals": "impacts_crater_small_sand",
+          "DecalChance": 100,
+          "RicochetChance": 0
+        },
+        "10": {
+          "ImpactEffect": "",
+          "Decals": "",
+          "DecalChance": 0,
+          "RicochetChance": 0
+        },
+        "11": {
+          "ImpactEffect": "explosion_grenade_earth_01",
+          "Decals": "impacts_crater_small_sand",
+          "DecalChance": 100,
+          "RicochetChance": 0
+        },
+        "12": {
+          "ImpactEffect": "explosion_rocket_stone_01",
+          "Decals": "impacts_crater_small_sand",
+          "DecalChance": 100,
+          "RicochetChance": 0
+        },
+        "13": {
+          "ImpactEffect": "explosion_grenade_earth_01",
+          "Decals": "impacts_crater_small_sand",
+          "DecalChance": 100,
+          "RicochetChance": 0
+        }
+      }
+    },
+    "SoundsOnUse": {
+      "$update": {
+        "0": {
+          "bankId": -980630536,
+          "itemId": 547
+        }
+      }
+    },
+    "EventHandlers": [
+      {
+        "_type": "PlayAnimationSequence",
+        "Animation": "dropship.start_in_air"
+      },
+      {
+        "_type": "SpawnEntity",
+        "Trigger": 1,
+        "EntityToSpawn": "player.sentry_auto_laser_turret",
+        "SpawnAsMinion": 0,
+        "SkipFirstTurnForSpawnedEntity": 0,
+        "SetParameterOnSpawn": null,
+        "AlignSpawnDirection": 0,
+        "SpawnLimit": 0,
+        "HideIfSpawnLimitReached": 0
+      },
+      {
+        "_type": "Cooldown",
+        "RoundsToCoolDown": 4,
+        "AIOnly": 0
+      }
+    ],
+    "IsLimitedUses": false,
+    "IsOverridingRanges": true,
+    "MaxRange": 15,
+    "IdealRange": 6,
+    "SelectableTiles": 1,
+    "ExecutingElement": 5
+  },
+  "ocirebalance.gravity_pulse": {
+    "ImpactOnSurface": {
+      "$update": {
+        "0": {
+          "ImpactEffect": "gravity_manipulator_stone_01",
+          "Decals": "",
+          "DecalChance": 100,
+          "RicochetChance": 0
+        },
+        "1": {
+          "ImpactEffect": "gravity_manipulator_stone_01",
+          "Decals": "",
+          "DecalChance": 100,
+          "RicochetChance": 0
+        },
+        "2": {
+          "ImpactEffect": "gravity_manipulator_sand_01",
+          "Decals": "",
+          "DecalChance": 100,
+          "RicochetChance": 0
+        },
+        "3": {
+          "ImpactEffect": "gravity_manipulator_earth_01",
+          "Decals": "",
+          "DecalChance": 100,
+          "RicochetChance": 0
+        },
+        "4": {
+          "ImpactEffect": "gravity_manipulator_snow_01",
+          "Decals": "",
+          "DecalChance": 0,
+          "RicochetChance": 0
+        },
+        "5": {
+          "ImpactEffect": "gravity_manipulator_snow_01",
+          "Decals": "",
+          "DecalChance": 0,
+          "RicochetChance": 0
+        },
+        "6": {
+          "ImpactEffect": "gravity_manipulator_stone_01",
+          "Decals": "",
+          "DecalChance": 100,
+          "RicochetChance": 0
+        },
+        "7": {
+          "ImpactEffect": "gravity_manipulator_sand_01",
+          "Decals": "",
+          "DecalChance": 100,
+          "RicochetChance": 0
+        },
+        "8": {
+          "ImpactEffect": "gravity_manipulator_earth_01",
+          "Decals": "",
+          "DecalChance": 100,
+          "RicochetChance": 0
+        },
+        "9": {
+          "ImpactEffect": "gravity_manipulator_earth_01",
+          "Decals": "impacts_crater_very_big_earth",
+          "DecalChance": 100,
+          "RicochetChance": 0
+        },
+        "10": {
+          "ImpactEffect": "",
+          "Decals": "",
+          "DecalChance": 0,
+          "RicochetChance": 0
+        },
+        "11": {
+          "ImpactEffect": "gravity_manipulator_earth_01",
+          "Decals": "",
+          "DecalChance": 100,
+          "RicochetChance": 0
+        },
+        "12": {
+          "ImpactEffect": "gravity_manipulator_stone_01",
+          "Decals": "",
+          "DecalChance": 100,
+          "RicochetChance": 0
+        },
+        "13": {
+          "ImpactEffect": "gravity_manipulator_earth_01",
+          "Decals": "",
+          "DecalChance": 100,
+          "RicochetChance": 0
+        }
+      }
+    },
+    "SoundsOnUse": {
+      "$update": {
+        "0": {
+          "bankId": -980630536,
+          "itemId": 547
+        }
+      }
+    },
+    "EventHandlers": [
+      {
+        "_type": "Attack",
+        "ApplyMode": 0,
+        "ElementsHit": 9,
+        "ElementsHitPercentage": 1,
+        "FatalityType": 0,
+        "DismemberChance": 0,
+        "DismemberArea": 0,
+        "DamageVisualizationType": 0,
+        "DestroyHalfCover": 3,
+        "DamageFilterCondition": null,
+        "IsHalfCoverDestroyedOnAOECenterTileOnly": 0,
+        "Damage": 500,
+        "DamageMult": 1,
+        "DamageDropoff": 0,
+        "DamageDropoffMult": 1,
+        "DamageDropoffAOE": -120,
+        "DamagePctCurrentHitpoints": 0,
+        "DamagePctCurrentHitpointsMin": 0,
+        "DamagePctMaxHitpoints": 0,
+        "DamagePctMaxHitpointsMin": 0,
+        "ArmorPenetration": 500,
+        "ArmorPenetrationMult": 1,
+        "ArmorPenetrationDropoff": 0,
+        "ArmorPenetrationDropoffMult": 1,
+        "ArmorPenetrationDropoffAOE": -150,
+        "DamageToArmorDurability": 150,
+        "DamageToArmorDurabilityMult": 1,
+        "DamageToArmorDurabilityDropoff": 0,
+        "DamageToArmorDurabilityDropoffMult": 1,
+        "DamageToArmorDurabilityDropoffAOE": 0,
+        "AccuracyBonus": 120,
+        "AccuracyMult": 1,
+        "AccuracyDropoff": 0,
+        "AccuracyDropoffMult": 1,
+        "Suppression": 60,
+        "SuppressionDealtMult": 1,
+        "SuppressionDropoffAOE": 0,
+        "EntityFlagsRequired": 0,
+        "TargetRequiresOneOfTheseTags": [
+          "structure"
+        ],
+        "TargetCannotHaveOneOfTheseTags": [
+          "infantry"
+        ]
+      },
+      {
+        "_type": "Attack",
+        "ApplyMode": 0,
+        "ElementsHit": 1,
+        "ElementsHitPercentage": 0,
+        "FatalityType": 0,
+        "DismemberChance": 0,
+        "DismemberArea": 0,
+        "DamageVisualizationType": 0,
+        "DestroyHalfCover": 0,
+        "DamageFilterCondition": null,
+        "IsHalfCoverDestroyedOnAOECenterTileOnly": 1,
+        "Damage": 0,
+        "DamageMult": 1,
+        "DamageDropoff": 0,
+        "DamageDropoffMult": 1,
+        "DamageDropoffAOE": 0,
+        "DamagePctCurrentHitpoints": 0,
+        "DamagePctCurrentHitpointsMin": 0,
+        "DamagePctMaxHitpoints": 0,
+        "DamagePctMaxHitpointsMin": 0,
+        "ArmorPenetration": 0,
+        "ArmorPenetrationMult": 1,
+        "ArmorPenetrationDropoff": 0,
+        "ArmorPenetrationDropoffMult": 1,
+        "ArmorPenetrationDropoffAOE": 0,
+        "DamageToArmorDurability": 0,
+        "DamageToArmorDurabilityMult": 1,
+        "DamageToArmorDurabilityDropoff": 0,
+        "DamageToArmorDurabilityDropoffMult": 1,
+        "DamageToArmorDurabilityDropoffAOE": 0,
+        "AccuracyBonus": 0,
+        "AccuracyMult": 1,
+        "AccuracyDropoff": 0,
+        "AccuracyDropoffMult": 1,
+        "Suppression": 50,
+        "SuppressionDealtMult": 1,
+        "SuppressionDropoffAOE": 0,
+        "EntityFlagsRequired": 0,
+        "TargetRequiresOneOfTheseTags": [],
+        "TargetCannotHaveOneOfTheseTags": []
+      },
+      {
+        "_type": "CameraShake",
+        "CameraEffect": 4,
+        "Duration": 6,
+        "Intensity": 0.55,
+        "RecoverTime": 1.4
+      },
+      {
+        "_type": "Cooldown",
+        "RoundsToCoolDown": 4,
+        "AIOnly": 0
+      }
+    ],
+    "IsLimitedUses": false,
+    "IsOverridingRanges": true,
+    "MaxRange": 15,
+    "IdealRange": 6,
+    "SelectableTiles": 1,
+    "ExecutingElement": 5
+  },
+  "ocirebalance.ion_cannon": {
+    "ImpactOnSurface": {
+      "$update": {
+        "0": {
+          "ImpactEffect": "fire_plasma_short_01",
+          "Decals": "impacts_burnt_ground",
+          "DecalChance": 100,
+          "RicochetChance": 0
+        },
+        "1": {
+          "ImpactEffect": "fire_plasma_short_01",
+          "Decals": "impacts_burnt_ground",
+          "DecalChance": 100,
+          "RicochetChance": 0
+        },
+        "2": {
+          "ImpactEffect": "fire_plasma_short_01",
+          "Decals": "impacts_burnt_ground",
+          "DecalChance": 100,
+          "RicochetChance": 0
+        },
+        "3": {
+          "ImpactEffect": "fire_plasma_short_01",
+          "Decals": "impacts_burnt_ground",
+          "DecalChance": 100,
+          "RicochetChance": 0
+        },
+        "4": {
+          "ImpactEffect": "fire_plasma_short_01",
+          "Decals": "impacts_burnt_ground",
+          "DecalChance": 0,
+          "RicochetChance": 0
+        },
+        "5": {
+          "ImpactEffect": "fire_plasma_short_01",
+          "Decals": "",
+          "DecalChance": 0,
+          "RicochetChance": 0
+        },
+        "6": {
+          "ImpactEffect": "fire_plasma_short_01",
+          "Decals": "impacts_burnt_ground",
+          "DecalChance": 100,
+          "RicochetChance": 0
+        },
+        "7": {
+          "ImpactEffect": "fire_plasma_short_01",
+          "Decals": "impacts_burnt_ground",
+          "DecalChance": 100,
+          "RicochetChance": 0
+        },
+        "8": {
+          "ImpactEffect": "fire_plasma_short_01",
+          "Decals": "impacts_burnt_ground",
+          "DecalChance": 100,
+          "RicochetChance": 0
+        },
+        "9": {
+          "ImpactEffect": "fire_plasma_short_01",
+          "Decals": "impacts_burnt_ground",
+          "DecalChance": 100,
+          "RicochetChance": 0
+        },
+        "10": {
+          "ImpactEffect": "",
+          "Decals": "",
+          "DecalChance": 0,
+          "RicochetChance": 0
+        },
+        "11": {
+          "ImpactEffect": "fire_plasma_short_01",
+          "Decals": "impacts_burnt_ground",
+          "DecalChance": 100,
+          "RicochetChance": 0
+        },
+        "12": {
+          "ImpactEffect": "fire_plasma_short_01",
+          "Decals": "impacts_burnt_ground",
+          "DecalChance": 100,
+          "RicochetChance": 0
+        },
+        "13": {
+          "ImpactEffect": "fire_plasma_short_01",
+          "Decals": "impacts_burnt_ground",
+          "DecalChance": 100,
+          "RicochetChance": 0
+        }
+      }
+    },
+    "SoundsOnUse": {
+      "$update": {
+        "0": {
+          "bankId": -980630536,
+          "itemId": 547
+        }
+      }
+    },
+    "EventHandlers": [
+      {
+        "_type": "Attack",
+        "ApplyMode": 0,
+        "ElementsHit": 1,
+        "ElementsHitPercentage": 0.8,
+        "FatalityType": 3,
+        "DismemberChance": 0,
+        "DismemberArea": 0,
+        "DamageVisualizationType": 1,
+        "DestroyHalfCover": 3,
+        "DamageFilterCondition": null,
+        "IsHalfCoverDestroyedOnAOECenterTileOnly": 1,
+        "Damage": 250,
+        "DamageMult": 1,
+        "DamageDropoff": 0,
+        "DamageDropoffMult": 1,
+        "DamageDropoffAOE": 0,
+        "DamagePctCurrentHitpoints": 0,
+        "DamagePctCurrentHitpointsMin": 0,
+        "DamagePctMaxHitpoints": 0,
+        "DamagePctMaxHitpointsMin": 0,
+        "ArmorPenetration": 300,
+        "ArmorPenetrationMult": 1,
+        "ArmorPenetrationDropoff": 0,
+        "ArmorPenetrationDropoffMult": 1,
+        "ArmorPenetrationDropoffAOE": 0,
+        "DamageToArmorDurability": 250,
+        "DamageToArmorDurabilityMult": 1,
+        "DamageToArmorDurabilityDropoff": 0,
+        "DamageToArmorDurabilityDropoffMult": 1,
+        "DamageToArmorDurabilityDropoffAOE": 0,
+        "AccuracyBonus": 0,
+        "AccuracyMult": 1,
+        "AccuracyDropoff": 0,
+        "AccuracyDropoffMult": 1,
+        "Suppression": 35,
+        "SuppressionDealtMult": 1,
+        "SuppressionDropoffAOE": 0,
+        "EntityFlagsRequired": 0,
+        "TargetRequiresOneOfTheseTags": [],
+        "TargetCannotHaveOneOfTheseTags": []
+      },
+      {
+        "_type": "ClearTileEffectGroup",
+        "EffectsToClear": "tile_effects_mines",
+        "TriggerEffect": 1
+      },
+      {
+        "_type": "Cooldown",
+        "RoundsToCoolDown": 4,
+        "AIOnly": 0
+      }
+    ],
+    "IsLimitedUses": false,
+    "IsOverridingRanges": true,
+    "MaxRange": 15,
+    "IdealRange": 6,
+    "SelectableTiles": 4,
+    "ExecutingElement": 5
+  },
+  "ocirebalance.dropship_minigun_run": {
+    "ImpactOnSurface": {
+      "$update": {
+        "0": {
+          "ImpactEffect": "impact_bullet_stone_large_01",
+          "Decals": "impacts_bullets_concrete",
+          "DecalChance": 100,
+          "RicochetChance": 0
+        },
+        "1": {
+          "ImpactEffect": "impact_bullet_metal_large_01",
+          "Decals": "",
+          "DecalChance": 0,
+          "RicochetChance": 0
+        },
+        "2": {
+          "ImpactEffect": "impact_bullet_sand_large_01",
+          "Decals": "impacts_bullets_sand",
+          "DecalChance": 100,
+          "RicochetChance": 0
+        },
+        "3": {
+          "ImpactEffect": "impact_bullet_earth_large_01",
+          "Decals": "impacts_bullets_earth",
+          "DecalChance": 100,
+          "RicochetChance": 0
+        },
+        "4": {
+          "ImpactEffect": "impact_bullet_snow_large_01",
+          "Decals": "impacts_bullets_snow",
+          "DecalChance": 100,
+          "RicochetChance": 0
+        },
+        "5": {
+          "ImpactEffect": "",
+          "Decals": "",
+          "DecalChance": 0,
+          "RicochetChance": 0
+        },
+        "6": {
+          "ImpactEffect": "impact_bullet_stone_large_01",
+          "Decals": "impacts_bullets_earth",
+          "DecalChance": 100,
+          "RicochetChance": 0
+        },
+        "7": {
+          "ImpactEffect": "impact_bullet_sand_large_01",
+          "Decals": "impacts_bullets_sand",
+          "DecalChance": 100,
+          "RicochetChance": 0
+        },
+        "8": {
+          "ImpactEffect": "impact_bullet_earth_large_01",
+          "Decals": "impacts_bullets_earth",
+          "DecalChance": 100,
+          "RicochetChance": 0
+        },
+        "9": {
+          "ImpactEffect": "impact_bullet_grass_large_01",
+          "Decals": "impacts_bullets_big_earth",
+          "DecalChance": 100,
+          "RicochetChance": 0
+        },
+        "10": {
+          "ImpactEffect": "",
+          "Decals": "",
+          "DecalChance": 0,
+          "RicochetChance": 0
+        },
+        "11": {
+          "ImpactEffect": "impact_bullet_vegetation_large_01",
+          "Decals": "impacts_bullets_earth",
+          "DecalChance": 100,
+          "RicochetChance": 10
+        },
+        "12": {
+          "ImpactEffect": "impact_bullet_stone_large_01",
+          "Decals": "impacts_bullets_sand",
+          "DecalChance": 100,
+          "RicochetChance": 0
+        },
+        "13": {
+          "ImpactEffect": "impact_bullet_earth_large_01",
+          "Decals": "impacts_bullets_earth",
+          "DecalChance": 100,
+          "RicochetChance": 0
+        }
+      }
+    },
+    "SoundsOnUse": {
+      "$update": {
+        "0": {
+          "bankId": 0,
+          "itemId": 0
+        },
+        "1": {
+          "bankId": 0,
+          "itemId": 0
+        }
+      }
+    },
+    "EventHandlers": [
+      {
+        "_type": "Attack",
+        "ApplyMode": 0,
+        "ElementsHit": 1,
+        "ElementsHitPercentage": 0,
+        "FatalityType": 0,
+        "DismemberChance": 0,
+        "DismemberArea": 0,
+        "DamageVisualizationType": 0,
+        "DestroyHalfCover": 1,
+        "DamageFilterCondition": null,
+        "IsHalfCoverDestroyedOnAOECenterTileOnly": 1,
+        "Damage": 20,
+        "DamageMult": 1,
+        "DamageDropoff": 0,
+        "DamageDropoffMult": 1,
+        "DamageDropoffAOE": 0,
+        "DamagePctCurrentHitpoints": 0,
+        "DamagePctCurrentHitpointsMin": 0,
+        "DamagePctMaxHitpoints": 0,
+        "DamagePctMaxHitpointsMin": 0,
+        "ArmorPenetration": 40,
+        "ArmorPenetrationMult": 1,
+        "ArmorPenetrationDropoff": 0,
+        "ArmorPenetrationDropoffMult": 1,
+        "ArmorPenetrationDropoffAOE": 0,
+        "DamageToArmorDurability": 40,
+        "DamageToArmorDurabilityMult": 1,
+        "DamageToArmorDurabilityDropoff": 0,
+        "DamageToArmorDurabilityDropoffMult": 1,
+        "DamageToArmorDurabilityDropoffAOE": 0,
+        "AccuracyBonus": 0,
+        "AccuracyMult": 1,
+        "AccuracyDropoff": 0,
+        "AccuracyDropoffMult": 1,
+        "Suppression": 10,
+        "SuppressionDealtMult": 1,
+        "SuppressionDropoffAOE": 0,
+        "EntityFlagsRequired": 0,
+        "TargetRequiresOneOfTheseTags": [],
+        "TargetCannotHaveOneOfTheseTags": []
+      },
+      {
+        "_type": "SpawnPrefab",
+        "Prefab": "dropship_shadow_decal"
+      },
+      {
+        "_type": "Cooldown",
+        "RoundsToCoolDown": 3,
+        "AIOnly": 0
+      }
+    ],
+    "IsLimitedUses": false,
+    "IsOverridingRanges": true,
+    "MaxRange": 15,
+    "IdealRange": 6,
+    "SelectableTiles": 4,
+    "ExecutingElement": 5
+  },
+  "ocirebalance.orbital_missile_strike": {
+    "ImpactOnSurface": {
+      "$update": {
+        "0": {
+          "ImpactEffect": "tank_critical_explosion_stone_01",
+          "Decals": "impacts_crater_huge_earth",
+          "DecalChance": 100,
+          "RicochetChance": 0
+        },
+        "1": {
+          "ImpactEffect": "tank_critical_explosion_stone_01",
+          "Decals": "impacts_crater_huge_earth",
+          "DecalChance": 100,
+          "RicochetChance": 0
+        },
+        "2": {
+          "ImpactEffect": "tank_critical_explosion_sand_01",
+          "Decals": "impacts_crater_huge_sand",
+          "DecalChance": 100,
+          "RicochetChance": 0
+        },
+        "3": {
+          "ImpactEffect": "tank_critical_explosion_earth_01",
+          "Decals": "impacts_crater_huge_earth",
+          "DecalChance": 100,
+          "RicochetChance": 0
+        },
+        "4": {
+          "ImpactEffect": "tank_critical_explosion_snow_01",
+          "Decals": "impacts_crater_huge_snow",
+          "DecalChance": 100,
+          "RicochetChance": 0
+        },
+        "5": {
+          "ImpactEffect": "tank_critical_explosion_snow_01",
+          "Decals": "",
+          "DecalChance": 0,
+          "RicochetChance": 0
+        },
+        "6": {
+          "ImpactEffect": "tank_critical_explosion_stone_01",
+          "Decals": "impacts_crater_huge_earth",
+          "DecalChance": 100,
+          "RicochetChance": 0
+        },
+        "7": {
+          "ImpactEffect": "tank_critical_explosion_sand_01",
+          "Decals": "impacts_crater_huge_sand",
+          "DecalChance": 100,
+          "RicochetChance": 0
+        },
+        "8": {
+          "ImpactEffect": "tank_critical_explosion_earth_01",
+          "Decals": "impacts_crater_huge_earth",
+          "DecalChance": 100,
+          "RicochetChance": 0
+        },
+        "9": {
+          "ImpactEffect": "tank_critical_explosion_grass_01",
+          "Decals": "impacts_crater_huge_earth",
+          "DecalChance": 100,
+          "RicochetChance": 0
+        },
+        "10": {
+          "ImpactEffect": "",
+          "Decals": "",
+          "DecalChance": 0,
+          "RicochetChance": 0
+        },
+        "11": {
+          "ImpactEffect": "tank_critical_explosion_grass_01",
+          "Decals": "impacts_crater_huge_earth",
+          "DecalChance": 100,
+          "RicochetChance": 0
+        },
+        "12": {
+          "ImpactEffect": "tank_critical_explosion_stone_01",
+          "Decals": "impacts_crater_huge_earth",
+          "DecalChance": 100,
+          "RicochetChance": 0
+        },
+        "13": {
+          "ImpactEffect": "tank_critical_explosion_earth_01",
+          "Decals": "impacts_crater_huge_earth",
+          "DecalChance": 100,
+          "RicochetChance": 0
+        }
+      }
+    },
+    "SoundsOnUse": {
+      "$update": {
+        "0": {
+          "bankId": -980630536,
+          "itemId": 547
+        }
+      }
+    },
+    "SoundsOnAttack": {
+      "$update": {
+        "0": {
+          "bankId": -995682096,
+          "itemId": 547
+        }
+      }
+    },
+    "EventHandlers": [
+      {
+        "_type": "Attack",
+        "ApplyMode": 0,
+        "ElementsHit": 9,
+        "ElementsHitPercentage": 0,
+        "FatalityType": 3,
+        "DismemberChance": 0,
+        "DismemberArea": 0,
+        "DamageVisualizationType": 1,
+        "DestroyHalfCover": 3,
+        "DamageFilterCondition": null,
+        "IsHalfCoverDestroyedOnAOECenterTileOnly": 0,
+        "Damage": 500,
+        "DamageMult": 1,
+        "DamageDropoff": 0,
+        "DamageDropoffMult": 1,
+        "DamageDropoffAOE": -246,
+        "DamagePctCurrentHitpoints": 0,
+        "DamagePctCurrentHitpointsMin": 0,
+        "DamagePctMaxHitpoints": 0,
+        "DamagePctMaxHitpointsMin": 0,
+        "ArmorPenetration": 200,
+        "ArmorPenetrationMult": 1,
+        "ArmorPenetrationDropoff": 0,
+        "ArmorPenetrationDropoffMult": 1,
+        "ArmorPenetrationDropoffAOE": -50,
+        "DamageToArmorDurability": 160,
+        "DamageToArmorDurabilityMult": 1,
+        "DamageToArmorDurabilityDropoff": -80,
+        "DamageToArmorDurabilityDropoffMult": 1,
+        "DamageToArmorDurabilityDropoffAOE": 0,
+        "AccuracyBonus": 1000,
+        "AccuracyMult": 1,
+        "AccuracyDropoff": 0,
+        "AccuracyDropoffMult": 1,
+        "Suppression": 200,
+        "SuppressionDealtMult": 1,
+        "SuppressionDropoffAOE": -150,
+        "EntityFlagsRequired": 0,
+        "TargetRequiresOneOfTheseTags": [],
+        "TargetCannotHaveOneOfTheseTags": []
+      },
+      {
+        "_type": "AddSkill",
+        "Event": 0,
+        "SkillToAdd": "shrapnel_aoe_damage_120mm",
+        "OnlyApplyOnHit": 0,
+        "OnlyUsableOnTargetsWithoutSkill": 0,
+        "OnlyApplyWhenNoElementWasDestroyed": 0,
+        "OnlyApplyOnHitpointDamage": 0,
+        "OnlyWhenSkillNotPresent": 0,
+        "Condition": null,
+        "ShowHUDText": 0,
+        "TargetRequiresOneOfTheseTags": [],
+        "TargetCannotHaveOneOfTheseTags": [],
+        "TagsCanPreventSkillUse": 0
+      },
+      {
+        "_type": "DestroyProps",
+        "Radius": 20
+      },
+      {
+        "_type": "ClearTileEffectGroup",
+        "EffectsToClear": "tile_effects_mines",
+        "TriggerEffect": 1
+      },
+      {
+        "_type": "Cooldown",
+        "RoundsToCoolDown": 4,
+        "AIOnly": 0
+      }
+    ],
+    "IsLimitedUses": false,
+    "IsOverridingRanges": true,
+    "MaxRange": 15,
+    "IdealRange": 6,
+    "SelectableTiles": 1,
+    "ExecutingElement": 5
+  },
+  "ocirebalance.dropship_rocket_run": {
+    "ImpactOnSurface": {
+      "$update": {
+        "0": {
+          "ImpactEffect": "explosion_organ_rocket_earth_01",
+          "Decals": "impacts_crater_small_earth",
+          "DecalChance": 100,
+          "RicochetChance": 0
+        },
+        "1": {
+          "ImpactEffect": "explosion_rocket_metal_01",
+          "Decals": "impacts_crater_small_earth",
+          "DecalChance": 100,
+          "RicochetChance": 0
+        },
+        "2": {
+          "ImpactEffect": "explosion_organ_rocket_sand_01",
+          "Decals": "impacts_crater_small_sand",
+          "DecalChance": 100,
+          "RicochetChance": 0
+        },
+        "3": {
+          "ImpactEffect": "explosion_organ_rocket_earth_01",
+          "Decals": "impacts_crater_small_earth",
+          "DecalChance": 100,
+          "RicochetChance": 0
+        },
+        "4": {
+          "ImpactEffect": "explosion_organ_rocket_snow_01",
+          "Decals": "impacts_crater_small_snow",
+          "DecalChance": 100,
+          "RicochetChance": 0
+        },
+        "5": {
+          "ImpactEffect": "explosion_organ_rocket_snow_01",
+          "Decals": "",
+          "DecalChance": 0,
+          "RicochetChance": 0
+        },
+        "6": {
+          "ImpactEffect": "explosion_organ_rocket_earth_01",
+          "Decals": "impacts_crater_small_earth",
+          "DecalChance": 100,
+          "RicochetChance": 0
+        },
+        "7": {
+          "ImpactEffect": "explosion_organ_rocket_sand_01",
+          "Decals": "impacts_crater_small_sand",
+          "DecalChance": 100,
+          "RicochetChance": 0
+        },
+        "8": {
+          "ImpactEffect": "explosion_organ_rocket_earth_01",
+          "Decals": "impacts_crater_small_earth",
+          "DecalChance": 100,
+          "RicochetChance": 0
+        },
+        "9": {
+          "ImpactEffect": "explosion_organ_rocket_earth_01",
+          "Decals": "impacts_crater_small_earth",
+          "DecalChance": 100,
+          "RicochetChance": 0
+        },
+        "10": {
+          "ImpactEffect": "",
+          "Decals": "",
+          "DecalChance": 0,
+          "RicochetChance": 0
+        },
+        "11": {
+          "ImpactEffect": "explosion_organ_rocket_earth_01",
+          "Decals": "impacts_crater_small_earth",
+          "DecalChance": 100,
+          "RicochetChance": 0
+        },
+        "12": {
+          "ImpactEffect": "explosion_organ_rocket_earth_01",
+          "Decals": "impacts_crater_small_earth",
+          "DecalChance": 100,
+          "RicochetChance": 0
+        },
+        "13": {
+          "ImpactEffect": "explosion_organ_rocket_earth_01",
+          "Decals": "impacts_crater_small_earth",
+          "DecalChance": 100,
+          "RicochetChance": 0
+        }
+      }
+    },
+    "SoundsOnAttack": {
+      "$update": {
+        "0": {
+          "bankId": -980630536,
+          "itemId": 547
+        }
+      }
+    },
+    "EventHandlers": [
+      {
+        "_type": "Attack",
+        "ApplyMode": 0,
+        "ElementsHit": 0,
+        "ElementsHitPercentage": 0.25,
+        "FatalityType": 0,
+        "DismemberChance": 0,
+        "DismemberArea": 0,
+        "DamageVisualizationType": 0,
+        "DestroyHalfCover": 0,
+        "DamageFilterCondition": null,
+        "IsHalfCoverDestroyedOnAOECenterTileOnly": 1,
+        "Damage": 80,
+        "DamageMult": 1,
+        "DamageDropoff": 0,
+        "DamageDropoffMult": 1,
+        "DamageDropoffAOE": -40,
+        "DamagePctCurrentHitpoints": 0,
+        "DamagePctCurrentHitpointsMin": 0,
+        "DamagePctMaxHitpoints": 0,
+        "DamagePctMaxHitpointsMin": 0,
+        "ArmorPenetration": 80,
+        "ArmorPenetrationMult": 1,
+        "ArmorPenetrationDropoff": 0,
+        "ArmorPenetrationDropoffMult": 1,
+        "ArmorPenetrationDropoffAOE": -50,
+        "DamageToArmorDurability": 50,
+        "DamageToArmorDurabilityMult": 1,
+        "DamageToArmorDurabilityDropoff": 0,
+        "DamageToArmorDurabilityDropoffMult": 1,
+        "DamageToArmorDurabilityDropoffAOE": -25,
+        "AccuracyBonus": 0,
+        "AccuracyMult": 1,
+        "AccuracyDropoff": 0,
+        "AccuracyDropoffMult": 1,
+        "Suppression": 50,
+        "SuppressionDealtMult": 1,
+        "SuppressionDropoffAOE": -15,
+        "EntityFlagsRequired": 0,
+        "TargetRequiresOneOfTheseTags": [],
+        "TargetCannotHaveOneOfTheseTags": []
+      },
+      {
+        "_type": "Cooldown",
+        "RoundsToCoolDown": 4,
+        "AIOnly": 0
+      }
+    ],
+    "IsLimitedUses": false,
+    "IsOverridingRanges": true,
+    "MaxRange": 15,
+    "IdealRange": 6,
+    "SelectableTiles": 4,
+    "ExecutingElement": 5
+  },
+  "ocirebalance.cas_evac": {
+    "ImpactOnSurface": {
+      "$update": {
+        "0": {
+          "ImpactEffect": "explosion_rocket_stone_01",
+          "Decals": "impacts_crater_small_sand",
+          "DecalChance": 100,
+          "RicochetChance": 0
+        },
+        "1": {
+          "ImpactEffect": "explosion_rocket_metal_01",
+          "Decals": "impacts_crater_small_sand",
+          "DecalChance": 100,
+          "RicochetChance": 0
+        },
+        "2": {
+          "ImpactEffect": "",
+          "Decals": "",
+          "DecalChance": 100,
+          "RicochetChance": 0
+        },
+        "3": {
+          "ImpactEffect": "explosion_grenade_earth_01",
+          "Decals": "impacts_crater_small_sand",
+          "DecalChance": 100,
+          "RicochetChance": 0
+        },
+        "4": {
+          "ImpactEffect": "",
+          "Decals": "",
+          "DecalChance": 0,
+          "RicochetChance": 0
+        },
+        "5": {
+          "ImpactEffect": "",
+          "Decals": "",
+          "DecalChance": 0,
+          "RicochetChance": 0
+        },
+        "6": {
+          "ImpactEffect": "explosion_rocket_earth_01",
+          "Decals": "impacts_crater_small_sand",
+          "DecalChance": 100,
+          "RicochetChance": 0
+        },
+        "7": {
+          "ImpactEffect": "explosion_grenade_sand_01",
+          "Decals": "impacts_crater_small_sand",
+          "DecalChance": 100,
+          "RicochetChance": 0
+        },
+        "8": {
+          "ImpactEffect": "explosion_grenade_earth_01",
+          "Decals": "impacts_crater_small_sand",
+          "DecalChance": 100,
+          "RicochetChance": 0
+        },
+        "9": {
+          "ImpactEffect": "explosion_grenade_earth_01",
+          "Decals": "impacts_crater_small_sand",
+          "DecalChance": 100,
+          "RicochetChance": 0
+        },
+        "10": {
+          "ImpactEffect": "",
+          "Decals": "",
+          "DecalChance": 0,
+          "RicochetChance": 0
+        },
+        "11": {
+          "ImpactEffect": "explosion_grenade_earth_01",
+          "Decals": "impacts_crater_small_sand",
+          "DecalChance": 100,
+          "RicochetChance": 0
+        },
+        "12": {
+          "ImpactEffect": "explosion_rocket_stone_01",
+          "Decals": "impacts_crater_small_sand",
+          "DecalChance": 100,
+          "RicochetChance": 0
+        },
+        "13": {
+          "ImpactEffect": "explosion_grenade_earth_01",
+          "Decals": "impacts_crater_small_sand",
+          "DecalChance": 100,
+          "RicochetChance": 0
+        }
+      }
+    },
+    "SoundsOnUse": {
+      "$update": {
+        "0": {
+          "bankId": -980630536,
+          "itemId": 547
+        }
+      }
+    },
+    "EventHandlers": [
+      {
+        "_type": "Rescue"
+      },
+      {
+        "_type": "PlayAnimationSequence",
+        "Animation": "dropship.start_in_air"
+      },
+      {
+        "_type": "Cooldown",
+        "RoundsToCoolDown": 2,
+        "AIOnly": 0
+      }
+    ],
+    "IsLimitedUses": false,
+    "IsOverridingRanges": true,
+    "MaxRange": 15,
+    "IdealRange": 6,
+    "SelectableTiles": 1,
+    "ExecutingElement": 5,
+    "CanHitAnotherTile": false
+  },
+  "ocirebalance.resupply": {
+    "ImpactOnSurface": {
+      "$update": {
+        "0": {
+          "ImpactEffect": "explosion_rocket_stone_01",
+          "Decals": "impacts_crater_small_sand",
+          "DecalChance": 100,
+          "RicochetChance": 0
+        },
+        "1": {
+          "ImpactEffect": "explosion_rocket_metal_01",
+          "Decals": "impacts_crater_small_sand",
+          "DecalChance": 100,
+          "RicochetChance": 0
+        },
+        "2": {
+          "ImpactEffect": "",
+          "Decals": "",
+          "DecalChance": 100,
+          "RicochetChance": 0
+        },
+        "3": {
+          "ImpactEffect": "explosion_grenade_earth_01",
+          "Decals": "impacts_crater_small_sand",
+          "DecalChance": 100,
+          "RicochetChance": 0
+        },
+        "4": {
+          "ImpactEffect": "",
+          "Decals": "",
+          "DecalChance": 0,
+          "RicochetChance": 0
+        },
+        "5": {
+          "ImpactEffect": "",
+          "Decals": "",
+          "DecalChance": 0,
+          "RicochetChance": 0
+        },
+        "6": {
+          "ImpactEffect": "explosion_rocket_earth_01",
+          "Decals": "impacts_crater_small_sand",
+          "DecalChance": 100,
+          "RicochetChance": 0
+        },
+        "7": {
+          "ImpactEffect": "explosion_grenade_sand_01",
+          "Decals": "impacts_crater_small_sand",
+          "DecalChance": 100,
+          "RicochetChance": 0
+        },
+        "8": {
+          "ImpactEffect": "explosion_grenade_earth_01",
+          "Decals": "impacts_crater_small_sand",
+          "DecalChance": 100,
+          "RicochetChance": 0
+        },
+        "9": {
+          "ImpactEffect": "explosion_grenade_earth_01",
+          "Decals": "impacts_crater_small_sand",
+          "DecalChance": 100,
+          "RicochetChance": 0
+        },
+        "10": {
+          "ImpactEffect": "",
+          "Decals": "",
+          "DecalChance": 0,
+          "RicochetChance": 0
+        },
+        "11": {
+          "ImpactEffect": "explosion_grenade_earth_01",
+          "Decals": "impacts_crater_small_sand",
+          "DecalChance": 100,
+          "RicochetChance": 0
+        },
+        "12": {
+          "ImpactEffect": "explosion_rocket_stone_01",
+          "Decals": "impacts_crater_small_sand",
+          "DecalChance": 100,
+          "RicochetChance": 0
+        },
+        "13": {
+          "ImpactEffect": "explosion_grenade_earth_01",
+          "Decals": "impacts_crater_small_sand",
+          "DecalChance": 100,
+          "RicochetChance": 0
+        }
+      }
+    },
+    "SoundsOnUse": {
+      "$update": {
+        "0": {
+          "bankId": -980630536,
+          "itemId": 547
+        }
+      }
+    },
+    "EventHandlers": [
+      {
+        "_type": "SpawnTileEffect",
+        "Event": 0,
+        "EffectToSpawn": "tile_effect.supply_drop",
+        "ChanceAtCenter": 100,
+        "ChancePerTileFromCenter": 0,
+        "DelayWithDistance": 0
+      },
+      {
+        "_type": "PlayAnimationSequence",
+        "Animation": "dropship.start_in_air"
+      },
+      {
+        "_type": "Cooldown",
+        "RoundsToCoolDown": 8,
+        "AIOnly": 0
+      }
+    ],
+    "IsLimitedUses": false,
+    "IsOverridingRanges": true,
+    "MaxRange": 15,
+    "IdealRange": 6,
+    "SelectableTiles": 1,
+    "ExecutingElement": 5
+  }
+}
