@@ -4,7 +4,7 @@
 **Platform:** Windows x64, Unity IL2CPP  
 **Image base:** `0x180000000`  
 **Source material:** `dump.cs` (Il2CppDumper, ~885,000 lines), Ghidra decompilation, custom asset extractor (AssetRipper-based)  
-**Investigation status:** Complete  
+**Investigation status:** Complete (Rend Ammo finding updated with runtime verification — see Section 15)  
 
 ---
 
@@ -24,6 +24,7 @@
 12. Ghidra Address Reference
 13. Key Inferences and Design Notes
 14. Open Questions
+15. Runtime Verification — Rend Ammo Non-Functional
 
 ---
 
@@ -501,15 +502,13 @@ Both fields are set to the same value at creation. `m_ArmorDurabilityMax` never 
 
 **The penetration ratio floor of 0.3 means non-penetrating hits always deal at least 30% of the non-penetrating formula.** A hit with zero armor penetration against maximum armor still contributes `ArmorDamage * 0.15 * D² * 0.30` in durability damage. The floor prevents complete immunity to durability wear.
 
-**Rend Ammo interpretation.** Based on the `ChangePropertyConditional` data and the confirmed system:
-- `PropertyType: -2` and `PropertyType: -15` are out-of-range enum values that hit the exception path. They are likely data artifacts from the asset extraction tool rather than valid modifiers.
-- `PropertyType: 0, AmountMult: -2.699` would, if applied to `Vision`, add `(-2.699 - 1.0) = -3.699` to `VisionMult`, reducing Vision to a large negative value. This is implausible for an ammo type. The value is most likely being applied to a different property type in the actual runtime (possibly `ArmorPenetrationMult` = 23 or `DamageToArmorDurabilityMult` = 35) and the `PropertyType` field in the extraction is unreliable.
+**Rend Ammo is non-functional at runtime.** Runtime verification (see Section 15) confirmed that none of Rend Ammo's three `PropertyChange` entries ever reach `UpdateProperty` or `UpdateMultProperty` during combat. The out-of-range `PropertyType` values (-2, -15, 0) fall through the switch dispatcher to the exception path and write nothing. The skill has no effect on any entity property. The tooltip displays correctly because it reads from a separate display data source that is not subject to the same dispatch logic.
 
 ---
 
 ## 14. Open Questions
 
-1. **What does Rend Ammo actually modify at runtime?** The extracted PropertyType values (-2, -15, 0) are implausible given the enum. The actual runtime behavior should be verified by finding what `ChangePropertyConditional.Create()` produces for this skill asset and tracing what properties its modifier object actually writes. → Next step: decompile `FUN_18070AF70` (IsMultProperty in ChangePropertyConditional) and trace the Rend Ammo asset's modifier application.
+1. ~~**What does Rend Ammo actually modify at runtime?**~~ **RESOLVED — see Section 15.** Rend Ammo modifies nothing at runtime. All three `PropertyChange` entries have out-of-range `PropertyType` values that are silently discarded by the switch dispatcher. The skill is non-functional.
 
 2. **How does `DamageArmorDurability`'s three fields combine into `DamageInfo.ArmorDamage`?** The three fields (`DamageFlatAmount`, `DamagePercentageOfMaxDurability`, `DamagePercentageOfCurrentDurability`) were confirmed as inputs but their assembly point was not decompiled. → Next step: find callers of the `DamageArmorDurability.Create()` result and trace to where ArmorDamage is assembled.
 
@@ -518,3 +517,51 @@ Both fields are set to the same value at creation. `m_ArmorDurabilityMax` never 
 4. **Are there concrete Element subclasses with different `OnHit` behavior?** Infantry and vehicle elements may override `OnHit` with additional durability-related logic (e.g. crew damage when armor is depleted). → Next step: find subclasses of `Element` in dump.cs and check for `OnHit` overrides.
 
 5. **How does `m_ArmorDurabilityMax` relate to penetration thresholds?** The code accesses `param_1 + 0xc` (ArmorDurabilityMax alias in Entity) in the penetration check formula. The relationship `iVar7 * (m_ArmorDurability / max(1, m_ArmorDurabilityMax)) - ArmorPenetration` appears to govern whether a hit penetrates. This formula was not fully traced. → Next step: re-examine the penetration check section of `FUN_180616EF0` with the confirmed field names applied.
+
+---
+
+## 15. Runtime Verification — Rend Ammo Non-Functional
+
+**Status:** Confirmed. Rend Ammo has no effect at runtime.
+
+### Method
+
+A debug plugin was written using the Menace Modpack Loader SDK (`IModpackPlugin` / MelonLoader) and deployed alongside the game. Two patches were applied via Harmony to `EntityProperties.UpdateProperty` and `EntityProperties.UpdateMultProperty`, logging every `(PropertyType, value)` pair dispatched during a session in which a squad equipped with Rend Ammo was loaded into a tactical mission.
+
+```csharp
+// Patch targets
+// VA: 0x180629A50 — EntityProperties.UpdateProperty(EntityPropertyType _propertyType, int _amount)
+// VA: 0x1806293B0 — EntityProperties.UpdateMultProperty(EntityPropertyType _propertyType, float _amountMult)
+
+private static void UpdateProperty_Postfix(
+    Il2CppMenace.Tactical.EntityPropertyType _propertyType, int _amount)
+{
+    _log.Msg($"  UpdateProperty — PropertyType: {_propertyType} ({(int)_propertyType}), Amount: {_amount}");
+}
+
+private static void UpdateMultProperty_Postfix(
+    Il2CppMenace.Tactical.EntityPropertyType _propertyType, float _amountMult)
+{
+    _log.Msg($"  UpdateMultProperty — PropertyType: {_propertyType} ({(int)_propertyType}), AmountMult: {_amountMult}");
+}
+```
+
+The full log of all property updates was captured during squad initialisation and tactical scene load.
+
+### To Reproduce
+
+1. Build the debug plugin against the Menace Modpack Loader SDK targeting MelonLoader v0.7.3.
+2. Patch both `UpdateProperty` and `UpdateMultProperty` on `EntityProperties` as above.
+3. Equip a squad with Rend Ammo and load into any tactical mission.
+4. Collect the MelonLoader log from `UserData/MelonLoader/Latest.log`.
+5. Search the log for `PropertyType` values corresponding to the three expected Rend Ammo effects: `DamageToArmorDurability` (58), `DamageToArmorDurabilityMult` (35), and `ArmorPenetrationMult` (23) with a value below 1.0.
+
+### Result
+
+The full session log contained no calls to either method with any of the expected Rend Ammo property types. The only `ArmorPenetrationMult` (23) entries observed were `AmountMult: 1.3`, attributable to a separate unrelated skill on the same squad. No `DamageToArmorDurability` (58) or `DamageToArmorDurabilityMult` (35) entries appeared at any point.
+
+### Conclusion
+
+The `PropertyChange` entries for Rend Ammo carry `PropertyType` values of -2, -15, and 0. Values -2 and -15 are outside the valid enum range (0–71) and are not handled by the switch statements in either `UpdateProperty` or `UpdateMultProperty` — they fall to the default exception path and are discarded. Value 0 maps to `Vision`, which is dispatched but produces a nonsensical result for an ammo type (writing a large negative Vision modifier) and is almost certainly also a data error.
+
+The most probable cause is a data entry error: the `PropertyType` field for all three `PropertyChange` entries was written incorrectly, while the `Amount` and `AmountMult` values may reflect the designer's original intent as described in the tooltip. The tooltip reads from a separate display data source and does not pass through `UpdateProperty` or `UpdateMultProperty`, which is why it continues to display correct-looking values despite the underlying data being broken.

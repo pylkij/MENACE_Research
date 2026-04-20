@@ -1,0 +1,1306 @@
+
+[14:55:05.379] ------------------------------
+[14:55:05.383] MelonLoader v0.7.3-ci.2494 Open-Beta
+[14:55:05.384] OS: Windows 10
+[14:55:05.384] Hash Code: D41FE397467FE540C6848F2E98EE6FA6285CD1AFB062C778E7644997F70FCA1C
+[14:55:05.384] ------------------------------
+[14:55:05.384] Game Type: Il2cpp
+[14:55:05.385] Game Arch: x64
+[14:55:05.385] ------------------------------
+[14:55:05.385] Command-Line: 
+[14:55:05.385] ------------------------------
+[14:55:05.385] Core::BasePath = C:\Program Files (x86)\Steam\steamapps\common\Menace
+[14:55:05.386] Game::BasePath = C:\Program Files (x86)\Steam\steamapps\common\Menace
+[14:55:05.392] Game::DataPath = C:\Program Files (x86)\Steam\steamapps\common\Menace\Menace_Data
+[14:55:05.392] Game::ApplicationPath = C:\Program Files (x86)\Steam\steamapps\common\Menace\Menace.exe
+[14:55:05.392] Runtime Type: net6
+[14:55:05.556] ------------------------------
+[14:55:05.556] Game Name: Menace
+[14:55:05.556] Game Developer: Overhype Studios
+[14:55:05.559] Unity Version: 6000.0.63f1
+[14:55:05.559] Game Version: v0.6.13+17453
+[14:55:05.559] ------------------------------
+
+[14:55:06.191] Preferences Loaded!
+
+[14:55:06.204] Loading UserLibs...
+[14:55:06.233] ------------------------------
+[14:55:06.318] Melon Assembly loaded: '.\UserLibs\Microsoft.CodeAnalysis.CSharp.dll'
+[14:55:06.318] SHA256 Hash: 'C598F7C6871D0FA3B6F105F4E68BDED4106402B5DD6427004F2F5B6380FE7A79'
+[14:55:06.371] Melon Assembly loaded: '.\UserLibs\Microsoft.CodeAnalysis.dll'
+[14:55:06.372] SHA256 Hash: 'EDB2B59584E02EA20A0AF6092A0AE7D98A7CCDD7AAEBD29043096D890DA6A39C'
+[14:55:06.378] Melon Assembly loaded: '.\UserLibs\MoonSharp.Interpreter.dll'
+[14:55:06.379] SHA256 Hash: 'D1CAF8C1A1CD7669B749D4CACDDA88E949D5138B86E8AC3F73943ABEBD6E7E18'
+[14:55:06.388] Melon Assembly loaded: '.\UserLibs\Newtonsoft.Json.dll'
+[14:55:06.388] SHA256 Hash: '22C649F75FCE5BE7C7CCDA8880473B634EF69ECF33F5D1AB8AD892CAF47D5A07'
+[14:55:06.397] Melon Assembly loaded: '.\UserLibs\SharpGLTF.Core.dll'
+[14:55:06.397] SHA256 Hash: 'C3B5E48F57D237D013FB4601671D90D9D4948EAEDDA23AAC3AB9ADEA4A16F3BC'
+[14:55:06.401] Melon Assembly loaded: '.\UserLibs\System.Collections.Immutable.dll'
+[14:55:06.401] SHA256 Hash: '1200B0D64B654C3181E80824BA26D821235FCA03BC8D2F3749EE706DFCC5AF97'
+[14:55:06.426] Melon Assembly loaded: '.\UserLibs\System.Reflection.Metadata.dll'
+[14:55:06.426] SHA256 Hash: 'AAB12FC241EE53FDF4D778642972B700F32A81BA9D93BC3E11623713F998D6CB'
+[14:55:06.427] ------------------------------
+[14:55:06.427] 0 UserLibs loaded.
+
+[14:55:06.428] Loading Plugins...
+[14:55:06.433] 0 Plugins loaded.
+
+[14:55:07.103] Loading Il2CppAssemblyGenerator...
+[14:55:07.134] [Il2CppAssemblyGenerator] Contacting RemoteAPI...
+[14:55:07.271] [Il2CppAssemblyGenerator] Game Not Found on RemoteAPI Host (https://api.melonloader.com/api/v1/game/menace)
+[14:55:07.271] [Il2CppAssemblyGenerator] RemoteAPI.DumperVersion = null
+[14:55:07.273] [Il2CppAssemblyGenerator] RemoteAPI.ObfuscationRegex = null
+[14:55:07.273] [Il2CppAssemblyGenerator] RemoteAPI.MappingURL = null
+[14:55:07.273] [Il2CppAssemblyGenerator] RemoteAPI.MappingFileSHA512 = null
+[14:55:07.277] [Il2CppAssemblyGenerator] Using Cpp2IL Version: 2022.1.0-pre-release.21
+[14:55:07.277] [Il2CppAssemblyGenerator] Using Il2CppInterop Version = 1.5.1-ci.845+f03c8f4ae507d47ea814f3d11d1ec6b0391c1576
+[14:55:07.278] [Il2CppAssemblyGenerator] Using Unity Dependencies Version = 6000.0.63
+[14:55:07.278] [Il2CppAssemblyGenerator] Using Deobfuscation Regex = null
+[14:55:07.278] [Il2CppAssemblyGenerator] Cpp2IL is up to date.
+[14:55:07.279] [Il2CppAssemblyGenerator] Cpp2IL.Plugin.StrippedCodeRegSupport is up to date.
+[14:55:07.279] [Il2CppAssemblyGenerator] UnityDependencies is up to date.
+[14:55:07.279] [Il2CppAssemblyGenerator] Checking GameAssembly...
+[14:55:07.418] [Il2CppAssemblyGenerator] Assembly is up to date. No Generation Needed.
+
+[14:55:07.420] Loading Mods...
+[14:55:07.443] ------------------------------
+[14:55:07.447] Melon Assembly loaded: '.\Mods\Menace.DataExtractor.dll'
+[14:55:07.447] SHA256 Hash: '02AB0F19AA387673F37AAE961C864FD0909D730DAA6DC3A7D69BD1E744067363'
+[14:55:07.465] Melon Assembly loaded: '.\Mods\Menace.ModpackLoader.dll'
+[14:55:07.466] SHA256 Hash: 'C00D95B001739957E6E2AD2D0B21998F05C81CA1C5B64160A1BDB8187356C482'
+
+[14:55:07.803] ------------------------------
+[14:55:07.804] Menace Data Extractor v9.0.0
+[14:55:07.805] by MenaceModkit
+[14:55:07.805] Assembly: Menace.DataExtractor.dll
+[14:55:07.806] ------------------------------
+[14:55:07.809] ------------------------------
+[14:55:07.809] Menace Modpack Loader v35.0.0
+[14:55:07.810] by Menace Modkit
+[14:55:07.810] Assembly: Menace.ModpackLoader.dll
+[14:55:07.810] ------------------------------
+[14:55:07.811] ------------------------------
+[14:55:07.811] 2 Mods loaded.
+
+[14:55:08.748] [WARNING] [Il2CppInterop] Class::Init signatures have been exhausted, using a substitute!
+[14:55:08.779] [Il2CppInterop] Registered mono type MelonLoader.Support.MonoEnumeratorWrapper in il2cpp domain
+[14:55:08.885] Support Module Loaded: C:\Program Files (x86)\Steam\steamapps\common\Menace\MelonLoader\Dependencies\SupportModules\Il2Cpp.dll
+[14:55:08.900] [Menace_Data_Extractor] Disk space: 720769 MB available
+[14:55:08.902] [Menace_Data_Extractor] Output directory verified and writable.
+[14:55:09.045] [Menace_Data_Extractor] Schema loaded: 84 template types, 35 embedded classes, 1029 struct types, 119 effect handlers
+[14:55:09.045] [Menace_Data_Extractor] ===========================================
+[14:55:09.046] [Menace_Data_Extractor] Menace Data Extractor v9.0.0 (Manual Extraction Mode)
+[14:55:09.047] [Menace_Data_Extractor] Output path: C:\Program Files (x86)\Steam\steamapps\common\Menace\UserData\ExtractedData
+[14:55:09.047] [Menace_Data_Extractor] ===========================================
+[14:55:09.050] [Menace_Data_Extractor] Extracted data is up to date.
+[14:55:09.063] [Menace_Modpack_Loader] [ModSettings] Registered 4 settings for 'Keybindings'
+[14:55:09.442] [Menace_Modpack_Loader] Menace Modpack Loader v35 initialized
+[14:55:09.444] [Menace_Modpack_Loader] [ModSettings] Initialized. Settings file: C:\Program Files (x86)\Steam\steamapps\common\Menace\UserData\ModSettings.json
+[14:55:09.445] [Menace_Modpack_Loader] [ModSettings] Registered 2 settings for 'Modpack Loader'
+[14:55:10.139] [Menace Modpack Loader] [Menace.SDK.Repl] Resolved 250 metadata references
+[14:55:10.140] [Menace_Modpack_Loader] REPL initialized with 250 references
+[14:55:10.160] [Menace_Modpack_Loader] [TemplateDiagnostics] Patched GetBaseFolder
+[14:55:10.180] [Menace_Modpack_Loader] [SceneDiagnostics] Patched SceneManager.LoadScene
+[14:55:10.181] [Menace_Modpack_Loader] [SceneDiagnostics] Patched SceneManager.LoadScene(int)
+[14:55:10.206] [Menace_Modpack_Loader] [TemplateLoadingFixes] Patched GetBaseFolder
+[14:55:10.206] [Menace_Modpack_Loader] [SceneLoadingFixes] Initialized (no fixes currently applied)
+[14:55:10.206] [Menace_Modpack_Loader] Diagnostics and fixes initialized
+[14:55:10.211] [Menace_Modpack_Loader] [TestHarness] Registered test commands
+[14:55:10.213] [Menace_Modpack_Loader] [ModSettings] Registered 6 settings for 'MCP Server'
+[14:55:10.217] [Menace_Modpack_Loader] [GameMcp] Server started on http://127.0.0.1:7655/
+[14:55:10.217] [Menace_Modpack_Loader] [MenuInjector] Initialized for UIToolkit
+[14:55:10.218] [GlbLoader] GLB loading enabled
+[14:55:10.223] [Menace_Modpack_Loader] Loading modpacks from: C:\Program Files (x86)\Steam\steamapps\common\Menace\Mods
+[14:55:10.307] [Menace_Modpack_Loader]   Loaded [v2]: OCIRebalance v1.0.0 (order: 100)
+[14:55:10.316] [Menace_Modpack_Loader]   [OCIRebalance] Loaded DLL: OCIRebalance.dll [source-verified]
+[14:55:10.318] [Menace_Modpack_Loader]   [OCIRebalance] Discovered plugin: Plugin
+[14:55:10.320] [Menace_Modpack_Loader]   Loaded [v2]: REND Investigation v1.0.0 (order: 100)
+[14:55:10.321] [Menace_Modpack_Loader]   [REND Investigation] Loaded DLL: REND_Investigation.dll [source-verified]
+[14:55:10.322] [Menace_Modpack_Loader]   [REND Investigation] Discovered plugin: Plugin
+[14:55:10.322] [Menace_Modpack_Loader] Loaded 2 modpack(s)
+[14:55:10.339] [Menace_Modpack_Loader] [CompiledAssetLoader] Loaded manifest with 14 asset(s)
+[14:55:10.340] [OCIRebalance] OCIRebalance loaded.
+[14:55:10.340] [Menace_Modpack_Loader]   [OCIRebalance] Initialized plugin: Plugin
+[14:55:10.341] [REND_Investigation] RendAmmoDebug loaded.
+[14:55:10.386] [REND_Investigation] Patched EntityProperties.UpdateProperty and UpdateMultProperty.
+[14:55:10.386] [Menace_Modpack_Loader]   [REND Investigation] Initialized plugin: Plugin
+[14:55:10.387] [EarlyTemplateInjection] Early injection disabled, using legacy scene-load injection
+[14:55:10.388] [WARNING] [Menace_Modpack_Loader] [TacticalEventHooks] TacticalManager type not found
+[14:55:10.389] [Menace_Modpack_Loader] [StrategyEventHooks] Initialized with 0 event hooks
+[14:55:10.389] [Menace_Modpack_Loader] Found BugReporterRequest: Il2CppMenace.UI.BugReporterRequest
+[14:55:10.407] [Menace_Modpack_Loader] Bug reporter patched - reports will include mod list
+[14:55:10.407] [Menace_Modpack_Loader] [ModSettings] Registered 7 settings for 'Modpack Loader'
+[14:55:10.469] [Menace_Modpack_Loader] [BootSkip] Patched VideoPlayer.Play
+[14:55:10.470] [Menace_Modpack_Loader] [BootSkip] Initialized
+[14:55:10.492] [Menace_Modpack_Loader] [LuaEngine] Initialized
+[14:55:10.494] [Menace_Modpack_Loader] [Localization] Initializing multi-lingual system...
+[14:55:10.999] [Menace_Modpack_Loader] [Localization] Loaded 10 languages
+[14:55:13.588] [Il2CppInterop] Registered mono type MelonLoader.Support.SM_Component in il2cpp domain
+[14:55:13.599] Registered mono icall UnityEngine.Transform::SetAsLastSibling in il2cpp domain
+[14:55:13.605] [Menace_Modpack_Loader] Scene 'Splash' loaded, attempting template patches...
+[14:55:14.165] [Menace_Data_Extractor] [DevConsole] Searching 265 assemblies...
+[14:55:14.165] [Menace_Data_Extractor] [DevConsole] Found in: Menace.ModpackLoader
+[14:55:14.167] [Menace_Data_Extractor] [DevConsole] Found! Log=True, ShowPanel=True
+[14:55:14.167] [Menace_Data_Extractor] [DataExtractor] Registered 'extract' command with DevConsole
+[14:55:14.941] [Menace_Modpack_Loader] Applying modpack modifications (scene: Splash)...
+[14:55:14.943] [WARNING] [Menace_Modpack_Loader] [SaveSystemPatches] Saves directory not found, will retry later
+[14:55:14.950] [Menace_Modpack_Loader] [CompiledAssetLoader] Beginning asset load for 14 manifest entries...
+[14:55:14.950] [Menace_Modpack_Loader] [CompiledAssetLoader] Asset loading complete: 0 loaded, 0 failed, 14 clones (loaded by game)
+[14:55:14.965] [Menace_Modpack_Loader] [TemplateDiagnostics] GetBaseFolder(Menace.Tactical.Skills.SkillTemplate) -> 'Data/Skills/'
+[14:55:15.924] [WARNING] [Menace_Modpack_Loader]   RegisterInLoader: could not register 'ocirebalance.airdropped_minefield' — clone exists in memory but may not be findable via DataTemplateLoader.Get()
+[14:55:15.925] [Menace_Modpack_Loader]   Registered native clone: ocirebalance.airdropped_minefield (SkillTemplate)
+[14:55:15.926] [WARNING] [Menace_Modpack_Loader]   RegisterInLoader: could not register 'ocirebalance.electronic_warfare' — clone exists in memory but may not be findable via DataTemplateLoader.Get()
+[14:55:15.926] [Menace_Modpack_Loader]   Registered native clone: ocirebalance.electronic_warfare (SkillTemplate)
+[14:55:15.927] [WARNING] [Menace_Modpack_Loader]   RegisterInLoader: could not register 'ocirebalance.remote_hacker' — clone exists in memory but may not be findable via DataTemplateLoader.Get()
+[14:55:15.927] [Menace_Modpack_Loader]   Registered native clone: ocirebalance.remote_hacker (SkillTemplate)
+[14:55:15.927] [WARNING] [Menace_Modpack_Loader]   RegisterInLoader: could not register 'ocirebalance.sensor_ghosts' — clone exists in memory but may not be findable via DataTemplateLoader.Get()
+[14:55:15.927] [Menace_Modpack_Loader]   Registered native clone: ocirebalance.sensor_ghosts (SkillTemplate)
+[14:55:15.928] [WARNING] [Menace_Modpack_Loader]   RegisterInLoader: could not register 'ocirebalance.smoke_curtain' — clone exists in memory but may not be findable via DataTemplateLoader.Get()
+[14:55:15.928] [Menace_Modpack_Loader]   Registered native clone: ocirebalance.smoke_curtain (SkillTemplate)
+[14:55:15.929] [WARNING] [Menace_Modpack_Loader]   RegisterInLoader: could not register 'ocirebalance.laser_turret' — clone exists in memory but may not be findable via DataTemplateLoader.Get()
+[14:55:15.929] [Menace_Modpack_Loader]   Registered native clone: ocirebalance.laser_turret (SkillTemplate)
+[14:55:15.929] [WARNING] [Menace_Modpack_Loader]   RegisterInLoader: could not register 'ocirebalance.gravity_pulse' — clone exists in memory but may not be findable via DataTemplateLoader.Get()
+[14:55:15.929] [Menace_Modpack_Loader]   Registered native clone: ocirebalance.gravity_pulse (SkillTemplate)
+[14:55:15.930] [WARNING] [Menace_Modpack_Loader]   RegisterInLoader: could not register 'ocirebalance.ion_cannon' — clone exists in memory but may not be findable via DataTemplateLoader.Get()
+[14:55:15.930] [Menace_Modpack_Loader]   Registered native clone: ocirebalance.ion_cannon (SkillTemplate)
+[14:55:15.930] [WARNING] [Menace_Modpack_Loader]   RegisterInLoader: could not register 'ocirebalance.dropship_minigun_run' — clone exists in memory but may not be findable via DataTemplateLoader.Get()
+[14:55:15.931] [Menace_Modpack_Loader]   Registered native clone: ocirebalance.dropship_minigun_run (SkillTemplate)
+[14:55:15.931] [WARNING] [Menace_Modpack_Loader]   RegisterInLoader: could not register 'ocirebalance.orbital_missile_strike' — clone exists in memory but may not be findable via DataTemplateLoader.Get()
+[14:55:15.931] [Menace_Modpack_Loader]   Registered native clone: ocirebalance.orbital_missile_strike (SkillTemplate)
+[14:55:15.932] [WARNING] [Menace_Modpack_Loader]   RegisterInLoader: could not register 'ocirebalance.dropship_rocket_run' — clone exists in memory but may not be findable via DataTemplateLoader.Get()
+[14:55:15.932] [Menace_Modpack_Loader]   Registered native clone: ocirebalance.dropship_rocket_run (SkillTemplate)
+[14:55:15.932] [WARNING] [Menace_Modpack_Loader]   RegisterInLoader: could not register 'ocirebalance.cas_evac' — clone exists in memory but may not be findable via DataTemplateLoader.Get()
+[14:55:15.932] [Menace_Modpack_Loader]   Registered native clone: ocirebalance.cas_evac (SkillTemplate)
+[14:55:15.933] [WARNING] [Menace_Modpack_Loader]   RegisterInLoader: could not register 'ocirebalance.resupply' — clone exists in memory but may not be findable via DataTemplateLoader.Get()
+[14:55:15.933] [Menace_Modpack_Loader]   Registered native clone: ocirebalance.resupply (SkillTemplate)
+[14:55:15.934] [Menace_Modpack_Loader] [TemplateDiagnostics] GetBaseFolder(Menace.Items.WeaponTemplate) -> 'Data/Items/'
+[14:55:18.098] [WARNING] [Menace_Modpack_Loader]   RegisterInLoader: could not register 'ocirebalance.specialweapon.rmc_tac_radio' — clone exists in memory but may not be findable via DataTemplateLoader.Get()
+[14:55:18.098] [Menace_Modpack_Loader]   Registered native clone: ocirebalance.specialweapon.rmc_tac_radio (WeaponTemplate)
+[14:55:18.099] [Menace_Modpack_Loader] Registered 14 clone(s) from native assets
+[14:55:18.099] [Menace_Modpack_Loader] Applying modpack: OCIRebalance
+[14:55:18.100] [Menace_Modpack_Loader] [TemplateCloning] Runtime cloning DISABLED - relying on native assets only
+[14:55:18.108] [Menace_Modpack_Loader]   [Debug] SkillTemplate: 635 instances, GetID=True, patches=[ocirebalance.airdropped_minefield, ocirebalance.electronic_warfare, ocirebalance.remote_hacker, ocirebalance.sensor_ghosts, ocirebalance.smoke_curtain]
+[14:55:18.109] [Menace_Modpack_Loader]     [Debug] obj.name matched: 'ocirebalance.airdropped_minefield'
+[14:55:18.146] [WARNING] [Menace_Modpack_Loader]   EnsureTemplatesLoaded(GameObject): GenericArguments[0], 'UnityEngine.GameObject', on 'Il2CppSystem.Collections.Generic.IReadOnlyCollection`1[T] GetAll[T]()' violates the constraint of type 'T'.
+[14:55:18.192] [Menace_Modpack_Loader]     Built name lookup for GameObject: 4391 entries
+[14:55:18.193] [Menace_Modpack_Loader]     [Debug] Resolved 'explosion_mortar_stone_01' -> GameObject 'explosion_mortar_stone_01'
+[14:55:18.195] [WARNING] [Menace_Modpack_Loader]   EnsureTemplatesLoaded(DecalCollection): GenericArguments[0], 'Il2CppMenace.Tactical.DecalCollection', on 'Il2CppSystem.Collections.Generic.IReadOnlyCollection`1[T] GetAll[T]()' violates the constraint of type 'T'.
+[14:55:18.196] [Menace_Modpack_Loader]     Built name lookup for DecalCollection: 70 entries
+[14:55:18.196] [Menace_Modpack_Loader]     [Debug] Resolved 'impacts_crater_medium_earth' -> DecalCollection 'impacts_crater_medium_earth'
+[14:55:18.197] [Menace_Modpack_Loader]     [Debug] Resolved 'explosion_mortar_stone_01' -> GameObject 'explosion_mortar_stone_01'
+[14:55:18.198] [Menace_Modpack_Loader]     [Debug] Resolved 'impacts_burnt_ground_huge' -> DecalCollection 'impacts_burnt_ground_huge'
+[14:55:18.198] [Menace_Modpack_Loader]     [Debug] Resolved 'explosion_mortar_sand_01' -> GameObject 'explosion_mortar_sand_01'
+[14:55:18.198] [Menace_Modpack_Loader]     [Debug] Resolved 'impacts_crater_medium_sand' -> DecalCollection 'impacts_crater_medium_sand'
+[14:55:18.199] [Menace_Modpack_Loader]     [Debug] Resolved 'explosion_mortar_earth_01' -> GameObject 'explosion_mortar_earth_01'
+[14:55:18.199] [Menace_Modpack_Loader]     [Debug] Resolved 'impacts_crater_medium_earth' -> DecalCollection 'impacts_crater_medium_earth'
+[14:55:18.199] [Menace_Modpack_Loader]     [Debug] Resolved 'explosion_mortar_snow_01' -> GameObject 'explosion_mortar_snow_01'
+[14:55:18.200] [Menace_Modpack_Loader]     [Debug] Resolved 'impacts_crater_medium_snow' -> DecalCollection 'impacts_crater_medium_snow'
+[14:55:18.200] [Menace_Modpack_Loader]     [Debug] Resolved 'explosion_mortar_stone_01' -> GameObject 'explosion_mortar_stone_01'
+[14:55:18.200] [Menace_Modpack_Loader]     [Debug] Resolved 'impacts_crater_medium_earth' -> DecalCollection 'impacts_crater_medium_earth'
+[14:55:18.201] [Menace_Modpack_Loader]     [Debug] Resolved 'explosion_mortar_sand_01' -> GameObject 'explosion_mortar_sand_01'
+[14:55:18.201] [Menace_Modpack_Loader]     [Debug] Resolved 'impacts_crater_medium_sand' -> DecalCollection 'impacts_crater_medium_sand'
+[14:55:18.201] [Menace_Modpack_Loader]     [Debug] Resolved 'explosion_mortar_earth_01' -> GameObject 'explosion_mortar_earth_01'
+[14:55:18.202] [Menace_Modpack_Loader]     [Debug] Resolved 'impacts_crater_medium_earth' -> DecalCollection 'impacts_crater_medium_earth'
+[14:55:18.202] [Menace_Modpack_Loader]     [Debug] Resolved 'explosion_mortar_grass_01' -> GameObject 'explosion_mortar_grass_01'
+[14:55:18.202] [Menace_Modpack_Loader]     [Debug] Resolved 'impacts_crater_medium_earth' -> DecalCollection 'impacts_crater_medium_earth'
+[14:55:18.203] [Menace_Modpack_Loader]     [Debug] Resolved 'explosion_mortar_grass_01' -> GameObject 'explosion_mortar_grass_01'
+[14:55:18.203] [Menace_Modpack_Loader]     [Debug] Resolved 'impacts_crater_medium_earth' -> DecalCollection 'impacts_crater_medium_earth'
+[14:55:18.203] [Menace_Modpack_Loader]     [Debug] Resolved 'explosion_mortar_stone_01' -> GameObject 'explosion_mortar_stone_01'
+[14:55:18.204] [Menace_Modpack_Loader]     [Debug] Resolved 'impacts_crater_medium_earth' -> DecalCollection 'impacts_crater_medium_earth'
+[14:55:18.204] [Menace_Modpack_Loader]     [Debug] Resolved 'explosion_mortar_sand_01' -> GameObject 'explosion_mortar_sand_01'
+[14:55:18.204] [Menace_Modpack_Loader]     [Debug] Resolved 'impacts_crater_medium_earth' -> DecalCollection 'impacts_crater_medium_earth'
+[14:55:18.205] [Menace_Modpack_Loader]     ImpactOnSurface: applied 14 incremental ops on List<SkillOnSurfaceDefinition>
+[14:55:18.219] [Menace_Modpack_Loader]     Resolved polymorphic type (fallback): 'Attack' → Il2CppMenace.Tactical.Skills.Effects.Attack
+[14:55:18.226] [Menace_Modpack_Loader] [TemplateDiagnostics] GetBaseFolder(Menace.Tags.TagTemplate) -> 'Data/Tags/'
+[14:55:18.228] [Menace_Modpack_Loader]     Built name lookup for TagTemplate: 73 entries
+[14:55:18.229] [Menace_Modpack_Loader]     Resolved polymorphic type (fallback): 'Cooldown' → Il2CppMenace.Tactical.Skills.Effects.Cooldown
+[14:55:18.229] [Menace_Modpack_Loader]     EventHandlers: set List<SkillEventHandlerTemplate> with 2/2 elements
+[14:55:18.231] [Menace_Modpack_Loader]     ocirebalance.airdropped_minefield: set 8/8 fields
+[14:55:18.231] [Menace_Modpack_Loader]     [Debug] obj.name matched: 'ocirebalance.cas_evac'
+[14:55:18.231] [Menace_Modpack_Loader]     [Debug] Resolved 'explosion_rocket_stone_01' -> GameObject 'explosion_rocket_stone_01'
+[14:55:18.231] [Menace_Modpack_Loader]     [Debug] Resolved 'impacts_crater_small_sand' -> DecalCollection 'impacts_crater_small_sand'
+[14:55:18.232] [Menace_Modpack_Loader]     [Debug] Resolved 'explosion_rocket_metal_01' -> GameObject 'explosion_rocket_metal_01'
+[14:55:18.232] [Menace_Modpack_Loader]     [Debug] Resolved 'impacts_crater_small_sand' -> DecalCollection 'impacts_crater_small_sand'
+[14:55:18.232] [Menace_Modpack_Loader]     [Debug] Resolved 'explosion_grenade_earth_01' -> GameObject 'explosion_grenade_earth_01'
+[14:55:18.233] [Menace_Modpack_Loader]     [Debug] Resolved 'impacts_crater_small_sand' -> DecalCollection 'impacts_crater_small_sand'
+[14:55:18.233] [Menace_Modpack_Loader]     [Debug] Resolved 'explosion_rocket_earth_01' -> GameObject 'explosion_rocket_earth_01'
+[14:55:18.233] [Menace_Modpack_Loader]     [Debug] Resolved 'impacts_crater_small_sand' -> DecalCollection 'impacts_crater_small_sand'
+[14:55:18.234] [Menace_Modpack_Loader]     [Debug] Resolved 'explosion_grenade_sand_01' -> GameObject 'explosion_grenade_sand_01'
+[14:55:18.234] [Menace_Modpack_Loader]     [Debug] Resolved 'impacts_crater_small_sand' -> DecalCollection 'impacts_crater_small_sand'
+[14:55:18.234] [Menace_Modpack_Loader]     [Debug] Resolved 'explosion_grenade_earth_01' -> GameObject 'explosion_grenade_earth_01'
+[14:55:18.235] [Menace_Modpack_Loader]     [Debug] Resolved 'impacts_crater_small_sand' -> DecalCollection 'impacts_crater_small_sand'
+[14:55:18.235] [Menace_Modpack_Loader]     [Debug] Resolved 'explosion_grenade_earth_01' -> GameObject 'explosion_grenade_earth_01'
+[14:55:18.235] [Menace_Modpack_Loader]     [Debug] Resolved 'impacts_crater_small_sand' -> DecalCollection 'impacts_crater_small_sand'
+[14:55:18.236] [Menace_Modpack_Loader]     [Debug] Resolved 'explosion_grenade_earth_01' -> GameObject 'explosion_grenade_earth_01'
+[14:55:18.236] [Menace_Modpack_Loader]     [Debug] Resolved 'impacts_crater_small_sand' -> DecalCollection 'impacts_crater_small_sand'
+[14:55:18.237] [Menace_Modpack_Loader]     [Debug] Resolved 'explosion_rocket_stone_01' -> GameObject 'explosion_rocket_stone_01'
+[14:55:18.237] [Menace_Modpack_Loader]     [Debug] Resolved 'impacts_crater_small_sand' -> DecalCollection 'impacts_crater_small_sand'
+[14:55:18.237] [Menace_Modpack_Loader]     [Debug] Resolved 'explosion_grenade_earth_01' -> GameObject 'explosion_grenade_earth_01'
+[14:55:18.237] [Menace_Modpack_Loader]     [Debug] Resolved 'impacts_crater_small_sand' -> DecalCollection 'impacts_crater_small_sand'
+[14:55:18.238] [Menace_Modpack_Loader]     ImpactOnSurface: applied 14 incremental ops on List<SkillOnSurfaceDefinition>
+[14:55:18.240] [WARNING] [Menace_Modpack_Loader]     ID: property 'bankId' not found
+[14:55:18.240] [WARNING] [Menace_Modpack_Loader]     ID: property 'itemId' not found
+[14:55:18.241] [Menace_Modpack_Loader]     SoundsOnUse: applied 1 incremental ops on List<ID>
+[14:55:18.242] [Menace_Modpack_Loader]     Resolved polymorphic type (fallback): 'Rescue' → Il2CppMenace.Tactical.Skills.Effects.Rescue
+[14:55:18.243] [Menace_Modpack_Loader]     Resolved polymorphic type (fallback): 'PlayAnimationSequence' → Il2CppMenace.Tactical.Skills.Effects.PlayAnimationSequence
+[14:55:18.244] [Menace_Modpack_Loader] [TemplateDiagnostics] GetBaseFolder(Menace.Tactical.AnimationSequence.AnimationSequenceTemplate) -> 'Data/AnimationSequences/'
+[14:55:18.248] [Menace_Modpack_Loader]     Built name lookup for AnimationSequenceTemplate: 3 entries
+[14:55:18.248] [Menace_Modpack_Loader]     [Debug] Resolved 'dropship.start_in_air' -> AnimationSequenceTemplate 'dropship.start_in_air'
+[14:55:18.249] [Menace_Modpack_Loader]     EventHandlers: set List<SkillEventHandlerTemplate> with 3/3 elements
+[14:55:18.249] [Menace_Modpack_Loader]     ocirebalance.cas_evac: set 10/10 fields
+[14:55:18.250] [Menace_Modpack_Loader]     [Debug] obj.name matched: 'ocirebalance.dropship_rocket_run'
+[14:55:18.250] [Menace_Modpack_Loader]     [Debug] Resolved 'explosion_organ_rocket_earth_01' -> GameObject 'explosion_organ_rocket_earth_01'
+[14:55:18.250] [Menace_Modpack_Loader]     [Debug] Resolved 'impacts_crater_small_earth' -> DecalCollection 'impacts_crater_small_earth'
+[14:55:18.251] [Menace_Modpack_Loader]     [Debug] Resolved 'explosion_rocket_metal_01' -> GameObject 'explosion_rocket_metal_01'
+[14:55:18.251] [Menace_Modpack_Loader]     [Debug] Resolved 'impacts_crater_small_earth' -> DecalCollection 'impacts_crater_small_earth'
+[14:55:18.251] [Menace_Modpack_Loader]     [Debug] Resolved 'explosion_organ_rocket_sand_01' -> GameObject 'explosion_organ_rocket_sand_01'
+[14:55:18.252] [Menace_Modpack_Loader]     [Debug] Resolved 'impacts_crater_small_sand' -> DecalCollection 'impacts_crater_small_sand'
+[14:55:18.252] [Menace_Modpack_Loader]     [Debug] Resolved 'explosion_organ_rocket_earth_01' -> GameObject 'explosion_organ_rocket_earth_01'
+[14:55:18.252] [Menace_Modpack_Loader]     [Debug] Resolved 'impacts_crater_small_earth' -> DecalCollection 'impacts_crater_small_earth'
+[14:55:18.253] [Menace_Modpack_Loader]     [Debug] Resolved 'explosion_organ_rocket_snow_01' -> GameObject 'explosion_organ_rocket_snow_01'
+[14:55:18.253] [Menace_Modpack_Loader]     [Debug] Resolved 'impacts_crater_small_snow' -> DecalCollection 'impacts_crater_small_snow'
+[14:55:18.253] [Menace_Modpack_Loader]     [Debug] Resolved 'explosion_organ_rocket_snow_01' -> GameObject 'explosion_organ_rocket_snow_01'
+[14:55:18.253] [Menace_Modpack_Loader]     [Debug] Resolved 'explosion_organ_rocket_earth_01' -> GameObject 'explosion_organ_rocket_earth_01'
+[14:55:18.254] [Menace_Modpack_Loader]     [Debug] Resolved 'impacts_crater_small_earth' -> DecalCollection 'impacts_crater_small_earth'
+[14:55:18.254] [Menace_Modpack_Loader]     [Debug] Resolved 'explosion_organ_rocket_sand_01' -> GameObject 'explosion_organ_rocket_sand_01'
+[14:55:18.254] [Menace_Modpack_Loader]     [Debug] Resolved 'impacts_crater_small_sand' -> DecalCollection 'impacts_crater_small_sand'
+[14:55:18.255] [Menace_Modpack_Loader]     [Debug] Resolved 'explosion_organ_rocket_earth_01' -> GameObject 'explosion_organ_rocket_earth_01'
+[14:55:18.255] [Menace_Modpack_Loader]     [Debug] Resolved 'impacts_crater_small_earth' -> DecalCollection 'impacts_crater_small_earth'
+[14:55:18.255] [Menace_Modpack_Loader]     [Debug] Resolved 'explosion_organ_rocket_earth_01' -> GameObject 'explosion_organ_rocket_earth_01'
+[14:55:18.256] [Menace_Modpack_Loader]     [Debug] Resolved 'impacts_crater_small_earth' -> DecalCollection 'impacts_crater_small_earth'
+[14:55:18.256] [Menace_Modpack_Loader]     [Debug] Resolved 'explosion_organ_rocket_earth_01' -> GameObject 'explosion_organ_rocket_earth_01'
+[14:55:18.256] [Menace_Modpack_Loader]     [Debug] Resolved 'impacts_crater_small_earth' -> DecalCollection 'impacts_crater_small_earth'
+[14:55:18.257] [Menace_Modpack_Loader]     [Debug] Resolved 'explosion_organ_rocket_earth_01' -> GameObject 'explosion_organ_rocket_earth_01'
+[14:55:18.257] [Menace_Modpack_Loader]     [Debug] Resolved 'impacts_crater_small_earth' -> DecalCollection 'impacts_crater_small_earth'
+[14:55:18.257] [Menace_Modpack_Loader]     [Debug] Resolved 'explosion_organ_rocket_earth_01' -> GameObject 'explosion_organ_rocket_earth_01'
+[14:55:18.258] [Menace_Modpack_Loader]     [Debug] Resolved 'impacts_crater_small_earth' -> DecalCollection 'impacts_crater_small_earth'
+[14:55:18.260] [Menace_Modpack_Loader]     ImpactOnSurface: applied 14 incremental ops on List<SkillOnSurfaceDefinition>
+[14:55:18.260] [WARNING] [Menace_Modpack_Loader]     ID: property 'bankId' not found
+[14:55:18.263] [WARNING] [Menace_Modpack_Loader]     ID: property 'itemId' not found
+[14:55:18.263] [Menace_Modpack_Loader]     SoundsOnAttack: applied 1 incremental ops on List<ID>
+[14:55:18.264] [Menace_Modpack_Loader]     EventHandlers: set List<SkillEventHandlerTemplate> with 2/2 elements
+[14:55:18.264] [Menace_Modpack_Loader]     ocirebalance.dropship_rocket_run: set 9/9 fields
+[14:55:18.264] [Menace_Modpack_Loader]     [Debug] obj.name matched: 'ocirebalance.electronic_warfare'
+[14:55:18.265] [Menace_Modpack_Loader]     ImpactOnSurface: applied 14 incremental ops on List<SkillOnSurfaceDefinition>
+[14:55:18.265] [WARNING] [Menace_Modpack_Loader]     ID: property 'bankId' not found
+[14:55:18.265] [WARNING] [Menace_Modpack_Loader]     ID: property 'itemId' not found
+[14:55:18.266] [Menace_Modpack_Loader]     SoundsOnUse: applied 1 incremental ops on List<ID>
+[14:55:18.267] [Menace_Modpack_Loader]     Resolved polymorphic type (fallback): 'AddSkill' → Il2CppMenace.Tactical.Skills.Effects.AddSkill
+[14:55:18.270] [Menace_Modpack_Loader]     Built name lookup for SkillTemplate: 635 entries
+[14:55:18.270] [Menace_Modpack_Loader]     [Debug] Resolved 'effect.electronic_warfare_system' -> SkillTemplate 'effect.electronic_warfare_system'
+[14:55:18.271] [Menace_Modpack_Loader]     EventHandlers: set List<SkillEventHandlerTemplate> with 2/2 elements
+[14:55:18.271] [Menace_Modpack_Loader]     ocirebalance.electronic_warfare: set 10/10 fields
+[14:55:18.271] [Menace_Modpack_Loader]     [Debug] obj.name matched: 'ocirebalance.gravity_pulse'
+[14:55:18.272] [Menace_Modpack_Loader]     [Debug] Resolved 'gravity_manipulator_stone_01' -> GameObject 'gravity_manipulator_stone_01'
+[14:55:18.272] [Menace_Modpack_Loader]     [Debug] Resolved 'gravity_manipulator_stone_01' -> GameObject 'gravity_manipulator_stone_01'
+[14:55:18.272] [Menace_Modpack_Loader]     [Debug] Resolved 'gravity_manipulator_sand_01' -> GameObject 'gravity_manipulator_sand_01'
+[14:55:18.273] [Menace_Modpack_Loader]     [Debug] Resolved 'gravity_manipulator_earth_01' -> GameObject 'gravity_manipulator_earth_01'
+[14:55:18.273] [Menace_Modpack_Loader]     [Debug] Resolved 'gravity_manipulator_snow_01' -> GameObject 'gravity_manipulator_snow_01'
+[14:55:18.273] [Menace_Modpack_Loader]     [Debug] Resolved 'gravity_manipulator_snow_01' -> GameObject 'gravity_manipulator_snow_01'
+[14:55:18.274] [Menace_Modpack_Loader]     [Debug] Resolved 'gravity_manipulator_stone_01' -> GameObject 'gravity_manipulator_stone_01'
+[14:55:18.274] [Menace_Modpack_Loader]     [Debug] Resolved 'gravity_manipulator_sand_01' -> GameObject 'gravity_manipulator_sand_01'
+[14:55:18.274] [Menace_Modpack_Loader]     [Debug] Resolved 'gravity_manipulator_earth_01' -> GameObject 'gravity_manipulator_earth_01'
+[14:55:18.275] [Menace_Modpack_Loader]     [Debug] Resolved 'gravity_manipulator_earth_01' -> GameObject 'gravity_manipulator_earth_01'
+[14:55:18.275] [Menace_Modpack_Loader]     [Debug] Resolved 'impacts_crater_very_big_earth' -> DecalCollection 'impacts_crater_very_big_earth'
+[14:55:18.276] [Menace_Modpack_Loader]     [Debug] Resolved 'gravity_manipulator_earth_01' -> GameObject 'gravity_manipulator_earth_01'
+[14:55:18.276] [Menace_Modpack_Loader]     [Debug] Resolved 'gravity_manipulator_stone_01' -> GameObject 'gravity_manipulator_stone_01'
+[14:55:18.278] [Menace_Modpack_Loader]     [Debug] Resolved 'gravity_manipulator_earth_01' -> GameObject 'gravity_manipulator_earth_01'
+[14:55:18.279] [Menace_Modpack_Loader]     ImpactOnSurface: applied 14 incremental ops on List<SkillOnSurfaceDefinition>
+[14:55:18.279] [WARNING] [Menace_Modpack_Loader]     ID: property 'bankId' not found
+[14:55:18.279] [WARNING] [Menace_Modpack_Loader]     ID: property 'itemId' not found
+[14:55:18.280] [Menace_Modpack_Loader]     SoundsOnUse: applied 1 incremental ops on List<ID>
+[14:55:18.291] [Menace_Modpack_Loader]     Resolved polymorphic type (fallback): 'CameraShake' → Il2CppMenace.Tactical.Skills.Effects.CameraShake
+[14:55:18.292] [Menace_Modpack_Loader]     EventHandlers: set List<SkillEventHandlerTemplate> with 4/4 elements
+[14:55:18.293] [Menace_Modpack_Loader]     ocirebalance.gravity_pulse: set 9/9 fields
+[14:55:18.293] [Menace_Modpack_Loader]     [Debug] obj.name matched: 'ocirebalance.ion_cannon'
+[14:55:18.294] [Menace_Modpack_Loader]     [Debug] Resolved 'fire_plasma_short_01' -> GameObject 'fire_plasma_short_01'
+[14:55:18.294] [Menace_Modpack_Loader]     [Debug] Resolved 'impacts_burnt_ground' -> DecalCollection 'impacts_burnt_ground'
+[14:55:18.294] [Menace_Modpack_Loader]     [Debug] Resolved 'fire_plasma_short_01' -> GameObject 'fire_plasma_short_01'
+[14:55:18.295] [Menace_Modpack_Loader]     [Debug] Resolved 'impacts_burnt_ground' -> DecalCollection 'impacts_burnt_ground'
+[14:55:18.295] [Menace_Modpack_Loader]     [Debug] Resolved 'fire_plasma_short_01' -> GameObject 'fire_plasma_short_01'
+[14:55:18.295] [Menace_Modpack_Loader]     [Debug] Resolved 'impacts_burnt_ground' -> DecalCollection 'impacts_burnt_ground'
+[14:55:18.296] [Menace_Modpack_Loader]     [Debug] Resolved 'fire_plasma_short_01' -> GameObject 'fire_plasma_short_01'
+[14:55:18.296] [Menace_Modpack_Loader]     [Debug] Resolved 'impacts_burnt_ground' -> DecalCollection 'impacts_burnt_ground'
+[14:55:18.296] [Menace_Modpack_Loader]     [Debug] Resolved 'fire_plasma_short_01' -> GameObject 'fire_plasma_short_01'
+[14:55:18.297] [Menace_Modpack_Loader]     [Debug] Resolved 'impacts_burnt_ground' -> DecalCollection 'impacts_burnt_ground'
+[14:55:18.297] [Menace_Modpack_Loader]     [Debug] Resolved 'fire_plasma_short_01' -> GameObject 'fire_plasma_short_01'
+[14:55:18.297] [Menace_Modpack_Loader]     [Debug] Resolved 'fire_plasma_short_01' -> GameObject 'fire_plasma_short_01'
+[14:55:18.298] [Menace_Modpack_Loader]     [Debug] Resolved 'impacts_burnt_ground' -> DecalCollection 'impacts_burnt_ground'
+[14:55:18.298] [Menace_Modpack_Loader]     [Debug] Resolved 'fire_plasma_short_01' -> GameObject 'fire_plasma_short_01'
+[14:55:18.298] [Menace_Modpack_Loader]     [Debug] Resolved 'impacts_burnt_ground' -> DecalCollection 'impacts_burnt_ground'
+[14:55:18.299] [Menace_Modpack_Loader]     [Debug] Resolved 'fire_plasma_short_01' -> GameObject 'fire_plasma_short_01'
+[14:55:18.299] [Menace_Modpack_Loader]     [Debug] Resolved 'impacts_burnt_ground' -> DecalCollection 'impacts_burnt_ground'
+[14:55:18.299] [Menace_Modpack_Loader]     [Debug] Resolved 'fire_plasma_short_01' -> GameObject 'fire_plasma_short_01'
+[14:55:18.300] [Menace_Modpack_Loader]     [Debug] Resolved 'impacts_burnt_ground' -> DecalCollection 'impacts_burnt_ground'
+[14:55:18.300] [Menace_Modpack_Loader]     [Debug] Resolved 'fire_plasma_short_01' -> GameObject 'fire_plasma_short_01'
+[14:55:18.300] [Menace_Modpack_Loader]     [Debug] Resolved 'impacts_burnt_ground' -> DecalCollection 'impacts_burnt_ground'
+[14:55:18.301] [Menace_Modpack_Loader]     [Debug] Resolved 'fire_plasma_short_01' -> GameObject 'fire_plasma_short_01'
+[14:55:18.301] [Menace_Modpack_Loader]     [Debug] Resolved 'impacts_burnt_ground' -> DecalCollection 'impacts_burnt_ground'
+[14:55:18.301] [Menace_Modpack_Loader]     [Debug] Resolved 'fire_plasma_short_01' -> GameObject 'fire_plasma_short_01'
+[14:55:18.302] [Menace_Modpack_Loader]     [Debug] Resolved 'impacts_burnt_ground' -> DecalCollection 'impacts_burnt_ground'
+[14:55:18.302] [Menace_Modpack_Loader]     ImpactOnSurface: applied 14 incremental ops on List<SkillOnSurfaceDefinition>
+[14:55:18.302] [WARNING] [Menace_Modpack_Loader]     ID: property 'bankId' not found
+[14:55:18.303] [WARNING] [Menace_Modpack_Loader]     ID: property 'itemId' not found
+[14:55:18.303] [Menace_Modpack_Loader]     SoundsOnUse: applied 1 incremental ops on List<ID>
+[14:55:18.304] [Menace_Modpack_Loader]     Resolved polymorphic type (fallback): 'ClearTileEffectGroup' → Il2CppMenace.Tactical.Skills.Effects.ClearTileEffectGroup
+[14:55:18.305] [WARNING] [Menace_Modpack_Loader]   EnsureTemplatesLoaded(TileEffectGroup): GenericArguments[0], 'Il2CppMenace.Tactical.TileEffects.TileEffectGroup', on 'Il2CppSystem.Collections.Generic.IReadOnlyCollection`1[T] GetAll[T]()' violates the constraint of type 'T'.
+[14:55:18.306] [Menace_Modpack_Loader]     Built name lookup for TileEffectGroup: 1 entries
+[14:55:18.306] [Menace_Modpack_Loader]     [Debug] Resolved 'tile_effects_mines' -> TileEffectGroup 'tile_effects_mines'
+[14:55:18.307] [Menace_Modpack_Loader]     EventHandlers: set List<SkillEventHandlerTemplate> with 3/3 elements
+[14:55:18.307] [Menace_Modpack_Loader]     ocirebalance.ion_cannon: set 9/9 fields
+[14:55:18.308] [Menace_Modpack_Loader]     [Debug] obj.name matched: 'ocirebalance.laser_turret'
+[14:55:18.308] [Menace_Modpack_Loader]     [Debug] Resolved 'explosion_rocket_stone_01' -> GameObject 'explosion_rocket_stone_01'
+[14:55:18.309] [Menace_Modpack_Loader]     [Debug] Resolved 'impacts_crater_small_sand' -> DecalCollection 'impacts_crater_small_sand'
+[14:55:18.311] [Menace_Modpack_Loader]     [Debug] Resolved 'explosion_rocket_metal_01' -> GameObject 'explosion_rocket_metal_01'
+[14:55:18.312] [Menace_Modpack_Loader]     [Debug] Resolved 'impacts_crater_small_sand' -> DecalCollection 'impacts_crater_small_sand'
+[14:55:18.312] [Menace_Modpack_Loader]     [Debug] Resolved 'explosion_grenade_earth_01' -> GameObject 'explosion_grenade_earth_01'
+[14:55:18.312] [Menace_Modpack_Loader]     [Debug] Resolved 'impacts_crater_small_sand' -> DecalCollection 'impacts_crater_small_sand'
+[14:55:18.313] [Menace_Modpack_Loader]     [Debug] Resolved 'explosion_rocket_earth_01' -> GameObject 'explosion_rocket_earth_01'
+[14:55:18.313] [Menace_Modpack_Loader]     [Debug] Resolved 'impacts_crater_small_sand' -> DecalCollection 'impacts_crater_small_sand'
+[14:55:18.313] [Menace_Modpack_Loader]     [Debug] Resolved 'explosion_grenade_sand_01' -> GameObject 'explosion_grenade_sand_01'
+[14:55:18.314] [Menace_Modpack_Loader]     [Debug] Resolved 'impacts_crater_small_sand' -> DecalCollection 'impacts_crater_small_sand'
+[14:55:18.314] [Menace_Modpack_Loader]     [Debug] Resolved 'explosion_grenade_earth_01' -> GameObject 'explosion_grenade_earth_01'
+[14:55:18.314] [Menace_Modpack_Loader]     [Debug] Resolved 'impacts_crater_small_sand' -> DecalCollection 'impacts_crater_small_sand'
+[14:55:18.315] [Menace_Modpack_Loader]     [Debug] Resolved 'explosion_grenade_earth_01' -> GameObject 'explosion_grenade_earth_01'
+[14:55:18.315] [Menace_Modpack_Loader]     [Debug] Resolved 'impacts_crater_small_sand' -> DecalCollection 'impacts_crater_small_sand'
+[14:55:18.315] [Menace_Modpack_Loader]     [Debug] Resolved 'explosion_grenade_earth_01' -> GameObject 'explosion_grenade_earth_01'
+[14:55:18.316] [Menace_Modpack_Loader]     [Debug] Resolved 'impacts_crater_small_sand' -> DecalCollection 'impacts_crater_small_sand'
+[14:55:18.316] [Menace_Modpack_Loader]     [Debug] Resolved 'explosion_rocket_stone_01' -> GameObject 'explosion_rocket_stone_01'
+[14:55:18.316] [Menace_Modpack_Loader]     [Debug] Resolved 'impacts_crater_small_sand' -> DecalCollection 'impacts_crater_small_sand'
+[14:55:18.317] [Menace_Modpack_Loader]     [Debug] Resolved 'explosion_grenade_earth_01' -> GameObject 'explosion_grenade_earth_01'
+[14:55:18.317] [Menace_Modpack_Loader]     [Debug] Resolved 'impacts_crater_small_sand' -> DecalCollection 'impacts_crater_small_sand'
+[14:55:18.317] [Menace_Modpack_Loader]     ImpactOnSurface: applied 14 incremental ops on List<SkillOnSurfaceDefinition>
+[14:55:18.318] [WARNING] [Menace_Modpack_Loader]     ID: property 'bankId' not found
+[14:55:18.318] [WARNING] [Menace_Modpack_Loader]     ID: property 'itemId' not found
+[14:55:18.318] [Menace_Modpack_Loader]     SoundsOnUse: applied 1 incremental ops on List<ID>
+[14:55:18.319] [Menace_Modpack_Loader]     [Debug] Resolved 'dropship.start_in_air' -> AnimationSequenceTemplate 'dropship.start_in_air'
+[14:55:18.320] [Menace_Modpack_Loader]     Resolved polymorphic type (fallback): 'SpawnEntity' → Il2CppMenace.Tactical.Skills.Effects.SpawnEntity
+[14:55:18.322] [Menace_Modpack_Loader] [TemplateDiagnostics] GetBaseFolder(Menace.Tactical.EntityTemplate) -> 'Data/Entities/'
+[14:55:19.355] [Menace_Modpack_Loader]     Built name lookup for EntityTemplate: 260 entries
+[14:55:19.356] [Menace_Modpack_Loader]     [Debug] Resolved 'player.sentry_auto_laser_turret' -> EntityTemplate 'player.sentry_auto_laser_turret'
+[14:55:19.358] [Menace_Modpack_Loader]     EventHandlers: set List<SkillEventHandlerTemplate> with 3/3 elements
+[14:55:19.358] [Menace_Modpack_Loader]     ocirebalance.laser_turret: set 9/9 fields
+[14:55:19.358] [Menace_Modpack_Loader]     [Debug] obj.name matched: 'ocirebalance.orbital_missile_strike'
+[14:55:19.358] [Menace_Modpack_Loader]     [Debug] Resolved 'tank_critical_explosion_stone_01' -> GameObject 'tank_critical_explosion_stone_01'
+[14:55:19.359] [Menace_Modpack_Loader]     [Debug] Resolved 'impacts_crater_huge_earth' -> DecalCollection 'impacts_crater_huge_earth'
+[14:55:19.359] [Menace_Modpack_Loader]     [Debug] Resolved 'tank_critical_explosion_stone_01' -> GameObject 'tank_critical_explosion_stone_01'
+[14:55:19.359] [Menace_Modpack_Loader]     [Debug] Resolved 'impacts_crater_huge_earth' -> DecalCollection 'impacts_crater_huge_earth'
+[14:55:19.360] [Menace_Modpack_Loader]     [Debug] Resolved 'tank_critical_explosion_sand_01' -> GameObject 'tank_critical_explosion_sand_01'
+[14:55:19.360] [Menace_Modpack_Loader]     [Debug] Resolved 'impacts_crater_huge_sand' -> DecalCollection 'impacts_crater_huge_sand'
+[14:55:19.360] [Menace_Modpack_Loader]     [Debug] Resolved 'tank_critical_explosion_earth_01' -> GameObject 'tank_critical_explosion_earth_01'
+[14:55:19.361] [Menace_Modpack_Loader]     [Debug] Resolved 'impacts_crater_huge_earth' -> DecalCollection 'impacts_crater_huge_earth'
+[14:55:19.361] [Menace_Modpack_Loader]     [Debug] Resolved 'tank_critical_explosion_snow_01' -> GameObject 'tank_critical_explosion_snow_01'
+[14:55:19.361] [Menace_Modpack_Loader]     [Debug] Resolved 'impacts_crater_huge_snow' -> DecalCollection 'impacts_crater_huge_snow'
+[14:55:19.362] [Menace_Modpack_Loader]     [Debug] Resolved 'tank_critical_explosion_snow_01' -> GameObject 'tank_critical_explosion_snow_01'
+[14:55:19.362] [Menace_Modpack_Loader]     [Debug] Resolved 'tank_critical_explosion_stone_01' -> GameObject 'tank_critical_explosion_stone_01'
+[14:55:19.362] [Menace_Modpack_Loader]     [Debug] Resolved 'impacts_crater_huge_earth' -> DecalCollection 'impacts_crater_huge_earth'
+[14:55:19.363] [Menace_Modpack_Loader]     [Debug] Resolved 'tank_critical_explosion_sand_01' -> GameObject 'tank_critical_explosion_sand_01'
+[14:55:19.363] [Menace_Modpack_Loader]     [Debug] Resolved 'impacts_crater_huge_sand' -> DecalCollection 'impacts_crater_huge_sand'
+[14:55:19.363] [Menace_Modpack_Loader]     [Debug] Resolved 'tank_critical_explosion_earth_01' -> GameObject 'tank_critical_explosion_earth_01'
+[14:55:19.364] [Menace_Modpack_Loader]     [Debug] Resolved 'impacts_crater_huge_earth' -> DecalCollection 'impacts_crater_huge_earth'
+[14:55:19.364] [Menace_Modpack_Loader]     [Debug] Resolved 'tank_critical_explosion_grass_01' -> GameObject 'tank_critical_explosion_grass_01'
+[14:55:19.364] [Menace_Modpack_Loader]     [Debug] Resolved 'impacts_crater_huge_earth' -> DecalCollection 'impacts_crater_huge_earth'
+[14:55:19.365] [Menace_Modpack_Loader]     [Debug] Resolved 'tank_critical_explosion_grass_01' -> GameObject 'tank_critical_explosion_grass_01'
+[14:55:19.365] [Menace_Modpack_Loader]     [Debug] Resolved 'impacts_crater_huge_earth' -> DecalCollection 'impacts_crater_huge_earth'
+[14:55:19.365] [Menace_Modpack_Loader]     [Debug] Resolved 'tank_critical_explosion_stone_01' -> GameObject 'tank_critical_explosion_stone_01'
+[14:55:19.366] [Menace_Modpack_Loader]     [Debug] Resolved 'impacts_crater_huge_earth' -> DecalCollection 'impacts_crater_huge_earth'
+[14:55:19.366] [Menace_Modpack_Loader]     [Debug] Resolved 'tank_critical_explosion_earth_01' -> GameObject 'tank_critical_explosion_earth_01'
+[14:55:19.366] [Menace_Modpack_Loader]     [Debug] Resolved 'impacts_crater_huge_earth' -> DecalCollection 'impacts_crater_huge_earth'
+[14:55:19.367] [Menace_Modpack_Loader]     ImpactOnSurface: applied 14 incremental ops on List<SkillOnSurfaceDefinition>
+[14:55:19.367] [WARNING] [Menace_Modpack_Loader]     ID: property 'bankId' not found
+[14:55:19.367] [WARNING] [Menace_Modpack_Loader]     ID: property 'itemId' not found
+[14:55:19.368] [Menace_Modpack_Loader]     SoundsOnUse: applied 1 incremental ops on List<ID>
+[14:55:19.368] [WARNING] [Menace_Modpack_Loader]     ID: property 'bankId' not found
+[14:55:19.370] [WARNING] [Menace_Modpack_Loader]     ID: property 'itemId' not found
+[14:55:19.371] [Menace_Modpack_Loader]     SoundsOnAttack: applied 1 incremental ops on List<ID>
+[14:55:19.371] [Menace_Modpack_Loader]     [Debug] Resolved 'shrapnel_aoe_damage_120mm' -> SkillTemplate 'shrapnel_aoe_damage_120mm'
+[14:55:19.372] [Menace_Modpack_Loader]     Resolved polymorphic type (fallback): 'DestroyProps' → Il2CppMenace.Tactical.Skills.Effects.DestroyProps
+[14:55:19.373] [Menace_Modpack_Loader]     [Debug] Resolved 'tile_effects_mines' -> TileEffectGroup 'tile_effects_mines'
+[14:55:19.373] [Menace_Modpack_Loader]     EventHandlers: set List<SkillEventHandlerTemplate> with 5/5 elements
+[14:55:19.373] [Menace_Modpack_Loader]     ocirebalance.orbital_missile_strike: set 10/10 fields
+[14:55:19.374] [Menace_Modpack_Loader]     [Debug] obj.name matched: 'ocirebalance.remote_hacker'
+[14:55:19.374] [Menace_Modpack_Loader]     [Debug] Resolved 'explosion_emp_grenade_sand_01' -> GameObject 'explosion_emp_grenade_sand_01'
+[14:55:19.374] [Menace_Modpack_Loader]     [Debug] Resolved 'explosion_emp_grenade_sand_01' -> GameObject 'explosion_emp_grenade_sand_01'
+[14:55:19.375] [Menace_Modpack_Loader]     [Debug] Resolved 'explosion_emp_grenade_sand_01' -> GameObject 'explosion_emp_grenade_sand_01'
+[14:55:19.375] [Menace_Modpack_Loader]     [Debug] Resolved 'explosion_emp_grenade_earth_01' -> GameObject 'explosion_emp_grenade_earth_01'
+[14:55:19.375] [Menace_Modpack_Loader]     [Debug] Resolved 'explosion_emp_grenade_snow_01' -> GameObject 'explosion_emp_grenade_snow_01'
+[14:55:19.376] [Menace_Modpack_Loader]     [Debug] Resolved 'explosion_emp_grenade_earth_01' -> GameObject 'explosion_emp_grenade_earth_01'
+[14:55:19.376] [Menace_Modpack_Loader]     [Debug] Resolved 'explosion_emp_grenade_sand_01' -> GameObject 'explosion_emp_grenade_sand_01'
+[14:55:19.376] [Menace_Modpack_Loader]     [Debug] Resolved 'explosion_emp_grenade_earth_01' -> GameObject 'explosion_emp_grenade_earth_01'
+[14:55:19.377] [Menace_Modpack_Loader]     [Debug] Resolved 'explosion_emp_grenade_earth_01' -> GameObject 'explosion_emp_grenade_earth_01'
+[14:55:19.377] [Menace_Modpack_Loader]     [Debug] Resolved 'explosion_emp_grenade_earth_01' -> GameObject 'explosion_emp_grenade_earth_01'
+[14:55:19.377] [Menace_Modpack_Loader]     [Debug] Resolved 'explosion_emp_grenade_sand_01' -> GameObject 'explosion_emp_grenade_sand_01'
+[14:55:19.378] [Menace_Modpack_Loader]     [Debug] Resolved 'explosion_emp_grenade_earth_01' -> GameObject 'explosion_emp_grenade_earth_01'
+[14:55:19.378] [Menace_Modpack_Loader]     ImpactOnSurface: applied 14 incremental ops on List<SkillOnSurfaceDefinition>
+[14:55:19.378] [WARNING] [Menace_Modpack_Loader]     ID: property 'bankId' not found
+[14:55:19.379] [WARNING] [Menace_Modpack_Loader]     ID: property 'itemId' not found
+[14:55:19.379] [Menace_Modpack_Loader]     SoundsOnAttack: applied 1 incremental ops on List<ID>
+[14:55:19.379] [WARNING] [Menace_Modpack_Loader]     ID: property 'bankId' not found
+[14:55:19.380] [WARNING] [Menace_Modpack_Loader]     ID: property 'itemId' not found
+[14:55:19.380] [Menace_Modpack_Loader]     SoundsOnHit: applied 1 incremental ops on List<ID>
+[14:55:19.380] [Menace_Modpack_Loader]     [Debug] Resolved 'effect.disabled' -> SkillTemplate 'effect.disabled'
+[14:55:19.381] [Menace_Modpack_Loader]     EventHandlers: set List<SkillEventHandlerTemplate> with 2/2 elements
+[14:55:19.381] [Menace_Modpack_Loader]     ocirebalance.remote_hacker: set 11/11 fields
+[14:55:19.381] [Menace_Modpack_Loader]     [Debug] obj.name matched: 'ocirebalance.resupply'
+[14:55:19.382] [Menace_Modpack_Loader]     [Debug] Resolved 'explosion_rocket_stone_01' -> GameObject 'explosion_rocket_stone_01'
+[14:55:19.382] [Menace_Modpack_Loader]     [Debug] Resolved 'impacts_crater_small_sand' -> DecalCollection 'impacts_crater_small_sand'
+[14:55:19.382] [Menace_Modpack_Loader]     [Debug] Resolved 'explosion_rocket_metal_01' -> GameObject 'explosion_rocket_metal_01'
+[14:55:19.383] [Menace_Modpack_Loader]     [Debug] Resolved 'impacts_crater_small_sand' -> DecalCollection 'impacts_crater_small_sand'
+[14:55:19.383] [Menace_Modpack_Loader]     [Debug] Resolved 'explosion_grenade_earth_01' -> GameObject 'explosion_grenade_earth_01'
+[14:55:19.383] [Menace_Modpack_Loader]     [Debug] Resolved 'impacts_crater_small_sand' -> DecalCollection 'impacts_crater_small_sand'
+[14:55:19.384] [Menace_Modpack_Loader]     [Debug] Resolved 'explosion_rocket_earth_01' -> GameObject 'explosion_rocket_earth_01'
+[14:55:19.384] [Menace_Modpack_Loader]     [Debug] Resolved 'impacts_crater_small_sand' -> DecalCollection 'impacts_crater_small_sand'
+[14:55:19.384] [Menace_Modpack_Loader]     [Debug] Resolved 'explosion_grenade_sand_01' -> GameObject 'explosion_grenade_sand_01'
+[14:55:19.387] [Menace_Modpack_Loader]     [Debug] Resolved 'impacts_crater_small_sand' -> DecalCollection 'impacts_crater_small_sand'
+[14:55:19.387] [Menace_Modpack_Loader]     [Debug] Resolved 'explosion_grenade_earth_01' -> GameObject 'explosion_grenade_earth_01'
+[14:55:19.387] [Menace_Modpack_Loader]     [Debug] Resolved 'impacts_crater_small_sand' -> DecalCollection 'impacts_crater_small_sand'
+[14:55:19.388] [Menace_Modpack_Loader]     [Debug] Resolved 'explosion_grenade_earth_01' -> GameObject 'explosion_grenade_earth_01'
+[14:55:19.388] [Menace_Modpack_Loader]     [Debug] Resolved 'impacts_crater_small_sand' -> DecalCollection 'impacts_crater_small_sand'
+[14:55:19.388] [Menace_Modpack_Loader]     [Debug] Resolved 'explosion_grenade_earth_01' -> GameObject 'explosion_grenade_earth_01'
+[14:55:19.389] [Menace_Modpack_Loader]     [Debug] Resolved 'impacts_crater_small_sand' -> DecalCollection 'impacts_crater_small_sand'
+[14:55:19.389] [Menace_Modpack_Loader]     [Debug] Resolved 'explosion_rocket_stone_01' -> GameObject 'explosion_rocket_stone_01'
+[14:55:19.390] [Menace_Modpack_Loader]     [Debug] Resolved 'impacts_crater_small_sand' -> DecalCollection 'impacts_crater_small_sand'
+[14:55:19.390] [Menace_Modpack_Loader]     [Debug] Resolved 'explosion_grenade_earth_01' -> GameObject 'explosion_grenade_earth_01'
+[14:55:19.390] [Menace_Modpack_Loader]     [Debug] Resolved 'impacts_crater_small_sand' -> DecalCollection 'impacts_crater_small_sand'
+[14:55:19.391] [Menace_Modpack_Loader]     ImpactOnSurface: applied 14 incremental ops on List<SkillOnSurfaceDefinition>
+[14:55:19.391] [WARNING] [Menace_Modpack_Loader]     ID: property 'bankId' not found
+[14:55:19.391] [WARNING] [Menace_Modpack_Loader]     ID: property 'itemId' not found
+[14:55:19.392] [Menace_Modpack_Loader]     SoundsOnUse: applied 1 incremental ops on List<ID>
+[14:55:19.392] [Menace_Modpack_Loader]     Resolved polymorphic type (fallback): 'SpawnTileEffect' → Il2CppMenace.Tactical.Skills.Effects.SpawnTileEffect
+[14:55:19.394] [Menace_Modpack_Loader] [TemplateDiagnostics] GetBaseFolder(Menace.Tactical.TileEffects.TileEffectTemplate) -> 'Data/TileEffects/'
+[14:55:19.406] [Menace_Modpack_Loader]     Built name lookup for TileEffectTemplate: 23 entries
+[14:55:19.406] [Menace_Modpack_Loader]     [Debug] Resolved 'tile_effect.supply_drop' -> TileEffectTemplate 'tile_effect.supply_drop'
+[14:55:19.407] [Menace_Modpack_Loader]     [Debug] Resolved 'dropship.start_in_air' -> AnimationSequenceTemplate 'dropship.start_in_air'
+[14:55:19.407] [Menace_Modpack_Loader]     EventHandlers: set List<SkillEventHandlerTemplate> with 3/3 elements
+[14:55:19.407] [Menace_Modpack_Loader]     ocirebalance.resupply: set 9/9 fields
+[14:55:19.408] [Menace_Modpack_Loader]     [Debug] obj.name matched: 'ocirebalance.sensor_ghosts'
+[14:55:19.408] [Menace_Modpack_Loader]     ImpactOnSurface: applied 14 incremental ops on List<SkillOnSurfaceDefinition>
+[14:55:19.408] [WARNING] [Menace_Modpack_Loader]     ID: property 'bankId' not found
+[14:55:19.409] [WARNING] [Menace_Modpack_Loader]     ID: property 'itemId' not found
+[14:55:19.409] [Menace_Modpack_Loader]     SoundsOnUse: applied 1 incremental ops on List<ID>
+[14:55:19.410] [Menace_Modpack_Loader]     Resolved polymorphic type (fallback): 'DelayTurn' → Il2CppMenace.Tactical.Skills.Effects.DelayTurn
+[14:55:19.410] [Menace_Modpack_Loader]     EventHandlers: set List<SkillEventHandlerTemplate> with 2/2 elements
+[14:55:19.411] [Menace_Modpack_Loader]     ocirebalance.sensor_ghosts: set 9/9 fields
+[14:55:19.411] [Menace_Modpack_Loader]     [Debug] obj.name matched: 'ocirebalance.smoke_curtain'
+[14:55:19.411] [Menace_Modpack_Loader]     [Debug] Resolved 'smoke_grenade_sparks_01' -> GameObject 'smoke_grenade_sparks_01'
+[14:55:19.412] [Menace_Modpack_Loader]     [Debug] Resolved 'smoke_launcher_air_sparks_01' -> GameObject 'smoke_launcher_air_sparks_01'
+[14:55:19.412] [Menace_Modpack_Loader]     [Debug] Resolved 'smoke_launcher_air_sparks_01' -> GameObject 'smoke_launcher_air_sparks_01'
+[14:55:19.412] [Menace_Modpack_Loader]     [Debug] Resolved 'smoke_launcher_air_sparks_01' -> GameObject 'smoke_launcher_air_sparks_01'
+[14:55:19.413] [Menace_Modpack_Loader]     [Debug] Resolved 'smoke_launcher_air_sparks_01' -> GameObject 'smoke_launcher_air_sparks_01'
+[14:55:19.413] [Menace_Modpack_Loader]     [Debug] Resolved 'smoke_launcher_air_sparks_01' -> GameObject 'smoke_launcher_air_sparks_01'
+[14:55:19.413] [Menace_Modpack_Loader]     [Debug] Resolved 'smoke_launcher_air_sparks_01' -> GameObject 'smoke_launcher_air_sparks_01'
+[14:55:19.414] [Menace_Modpack_Loader]     [Debug] Resolved 'smoke_launcher_air_sparks_01' -> GameObject 'smoke_launcher_air_sparks_01'
+[14:55:19.414] [Menace_Modpack_Loader]     [Debug] Resolved 'smoke_launcher_air_sparks_01' -> GameObject 'smoke_launcher_air_sparks_01'
+[14:55:19.414] [Menace_Modpack_Loader]     [Debug] Resolved 'smoke_launcher_air_sparks_01' -> GameObject 'smoke_launcher_air_sparks_01'
+[14:55:19.415] [Menace_Modpack_Loader]     ImpactOnSurface: applied 14 incremental ops on List<SkillOnSurfaceDefinition>
+[14:55:19.415] [WARNING] [Menace_Modpack_Loader]     ID: property 'bankId' not found
+[14:55:19.415] [WARNING] [Menace_Modpack_Loader]     ID: property 'itemId' not found
+[14:55:19.416] [Menace_Modpack_Loader]     SoundsOnAttack: applied 1 incremental ops on List<ID>
+[14:55:19.416] [WARNING] [Menace_Modpack_Loader]     ID: property 'bankId' not found
+[14:55:19.416] [WARNING] [Menace_Modpack_Loader]     ID: property 'itemId' not found
+[14:55:19.419] [Menace_Modpack_Loader]     SoundsOnHit: applied 1 incremental ops on List<ID>
+[14:55:19.419] [Menace_Modpack_Loader]     [Debug] Resolved 'tile_effect.smoke_grenade' -> TileEffectTemplate 'tile_effect.smoke_grenade'
+[14:55:19.419] [Menace_Modpack_Loader]     EventHandlers: set List<SkillEventHandlerTemplate> with 2/2 elements
+[14:55:19.420] [Menace_Modpack_Loader]     ocirebalance.smoke_curtain: set 10/10 fields
+[14:55:19.420] [Menace_Modpack_Loader]     [Debug] obj.name matched: 'ocirebalance.dropship_minigun_run'
+[14:55:19.420] [Menace_Modpack_Loader]     [Debug] Resolved 'impact_bullet_stone_large_01' -> GameObject 'impact_bullet_stone_large_01'
+[14:55:19.421] [Menace_Modpack_Loader]     [Debug] Resolved 'impacts_bullets_concrete' -> DecalCollection 'impacts_bullets_concrete'
+[14:55:19.421] [Menace_Modpack_Loader]     [Debug] Resolved 'impact_bullet_metal_large_01' -> GameObject 'impact_bullet_metal_large_01'
+[14:55:19.421] [Menace_Modpack_Loader]     [Debug] Resolved 'impact_bullet_sand_large_01' -> GameObject 'impact_bullet_sand_large_01'
+[14:55:19.422] [Menace_Modpack_Loader]     [Debug] Resolved 'impacts_bullets_sand' -> DecalCollection 'impacts_bullets_sand'
+[14:55:19.422] [Menace_Modpack_Loader]     [Debug] Resolved 'impact_bullet_earth_large_01' -> GameObject 'impact_bullet_earth_large_01'
+[14:55:19.422] [Menace_Modpack_Loader]     [Debug] Resolved 'impacts_bullets_earth' -> DecalCollection 'impacts_bullets_earth'
+[14:55:19.423] [Menace_Modpack_Loader]     [Debug] Resolved 'impact_bullet_snow_large_01' -> GameObject 'impact_bullet_snow_large_01'
+[14:55:19.423] [Menace_Modpack_Loader]     [Debug] Resolved 'impacts_bullets_snow' -> DecalCollection 'impacts_bullets_snow'
+[14:55:19.423] [Menace_Modpack_Loader]     [Debug] Resolved 'impact_bullet_stone_large_01' -> GameObject 'impact_bullet_stone_large_01'
+[14:55:19.424] [Menace_Modpack_Loader]     [Debug] Resolved 'impacts_bullets_earth' -> DecalCollection 'impacts_bullets_earth'
+[14:55:19.424] [Menace_Modpack_Loader]     [Debug] Resolved 'impact_bullet_sand_large_01' -> GameObject 'impact_bullet_sand_large_01'
+[14:55:19.424] [Menace_Modpack_Loader]     [Debug] Resolved 'impacts_bullets_sand' -> DecalCollection 'impacts_bullets_sand'
+[14:55:19.425] [Menace_Modpack_Loader]     [Debug] Resolved 'impact_bullet_earth_large_01' -> GameObject 'impact_bullet_earth_large_01'
+[14:55:19.425] [Menace_Modpack_Loader]     [Debug] Resolved 'impacts_bullets_earth' -> DecalCollection 'impacts_bullets_earth'
+[14:55:19.426] [Menace_Modpack_Loader]     [Debug] Resolved 'impact_bullet_grass_large_01' -> GameObject 'impact_bullet_grass_large_01'
+[14:55:19.426] [Menace_Modpack_Loader]     [Debug] Resolved 'impacts_bullets_big_earth' -> DecalCollection 'impacts_bullets_big_earth'
+[14:55:19.426] [Menace_Modpack_Loader]     [Debug] Resolved 'impact_bullet_vegetation_large_01' -> GameObject 'impact_bullet_vegetation_large_01'
+[14:55:19.427] [Menace_Modpack_Loader]     [Debug] Resolved 'impacts_bullets_earth' -> DecalCollection 'impacts_bullets_earth'
+[14:55:19.427] [Menace_Modpack_Loader]     [Debug] Resolved 'impact_bullet_stone_large_01' -> GameObject 'impact_bullet_stone_large_01'
+[14:55:19.427] [Menace_Modpack_Loader]     [Debug] Resolved 'impacts_bullets_sand' -> DecalCollection 'impacts_bullets_sand'
+[14:55:19.428] [Menace_Modpack_Loader]     [Debug] Resolved 'impact_bullet_earth_large_01' -> GameObject 'impact_bullet_earth_large_01'
+[14:55:19.428] [Menace_Modpack_Loader]     [Debug] Resolved 'impacts_bullets_earth' -> DecalCollection 'impacts_bullets_earth'
+[14:55:19.429] [Menace_Modpack_Loader]     ImpactOnSurface: applied 14 incremental ops on List<SkillOnSurfaceDefinition>
+[14:55:19.429] [WARNING] [Menace_Modpack_Loader]     ID: property 'bankId' not found
+[14:55:19.429] [WARNING] [Menace_Modpack_Loader]     ID: property 'itemId' not found
+[14:55:19.430] [WARNING] [Menace_Modpack_Loader]     ID: property 'bankId' not found
+[14:55:19.430] [WARNING] [Menace_Modpack_Loader]     ID: property 'itemId' not found
+[14:55:19.430] [Menace_Modpack_Loader]     SoundsOnUse: applied 2 incremental ops on List<ID>
+[14:55:19.431] [Menace_Modpack_Loader]     Resolved polymorphic type (fallback): 'SpawnPrefab' → Il2CppMenace.Tactical.Skills.Effects.SpawnPrefab
+[14:55:19.432] [Menace_Modpack_Loader]     [Debug] Resolved 'dropship_shadow_decal' -> GameObject 'dropship_shadow_decal'
+[14:55:19.432] [Menace_Modpack_Loader]     EventHandlers: set List<SkillEventHandlerTemplate> with 3/3 elements
+[14:55:19.432] [Menace_Modpack_Loader]     ocirebalance.dropship_minigun_run: set 9/9 fields
+[14:55:19.435] [Menace_Modpack_Loader]   Applied patches to 13 SkillTemplate instance(s)
+[14:55:19.437] [Menace_Modpack_Loader]   [Debug] WeaponTemplate: 132 instances, GetID=True, patches=[ocirebalance.specialweapon.rmc_tac_radio]
+[14:55:19.437] [Menace_Modpack_Loader]     [Debug] obj.name matched: 'ocirebalance.specialweapon.rmc_tac_radio'
+[14:55:19.441] [Menace_Modpack_Loader]     ocirebalance.specialweapon.rmc_tac_radio.Title: set localized text (detected by type)
+[14:55:19.441] [Menace_Modpack_Loader]     ocirebalance.specialweapon.rmc_tac_radio.ShortName: set localized text (detected by type)
+[14:55:19.442] [Menace_Modpack_Loader]     ocirebalance.specialweapon.rmc_tac_radio: set 2/2 fields
+[14:55:19.442] [Menace_Modpack_Loader]   Applied patches to 1 WeaponTemplate instance(s)
+[14:55:19.443] [Menace_Modpack_Loader] All template patches applied successfully.
+[14:55:19.463] [Menace_Modpack_Loader] [SceneDiagnostics] LoadScene('Title') called
+[14:55:19.463] [Menace_Modpack_Loader] [SceneDiagnostics]   Current scene: 'Splash' (index: 0)
+[14:55:19.466] [Menace_Modpack_Loader] [SceneDiagnostics]   Scene count in build: 5
+[14:55:19.467] [Menace_Modpack_Loader] [SceneDiagnostics]   Found scene at index 1: Assets/Scenes/Title.unity
+[14:55:19.468] [Menace_Modpack_Loader] [SceneDiagnostics] LoadScene('Title') completed
+[14:55:19.468] [Menace_Modpack_Loader] [SceneDiagnostics]   Active scene now: 'Splash' (index: 0)
+[14:55:19.468] [WARNING] [Menace_Modpack_Loader] [SceneDiagnostics]   WARNING: Scene did not change! Still on 'Splash'
+[14:55:19.676] [Menace_Modpack_Loader] [TemplateDiagnostics] GetBaseFolder(Menace.UI.PropertyDisplayConfigTemplate) -> 'Data/PropertyDisplayConfigs/'
+[14:55:19.695] [Menace_Modpack_Loader] [TemplateDiagnostics] GetBaseFolder(Menace.Tactical.SurfaceTypeTemplate) -> 'Data/SurfaceTypes/'
+[14:55:19.742] [Menace_Modpack_Loader] [TemplateDiagnostics] GetBaseFolder(Menace.Strategy.ShipUpgradeTemplate) -> 'Data/ShipUpgrades/'
+[14:55:21.224] [Il2CppInterop] Registered mono type Il2CppInterop.Runtime.DelegateSupport+Il2CppToMonoDelegateReference in il2cpp domain
+[14:55:21.235] [Menace_Modpack_Loader] [MenuInjector] Mods button added to menu
+[14:55:21.751] [Menace_Modpack_Loader] [TemplateDiagnostics] GetBaseFolder(Menace.Strategy.GlobalDifficultyTemplate) -> 'Data/GlobalDifficulties/'
+[14:55:22.333] [Menace_Modpack_Loader] [TemplateDiagnostics] GetBaseFolder(Menace.Items.BaseItemTemplate) -> 'Data/Items/'
+[14:55:22.616] [Menace_Modpack_Loader] [TemplateDiagnostics] GetBaseFolder(Menace.Strategy.UnitLeaderTemplate) -> 'Data/UnitLeaders/'
+[14:55:22.722] [Menace_Modpack_Loader] [TemplateDiagnostics] GetBaseFolder(Menace.Conversations.SpeakerTemplate) -> 'Data/Conversations/Speakers/'
+[14:55:23.170] [Menace_Modpack_Loader] [SceneDiagnostics] LoadScene('Strategy') called
+[14:55:23.170] [Menace_Modpack_Loader] [SceneDiagnostics]   Current scene: 'Title' (index: 1)
+[14:55:23.171] [Menace_Modpack_Loader] [SceneDiagnostics]   Scene count in build: 5
+[14:55:23.171] [Menace_Modpack_Loader] [SceneDiagnostics]   Found scene at index 3: Assets/Scenes/Strategy.unity
+[14:55:23.171] [Menace_Modpack_Loader] [SceneDiagnostics] LoadScene('Strategy') completed
+[14:55:23.172] [Menace_Modpack_Loader] [SceneDiagnostics]   Active scene now: 'Title' (index: 1)
+[14:55:23.172] [WARNING] [Menace_Modpack_Loader] [SceneDiagnostics]   WARNING: Scene did not change! Still on 'Title'
+[14:55:23.408] [Menace_Modpack_Loader] [TemplateDiagnostics] GetBaseFolder(Menace.Strategy.ShipUpgradeSlotTemplate) -> 'Data/ShipUpgradeSlots/'
+[14:55:23.458] [Menace_Modpack_Loader] [TemplateDiagnostics] GetBaseFolder(Menace.Strategy.StoryFactionTemplate) -> 'Data/Factions/'
+[14:55:23.925] [Menace_Modpack_Loader] [TemplateDiagnostics] GetBaseFolder(Menace.Strategy.PerkTemplate) -> 'Data/Skills/Perks/'
+[14:55:24.015] [REND_Investigation]   UpdateProperty — PropertyType: Concealment (2), Amount: 2
+[14:55:24.015] [REND_Investigation]   UpdateProperty — PropertyType: Concealment (2), Amount: 2
+[14:55:24.016] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalMovementCost (37), Amount: -2
+[14:55:24.016] [REND_Investigation]   UpdateProperty — PropertyType: Concealment (2), Amount: 2
+[14:55:24.017] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalMovementCost (37), Amount: -2
+[14:55:24.017] [REND_Investigation]   UpdateProperty — PropertyType: Concealment (2), Amount: 2
+[14:55:24.017] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalMovementCost (37), Amount: -2
+[14:55:24.018] [REND_Investigation]   UpdateProperty — PropertyType: Vision (0), Amount: 2
+[14:55:24.018] [REND_Investigation]   UpdateProperty — PropertyType: Detection (7), Amount: 1
+[14:55:24.018] [REND_Investigation]   UpdateProperty — PropertyType: Concealment (2), Amount: 2
+[14:55:24.019] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalMovementCost (37), Amount: -2
+[14:55:24.019] [REND_Investigation]   UpdateProperty — PropertyType: Vision (0), Amount: 2
+[14:55:24.019] [REND_Investigation]   UpdateProperty — PropertyType: Detection (7), Amount: 1
+[14:55:24.020] [REND_Investigation]   UpdateProperty — PropertyType: Concealment (2), Amount: 2
+[14:55:24.020] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalMovementCost (37), Amount: -2
+[14:55:24.020] [REND_Investigation]   UpdateProperty — PropertyType: Vision (0), Amount: 2
+[14:55:24.021] [REND_Investigation]   UpdateProperty — PropertyType: Detection (7), Amount: 1
+[14:55:24.021] [REND_Investigation]   UpdateProperty — PropertyType: Concealment (2), Amount: 2
+[14:55:24.021] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalMovementCost (37), Amount: -2
+[14:55:24.022] [REND_Investigation]   UpdateProperty — PropertyType: Vision (0), Amount: 2
+[14:55:24.022] [REND_Investigation]   UpdateProperty — PropertyType: Detection (7), Amount: 1
+[14:55:24.022] [REND_Investigation]   UpdateProperty — PropertyType: Concealment (2), Amount: 2
+[14:55:24.023] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalMovementCost (37), Amount: -2
+[14:55:24.023] [REND_Investigation]   UpdateProperty — PropertyType: Vision (0), Amount: 2
+[14:55:24.023] [REND_Investigation]   UpdateProperty — PropertyType: Detection (7), Amount: 1
+[14:55:24.024] [REND_Investigation]   UpdateProperty — PropertyType: Concealment (2), Amount: 2
+[14:55:24.024] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalMovementCost (37), Amount: -2
+[14:55:24.024] [REND_Investigation]   UpdateProperty — PropertyType: Vision (0), Amount: 2
+[14:55:24.024] [REND_Investigation]   UpdateProperty — PropertyType: Detection (7), Amount: 1
+[14:55:24.025] [REND_Investigation]   UpdateProperty — PropertyType: Concealment (2), Amount: 2
+[14:55:24.025] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalMovementCost (37), Amount: -2
+[14:55:24.026] [REND_Investigation]   UpdateProperty — PropertyType: Vision (0), Amount: 2
+[14:55:24.026] [REND_Investigation]   UpdateProperty — PropertyType: Detection (7), Amount: 1
+[14:55:24.026] [REND_Investigation]   UpdateProperty — PropertyType: Concealment (2), Amount: 2
+[14:55:24.027] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalMovementCost (37), Amount: -2
+[14:55:24.027] [REND_Investigation]   UpdateProperty — PropertyType: Vision (0), Amount: 2
+[14:55:24.027] [REND_Investigation]   UpdateProperty — PropertyType: Detection (7), Amount: 1
+[14:55:24.028] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalMovementCost (37), Amount: -2
+[14:55:24.028] [REND_Investigation]   UpdateProperty — PropertyType: Vision (0), Amount: 2
+[14:55:24.028] [REND_Investigation]   UpdateProperty — PropertyType: Detection (7), Amount: 1
+[14:55:24.029] [REND_Investigation]   UpdateProperty — PropertyType: Concealment (2), Amount: 2
+[14:55:24.029] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalMovementCost (37), Amount: -2
+[14:55:24.029] [REND_Investigation]   UpdateProperty — PropertyType: Vision (0), Amount: 2
+[14:55:24.030] [REND_Investigation]   UpdateProperty — PropertyType: Detection (7), Amount: 1
+[14:55:24.030] [REND_Investigation]   UpdateProperty — PropertyType: Concealment (2), Amount: 2
+[14:55:24.030] [REND_Investigation]   UpdateProperty — PropertyType: Vision (0), Amount: 2
+[14:55:24.031] [REND_Investigation]   UpdateProperty — PropertyType: Detection (7), Amount: 1
+[14:55:24.031] [REND_Investigation]   UpdateProperty — PropertyType: Concealment (2), Amount: 2
+[14:55:24.031] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalMovementCost (37), Amount: -2
+[14:55:24.035] [REND_Investigation]   UpdateProperty — PropertyType: Vision (0), Amount: 2
+[14:55:24.035] [REND_Investigation]   UpdateProperty — PropertyType: Detection (7), Amount: 1
+[14:55:24.035] [REND_Investigation]   UpdateProperty — PropertyType: Concealment (2), Amount: 2
+[14:55:24.036] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalMovementCost (37), Amount: -2
+[14:55:24.036] [REND_Investigation]   UpdateProperty — PropertyType: Vision (0), Amount: 2
+[14:55:24.036] [REND_Investigation]   UpdateProperty — PropertyType: Detection (7), Amount: 1
+[14:55:24.037] [REND_Investigation]   UpdateProperty — PropertyType: Concealment (2), Amount: 2
+[14:55:24.037] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalMovementCost (37), Amount: -2
+[14:55:24.038] [REND_Investigation]   UpdateMultProperty — PropertyType: PromotionCostMult (52), AmountMult: 0.7
+[14:55:24.038] [REND_Investigation]   UpdateMultProperty — PropertyType: PromotionCostMult (52), AmountMult: 0.7
+[14:55:24.039] [REND_Investigation]   UpdateMultProperty — PropertyType: PromotionCostMult (52), AmountMult: 0.7
+[14:55:24.039] [REND_Investigation]   UpdateMultProperty — PropertyType: PromotionCostMult (52), AmountMult: 0.7
+[14:55:24.039] [REND_Investigation]   UpdateMultProperty — PropertyType: PromotionCostMult (52), AmountMult: 0.7
+[14:55:24.040] [REND_Investigation]   UpdateMultProperty — PropertyType: PromotionCostMult (52), AmountMult: 0.7
+[14:55:24.040] [REND_Investigation]   UpdateMultProperty — PropertyType: PromotionCostMult (52), AmountMult: 0.7
+[14:55:24.040] [REND_Investigation]   UpdateMultProperty — PropertyType: PromotionCostMult (52), AmountMult: 0.7
+[14:55:24.041] [REND_Investigation]   UpdateMultProperty — PropertyType: PromotionCostMult (52), AmountMult: 0.7
+[14:55:24.041] [REND_Investigation]   UpdateMultProperty — PropertyType: PromotionCostMult (52), AmountMult: 0.7
+[14:55:24.041] [REND_Investigation]   UpdateMultProperty — PropertyType: PromotionCostMult (52), AmountMult: 0.7
+[14:55:24.042] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalMovementCost (37), Amount: -2
+[14:55:24.042] [REND_Investigation]   UpdateMultProperty — PropertyType: PromotionCostMult (52), AmountMult: 0.7
+[14:55:24.043] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalMovementCost (37), Amount: -2
+[14:55:24.043] [REND_Investigation]   UpdateMultProperty — PropertyType: PromotionCostMult (52), AmountMult: 0.7
+[14:55:24.043] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalMovementCost (37), Amount: -2
+[14:55:24.044] [REND_Investigation]   UpdateMultProperty — PropertyType: PromotionCostMult (52), AmountMult: 0.7
+[14:55:24.044] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalMovementCost (37), Amount: -2
+[14:55:24.044] [REND_Investigation]   UpdateMultProperty — PropertyType: PromotionCostMult (52), AmountMult: 0.7
+[14:55:24.045] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalMovementCost (37), Amount: -2
+[14:55:24.045] [REND_Investigation]   UpdateMultProperty — PropertyType: PromotionCostMult (52), AmountMult: 0.7
+[14:55:24.045] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalMovementCost (37), Amount: -2
+[14:55:24.046] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalMovementCost (37), Amount: -2
+[14:55:24.046] [REND_Investigation]   UpdateMultProperty — PropertyType: PromotionCostMult (52), AmountMult: 0.7
+[14:55:24.046] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalMovementCost (37), Amount: -2
+[14:55:24.047] [REND_Investigation]   UpdateMultProperty — PropertyType: PromotionCostMult (52), AmountMult: 0.7
+[14:55:24.050] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalMovementCost (37), Amount: -2
+[14:55:24.050] [REND_Investigation]   UpdateMultProperty — PropertyType: PromotionCostMult (52), AmountMult: 0.7
+[14:55:24.050] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalMovementCost (37), Amount: -2
+[14:55:24.051] [REND_Investigation]   UpdateMultProperty — PropertyType: PromotionCostMult (52), AmountMult: 0.7
+[14:55:24.051] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalMovementCost (37), Amount: -2
+[14:55:24.051] [REND_Investigation]   UpdateMultProperty — PropertyType: PromotionCostMult (52), AmountMult: 0.7
+[14:55:24.052] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalMovementCost (37), Amount: -2
+[14:55:24.052] [REND_Investigation]   UpdateMultProperty — PropertyType: PromotionCostMult (52), AmountMult: 0.7
+[14:55:24.052] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalMovementCost (37), Amount: -2
+[14:55:24.053] [REND_Investigation]   UpdateMultProperty — PropertyType: PromotionCostMult (52), AmountMult: 0.7
+[14:55:24.053] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalMovementCost (37), Amount: -2
+[14:55:24.053] [REND_Investigation]   UpdateMultProperty — PropertyType: PromotionCostMult (52), AmountMult: 0.7
+[14:55:24.054] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalMovementCost (37), Amount: -2
+[14:55:24.054] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalMovementCost (37), Amount: -2
+[14:55:24.054] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalMovementCost (37), Amount: -2
+[14:55:24.055] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalMovementCost (37), Amount: -2
+[14:55:24.055] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalMovementCost (37), Amount: -2
+[14:55:24.055] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalMovementCost (37), Amount: -2
+[14:55:24.056] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalMovementCost (37), Amount: -2
+[14:55:24.056] [REND_Investigation]   UpdateMultProperty — PropertyType: AccuracyMult (9), AmountMult: 0.85
+[14:55:24.056] [REND_Investigation]   UpdateMultProperty — PropertyType: DisciplineMult (21), AmountMult: 0.85
+[14:55:24.057] [REND_Investigation]   UpdateMultProperty — PropertyType: AccuracyMult (9), AmountMult: 0.85
+[14:55:24.057] [REND_Investigation]   UpdateMultProperty — PropertyType: DisciplineMult (21), AmountMult: 0.85
+[14:55:24.057] [REND_Investigation]   UpdateMultProperty — PropertyType: AccuracyMult (9), AmountMult: 0.85
+[14:55:24.058] [REND_Investigation]   UpdateMultProperty — PropertyType: DisciplineMult (21), AmountMult: 0.85
+[14:55:24.058] [REND_Investigation]   UpdateMultProperty — PropertyType: AccuracyMult (9), AmountMult: 0.85
+[14:55:24.059] [REND_Investigation]   UpdateMultProperty — PropertyType: DisciplineMult (21), AmountMult: 0.85
+[14:55:24.059] [REND_Investigation]   UpdateMultProperty — PropertyType: AccuracyMult (9), AmountMult: 0.85
+[14:55:24.059] [REND_Investigation]   UpdateMultProperty — PropertyType: DisciplineMult (21), AmountMult: 0.85
+[14:55:24.060] [REND_Investigation]   UpdateMultProperty — PropertyType: AccuracyMult (9), AmountMult: 0.85
+[14:55:24.060] [REND_Investigation]   UpdateMultProperty — PropertyType: DisciplineMult (21), AmountMult: 0.85
+[14:55:24.060] [REND_Investigation]   UpdateMultProperty — PropertyType: AccuracyMult (9), AmountMult: 0.85
+[14:55:24.061] [REND_Investigation]   UpdateMultProperty — PropertyType: DisciplineMult (21), AmountMult: 0.85
+[14:55:24.061] [REND_Investigation]   UpdateMultProperty — PropertyType: AccuracyMult (9), AmountMult: 0.85
+[14:55:24.061] [REND_Investigation]   UpdateMultProperty — PropertyType: DisciplineMult (21), AmountMult: 0.85
+[14:55:24.062] [REND_Investigation]   UpdateMultProperty — PropertyType: AccuracyMult (9), AmountMult: 0.85
+[14:55:24.062] [REND_Investigation]   UpdateMultProperty — PropertyType: DisciplineMult (21), AmountMult: 0.85
+[14:55:24.062] [REND_Investigation]   UpdateMultProperty — PropertyType: AccuracyMult (9), AmountMult: 0.85
+[14:55:24.063] [REND_Investigation]   UpdateMultProperty — PropertyType: DisciplineMult (21), AmountMult: 0.85
+[14:55:24.066] [REND_Investigation]   UpdateMultProperty — PropertyType: AccuracyMult (9), AmountMult: 0.85
+[14:55:24.066] [REND_Investigation]   UpdateMultProperty — PropertyType: DisciplineMult (21), AmountMult: 0.85
+[14:55:24.066] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalMovementCost (37), Amount: -2
+[14:55:24.067] [REND_Investigation]   UpdateMultProperty — PropertyType: AccuracyMult (9), AmountMult: 0.85
+[14:55:24.067] [REND_Investigation]   UpdateMultProperty — PropertyType: DisciplineMult (21), AmountMult: 0.85
+[14:55:24.067] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalMovementCost (37), Amount: -2
+[14:55:24.068] [REND_Investigation]   UpdateMultProperty — PropertyType: AccuracyMult (9), AmountMult: 0.85
+[14:55:24.068] [REND_Investigation]   UpdateMultProperty — PropertyType: DisciplineMult (21), AmountMult: 0.85
+[14:55:24.068] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalMovementCost (37), Amount: -2
+[14:55:24.069] [REND_Investigation]   UpdateMultProperty — PropertyType: AccuracyMult (9), AmountMult: 0.85
+[14:55:24.069] [REND_Investigation]   UpdateMultProperty — PropertyType: DisciplineMult (21), AmountMult: 0.85
+[14:55:24.069] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalMovementCost (37), Amount: -2
+[14:55:24.070] [REND_Investigation]   UpdateMultProperty — PropertyType: AccuracyMult (9), AmountMult: 0.85
+[14:55:24.070] [REND_Investigation]   UpdateMultProperty — PropertyType: DisciplineMult (21), AmountMult: 0.85
+[14:55:24.070] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalMovementCost (37), Amount: -2
+[14:55:24.071] [REND_Investigation]   UpdateProperty — PropertyType: Vision (0), Amount: 2
+[14:55:24.071] [REND_Investigation]   UpdateProperty — PropertyType: Detection (7), Amount: 1
+[14:55:24.071] [REND_Investigation]   UpdateMultProperty — PropertyType: AccuracyMult (9), AmountMult: 0.85
+[14:55:24.072] [REND_Investigation]   UpdateMultProperty — PropertyType: DisciplineMult (21), AmountMult: 0.85
+[14:55:24.072] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalMovementCost (37), Amount: -2
+[14:55:24.072] [REND_Investigation]   UpdateProperty — PropertyType: Vision (0), Amount: 2
+[14:55:24.073] [REND_Investigation]   UpdateProperty — PropertyType: Detection (7), Amount: 1
+[14:55:24.073] [REND_Investigation]   UpdateMultProperty — PropertyType: AccuracyMult (9), AmountMult: 0.85
+[14:55:24.073] [REND_Investigation]   UpdateMultProperty — PropertyType: DisciplineMult (21), AmountMult: 0.85
+[14:55:24.074] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalMovementCost (37), Amount: -2
+[14:55:24.074] [REND_Investigation]   UpdateProperty — PropertyType: Vision (0), Amount: 2
+[14:55:24.074] [REND_Investigation]   UpdateProperty — PropertyType: Detection (7), Amount: 1
+[14:55:24.075] [REND_Investigation]   UpdateMultProperty — PropertyType: AccuracyMult (9), AmountMult: 0.85
+[14:55:24.075] [REND_Investigation]   UpdateMultProperty — PropertyType: DisciplineMult (21), AmountMult: 0.85
+[14:55:24.075] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalMovementCost (37), Amount: -2
+[14:55:24.076] [REND_Investigation]   UpdateProperty — PropertyType: Vision (0), Amount: 2
+[14:55:24.076] [REND_Investigation]   UpdateProperty — PropertyType: Detection (7), Amount: 1
+[14:55:24.076] [REND_Investigation]   UpdateMultProperty — PropertyType: AccuracyMult (9), AmountMult: 0.85
+[14:55:24.077] [REND_Investigation]   UpdateMultProperty — PropertyType: DisciplineMult (21), AmountMult: 0.85
+[14:55:24.077] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalMovementCost (37), Amount: -2
+[14:55:24.077] [REND_Investigation]   UpdateProperty — PropertyType: Vision (0), Amount: 2
+[14:55:24.078] [REND_Investigation]   UpdateProperty — PropertyType: Detection (7), Amount: 1
+[14:55:24.078] [REND_Investigation]   UpdateProperty — PropertyType: Vision (0), Amount: 2
+[14:55:24.078] [REND_Investigation]   UpdateProperty — PropertyType: Detection (7), Amount: 1
+[14:55:24.081] [REND_Investigation]   UpdateMultProperty — PropertyType: AccuracyMult (9), AmountMult: 0.85
+[14:55:24.082] [REND_Investigation]   UpdateMultProperty — PropertyType: DisciplineMult (21), AmountMult: 0.85
+[14:55:24.082] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalMovementCost (37), Amount: -2
+[14:55:24.083] [REND_Investigation]   UpdateProperty — PropertyType: Vision (0), Amount: 2
+[14:55:24.083] [REND_Investigation]   UpdateProperty — PropertyType: Detection (7), Amount: 1
+[14:55:24.083] [REND_Investigation]   UpdateMultProperty — PropertyType: AccuracyMult (9), AmountMult: 0.85
+[14:55:24.083] [REND_Investigation]   UpdateMultProperty — PropertyType: DisciplineMult (21), AmountMult: 0.85
+[14:55:24.084] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalMovementCost (37), Amount: -2
+[14:55:24.084] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalMovementCost (37), Amount: -2
+[14:55:24.084] [REND_Investigation]   UpdateMultProperty — PropertyType: AccuracyMult (9), AmountMult: 0.85
+[14:55:24.085] [REND_Investigation]   UpdateMultProperty — PropertyType: DisciplineMult (21), AmountMult: 0.85
+[14:55:24.085] [REND_Investigation]   UpdateProperty — PropertyType: Vision (0), Amount: 2
+[14:55:24.085] [REND_Investigation]   UpdateProperty — PropertyType: Detection (7), Amount: 1
+[14:55:24.086] [REND_Investigation]   UpdateMultProperty — PropertyType: AccuracyMult (9), AmountMult: 0.85
+[14:55:24.086] [REND_Investigation]   UpdateMultProperty — PropertyType: DisciplineMult (21), AmountMult: 0.85
+[14:55:24.086] [REND_Investigation]   UpdateProperty — PropertyType: Vision (0), Amount: 2
+[14:55:24.087] [REND_Investigation]   UpdateProperty — PropertyType: Detection (7), Amount: 1
+[14:55:24.087] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalMovementCost (37), Amount: -2
+[14:55:24.088] [REND_Investigation]   UpdateMultProperty — PropertyType: AccuracyMult (9), AmountMult: 0.85
+[14:55:24.088] [REND_Investigation]   UpdateMultProperty — PropertyType: DisciplineMult (21), AmountMult: 0.85
+[14:55:24.088] [REND_Investigation]   UpdateProperty — PropertyType: Vision (0), Amount: 2
+[14:55:24.088] [REND_Investigation]   UpdateProperty — PropertyType: Detection (7), Amount: 1
+[14:55:24.089] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalMovementCost (37), Amount: -2
+[14:55:24.089] [REND_Investigation]   UpdateProperty — PropertyType: Vision (0), Amount: 2
+[14:55:24.089] [REND_Investigation]   UpdateProperty — PropertyType: Detection (7), Amount: 1
+[14:55:24.090] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalMovementCost (37), Amount: -2
+[14:55:24.090] [REND_Investigation]   UpdateMultProperty — PropertyType: AccuracyMult (9), AmountMult: 0.85
+[14:55:24.090] [REND_Investigation]   UpdateMultProperty — PropertyType: DisciplineMult (21), AmountMult: 0.85
+[14:55:24.091] [REND_Investigation]   UpdateProperty — PropertyType: Vision (0), Amount: 2
+[14:55:24.091] [REND_Investigation]   UpdateProperty — PropertyType: Detection (7), Amount: 1
+[14:55:24.092] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalMovementCost (37), Amount: -2
+[14:55:24.092] [REND_Investigation]   UpdateMultProperty — PropertyType: AccuracyMult (9), AmountMult: 0.85
+[14:55:24.092] [REND_Investigation]   UpdateMultProperty — PropertyType: DisciplineMult (21), AmountMult: 0.85
+[14:55:24.093] [Menace_Modpack_Loader] [TemplateDiagnostics] GetBaseFolder(Menace.Strategy.EmotionalStateTemplate) -> 'Data/EmotionalStates/'
+[14:55:24.101] [REND_Investigation]   UpdateProperty — PropertyType: Vision (0), Amount: 2
+[14:55:24.101] [REND_Investigation]   UpdateProperty — PropertyType: Detection (7), Amount: 1
+[14:55:24.101] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalMovementCost (37), Amount: -2
+[14:55:24.102] [REND_Investigation]   UpdateMultProperty — PropertyType: AccuracyMult (9), AmountMult: 0.85
+[14:55:24.102] [REND_Investigation]   UpdateMultProperty — PropertyType: DisciplineMult (21), AmountMult: 0.85
+[14:55:24.103] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalTurningCost (45), Amount: -5
+[14:55:24.103] [REND_Investigation]   UpdateMultProperty — PropertyType: BackwardsMovementMult (55), AmountMult: 0.5
+[14:55:24.103] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalTurningCost (45), Amount: -5
+[14:55:24.103] [REND_Investigation]   UpdateMultProperty — PropertyType: BackwardsMovementMult (55), AmountMult: 0.5
+[14:55:24.104] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalTurningCost (45), Amount: -5
+[14:55:24.104] [REND_Investigation]   UpdateMultProperty — PropertyType: BackwardsMovementMult (55), AmountMult: 0.5
+[14:55:24.104] [REND_Investigation]   UpdateMultProperty — PropertyType: ArmorPenetrationMult (23), AmountMult: 1.3
+[14:55:24.105] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalTurningCost (45), Amount: -5
+[14:55:24.105] [REND_Investigation]   UpdateMultProperty — PropertyType: BackwardsMovementMult (55), AmountMult: 0.5
+[14:55:24.106] [REND_Investigation]   UpdateMultProperty — PropertyType: ArmorPenetrationMult (23), AmountMult: 1.3
+[14:55:24.106] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalTurningCost (45), Amount: -5
+[14:55:24.106] [REND_Investigation]   UpdateMultProperty — PropertyType: BackwardsMovementMult (55), AmountMult: 0.5
+[14:55:24.107] [REND_Investigation]   UpdateMultProperty — PropertyType: ArmorPenetrationMult (23), AmountMult: 1.3
+[14:55:24.107] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalTurningCost (45), Amount: -5
+[14:55:24.107] [REND_Investigation]   UpdateMultProperty — PropertyType: BackwardsMovementMult (55), AmountMult: 0.5
+[14:55:24.108] [REND_Investigation]   UpdateMultProperty — PropertyType: ArmorPenetrationMult (23), AmountMult: 1.3
+[14:55:24.108] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalTurningCost (45), Amount: -5
+[14:55:24.108] [REND_Investigation]   UpdateMultProperty — PropertyType: BackwardsMovementMult (55), AmountMult: 0.5
+[14:55:24.109] [REND_Investigation]   UpdateMultProperty — PropertyType: ArmorPenetrationMult (23), AmountMult: 1.3
+[14:55:24.110] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalTurningCost (45), Amount: -5
+[14:55:24.110] [REND_Investigation]   UpdateMultProperty — PropertyType: BackwardsMovementMult (55), AmountMult: 0.5
+[14:55:24.110] [REND_Investigation]   UpdateMultProperty — PropertyType: ArmorPenetrationMult (23), AmountMult: 1.3
+[14:55:24.111] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalTurningCost (45), Amount: -5
+[14:55:24.114] [REND_Investigation]   UpdateMultProperty — PropertyType: BackwardsMovementMult (55), AmountMult: 0.5
+[14:55:24.114] [REND_Investigation]   UpdateMultProperty — PropertyType: ArmorPenetrationMult (23), AmountMult: 1.3
+[14:55:24.114] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalTurningCost (45), Amount: -5
+[14:55:24.114] [REND_Investigation]   UpdateMultProperty — PropertyType: BackwardsMovementMult (55), AmountMult: 0.5
+[14:55:24.115] [REND_Investigation]   UpdateMultProperty — PropertyType: ArmorPenetrationMult (23), AmountMult: 1.3
+[14:55:24.115] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalTurningCost (45), Amount: -5
+[14:55:24.115] [REND_Investigation]   UpdateMultProperty — PropertyType: BackwardsMovementMult (55), AmountMult: 0.5
+[14:55:24.116] [REND_Investigation]   UpdateMultProperty — PropertyType: ArmorPenetrationMult (23), AmountMult: 1.3
+[14:55:24.116] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalTurningCost (45), Amount: -5
+[14:55:24.116] [REND_Investigation]   UpdateMultProperty — PropertyType: BackwardsMovementMult (55), AmountMult: 0.5
+[14:55:24.117] [REND_Investigation]   UpdateMultProperty — PropertyType: ArmorPenetrationMult (23), AmountMult: 1.3
+[14:55:24.117] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalTurningCost (45), Amount: -5
+[14:55:24.117] [REND_Investigation]   UpdateMultProperty — PropertyType: BackwardsMovementMult (55), AmountMult: 0.5
+[14:55:24.118] [REND_Investigation]   UpdateMultProperty — PropertyType: ArmorPenetrationMult (23), AmountMult: 1.3
+[14:55:24.118] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalTurningCost (45), Amount: -5
+[14:55:24.118] [REND_Investigation]   UpdateMultProperty — PropertyType: BackwardsMovementMult (55), AmountMult: 0.5
+[14:55:24.119] [REND_Investigation]   UpdateMultProperty — PropertyType: ArmorPenetrationMult (23), AmountMult: 1.3
+[14:55:24.119] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalTurningCost (45), Amount: -5
+[14:55:24.119] [REND_Investigation]   UpdateMultProperty — PropertyType: BackwardsMovementMult (55), AmountMult: 0.5
+[14:55:24.120] [REND_Investigation]   UpdateMultProperty — PropertyType: ArmorPenetrationMult (23), AmountMult: 1.3
+[14:55:24.120] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalTurningCost (45), Amount: -5
+[14:55:24.120] [REND_Investigation]   UpdateMultProperty — PropertyType: BackwardsMovementMult (55), AmountMult: 0.5
+[14:55:24.121] [REND_Investigation]   UpdateMultProperty — PropertyType: ArmorPenetrationMult (23), AmountMult: 1.3
+[14:55:24.121] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalTurningCost (45), Amount: -5
+[14:55:24.121] [REND_Investigation]   UpdateMultProperty — PropertyType: BackwardsMovementMult (55), AmountMult: 0.5
+[14:55:24.122] [REND_Investigation]   UpdateMultProperty — PropertyType: ArmorPenetrationMult (23), AmountMult: 1.3
+[14:55:24.122] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalTurningCost (45), Amount: -5
+[14:55:24.122] [REND_Investigation]   UpdateMultProperty — PropertyType: BackwardsMovementMult (55), AmountMult: 0.5
+[14:55:24.123] [REND_Investigation]   UpdateMultProperty — PropertyType: ArmorPenetrationMult (23), AmountMult: 1.3
+[14:55:24.123] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalTurningCost (45), Amount: -5
+[14:55:24.123] [REND_Investigation]   UpdateMultProperty — PropertyType: BackwardsMovementMult (55), AmountMult: 0.5
+[14:55:24.124] [REND_Investigation]   UpdateMultProperty — PropertyType: ArmorPenetrationMult (23), AmountMult: 1.3
+[14:55:24.124] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalTurningCost (45), Amount: -5
+[14:55:24.125] [REND_Investigation]   UpdateMultProperty — PropertyType: BackwardsMovementMult (55), AmountMult: 0.5
+[14:55:24.126] [REND_Investigation]   UpdateMultProperty — PropertyType: ArmorPenetrationMult (23), AmountMult: 1.3
+[14:55:24.126] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalTurningCost (45), Amount: -5
+[14:55:24.126] [REND_Investigation]   UpdateMultProperty — PropertyType: BackwardsMovementMult (55), AmountMult: 0.5
+[14:55:24.130] [REND_Investigation]   UpdateMultProperty — PropertyType: ArmorPenetrationMult (23), AmountMult: 1.3
+[14:55:24.130] [REND_Investigation]   UpdateMultProperty — PropertyType: AccuracyMult (9), AmountMult: 1.1
+[14:55:24.130] [REND_Investigation]   UpdateMultProperty — PropertyType: DisciplineMult (21), AmountMult: 1.1
+[14:55:24.131] [REND_Investigation]   UpdateMultProperty — PropertyType: MoraleMult (41), AmountMult: 1.1
+[14:55:24.131] [REND_Investigation]   UpdateMultProperty — PropertyType: DamageSustainedMult (11), AmountMult: 0.9
+[14:55:24.131] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalTurningCost (45), Amount: -5
+[14:55:24.132] [REND_Investigation]   UpdateMultProperty — PropertyType: BackwardsMovementMult (55), AmountMult: 0.5
+[14:55:24.132] [REND_Investigation]   UpdateMultProperty — PropertyType: ArmorPenetrationMult (23), AmountMult: 1.3
+[14:55:24.132] [REND_Investigation]   UpdateMultProperty — PropertyType: AccuracyMult (9), AmountMult: 1.1
+[14:55:24.133] [REND_Investigation]   UpdateMultProperty — PropertyType: DisciplineMult (21), AmountMult: 1.1
+[14:55:24.133] [REND_Investigation]   UpdateMultProperty — PropertyType: MoraleMult (41), AmountMult: 1.1
+[14:55:24.133] [REND_Investigation]   UpdateMultProperty — PropertyType: DamageSustainedMult (11), AmountMult: 0.9
+[14:55:24.134] [REND_Investigation]   UpdateProperty — PropertyType: HitchanceMin (68), Amount: 30
+[14:55:24.134] [REND_Investigation]   UpdateProperty — PropertyType: HitchanceMin (68), Amount: 30
+[14:55:24.134] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalTurningCost (45), Amount: -5
+[14:55:24.134] [REND_Investigation]   UpdateMultProperty — PropertyType: BackwardsMovementMult (55), AmountMult: 0.5
+[14:55:24.135] [REND_Investigation]   UpdateProperty — PropertyType: HitchanceMin (68), Amount: 30
+[14:55:24.135] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalTurningCost (45), Amount: -5
+[14:55:24.135] [REND_Investigation]   UpdateMultProperty — PropertyType: BackwardsMovementMult (55), AmountMult: 0.5
+[14:55:24.136] [REND_Investigation]   UpdateProperty — PropertyType: HitchanceMin (68), Amount: 30
+[14:55:24.136] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalTurningCost (45), Amount: -5
+[14:55:24.136] [REND_Investigation]   UpdateMultProperty — PropertyType: BackwardsMovementMult (55), AmountMult: 0.5
+[14:55:24.137] [REND_Investigation]   UpdateProperty — PropertyType: HitchanceMin (68), Amount: 30
+[14:55:24.137] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalTurningCost (45), Amount: -5
+[14:55:24.137] [REND_Investigation]   UpdateMultProperty — PropertyType: BackwardsMovementMult (55), AmountMult: 0.5
+[14:55:24.138] [REND_Investigation]   UpdateProperty — PropertyType: HitchanceMin (68), Amount: 30
+[14:55:24.138] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalTurningCost (45), Amount: -5
+[14:55:24.138] [REND_Investigation]   UpdateMultProperty — PropertyType: BackwardsMovementMult (55), AmountMult: 0.5
+[14:55:24.139] [REND_Investigation]   UpdateProperty — PropertyType: HitchanceMin (68), Amount: 30
+[14:55:24.139] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalTurningCost (45), Amount: -5
+[14:55:24.139] [REND_Investigation]   UpdateMultProperty — PropertyType: BackwardsMovementMult (55), AmountMult: 0.5
+[14:55:24.140] [REND_Investigation]   UpdateProperty — PropertyType: HitchanceMin (68), Amount: 30
+[14:55:24.140] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalTurningCost (45), Amount: -5
+[14:55:24.141] [REND_Investigation]   UpdateMultProperty — PropertyType: BackwardsMovementMult (55), AmountMult: 0.5
+[14:55:24.141] [REND_Investigation]   UpdateProperty — PropertyType: HitchanceMin (68), Amount: 30
+[14:55:24.141] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalTurningCost (45), Amount: -5
+[14:55:24.142] [REND_Investigation]   UpdateMultProperty — PropertyType: BackwardsMovementMult (55), AmountMult: 0.5
+[14:55:24.145] [REND_Investigation]   UpdateProperty — PropertyType: HitchanceMin (68), Amount: 30
+[14:55:24.145] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalTurningCost (45), Amount: -5
+[14:55:24.145] [REND_Investigation]   UpdateMultProperty — PropertyType: BackwardsMovementMult (55), AmountMult: 0.5
+[14:55:24.146] [REND_Investigation]   UpdateProperty — PropertyType: HitchanceMin (68), Amount: 30
+[14:55:24.146] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalTurningCost (45), Amount: -5
+[14:55:24.146] [REND_Investigation]   UpdateMultProperty — PropertyType: BackwardsMovementMult (55), AmountMult: 0.5
+[14:55:24.147] [REND_Investigation]   UpdateProperty — PropertyType: HitchanceMin (68), Amount: 30
+[14:55:24.147] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalTurningCost (45), Amount: -5
+[14:55:24.147] [REND_Investigation]   UpdateMultProperty — PropertyType: BackwardsMovementMult (55), AmountMult: 0.5
+[14:55:24.148] [REND_Investigation]   UpdateProperty — PropertyType: HitchanceMin (68), Amount: 30
+[14:55:24.148] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalTurningCost (45), Amount: -5
+[14:55:24.148] [REND_Investigation]   UpdateMultProperty — PropertyType: BackwardsMovementMult (55), AmountMult: 0.5
+[14:55:24.149] [REND_Investigation]   UpdateProperty — PropertyType: HitchanceMin (68), Amount: 30
+[14:55:24.149] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalTurningCost (45), Amount: -5
+[14:55:24.149] [REND_Investigation]   UpdateMultProperty — PropertyType: BackwardsMovementMult (55), AmountMult: 0.5
+[14:55:24.150] [REND_Investigation]   UpdateProperty — PropertyType: HitchanceMin (68), Amount: 30
+[14:55:24.150] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalTurningCost (45), Amount: -5
+[14:55:24.150] [REND_Investigation]   UpdateMultProperty — PropertyType: BackwardsMovementMult (55), AmountMult: 0.5
+[14:55:24.151] [REND_Investigation]   UpdateProperty — PropertyType: HitchanceMin (68), Amount: 30
+[14:55:24.151] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalTurningCost (45), Amount: -5
+[14:55:24.151] [REND_Investigation]   UpdateMultProperty — PropertyType: BackwardsMovementMult (55), AmountMult: 0.5
+[14:55:24.152] [REND_Investigation]   UpdateProperty — PropertyType: HitchanceMin (68), Amount: 30
+[14:55:24.152] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalTurningCost (45), Amount: -5
+[14:55:24.152] [REND_Investigation]   UpdateMultProperty — PropertyType: BackwardsMovementMult (55), AmountMult: 0.5
+[14:55:24.153] [REND_Investigation]   UpdateProperty — PropertyType: Vision (0), Amount: 1
+[14:55:24.153] [REND_Investigation]   UpdateProperty — PropertyType: Detection (7), Amount: 2
+[14:55:24.153] [REND_Investigation]   UpdateProperty — PropertyType: HitchanceMin (68), Amount: 30
+[14:55:24.154] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalTurningCost (45), Amount: -5
+[14:55:24.154] [REND_Investigation]   UpdateMultProperty — PropertyType: BackwardsMovementMult (55), AmountMult: 0.5
+[14:55:24.154] [REND_Investigation]   UpdateProperty — PropertyType: Vision (0), Amount: 1
+[14:55:24.155] [REND_Investigation]   UpdateProperty — PropertyType: Detection (7), Amount: 2
+[14:55:24.155] [REND_Investigation]   UpdateProperty — PropertyType: HitchanceMin (68), Amount: 30
+[14:55:24.155] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalTurningCost (45), Amount: -5
+[14:55:24.156] [REND_Investigation]   UpdateMultProperty — PropertyType: BackwardsMovementMult (55), AmountMult: 0.5
+[14:55:24.156] [REND_Investigation]   UpdateProperty — PropertyType: Vision (0), Amount: 1
+[14:55:24.156] [REND_Investigation]   UpdateProperty — PropertyType: Detection (7), Amount: 2
+[14:55:24.157] [REND_Investigation]   UpdateProperty — PropertyType: HitchanceMin (68), Amount: 30
+[14:55:24.157] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalTurningCost (45), Amount: -5
+[14:55:24.157] [REND_Investigation]   UpdateMultProperty — PropertyType: BackwardsMovementMult (55), AmountMult: 0.5
+[14:55:24.160] [REND_Investigation]   UpdateProperty — PropertyType: Vision (0), Amount: 1
+[14:55:24.161] [REND_Investigation]   UpdateProperty — PropertyType: Detection (7), Amount: 2
+[14:55:24.161] [REND_Investigation]   UpdateProperty — PropertyType: HitchanceMin (68), Amount: 30
+[14:55:24.161] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalTurningCost (45), Amount: -5
+[14:55:24.162] [REND_Investigation]   UpdateMultProperty — PropertyType: BackwardsMovementMult (55), AmountMult: 0.5
+[14:55:24.162] [REND_Investigation]   UpdateProperty — PropertyType: Vision (0), Amount: 1
+[14:55:24.162] [REND_Investigation]   UpdateProperty — PropertyType: Detection (7), Amount: 2
+[14:55:24.163] [REND_Investigation]   UpdateProperty — PropertyType: HitchanceMin (68), Amount: 30
+[14:55:24.163] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalTurningCost (45), Amount: -5
+[14:55:24.163] [REND_Investigation]   UpdateMultProperty — PropertyType: BackwardsMovementMult (55), AmountMult: 0.5
+[14:55:24.164] [REND_Investigation]   UpdateProperty — PropertyType: Vision (0), Amount: 1
+[14:55:24.164] [REND_Investigation]   UpdateProperty — PropertyType: Detection (7), Amount: 2
+[14:55:24.164] [REND_Investigation]   UpdateProperty — PropertyType: HitchanceMin (68), Amount: 30
+[14:55:24.165] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalTurningCost (45), Amount: -5
+[14:55:24.165] [REND_Investigation]   UpdateMultProperty — PropertyType: BackwardsMovementMult (55), AmountMult: 0.5
+[14:55:24.165] [REND_Investigation]   UpdateMultProperty — PropertyType: AccuracyMult (9), AmountMult: 1.1
+[14:55:24.166] [REND_Investigation]   UpdateMultProperty — PropertyType: DisciplineMult (21), AmountMult: 1.1
+[14:55:24.166] [REND_Investigation]   UpdateMultProperty — PropertyType: MoraleMult (41), AmountMult: 1.1
+[14:55:24.166] [REND_Investigation]   UpdateMultProperty — PropertyType: DamageSustainedMult (11), AmountMult: 0.9
+[14:55:24.167] [REND_Investigation]   UpdateProperty — PropertyType: Vision (0), Amount: 1
+[14:55:24.167] [REND_Investigation]   UpdateProperty — PropertyType: Detection (7), Amount: 2
+[14:55:24.167] [REND_Investigation]   UpdateProperty — PropertyType: HitchanceMin (68), Amount: 30
+[14:55:24.167] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalTurningCost (45), Amount: -5
+[14:55:24.168] [REND_Investigation]   UpdateMultProperty — PropertyType: BackwardsMovementMult (55), AmountMult: 0.5
+[14:55:24.168] [REND_Investigation]   UpdateMultProperty — PropertyType: AccuracyMult (9), AmountMult: 1.1
+[14:55:24.168] [REND_Investigation]   UpdateMultProperty — PropertyType: DisciplineMult (21), AmountMult: 1.1
+[14:55:24.169] [REND_Investigation]   UpdateMultProperty — PropertyType: MoraleMult (41), AmountMult: 1.1
+[14:55:24.169] [REND_Investigation]   UpdateMultProperty — PropertyType: DamageSustainedMult (11), AmountMult: 0.9
+[14:55:24.169] [REND_Investigation]   UpdateProperty — PropertyType: Vision (0), Amount: 1
+[14:55:24.170] [REND_Investigation]   UpdateProperty — PropertyType: Detection (7), Amount: 2
+[14:55:24.171] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalMovementCost (37), Amount: -2
+[14:55:24.171] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalMovementCost (37), Amount: -2
+[14:55:24.171] [REND_Investigation]   UpdateMultProperty — PropertyType: DamageToMoraleMult (36), AmountMult: 2
+[14:55:24.171] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalMovementCost (37), Amount: -2
+[14:55:24.172] [REND_Investigation]   UpdateMultProperty — PropertyType: DamageToMoraleMult (36), AmountMult: 2
+[14:55:24.172] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalMovementCost (37), Amount: -2
+[14:55:24.172] [REND_Investigation]   UpdateMultProperty — PropertyType: DamageToMoraleMult (36), AmountMult: 2
+[14:55:24.173] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalMovementCost (37), Amount: -2
+[14:55:24.173] [REND_Investigation]   UpdateMultProperty — PropertyType: DamageToMoraleMult (36), AmountMult: 2
+[14:55:24.173] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalMovementCost (37), Amount: -2
+[14:55:24.177] [REND_Investigation]   UpdateMultProperty — PropertyType: DamageToMoraleMult (36), AmountMult: 2
+[14:55:24.177] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalMovementCost (37), Amount: -2
+[14:55:24.177] [REND_Investigation]   UpdateMultProperty — PropertyType: DamageToMoraleMult (36), AmountMult: 2
+[14:55:24.177] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalMovementCost (37), Amount: -2
+[14:55:24.178] [REND_Investigation]   UpdateMultProperty — PropertyType: DamageToMoraleMult (36), AmountMult: 2
+[14:55:24.178] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalMovementCost (37), Amount: -2
+[14:55:24.178] [REND_Investigation]   UpdateMultProperty — PropertyType: DamageToMoraleMult (36), AmountMult: 2
+[14:55:24.179] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalMovementCost (37), Amount: -2
+[14:55:24.179] [REND_Investigation]   UpdateMultProperty — PropertyType: DamageToMoraleMult (36), AmountMult: 2
+[14:55:24.179] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalMovementCost (37), Amount: -2
+[14:55:24.180] [REND_Investigation]   UpdateMultProperty — PropertyType: DamageToMoraleMult (36), AmountMult: 2
+[14:55:24.180] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalMovementCost (37), Amount: -2
+[14:55:24.180] [REND_Investigation]   UpdateMultProperty — PropertyType: DamageToMoraleMult (36), AmountMult: 2
+[14:55:24.181] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalMovementCost (37), Amount: -2
+[14:55:24.181] [REND_Investigation]   UpdateMultProperty — PropertyType: DamageToMoraleMult (36), AmountMult: 2
+[14:55:24.181] [REND_Investigation]   UpdateMultProperty — PropertyType: AccuracyMult (9), AmountMult: 1.1
+[14:55:24.182] [REND_Investigation]   UpdateMultProperty — PropertyType: DamageToMoraleMult (36), AmountMult: 2
+[14:55:24.182] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalMovementCost (37), Amount: -2
+[14:55:24.182] [REND_Investigation]   UpdateMultProperty — PropertyType: AccuracyMult (9), AmountMult: 1.1
+[14:55:24.183] [REND_Investigation]   UpdateMultProperty — PropertyType: DamageToMoraleMult (36), AmountMult: 2
+[14:55:24.183] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalMovementCost (37), Amount: -2
+[14:55:24.183] [REND_Investigation]   UpdateMultProperty — PropertyType: AccuracyMult (9), AmountMult: 1.1
+[14:55:24.184] [REND_Investigation]   UpdateMultProperty — PropertyType: DamageToMoraleMult (36), AmountMult: 2
+[14:55:24.184] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalMovementCost (37), Amount: -2
+[14:55:24.184] [REND_Investigation]   UpdateMultProperty — PropertyType: AccuracyMult (9), AmountMult: 1.1
+[14:55:24.185] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalMovementCost (37), Amount: -2
+[14:55:24.185] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalMovementCost (37), Amount: -2
+[14:55:24.185] [REND_Investigation]   UpdateProperty — PropertyType: Vision (0), Amount: 2
+[14:55:24.186] [REND_Investigation]   UpdateProperty — PropertyType: Detection (7), Amount: 1
+[14:55:24.186] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalMovementCost (37), Amount: -2
+[14:55:24.186] [REND_Investigation]   UpdateProperty — PropertyType: Vision (0), Amount: 2
+[14:55:24.187] [REND_Investigation]   UpdateProperty — PropertyType: Detection (7), Amount: 1
+[14:55:24.187] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalMovementCost (37), Amount: -2
+[14:55:24.187] [REND_Investigation]   UpdateProperty — PropertyType: Vision (0), Amount: 2
+[14:55:24.188] [REND_Investigation]   UpdateProperty — PropertyType: Detection (7), Amount: 1
+[14:55:24.188] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalMovementCost (37), Amount: -2
+[14:55:24.188] [REND_Investigation]   UpdateProperty — PropertyType: Vision (0), Amount: 2
+[14:55:24.189] [REND_Investigation]   UpdateProperty — PropertyType: Detection (7), Amount: 1
+[14:55:24.189] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalMovementCost (37), Amount: -2
+[14:55:24.189] [REND_Investigation]   UpdateProperty — PropertyType: Vision (0), Amount: 2
+[14:55:24.192] [REND_Investigation]   UpdateProperty — PropertyType: Detection (7), Amount: 1
+[14:55:24.194] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalMovementCost (37), Amount: -2
+[14:55:24.194] [REND_Investigation]   UpdateProperty — PropertyType: Vision (0), Amount: 2
+[14:55:24.195] [REND_Investigation]   UpdateProperty — PropertyType: Detection (7), Amount: 1
+[14:55:24.195] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalMovementCost (37), Amount: -2
+[14:55:24.195] [REND_Investigation]   UpdateProperty — PropertyType: Vision (0), Amount: 2
+[14:55:24.195] [REND_Investigation]   UpdateProperty — PropertyType: Detection (7), Amount: 1
+[14:55:24.196] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalMovementCost (37), Amount: -2
+[14:55:24.196] [REND_Investigation]   UpdateProperty — PropertyType: Vision (0), Amount: 2
+[14:55:24.196] [REND_Investigation]   UpdateProperty — PropertyType: Detection (7), Amount: 1
+[14:55:24.197] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalMovementCost (37), Amount: -2
+[14:55:24.197] [REND_Investigation]   UpdateProperty — PropertyType: Vision (0), Amount: 2
+[14:55:24.197] [REND_Investigation]   UpdateProperty — PropertyType: Detection (7), Amount: 1
+[14:55:24.198] [REND_Investigation]   UpdateProperty — PropertyType: Vision (0), Amount: 1
+[14:55:24.198] [REND_Investigation]   UpdateProperty — PropertyType: Detection (7), Amount: 1
+[14:55:24.198] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalMovementCost (37), Amount: -2
+[14:55:24.199] [REND_Investigation]   UpdateProperty — PropertyType: Vision (0), Amount: 2
+[14:55:24.199] [REND_Investigation]   UpdateProperty — PropertyType: Detection (7), Amount: 1
+[14:55:24.199] [REND_Investigation]   UpdateProperty — PropertyType: Vision (0), Amount: 1
+[14:55:24.200] [REND_Investigation]   UpdateProperty — PropertyType: Detection (7), Amount: 1
+[14:55:24.200] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalMovementCost (37), Amount: -2
+[14:55:24.200] [REND_Investigation]   UpdateProperty — PropertyType: Vision (0), Amount: 2
+[14:55:24.201] [REND_Investigation]   UpdateProperty — PropertyType: Detection (7), Amount: 1
+[14:55:24.201] [REND_Investigation]   UpdateProperty — PropertyType: Vision (0), Amount: 1
+[14:55:24.201] [REND_Investigation]   UpdateProperty — PropertyType: Detection (7), Amount: 1
+[14:55:24.202] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalMovementCost (37), Amount: -2
+[14:55:24.202] [REND_Investigation]   UpdateProperty — PropertyType: Vision (0), Amount: 2
+[14:55:24.202] [REND_Investigation]   UpdateProperty — PropertyType: Detection (7), Amount: 1
+[14:55:24.203] [REND_Investigation]   UpdateProperty — PropertyType: Vision (0), Amount: 1
+[14:55:24.203] [REND_Investigation]   UpdateProperty — PropertyType: Detection (7), Amount: 1
+[14:55:24.203] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalMovementCost (37), Amount: -2
+[14:55:24.204] [REND_Investigation]   UpdateProperty — PropertyType: Vision (0), Amount: 2
+[14:55:24.204] [REND_Investigation]   UpdateProperty — PropertyType: Detection (7), Amount: 1
+[14:55:24.204] [REND_Investigation]   UpdateMultProperty — PropertyType: DeployCostMult (64), AmountMult: 0.85
+[14:55:24.205] [REND_Investigation]   UpdateMultProperty — PropertyType: DeployCostMult (64), AmountMult: 0.85
+[14:55:24.205] [REND_Investigation]   UpdateMultProperty — PropertyType: DeployCostMult (64), AmountMult: 0.85
+[14:55:24.205] [REND_Investigation]   UpdateMultProperty — PropertyType: DeployCostMult (64), AmountMult: 0.85
+[14:55:24.208] [REND_Investigation]   UpdateMultProperty — PropertyType: DeployCostMult (64), AmountMult: 0.85
+[14:55:24.209] [REND_Investigation]   UpdateMultProperty — PropertyType: DeployCostMult (64), AmountMult: 0.85
+[14:55:24.209] [REND_Investigation]   UpdateMultProperty — PropertyType: DeployCostMult (64), AmountMult: 0.85
+[14:55:24.209] [REND_Investigation]   UpdateMultProperty — PropertyType: DeployCostMult (64), AmountMult: 0.85
+[14:55:24.210] [REND_Investigation]   UpdateMultProperty — PropertyType: DeployCostMult (64), AmountMult: 0.85
+[14:55:24.210] [REND_Investigation]   UpdateMultProperty — PropertyType: DeployCostMult (64), AmountMult: 0.85
+[14:55:24.210] [REND_Investigation]   UpdateMultProperty — PropertyType: DeployCostMult (64), AmountMult: 0.85
+[14:55:24.211] [REND_Investigation]   UpdateMultProperty — PropertyType: DeployCostMult (64), AmountMult: 0.85
+[14:55:24.211] [REND_Investigation]   UpdateMultProperty — PropertyType: DeployCostMult (64), AmountMult: 0.85
+[14:55:24.211] [REND_Investigation]   UpdateMultProperty — PropertyType: DeployCostMult (64), AmountMult: 0.85
+[14:55:24.212] [REND_Investigation]   UpdateProperty — PropertyType: ProvidedCoverBonus (53), Amount: 1
+[14:55:24.212] [REND_Investigation]   UpdateProperty — PropertyType: ProvidedCoverBonus (53), Amount: 1
+[14:55:24.212] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalTurningCost (45), Amount: -5
+[14:55:24.213] [REND_Investigation]   UpdateMultProperty — PropertyType: BackwardsMovementMult (55), AmountMult: 0.5
+[14:55:24.213] [REND_Investigation]   UpdateProperty — PropertyType: ProvidedCoverBonus (53), Amount: 1
+[14:55:24.213] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalTurningCost (45), Amount: -5
+[14:55:24.214] [REND_Investigation]   UpdateMultProperty — PropertyType: BackwardsMovementMult (55), AmountMult: 0.5
+[14:55:24.214] [REND_Investigation]   UpdateProperty — PropertyType: ProvidedCoverBonus (53), Amount: 1
+[14:55:24.214] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalTurningCost (45), Amount: -5
+[14:55:24.215] [REND_Investigation]   UpdateMultProperty — PropertyType: BackwardsMovementMult (55), AmountMult: 0.5
+[14:55:24.215] [REND_Investigation]   UpdateProperty — PropertyType: ProvidedCoverBonus (53), Amount: 1
+[14:55:24.215] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalTurningCost (45), Amount: -5
+[14:55:24.216] [REND_Investigation]   UpdateMultProperty — PropertyType: BackwardsMovementMult (55), AmountMult: 0.5
+[14:55:24.216] [REND_Investigation]   UpdateProperty — PropertyType: ProvidedCoverBonus (53), Amount: 1
+[14:55:24.216] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalTurningCost (45), Amount: -5
+[14:55:24.217] [REND_Investigation]   UpdateMultProperty — PropertyType: BackwardsMovementMult (55), AmountMult: 0.5
+[14:55:24.217] [REND_Investigation]   UpdateProperty — PropertyType: ProvidedCoverBonus (53), Amount: 1
+[14:55:24.217] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalTurningCost (45), Amount: -5
+[14:55:24.218] [REND_Investigation]   UpdateMultProperty — PropertyType: BackwardsMovementMult (55), AmountMult: 0.5
+[14:55:24.218] [REND_Investigation]   UpdateProperty — PropertyType: ProvidedCoverBonus (53), Amount: 1
+[14:55:24.218] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalTurningCost (45), Amount: -5
+[14:55:24.219] [REND_Investigation]   UpdateMultProperty — PropertyType: BackwardsMovementMult (55), AmountMult: 0.5
+[14:55:24.219] [REND_Investigation]   UpdateProperty — PropertyType: ProvidedCoverBonus (53), Amount: 1
+[14:55:24.219] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalTurningCost (45), Amount: -5
+[14:55:24.220] [REND_Investigation]   UpdateMultProperty — PropertyType: BackwardsMovementMult (55), AmountMult: 0.5
+[14:55:24.220] [REND_Investigation]   UpdateProperty — PropertyType: ProvidedCoverBonus (53), Amount: 1
+[14:55:24.220] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalTurningCost (45), Amount: -5
+[14:55:24.221] [REND_Investigation]   UpdateMultProperty — PropertyType: BackwardsMovementMult (55), AmountMult: 0.5
+[14:55:24.221] [REND_Investigation]   UpdateProperty — PropertyType: ProvidedCoverBonus (53), Amount: 1
+[14:55:24.221] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalTurningCost (45), Amount: -5
+[14:55:24.224] [REND_Investigation]   UpdateMultProperty — PropertyType: BackwardsMovementMult (55), AmountMult: 0.5
+[14:55:24.225] [REND_Investigation]   UpdateProperty — PropertyType: ProvidedCoverBonus (53), Amount: 1
+[14:55:24.226] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalTurningCost (45), Amount: -5
+[14:55:24.226] [REND_Investigation]   UpdateMultProperty — PropertyType: BackwardsMovementMult (55), AmountMult: 0.5
+[14:55:24.226] [REND_Investigation]   UpdateProperty — PropertyType: ProvidedCoverBonus (53), Amount: 1
+[14:55:24.227] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalTurningCost (45), Amount: -5
+[14:55:24.227] [REND_Investigation]   UpdateMultProperty — PropertyType: BackwardsMovementMult (55), AmountMult: 0.5
+[14:55:24.227] [REND_Investigation]   UpdateProperty — PropertyType: ProvidedCoverBonus (53), Amount: 1
+[14:55:24.228] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalTurningCost (45), Amount: -5
+[14:55:24.228] [REND_Investigation]   UpdateMultProperty — PropertyType: BackwardsMovementMult (55), AmountMult: 0.5
+[14:55:24.228] [REND_Investigation]   UpdateProperty — PropertyType: ProvidedCoverBonus (53), Amount: 1
+[14:55:24.229] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalTurningCost (45), Amount: -5
+[14:55:24.229] [REND_Investigation]   UpdateMultProperty — PropertyType: BackwardsMovementMult (55), AmountMult: 0.5
+[14:55:24.229] [REND_Investigation]   UpdateProperty — PropertyType: ProvidedCoverBonus (53), Amount: 1
+[14:55:24.230] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalTurningCost (45), Amount: -5
+[14:55:24.230] [REND_Investigation]   UpdateMultProperty — PropertyType: BackwardsMovementMult (55), AmountMult: 0.5
+[14:55:24.230] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalTurningCost (45), Amount: -5
+[14:55:24.231] [REND_Investigation]   UpdateMultProperty — PropertyType: BackwardsMovementMult (55), AmountMult: 0.5
+[14:55:24.231] [REND_Investigation]   UpdateProperty — PropertyType: ProvidedCoverBonus (53), Amount: 1
+[14:55:24.231] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalTurningCost (45), Amount: -5
+[14:55:24.232] [REND_Investigation]   UpdateMultProperty — PropertyType: BackwardsMovementMult (55), AmountMult: 0.5
+[14:55:24.232] [REND_Investigation]   UpdateProperty — PropertyType: ProvidedCoverBonus (53), Amount: 1
+[14:55:24.232] [REND_Investigation]   UpdateProperty — PropertyType: ProvidedCoverBonus (53), Amount: 1
+[14:55:24.233] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalTurningCost (45), Amount: -5
+[14:55:24.233] [REND_Investigation]   UpdateMultProperty — PropertyType: BackwardsMovementMult (55), AmountMult: 0.5
+[14:55:24.233] [REND_Investigation]   UpdateProperty — PropertyType: ProvidedCoverBonus (53), Amount: 1
+[14:55:24.234] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalTurningCost (45), Amount: -5
+[14:55:24.234] [REND_Investigation]   UpdateMultProperty — PropertyType: BackwardsMovementMult (55), AmountMult: 0.5
+[14:55:24.234] [REND_Investigation]   UpdateProperty — PropertyType: ProvidedCoverBonus (53), Amount: 1
+[14:55:24.235] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalTurningCost (45), Amount: -5
+[14:55:24.235] [REND_Investigation]   UpdateMultProperty — PropertyType: BackwardsMovementMult (55), AmountMult: 0.5
+[14:55:24.235] [REND_Investigation]   UpdateProperty — PropertyType: ProvidedCoverBonus (53), Amount: 1
+[14:55:24.235] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalTurningCost (45), Amount: -5
+[14:55:24.236] [REND_Investigation]   UpdateMultProperty — PropertyType: BackwardsMovementMult (55), AmountMult: 0.5
+[14:55:24.236] [REND_Investigation]   UpdateProperty — PropertyType: ProvidedCoverBonus (53), Amount: 1
+[14:55:24.236] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalTurningCost (45), Amount: -5
+[14:55:24.237] [REND_Investigation]   UpdateMultProperty — PropertyType: BackwardsMovementMult (55), AmountMult: 0.5
+[14:55:24.257] [Menace_Modpack_Loader] [TemplateDiagnostics] GetBaseFolder(Menace.Strategy.PlanetTemplate) -> 'Data/Planets/'
+[14:55:24.516] [Menace_Modpack_Loader] [TemplateDiagnostics] GetBaseFolder(Menace.Strategy.OperationTemplate) -> 'Data/Operations/'
+[14:55:24.761] [Menace_Modpack_Loader] [TemplateDiagnostics] GetBaseFolder(Menace.Strategy.FactionTemplate) -> 'Data/Factions/'
+[14:55:25.147] [Menace_Modpack_Loader] [TemplateDiagnostics] GetBaseFolder(Menace.Strategy.OperationDurationTemplate) -> 'Data/OperationDurations/'
+[14:55:25.148] [Menace_Modpack_Loader] [TemplateDiagnostics] GetBaseFolder(Menace.Strategy.MissionDifficultyTemplate) -> 'Data/MissionDifficulties/'
+[14:55:25.149] [Menace_Modpack_Loader] [TemplateDiagnostics] GetBaseFolder(Menace.Strategy.Missions.MissionTemplate) -> 'Data/Missions/'
+[14:55:28.249] [Menace_Modpack_Loader] [TemplateDiagnostics] GetBaseFolder(Tactical.Weather.WeatherTemplate) -> 'Data/Weather/'
+[14:55:28.255] [Menace_Modpack_Loader] [TemplateDiagnostics] GetBaseFolder(Menace.Strategy.BiomeTemplate) -> 'Data/Biomes/'
+[14:55:28.455] [Menace_Modpack_Loader] [TemplateDiagnostics] GetBaseFolder(Menace.Strategy.OperationAssetTemplate) -> 'Data/OperationAssets/'
+[14:55:28.594] [Menace_Modpack_Loader] [TemplateDiagnostics] GetBaseFolder(Menace.Strategy.ConversationEffectsTemplate) -> 'Data/Conversations/Effects/'
+[14:55:28.629] [Menace_Modpack_Loader] [TemplateDiagnostics] GetBaseFolder(Menace.OffmapAbilities.OffmapAbilityTemplate) -> 'Data/OffmapAbilities/'
+[14:55:28.662] [Menace_Modpack_Loader] [SceneDiagnostics] LoadScene('MissionPreparation') called
+[14:55:28.662] [Menace_Modpack_Loader] [SceneDiagnostics]   Current scene: 'Strategy' (index: 3)
+[14:55:28.663] [Menace_Modpack_Loader] [SceneDiagnostics]   Scene count in build: 5
+[14:55:28.663] [Menace_Modpack_Loader] [SceneDiagnostics]   Found scene at index 2: Assets/Scenes/MissionPreparation.unity
+[14:55:28.664] [Menace_Modpack_Loader] [SceneDiagnostics] LoadScene('MissionPreparation') completed
+[14:55:28.664] [Menace_Modpack_Loader] [SceneDiagnostics]   Active scene now: 'Strategy' (index: 3)
+[14:55:28.664] [WARNING] [Menace_Modpack_Loader] [SceneDiagnostics]   WARNING: Scene did not change! Still on 'Strategy'
+[14:55:29.064] [ERROR] [Il2CppInterop] Assembly Assembly-CSharp is not registered in il2cpp
+[14:55:30.313] [REND_Investigation]   UpdateProperty — PropertyType: Vision (0), Amount: 2
+[14:55:30.314] [REND_Investigation]   UpdateProperty — PropertyType: Detection (7), Amount: 1
+[14:55:30.315] [REND_Investigation]   UpdateProperty — PropertyType: Concealment (2), Amount: 2
+[14:55:30.315] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalMovementCost (37), Amount: -2
+[14:55:34.977] [Menace_Modpack_Loader] [SceneDiagnostics] LoadScene('Tactical') called
+[14:55:34.977] [Menace_Modpack_Loader] [SceneDiagnostics]   Current scene: 'MissionPreparation' (index: 2)
+[14:55:34.978] [Menace_Modpack_Loader] [SceneDiagnostics]   Scene count in build: 5
+[14:55:34.979] [Menace_Modpack_Loader] [SceneDiagnostics]   Found scene at index 4: Assets/Scenes/Tactical.unity
+[14:55:34.979] [Menace_Modpack_Loader] [SceneDiagnostics] LoadScene('Tactical') completed
+[14:55:34.979] [Menace_Modpack_Loader] [SceneDiagnostics]   Active scene now: 'MissionPreparation' (index: 2)
+[14:55:34.980] [WARNING] [Menace_Modpack_Loader] [SceneDiagnostics]   WARNING: Scene did not change! Still on 'MissionPreparation'
+[14:55:37.074] [REND_Investigation]   UpdateProperty — PropertyType: Vision (0), Amount: 2
+[14:55:37.075] [REND_Investigation]   UpdateProperty — PropertyType: Detection (7), Amount: 1
+[14:55:37.076] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalMovementCost (37), Amount: -2
+[14:55:37.076] [REND_Investigation]   UpdateMultProperty — PropertyType: AccuracyMult (9), AmountMult: 0.85
+[14:55:37.076] [REND_Investigation]   UpdateMultProperty — PropertyType: DisciplineMult (21), AmountMult: 0.85
+[14:55:37.077] [REND_Investigation]   UpdateMultProperty — PropertyType: AccuracyMult (9), AmountMult: 0.85
+[14:55:37.078] [REND_Investigation]   UpdateMultProperty — PropertyType: DisciplineMult (21), AmountMult: 0.85
+[14:55:37.078] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalMovementCost (37), Amount: -2
+[14:55:37.078] [REND_Investigation]   UpdateProperty — PropertyType: Vision (0), Amount: 2
+[14:55:37.079] [REND_Investigation]   UpdateProperty — PropertyType: Detection (7), Amount: 1
+[14:55:37.079] [REND_Investigation]   UpdateMultProperty — PropertyType: AccuracyMult (9), AmountMult: 0.95000005
+[14:55:37.079] [REND_Investigation]   UpdateMultProperty — PropertyType: DisciplineMult (21), AmountMult: 0.95000005
+[14:55:37.100] [REND_Investigation]   UpdateProperty — PropertyType: Vision (0), Amount: 2
+[14:55:37.100] [REND_Investigation]   UpdateProperty — PropertyType: Detection (7), Amount: 1
+[14:55:37.101] [REND_Investigation]   UpdateProperty — PropertyType: Concealment (2), Amount: 2
+[14:55:37.101] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalMovementCost (37), Amount: -2
+[14:55:37.102] [REND_Investigation]   UpdateProperty — PropertyType: Vision (0), Amount: 2
+[14:55:37.102] [REND_Investigation]   UpdateProperty — PropertyType: Detection (7), Amount: 1
+[14:55:37.103] [REND_Investigation]   UpdateProperty — PropertyType: Concealment (2), Amount: 2
+[14:55:37.104] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalMovementCost (37), Amount: -2
+[14:55:37.105] [REND_Investigation]   UpdateProperty — PropertyType: Vision (0), Amount: 2
+[14:55:37.105] [REND_Investigation]   UpdateProperty — PropertyType: Detection (7), Amount: 1
+[14:55:37.105] [REND_Investigation]   UpdateProperty — PropertyType: Concealment (2), Amount: 2
+[14:55:37.105] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalMovementCost (37), Amount: -2
+[14:55:37.110] [REND_Investigation]   UpdateProperty — PropertyType: ProvidedCoverBonus (53), Amount: 1
+[14:55:37.111] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalTurningCost (45), Amount: -5
+[14:55:37.111] [REND_Investigation]   UpdateMultProperty — PropertyType: BackwardsMovementMult (55), AmountMult: 0.5
+[14:55:37.112] [REND_Investigation]   UpdateProperty — PropertyType: ProvidedCoverBonus (53), Amount: 1
+[14:55:37.113] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalTurningCost (45), Amount: -5
+[14:55:37.113] [REND_Investigation]   UpdateMultProperty — PropertyType: BackwardsMovementMult (55), AmountMult: 0.5
+[14:55:37.113] [REND_Investigation]   UpdateProperty — PropertyType: ProvidedCoverBonus (53), Amount: 1
+[14:55:37.114] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalTurningCost (45), Amount: -5
+[14:55:37.114] [REND_Investigation]   UpdateMultProperty — PropertyType: BackwardsMovementMult (55), AmountMult: 0.5
+[14:55:37.147] [REND_Investigation]   UpdateProperty — PropertyType: Vision (0), Amount: 1
+[14:55:37.147] [REND_Investigation]   UpdateProperty — PropertyType: Detection (7), Amount: 1
+[14:55:37.148] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalMovementCost (37), Amount: -2
+[14:55:37.149] [REND_Investigation]   UpdateProperty — PropertyType: Vision (0), Amount: 2
+[14:55:37.149] [REND_Investigation]   UpdateProperty — PropertyType: Detection (7), Amount: 1
+[14:55:37.150] [REND_Investigation]   UpdateProperty — PropertyType: Vision (0), Amount: 1
+[14:55:37.150] [REND_Investigation]   UpdateProperty — PropertyType: Detection (7), Amount: 1
+[14:55:37.150] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalMovementCost (37), Amount: -2
+[14:55:37.150] [REND_Investigation]   UpdateProperty — PropertyType: Vision (0), Amount: 2
+[14:55:37.151] [REND_Investigation]   UpdateProperty — PropertyType: Detection (7), Amount: 1
+[14:55:37.151] [REND_Investigation]   UpdateProperty — PropertyType: Vision (0), Amount: 1
+[14:55:37.151] [REND_Investigation]   UpdateProperty — PropertyType: Detection (7), Amount: 1
+[14:55:37.152] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalMovementCost (37), Amount: -2
+[14:55:37.152] [REND_Investigation]   UpdateProperty — PropertyType: Vision (0), Amount: 2
+[14:55:37.152] [REND_Investigation]   UpdateProperty — PropertyType: Detection (7), Amount: 1
+[14:55:37.158] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalTurningCost (45), Amount: -5
+[14:55:37.158] [REND_Investigation]   UpdateMultProperty — PropertyType: BackwardsMovementMult (55), AmountMult: 0.5
+[14:55:37.158] [REND_Investigation]   UpdateMultProperty — PropertyType: ArmorPenetrationMult (23), AmountMult: 1.3
+[14:55:37.158] [REND_Investigation]   UpdateMultProperty — PropertyType: AccuracyMult (9), AmountMult: 1.1
+[14:55:37.159] [REND_Investigation]   UpdateMultProperty — PropertyType: DisciplineMult (21), AmountMult: 1.1
+[14:55:37.159] [REND_Investigation]   UpdateMultProperty — PropertyType: MoraleMult (41), AmountMult: 1.1
+[14:55:37.160] [REND_Investigation]   UpdateMultProperty — PropertyType: DamageSustainedMult (11), AmountMult: 0.9
+[14:55:37.160] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalTurningCost (45), Amount: -5
+[14:55:37.160] [REND_Investigation]   UpdateMultProperty — PropertyType: BackwardsMovementMult (55), AmountMult: 0.5
+[14:55:37.161] [REND_Investigation]   UpdateMultProperty — PropertyType: ArmorPenetrationMult (23), AmountMult: 1.3
+[14:55:37.161] [REND_Investigation]   UpdateMultProperty — PropertyType: AccuracyMult (9), AmountMult: 1.1
+[14:55:37.161] [REND_Investigation]   UpdateMultProperty — PropertyType: DisciplineMult (21), AmountMult: 1.1
+[14:55:37.162] [REND_Investigation]   UpdateMultProperty — PropertyType: MoraleMult (41), AmountMult: 1.1
+[14:55:37.162] [REND_Investigation]   UpdateMultProperty — PropertyType: DamageSustainedMult (11), AmountMult: 0.9
+[14:55:37.162] [REND_Investigation]   UpdateMultProperty — PropertyType: AccuracyMult (9), AmountMult: 1
+[14:55:37.163] [REND_Investigation]   UpdateMultProperty — PropertyType: DisciplineMult (21), AmountMult: 1
+[14:55:37.163] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalTurningCost (45), Amount: -5
+[14:55:37.163] [REND_Investigation]   UpdateMultProperty — PropertyType: BackwardsMovementMult (55), AmountMult: 0.5
+[14:55:37.164] [REND_Investigation]   UpdateMultProperty — PropertyType: ArmorPenetrationMult (23), AmountMult: 1.3
+[14:55:37.164] [REND_Investigation]   UpdateMultProperty — PropertyType: AccuracyMult (9), AmountMult: 1.1
+[14:55:37.164] [REND_Investigation]   UpdateMultProperty — PropertyType: DisciplineMult (21), AmountMult: 1.1
+[14:55:37.165] [REND_Investigation]   UpdateMultProperty — PropertyType: MoraleMult (41), AmountMult: 1.1
+[14:55:37.165] [REND_Investigation]   UpdateMultProperty — PropertyType: DamageSustainedMult (11), AmountMult: 0.9
+[14:55:37.165] [REND_Investigation]   UpdateMultProperty — PropertyType: AccuracyMult (9), AmountMult: 1
+[14:55:37.166] [REND_Investigation]   UpdateMultProperty — PropertyType: DisciplineMult (21), AmountMult: 1
+[14:55:37.171] [REND_Investigation]   UpdateProperty — PropertyType: HitchanceMin (68), Amount: 30
+[14:55:37.171] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalTurningCost (45), Amount: -5
+[14:55:37.172] [REND_Investigation]   UpdateMultProperty — PropertyType: BackwardsMovementMult (55), AmountMult: 0.5
+[14:55:37.172] [REND_Investigation]   UpdateMultProperty — PropertyType: AccuracyMult (9), AmountMult: 1.1
+[14:55:37.172] [REND_Investigation]   UpdateMultProperty — PropertyType: DisciplineMult (21), AmountMult: 1.1
+[14:55:37.173] [REND_Investigation]   UpdateMultProperty — PropertyType: MoraleMult (41), AmountMult: 1.1
+[14:55:37.173] [REND_Investigation]   UpdateMultProperty — PropertyType: DamageSustainedMult (11), AmountMult: 0.9
+[14:55:37.173] [REND_Investigation]   UpdateProperty — PropertyType: Vision (0), Amount: 1
+[14:55:37.174] [REND_Investigation]   UpdateProperty — PropertyType: Detection (7), Amount: 2
+[14:55:37.174] [REND_Investigation]   UpdateProperty — PropertyType: HitchanceMin (68), Amount: 30
+[14:55:37.174] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalTurningCost (45), Amount: -5
+[14:55:37.175] [REND_Investigation]   UpdateMultProperty — PropertyType: BackwardsMovementMult (55), AmountMult: 0.5
+[14:55:37.175] [REND_Investigation]   UpdateMultProperty — PropertyType: AccuracyMult (9), AmountMult: 1.1
+[14:55:37.176] [REND_Investigation]   UpdateMultProperty — PropertyType: DisciplineMult (21), AmountMult: 1.1
+[14:55:37.176] [REND_Investigation]   UpdateMultProperty — PropertyType: MoraleMult (41), AmountMult: 1.1
+[14:55:37.176] [REND_Investigation]   UpdateMultProperty — PropertyType: DamageSustainedMult (11), AmountMult: 0.9
+[14:55:37.177] [REND_Investigation]   UpdateProperty — PropertyType: Vision (0), Amount: 1
+[14:55:37.177] [REND_Investigation]   UpdateProperty — PropertyType: Detection (7), Amount: 2
+[14:55:37.177] [REND_Investigation]   UpdateProperty — PropertyType: HitchanceMin (68), Amount: 30
+[14:55:37.178] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalTurningCost (45), Amount: -5
+[14:55:37.178] [REND_Investigation]   UpdateMultProperty — PropertyType: BackwardsMovementMult (55), AmountMult: 0.5
+[14:55:37.178] [REND_Investigation]   UpdateMultProperty — PropertyType: AccuracyMult (9), AmountMult: 1.1
+[14:55:37.179] [REND_Investigation]   UpdateMultProperty — PropertyType: DisciplineMult (21), AmountMult: 1.1
+[14:55:37.179] [REND_Investigation]   UpdateMultProperty — PropertyType: MoraleMult (41), AmountMult: 1.1
+[14:55:37.179] [REND_Investigation]   UpdateMultProperty — PropertyType: DamageSustainedMult (11), AmountMult: 0.9
+[14:55:37.180] [REND_Investigation]   UpdateProperty — PropertyType: Vision (0), Amount: 1
+[14:55:37.180] [REND_Investigation]   UpdateProperty — PropertyType: Detection (7), Amount: 2
+[14:55:37.348] [REND_Investigation]   UpdateMultProperty — PropertyType: AccuracyMult (9), AmountMult: 0.85
+[14:55:37.348] [REND_Investigation]   UpdateMultProperty — PropertyType: DisciplineMult (21), AmountMult: 0.85
+[14:55:37.349] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalMovementCost (37), Amount: -2
+[14:55:37.349] [REND_Investigation]   UpdateProperty — PropertyType: Vision (0), Amount: 2
+[14:55:37.350] [REND_Investigation]   UpdateProperty — PropertyType: Detection (7), Amount: 1
+[14:55:37.350] [REND_Investigation]   UpdateMultProperty — PropertyType: AccuracyMult (9), AmountMult: 1
+[14:55:37.350] [REND_Investigation]   UpdateMultProperty — PropertyType: DisciplineMult (21), AmountMult: 1
+[14:55:37.351] [REND_Investigation]   UpdateProperty — PropertyType: Vision (0), Amount: 2
+[14:55:37.351] [REND_Investigation]   UpdateProperty — PropertyType: Detection (7), Amount: 1
+[14:55:37.351] [REND_Investigation]   UpdateProperty — PropertyType: Concealment (2), Amount: 2
+[14:55:37.352] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalMovementCost (37), Amount: -2
+[14:55:37.352] [REND_Investigation]   UpdateProperty — PropertyType: ProvidedCoverBonus (53), Amount: 1
+[14:55:37.352] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalTurningCost (45), Amount: -5
+[14:55:37.353] [REND_Investigation]   UpdateMultProperty — PropertyType: BackwardsMovementMult (55), AmountMult: 0.5
+[14:55:37.353] [REND_Investigation]   UpdateProperty — PropertyType: Vision (0), Amount: 1
+[14:55:37.353] [REND_Investigation]   UpdateProperty — PropertyType: Detection (7), Amount: 1
+[14:55:37.354] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalMovementCost (37), Amount: -2
+[14:55:37.354] [REND_Investigation]   UpdateProperty — PropertyType: Vision (0), Amount: 2
+[14:55:37.354] [REND_Investigation]   UpdateProperty — PropertyType: Detection (7), Amount: 1
+[14:55:37.355] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalTurningCost (45), Amount: -5
+[14:55:37.355] [REND_Investigation]   UpdateMultProperty — PropertyType: BackwardsMovementMult (55), AmountMult: 0.5
+[14:55:37.356] [REND_Investigation]   UpdateMultProperty — PropertyType: ArmorPenetrationMult (23), AmountMult: 1.3
+[14:55:37.356] [REND_Investigation]   UpdateMultProperty — PropertyType: AccuracyMult (9), AmountMult: 1.1
+[14:55:37.356] [REND_Investigation]   UpdateMultProperty — PropertyType: DisciplineMult (21), AmountMult: 1.1
+[14:55:37.357] [REND_Investigation]   UpdateMultProperty — PropertyType: MoraleMult (41), AmountMult: 1.1
+[14:55:37.357] [REND_Investigation]   UpdateMultProperty — PropertyType: DamageSustainedMult (11), AmountMult: 0.9
+[14:55:37.357] [REND_Investigation]   UpdateMultProperty — PropertyType: AccuracyMult (9), AmountMult: 1
+[14:55:37.358] [REND_Investigation]   UpdateMultProperty — PropertyType: DisciplineMult (21), AmountMult: 1
+[14:55:37.358] [REND_Investigation]   UpdateProperty — PropertyType: HitchanceMin (68), Amount: 30
+[14:55:37.358] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalTurningCost (45), Amount: -5
+[14:55:37.362] [REND_Investigation]   UpdateMultProperty — PropertyType: BackwardsMovementMult (55), AmountMult: 0.5
+[14:55:37.362] [REND_Investigation]   UpdateMultProperty — PropertyType: AccuracyMult (9), AmountMult: 1.1
+[14:55:37.362] [REND_Investigation]   UpdateMultProperty — PropertyType: DisciplineMult (21), AmountMult: 1.1
+[14:55:37.363] [REND_Investigation]   UpdateMultProperty — PropertyType: MoraleMult (41), AmountMult: 1.1
+[14:55:37.363] [REND_Investigation]   UpdateMultProperty — PropertyType: DamageSustainedMult (11), AmountMult: 0.9
+[14:55:37.363] [REND_Investigation]   UpdateProperty — PropertyType: Vision (0), Amount: 1
+[14:55:37.364] [REND_Investigation]   UpdateProperty — PropertyType: Detection (7), Amount: 2
+[14:55:37.372] [REND_Investigation]   UpdateProperty — PropertyType: HitchanceMin (68), Amount: 30
+[14:55:37.372] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalTurningCost (45), Amount: -5
+[14:55:37.373] [REND_Investigation]   UpdateMultProperty — PropertyType: BackwardsMovementMult (55), AmountMult: 0.5
+[14:55:37.373] [REND_Investigation]   UpdateMultProperty — PropertyType: AccuracyMult (9), AmountMult: 1.1
+[14:55:37.373] [REND_Investigation]   UpdateMultProperty — PropertyType: DisciplineMult (21), AmountMult: 1.1
+[14:55:37.374] [REND_Investigation]   UpdateMultProperty — PropertyType: MoraleMult (41), AmountMult: 1.1
+[14:55:37.376] [REND_Investigation]   UpdateMultProperty — PropertyType: DamageSustainedMult (11), AmountMult: 0.9
+[14:55:37.376] [REND_Investigation]   UpdateProperty — PropertyType: Vision (0), Amount: 1
+[14:55:37.377] [REND_Investigation]   UpdateProperty — PropertyType: Detection (7), Amount: 2
+[14:55:37.551] [REND_Investigation]   UpdateMultProperty — PropertyType: AccuracyMult (9), AmountMult: 0.85
+[14:55:37.551] [REND_Investigation]   UpdateMultProperty — PropertyType: DisciplineMult (21), AmountMult: 0.85
+[14:55:37.552] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalMovementCost (37), Amount: -2
+[14:55:37.553] [REND_Investigation]   UpdateProperty — PropertyType: Vision (0), Amount: 2
+[14:55:37.553] [REND_Investigation]   UpdateProperty — PropertyType: Detection (7), Amount: 1
+[14:55:37.554] [REND_Investigation]   UpdateMultProperty — PropertyType: AccuracyMult (9), AmountMult: 1
+[14:55:37.554] [REND_Investigation]   UpdateMultProperty — PropertyType: DisciplineMult (21), AmountMult: 1
+[14:55:37.833] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalMovementCost (37), Amount: -2
+[14:55:37.833] [REND_Investigation]   UpdateProperty — PropertyType: Concealment (2), Amount: 2
+[14:55:37.834] [REND_Investigation]   UpdateProperty — PropertyType: Vision (0), Amount: 2
+[14:55:37.835] [REND_Investigation]   UpdateProperty — PropertyType: Detection (7), Amount: 1
+[14:55:37.835] [OCIRebalance] Added ocirebalance.remote_hacker to Il2CppMenace.Tactical.Actor
+[14:55:37.839] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalMovementCost (37), Amount: -2
+[14:55:37.839] [REND_Investigation]   UpdateProperty — PropertyType: Concealment (2), Amount: 2
+[14:55:37.839] [REND_Investigation]   UpdateProperty — PropertyType: Vision (0), Amount: 2
+[14:55:37.840] [REND_Investigation]   UpdateProperty — PropertyType: Detection (7), Amount: 1
+[14:55:37.840] [OCIRebalance] Added ocirebalance.laser_turret to Il2CppMenace.Tactical.Actor
+[14:55:37.844] [REND_Investigation]   UpdateProperty — PropertyType: Vision (0), Amount: 2
+[14:55:37.844] [REND_Investigation]   UpdateProperty — PropertyType: Detection (7), Amount: 1
+[14:55:37.844] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalMovementCost (37), Amount: -2
+[14:55:37.844] [REND_Investigation]   UpdateProperty — PropertyType: Concealment (2), Amount: 2
+[14:55:37.845] [OCIRebalance] Added ocirebalance.resupply to Il2CppMenace.Tactical.Actor
+[14:55:37.845] [OCIRebalance] TAC Skills assigned.
+[14:55:38.996] [REND_Investigation]   UpdateProperty — PropertyType: Vision (0), Amount: 2
+[14:55:38.996] [REND_Investigation]   UpdateProperty — PropertyType: Detection (7), Amount: 1
+[14:55:38.997] [REND_Investigation]   UpdateProperty — PropertyType: AdditionalMovementCost (37), Amount: -2
+[14:55:38.997] [REND_Investigation]   UpdateProperty — PropertyType: Concealment (2), Amount: 2
+[14:56:01.673] Preferences Saved!
