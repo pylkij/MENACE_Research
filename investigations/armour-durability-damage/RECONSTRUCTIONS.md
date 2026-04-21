@@ -663,7 +663,9 @@ DamageInfo Entity_OnDamageReceived(Entity*          self,
             int roll = RollD100(weaponProps);  // FUN_18053d2e0
 
             if (penetrationHitChance2 < roll) {
-                // --- HIT PENETRATES ---
+                // --- HIT DOES NOT PENETRATE ---
+                // Roll exceeded the armor's resistance threshold; shot is stopped by the plate.
+                // Full ArmorDamage quadratic is applied — all kinetic energy absorbed by armor.
                 
                 // Get the element for this iteration
                 Element* element = GetElement(self, numElementsToHit);
@@ -673,11 +675,12 @@ DamageInfo Entity_OnDamageReceived(Entity*          self,
                 float durF2 = (float)self->m_ArmorDurabilityMax;
                 if (durF2 < 1.0f) durF2 = 1.0f;
 
-                // D = current / max (per-element ratio)
+                // Cap value: one element's share of current durability
                 float D = (float)self->m_ArmorDurability / (float)self->m_Elements->Count;
 
-                // Penetrating armor durability damage formula:
-                // damage = ArmorDamage * D * D   (quadratic scaling)
+                // Non-penetrating armor durability damage formula:
+                // damage = ArmorDamage * (m_ArmorDurability / m_ArmorDurabilityMax)²  (quadratic scaling)
+                // Shot is caught by the plate; full ArmorDamage drives the calculation.
                 float armorDmg = (float)damageInfo->ArmorDamage       // +0x38
                                * ((float)self->m_ArmorDurability / durF1)
                                * ((float)self->m_ArmorDurability / durF2);
@@ -699,13 +702,17 @@ DamageInfo Entity_OnDamageReceived(Entity*          self,
                 if (penetrationHitChance2 < 0) penetrationHitChance2 = 0;
 
             } else {
-                // --- HIT DOES NOT PENETRATE ---
+                // --- HIT PENETRATES ---
+                // Roll fell within the armor's resistance window; shot punches through.
+                // Queued for HP damage below. Durability damage (0.15 scalar) applied in second loop.
                 successfulPenetrationsThisHit++;
             }
         }
 
-        // --- Non-penetrating elements loop ---
-        // For each element that did NOT penetrate:
+        // --- Penetrating elements loop ---
+        // For each element that DID penetrate (queued in successfulPenetrationsThisHit):
+        // Shot punched through armor; HP damage is applied, and durability damage uses
+        // the 0.15 scalar — the round expended most of its energy on the target, not the plate.
         while (successfulPenetrationsThisHit > 0) {
             successfulPenetrationsThisHit--;
 
@@ -747,7 +754,7 @@ DamageInfo Entity_OnDamageReceived(Entity*          self,
                     continue; // back to top of while loop
                 }
 
-                // No armor-linked loss — standard non-penetrating durability damage:
+                // No armor-linked loss — standard penetrating durability damage:
                 float durF3 = (float)self->m_ArmorDurabilityMax;
                 if (durF3 < 1.0f) durF3 = 1.0f;
                 float durF4 = (float)self->m_ArmorDurabilityMax;
@@ -757,19 +764,21 @@ DamageInfo Entity_OnDamageReceived(Entity*          self,
                 float penetrationRatio = (float)penetrationHitChance * 0.01f;
                 if (penetrationRatio < 0.3f) penetrationRatio = 0.3f;
 
-                // Non-penetrating armor durability damage formula:
+                // Penetrating armor durability damage formula:
                 // damage = ArmorDamage * 0.15 * D² * penetrationRatio
-                float D_nonpen = (float)self->m_ArmorDurability / (float)self->m_Elements->Count;
-                float armorDmgNonPen = (float)damageInfo->ArmorDamage    // +0x38
+                // The 0.15 scalar reflects that a penetrating round expends most energy
+                // on the target beyond the plate — only residual surface damage to armor.
+                float D_pen = (float)self->m_ArmorDurability / (float)self->m_Elements->Count;
+                float armorDmgPen = (float)damageInfo->ArmorDamage    // +0x38
                                      * 0.15f
                                      * ((float)self->m_ArmorDurability / durF3)
                                      * ((float)self->m_ArmorDurability / durF4)
                                      * penetrationRatio;
 
                 // Cap: cannot remove more than one element's share
-                if (armorDmgNonPen > D_nonpen) armorDmgNonPen = D_nonpen;
+                if (armorDmgPen > D_pen) armorDmgPen = D_pen;
 
-                int newDur = (int)roundf((float)self->m_ArmorDurability - armorDmgNonPen);
+                int newDur = (int)roundf((float)self->m_ArmorDurability - armorDmgPen);
                 if (newDur < 0) newDur = 0;
                 self->m_ArmorDurability = newDur;   // +0x5C
 
@@ -794,11 +803,11 @@ DamageInfo Entity_OnDamageReceived(Entity*          self,
 
 ### OnDamageReceived — design notes
 
-**The durability formula is quadratic.** The term `(m_ArmorDurability / m_ArmorDurabilityMax)²` means fresh armor takes full theoretical damage, but 50% durability armor takes only 25%, and 10% durability armor takes only 1%. This is deliberate — the designers wanted armor to be hard to fully destroy once significantly degraded.
+**The durability formula is quadratic.** Both paths use the term `(m_ArmorDurability / m_ArmorDurabilityMax)²`. Fresh armor takes full theoretical damage, but 50% durability armor takes only 25%, and 10% durability armor takes only 1%. This is deliberate — the designers wanted armor to be hard to fully destroy once significantly degraded. Note that `D` in the per-element loop is only the cap value (one element's share of current durability); the quadratic itself always divides by `m_ArmorDurabilityMax`, not by `m_Elements->Count`.
 
-**Non-penetrating hits apply 15% of the penetrating formula.** Even a complete miss in terms of armor penetration still damages the armor. The `0.15` scalar combined with the `penetrationRatio` floor of `0.3` means the minimum non-penetrating durability damage is `ArmorDamage * 0.15 * D² * 0.3`.
+**Penetrating hits apply 15% of the non-penetrating durability formula.** A round that punches through the plate expends most of its energy on the target beyond it — only residual surface damage accrues to the armor. The `0.15` scalar combined with the `penetrationRatio` floor of `0.3` means the minimum penetrating durability damage is `ArmorDamage * 0.15 * D² * 0.3`. Conversely, a shot stopped by the plate transfers all its energy to the armor and uses the full `ArmorDamage * D²` formula with no scalar.
 
-**Penetration chance recalculates after each element.** After a penetrating hit reduces `m_ArmorDurability`, the penetration check threshold is recalculated for the next element in the loop. As durability drops, subsequent elements in the same attack are more likely to be penetrated. This creates a snowball effect within a single multi-element attack.
+**Penetration chance recalculates after each element.** After a non-penetrating hit reduces `m_ArmorDurability`, the penetration check threshold is recalculated for the next element in the loop. As durability drops, subsequent elements in the same attack are more likely to penetrate. This creates a snowball effect within a single multi-element attack: a volley that initially fails to penetrate progressively degrades the armor until later elements in the same attack break through.
 
 **Armor-linked durability on element death.** Some entity templates have a flag (`hasArmorLinkedDurabilityLoss`, confirmed at template offset `0xf9`) that ties durability pool to the number of living elements. When an element dies, one proportional share of durability is removed from both `m_ArmorDurability` and `m_ArmorDurabilityMax`. This represents vehicle subsystems or armor segments being destroyed rather than just worn down.
 
