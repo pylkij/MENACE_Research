@@ -78,7 +78,9 @@ Menace uses a two-layer armor model:
 
 ## 3. Core Finding — Armor Durability Damage Formula
 
-### Penetrating hit
+### Non-penetrating hit
+
+Shot is stopped by the plate; all kinetic energy is absorbed by the armor.
 
 ```
 armorDamage = DamageInfo.ArmorDamage
@@ -93,7 +95,9 @@ if armorDamage > cap:
 m_ArmorDurability = max(0, m_ArmorDurability - armorDamage)
 ```
 
-### Non-penetrating hit
+### Penetrating hit
+
+Shot punches through the plate; most energy is expended on the target beyond it.
 
 ```
 penetrationRatio  = max(0.3, ArmorPenetrationRatio * 0.01)   // floored at 0.30
@@ -122,7 +126,7 @@ The field is overwritten with the actual durability lost, not the theoretical da
 
 Armor durability damage does not scale linearly. The squared `(currentDurability / maxDurability)` term means a fully intact piece of armor takes the full theoretical damage, but armor at 50% durability takes only 25% of the theoretical damage, and armor at 10% durability takes only 1%. This creates a strong asymptotic curve — armor is hardest to finish off once it is already badly damaged.
 
-Non-penetrating hits deal 15% of the penetrating formula, further reduced by a penetration ratio term (floored at 30%). Even a hit that cannot penetrate still contributes to armor wear, but at a much lower rate.
+Penetrating hits deal only 15% of the non-penetrating formula, further reduced by a penetration ratio term (floored at 30%). A round that punches through the plate expends most of its energy on the target beyond it — only residual surface damage accrues to the armor. Conversely, a shot stopped by the plate transfers all its energy to the armor and uses the full `ArmorDamage * D²` formula.
 
 The per-element cap (`m_ArmorDurability / numElements`) prevents any single hit from removing more durability than one element's share of the total pool.
 
@@ -172,8 +176,8 @@ Skill/Ammo definition
   Entity.OnDamageReceived(attacker, skill, damageInfo, properties)   ← FUN_180616ef0
        Per-element loop:
          Penetration check → selects formula branch
-         armorDamage = ArmorDamage * D² (penetrating)
-                     = ArmorDamage * 0.15 * D² * penetrationRatio (non-penetrating)
+         armorDamage = ArmorDamage * D² (non-penetrating — shot stopped by plate, full damage)
+                     = ArmorDamage * 0.15 * D² * penetrationRatio (penetrating — shot punched through, residual surface damage only)
          m_ArmorDurability = max(0, m_ArmorDurability - armorDamage)
          DamageInfo.ArmorDamage = durabilityBefore - m_ArmorDurability
             │
@@ -490,7 +494,7 @@ Both fields are set to the same value at creation. `m_ArmorDurabilityMax` never 
 
 **Quadratic durability scaling is intentional.** The `(currentDurability / maxDurability)²` term means that fighting a fresh enemy unit is qualitatively different from fighting a damaged one. Anti-armor tactics that degrade durability early have disproportionate payoff for subsequent shots.
 
-**Non-penetrating hits still degrade armor.** The 0.15 scalar for non-penetrating hits is not zero. A unit that cannot penetrate an enemy's armor can still slowly wear it down over many hits, enabling a later penetrating shot. Rend Ammo exploits this: by trading penetration for higher `ArmorDamage`, it accelerates durability loss even on hits that would not otherwise penetrate.
+**Penetrating hits deal only 15% of the non-penetrating durability formula.** A round that punches through the plate expends most of its energy on the target beyond it — only residual surface damage accrues to the armor. The 0.15 scalar combined with the `penetrationRatio` floor of 0.3 means the minimum penetrating durability damage is `ArmorDamage * 0.15 * D² * 0.30`. Conversely, a shot stopped by the plate transfers all its energy to the armor and uses the full `ArmorDamage * D²` formula with no scalar. Rend Ammo's tradeoff — reducing `ArmorPenetrationMult` while increasing `DamageToArmorDurability` — is therefore self-defeating under this reading: making a weapon more likely to penetrate routes its hits into the 0.15-scalar path, reducing durability damage per hit. Rend Ammo would accelerate durability loss most effectively if it increased `ArmorDamage` without improving penetration, keeping hits on the non-penetrating (full-damage) path.
 
 **Multipliers are additive among themselves.** Two skills each granting `+20%` armor durability damage (AmountMult = 1.2) stack to `+40%`, not `+44%`. This prevents multiplicative stacking exploits but means the formula is `1 + sum(deltas)` not `product(multipliers)`.
 
@@ -500,7 +504,7 @@ Both fields are set to the same value at creation. `m_ArmorDurabilityMax` never 
 
 **`Armor` UpdateProperty modifies all three faces simultaneously.** Case 4 in `UpdateProperty` increments `Armor`, `ArmorSide`, and `ArmorBack` by the same amount. Skills or effects that modify `Armor` (EntityPropertyType 4) affect all directions equally. Direction-specific armor changes would require a different property type — none appears to exist for that purpose.
 
-**The penetration ratio floor of 0.3 means non-penetrating hits always deal at least 30% of the non-penetrating formula.** A hit with zero armor penetration against maximum armor still contributes `ArmorDamage * 0.15 * D² * 0.30` in durability damage. The floor prevents complete immunity to durability wear.
+**The penetration ratio floor of 0.3 means penetrating hits always deal at least 30% of the penetrating formula.** A hit with zero armor penetration against maximum armor that nonetheless punches through still contributes `ArmorDamage * 0.15 * D² * 0.30` in durability damage. The floor prevents penetrating hits from contributing zero durability wear.
 
 **Rend Ammo is non-functional at runtime.** Runtime verification (see Section 15) confirmed that none of Rend Ammo's three `PropertyChange` entries ever reach `UpdateProperty` or `UpdateMultProperty` during combat. The out-of-range `PropertyType` values (-2, -15, 0) fall through the switch dispatcher to the exception path and write nothing. The skill has no effect on any entity property. The tooltip displays correctly because it reads from a separate display data source that is not subject to the same dispatch logic.
 
